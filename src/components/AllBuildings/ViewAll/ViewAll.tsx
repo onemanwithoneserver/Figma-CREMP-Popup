@@ -40,7 +40,7 @@ const KeyIconItem: React.FC<{ icon: React.ReactNode; value: string; label: strin
       <Typography sx={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-main)', lineHeight: 1.2 }}>
         {value}
       </Typography>
-      <Typography sx={{ fontSize: '0.6rem', color: 'var(--text-muted)', lineHeight: 1.2, textTransform: 'uppercase' }}>
+      <Typography sx={{ fontSize: '0.6rem', color: 'var(--text-muted)', lineHeight: 1.2 }}>
         {label}
       </Typography>
     </Stack>
@@ -85,7 +85,7 @@ const ViewAll: React.FC<ViewAllProps> = ({ onBack }) => {
               </Stack>
             </Box>
             <Box sx={{ px: '8px', py: '2px', backgroundColor: 'var(--bg-app)', borderRadius: '4px', border: '1px solid var(--border-default)' }}>
-              <Typography sx={{ fontSize: '0.65rem', fontWeight: 600, color: 'var(--accent-gold)', textTransform: 'uppercase' }}>
+              <Typography sx={{ fontSize: '0.65rem', fontWeight: 600, color: 'var(--accent-gold)'}}>
                 Available
               </Typography>
             </Box>

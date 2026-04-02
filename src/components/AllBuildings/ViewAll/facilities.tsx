@@ -1,20 +1,25 @@
 import React, { useState } from 'react';
-import { Box, Typography, Stack, Tabs, Tab } from '@mui/material';
+import { Box, Typography, Stack } from '@mui/material';
 import LocalParkingIcon from '@mui/icons-material/LocalParking';
 import BoltIcon from '@mui/icons-material/Bolt';
 import WaterDropIcon from '@mui/icons-material/WaterDrop';
 import ShieldIcon from '@mui/icons-material/Shield';
 import DomainIcon from '@mui/icons-material/Domain';
 import DoneIcon from '@mui/icons-material/Done';
+import PremiumTabs, { type PremiumTabOption } from '../../ui/PremiumTabs';
 
 interface FacilityCategory {
+  id: FacilityTab;
   title: string;
   icon: React.ReactNode;
   items: { label: string; value: string | boolean }[];
 }
 
+type FacilityTab = 'parking' | 'power' | 'water' | 'safety' | 'buildingAmenities';
+
 const facilityCategories: FacilityCategory[] = [
   {
+    id: 'parking',
     title: 'Parking',
     icon: <LocalParkingIcon sx={{ fontSize: 16 }} />,
     items: [
@@ -24,6 +29,7 @@ const facilityCategories: FacilityCategory[] = [
     ],
   },
   {
+    id: 'power',
     title: 'Power',
     icon: <BoltIcon sx={{ fontSize: 16 }} />,
     items: [
@@ -33,6 +39,7 @@ const facilityCategories: FacilityCategory[] = [
     ],
   },
   {
+    id: 'water',
     title: 'Water',
     icon: <WaterDropIcon sx={{ fontSize: 16 }} />,
     items: [
@@ -41,6 +48,7 @@ const facilityCategories: FacilityCategory[] = [
     ],
   },
   {
+    id: 'safety',
     title: 'Safety',
     icon: <ShieldIcon sx={{ fontSize: 16 }} />,
     items: [
@@ -49,6 +57,7 @@ const facilityCategories: FacilityCategory[] = [
     ],
   },
   {
+    id: 'buildingAmenities',
     title: 'Building Amenities',
     icon: <DomainIcon sx={{ fontSize: 16 }} />,
     items: [
@@ -61,13 +70,12 @@ const facilityCategories: FacilityCategory[] = [
 ];
 
 const Facilities: React.FC = () => {
-  const [tabValue, setTabValue] = useState(0);
-
-  const handleTabChange = (_event: React.SyntheticEvent, newValue: number) => {
-    setTabValue(newValue);
-  };
-
-  const activeCategory = facilityCategories[tabValue];
+  const [tabValue, setTabValue] = useState<FacilityTab>('parking');
+  const tabs: PremiumTabOption<FacilityTab>[] = facilityCategories.map((category) => ({
+    label: category.title,
+    value: category.id,
+  }));
+  const activeCategory = facilityCategories.find((category) => category.id === tabValue) ?? facilityCategories[0];
 
   return (
     <Box sx={{ padding: '4px', textAlign: 'left' }}>
@@ -82,37 +90,9 @@ const Facilities: React.FC = () => {
         Building Facilities
       </Typography>
 
-      <Tabs 
-        value={tabValue} 
-        onChange={handleTabChange}
-        variant="scrollable"
-        scrollButtons={false}
-        sx={{ 
-          minHeight: '28px',
-          marginBottom: '4px',
-          borderBottom: '1px solid var(--border-default)',
-          '& .MuiTab-root': {
-            minHeight: '28px',
-            textTransform: 'none',
-            fontSize: '0.75rem',
-            fontWeight: 600,
-            padding: '4px',
-            color: 'var(--text-muted)',
-            transition: 'all 150ms ease-in-out',
-          },
-          '& .Mui-selected': {
-            color: 'var(--accent-gold)',
-          },
-          '& .MuiTabs-indicator': {
-            backgroundColor: 'var(--accent-gold)',
-            height: '2px',
-          }
-        }}
-      >
-        {facilityCategories.map((category, idx) => (
-          <Tab key={idx} label={category.title} disableRipple />
-        ))}
-      </Tabs>
+      <Box sx={{ mb: '4px' }}>
+        <PremiumTabs tabs={tabs} value={tabValue} onChange={setTabValue} />
+      </Box>
 
       {activeCategory && (
         <Box

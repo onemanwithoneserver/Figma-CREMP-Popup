@@ -1,46 +1,52 @@
 import { createTheme } from '@mui/material/styles';
 
 export const theme = createTheme({
-  spacing: 4, 
+  spacing: 4,
   shape: {
     borderRadius: 4,
   },
   palette: {
     mode: 'light',
     background: {
-      default: '#F4F6F8',
+      default: '#FFFFFF',
       paper: '#FFFFFF',
     },
     primary: {
-      main: '#C69C44',
+      main: '#1C2A44',
     },
     secondary: {
-      main: '#A0AAB5',
+      main: '#C69C44',
     },
     text: {
-      primary: '#1A2332',
-      secondary: '#A0AAB5',
+      primary: '#1C2A44',
+      secondary: '#637089',
     },
     divider: '#E5E7EB',
   },
   typography: {
-    fontFamily: '"Inter", "-apple-system", "Roboto", "Helvetica", "Arial", sans-serif',
+    fontFamily: 'Outfit',
     button: {
       fontWeight: 600,
-    }
+    },
   },
   components: {
     MuiCssBaseline: {
       styleOverrides: `
         :root {
-          --bg-app: #F4F6F8;
+          --bg-app: #FFFFFF;
           --bg-card: #FFFFFF;
-          --bg-header: #0F1A2C;
+          --bg-header: #1C2A44;
+          --bg-shell: linear-gradient(135deg, #1C2A44 0%, #0F1B2E 100%);
+          --accent-navy: #1C2A44;
           --accent-gold: #C69C44;
           --border-default: #E5E7EB;
-          --text-main: #1A2332;
-          --text-muted: #A0AAB5;
+          --text-main: #1C2A44;
+          --text-muted: #637089;
           --text-inverse: #FFFFFF;
+        }
+
+        body {
+          background: #FFFFFF;
         }
       `,
     },
@@ -73,6 +79,14 @@ export const theme = createTheme({
             borderColor: 'var(--accent-gold)',
             backgroundColor: 'transparent',
           },
+        },
+      },
+    },
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          borderRadius: 4,
+          border: '1px solid var(--border-default)',
         },
       },
     },

@@ -54,7 +54,6 @@ const HighlightItem: React.FC<HighlightItemProps> = ({ value, unit, label }) => 
         color: 'var(--text-muted)',
         fontSize: '0.65rem',
         fontWeight: 600,
-        textTransform: 'uppercase',
         letterSpacing: '0.5px',
       }}
     >

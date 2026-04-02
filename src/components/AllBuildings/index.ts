@@ -22,4 +22,4 @@ export {
   Readiness,
   Furnishing,
   Interiors,
-} from './ViewAll/specifications';
+} from './ViewAll/specifications/index';

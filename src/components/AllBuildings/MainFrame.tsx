@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Box, Typography } from '@mui/material';
 import LeftPanel from './MainScreen/left';
 import MainScreen from './MainScreen';
-import ViewAll from './ViewAll'; // Importing as default now
+import { ViewAll } from './ViewAll';
 
 const MainFrame: React.FC = () => {
   const [activePage, setActivePage] = useState<string>('main');
@@ -39,7 +39,7 @@ const MainFrame: React.FC = () => {
       sx={{
         height: '100vh',
         width: '100vw',
-        backgroundColor: 'var(--bg-app)',
+        background: 'var(--bg-shell)',
         display: 'flex',
         flexDirection: 'row',
         overflow: 'hidden', // Prevents the browser window itself from scrolling
@@ -67,10 +67,10 @@ const MainFrame: React.FC = () => {
             maxHeight: '800px', // Standard mobile height ratio
             backgroundColor: 'var(--bg-card)',
             border: '1px solid var(--border-default)',
-            borderRadius: '8px',
+            borderRadius: '4px',
             display: 'flex',
             flexDirection: 'column',
-            boxShadow: '0px 10px 40px rgba(0, 0, 0, 0.12)',
+            boxShadow: '0px 12px 36px rgba(28, 42, 68, 0.16)',
             position: 'relative',
             overflow: 'hidden', // CRITICAL: Keeps the scroll inside the frame
           }}

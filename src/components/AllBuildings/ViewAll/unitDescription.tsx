@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Typography, Stack, Tabs, Tab } from '@mui/material';
+import { Box, Typography, Stack } from '@mui/material';
 import SquareFootIcon from '@mui/icons-material/SquareFoot';
 import StraightenIcon from '@mui/icons-material/Straighten';
 import LayersIcon from '@mui/icons-material/Layers';
@@ -11,6 +11,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import LocationCityIcon from '@mui/icons-material/LocationCity';
 import MapIcon from '@mui/icons-material/Map';
 import SignpostIcon from '@mui/icons-material/Signpost';
+import PremiumTabs, { type PremiumTabOption } from '../../ui/PremiumTabs';
 
 interface DescriptionItem {
   icon: React.ReactNode;
@@ -19,12 +20,16 @@ interface DescriptionItem {
 }
 
 interface DescriptionGroup {
+  id: DescriptionTab;
   title: string;
   items: DescriptionItem[];
 }
 
+type DescriptionTab = 'basicInfo' | 'dimensions' | 'context';
+
 const descriptionGroups: DescriptionGroup[] = [
   {
+    id: 'basicInfo',
     title: 'Basic Info',
     items: [
       { icon: <SquareFootIcon sx={{ fontSize: 16 }} />, label: 'Carpet Area', value: '1,200 sq.ft' },
@@ -34,6 +39,7 @@ const descriptionGroups: DescriptionGroup[] = [
     ],
   },
   {
+    id: 'dimensions',
     title: 'Dimensions',
     items: [
       { icon: <AspectRatioIcon sx={{ fontSize: 16 }} />, label: 'L x B', value: '40ft x 30ft' },
@@ -43,6 +49,7 @@ const descriptionGroups: DescriptionGroup[] = [
     ],
   },
   {
+    id: 'context',
     title: 'Context',
     items: [
       { icon: <VisibilityIcon sx={{ fontSize: 16 }} />, label: 'Road Visibility', value: 'Main Road' },
@@ -98,11 +105,14 @@ const DescriptionCard: React.FC<{ item: DescriptionItem }> = ({ item }) => (
 );
 
 const UnitDescription: React.FC = () => {
-  const [tabValue, setTabValue] = React.useState(0);
+  const [tabValue, setTabValue] = React.useState<DescriptionTab>('basicInfo');
 
-  const handleTabChange = (_event: React.SyntheticEvent, newValue: number) => {
-    setTabValue(newValue);
-  };
+  const descriptionTabs: PremiumTabOption<DescriptionTab>[] = descriptionGroups.map((group) => ({
+    label: group.title,
+    value: group.id,
+  }));
+
+  const activeGroup = descriptionGroups.find((group) => group.id === tabValue) ?? descriptionGroups[0];
 
   return (
     <Box sx={{ padding: '4px', textAlign: 'left' }}>
@@ -127,37 +137,9 @@ const UnitDescription: React.FC = () => {
           Unit description
         </Typography>
 
-        <Tabs 
-          value={tabValue} 
-          onChange={handleTabChange}
-          variant="scrollable"
-          scrollButtons={false}
-          sx={{ 
-            minHeight: '28px',
-            marginBottom: '4px',
-            borderBottom: '1px solid var(--border-default)',
-            '& .MuiTab-root': {
-              minHeight: '28px',
-              textTransform: 'none',
-              fontSize: '0.75rem',
-              fontWeight: 600,
-              padding: '4px',
-              color: 'var(--text-muted)',
-              transition: 'all 150ms ease-in-out',
-            },
-            '& .Mui-selected': {
-              color: 'var(--accent-gold)',
-            },
-            '& .MuiTabs-indicator': {
-              backgroundColor: 'var(--accent-gold)',
-              height: '2px',
-            }
-          }}
-        >
-          {descriptionGroups.map((group, idx) => (
-            <Tab key={idx} label={group.title} disableRipple />
-          ))}
-        </Tabs>
+        <Box sx={{ mb: '4px' }}>
+          <PremiumTabs tabs={descriptionTabs} value={tabValue} onChange={setTabValue} />
+        </Box>
 
         <Box
           sx={{
@@ -166,7 +148,7 @@ const UnitDescription: React.FC = () => {
             gap: '4px',
           }}
         >
-          {descriptionGroups[tabValue]?.items.map((item, idx) => (
+          {activeGroup.items.map((item, idx) => (
             <DescriptionCard key={idx} item={item} />
           ))}
         </Box>

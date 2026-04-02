@@ -72,7 +72,7 @@ const LeftPanel: React.FC<LeftPanelProps> = ({ activePage, onPageSelect }) => {
           color: 'var(--text-muted)', 
           marginTop: '8px', 
           marginBottom: '8px',
-          textTransform: 'uppercase',
+    
           letterSpacing: '0.5px'
         }}
       >
@@ -99,7 +99,7 @@ const LeftPanel: React.FC<LeftPanelProps> = ({ activePage, onPageSelect }) => {
           color: 'var(--text-muted)', 
           marginTop: '24px', 
           marginBottom: '8px',
-          textTransform: 'uppercase',
+      
           letterSpacing: '0.5px'
         }}
       >
