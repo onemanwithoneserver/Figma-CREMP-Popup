@@ -1,7 +1,26 @@
-import React from 'react';
-import { Box, Typography } from '@mui/material';
+import React, { useState } from 'react';
+import { Box } from '@mui/material';
+import LeftPanel from './MainScreen/left';
+import MainScreen from './MainScreen';
 
 const MainFrame: React.FC = () => {
+  const [activePage, setActivePage] = useState<string>('main');
+
+  const renderContent = () => {
+    switch (activePage) {
+      case 'main':
+        return <MainScreen />;
+      case 'viewAll':
+        return <Box sx={{ p: 2 }}>View All - Coming Soon</Box>;
+      case 'landMain':
+        return <Box sx={{ p: 2 }}>Land Main - Coming Soon</Box>;
+      case 'landViewAll':
+        return <Box sx={{ p: 2 }}>Land View All - Coming Soon</Box>;
+      default:
+        return <MainScreen />;
+    }
+  };
+
   return (
     <Box
       sx={{
@@ -12,22 +31,7 @@ const MainFrame: React.FC = () => {
       }}
     >
       {/* LEFT PAGES PANEL */}
-      <Box
-        sx={{
-          width: '25%',
-          p: 3,
-        }}
-      >
-        <Typography variant="h6">Pages</Typography>
-
-        <Typography sx={{ mt: 2 }}>All buildings</Typography>
-        <Typography variant="body2">1. Main screen</Typography>
-        <Typography variant="body2">2. View All</Typography>
-
-        <Typography sx={{ mt: 3 }}>Land</Typography>
-        <Typography variant="body2">1. Main screen</Typography>
-        <Typography variant="body2">2. View All</Typography>
-      </Box>
+      <LeftPanel activePage={activePage} onPageSelect={setActivePage} />
 
       {/* MOBILE FRAME (CENTER) */}
       <Box
@@ -43,7 +47,7 @@ const MainFrame: React.FC = () => {
           mx: 'auto',
         }}
       >
-        <Box sx={{ p: 2 }}>Main Frame</Box>
+        {renderContent()}
       </Box>
 
       {/* RIGHT EMPTY PANEL */}
