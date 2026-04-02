@@ -7,12 +7,16 @@ interface SpecItem {
 }
 
 const interiorItems: SpecItem[] = [
-  { label: 'Wall Finish', value: 'Painted' },
-  { label: 'Door Type', value: 'Glass' },
-  { label: 'Window', value: 'Aluminium' },
-  { label: 'Washroom', value: 'Common' },
-  { label: 'Fire Safety', value: 'Installed' },
-  { label: 'Signage', value: 'Provision' },
+  { label: 'Pantry', value: 'Yes' },
+  { label: 'Washroom Inside Unit', value: 'Yes' },
+  { label: 'Cabins / Partitions', value: 'Yes' },
+  { label: 'Meeting Room', value: 'Yes' },
+  { label: 'Conference Room', value: 'No' },
+  { label: 'Reception Area', value: 'Yes' },
+  { label: 'False Ceiling', value: 'Yes' },
+  { label: 'Storage Space', value: 'Yes' },
+  { label: 'Column Free', value: 'No' },
+  { label: 'Branding Space Avail.', value: 'Yes' },
 ];
 
 const Interiors: React.FC = () => {

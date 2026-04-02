@@ -7,12 +7,14 @@ interface SpecItem {
 }
 
 const furnishingItems: SpecItem[] = [
-  { label: 'Type', value: 'Semi-Furnished' },
-  { label: 'Workstations', value: 'Not Included' },
-  { label: 'Cabins', value: 'Not Included' },
-  { label: 'Pantry', value: 'Provision' },
-  { label: 'Reception', value: 'Not Included' },
-  { label: 'Storage', value: 'Available' },
+  { label: 'Workstations Count', value: '45' },
+  { label: 'Chairs', value: '50' },
+  { label: 'Cabins', value: '2' },
+  { label: 'Cupboards', value: '5' },
+  { label: 'Sofa / Lounge', value: 'Yes' },
+  { label: 'Reception Desk', value: 'Yes' },
+  { label: 'Pantry Equipment', value: 'Microwave, Fridge' },
+  { label: 'Internet Ready', value: 'Yes' },
 ];
 
 const Furnishing: React.FC = () => {

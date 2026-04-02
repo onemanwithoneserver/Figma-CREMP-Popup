@@ -4,6 +4,13 @@ import SquareFootIcon from '@mui/icons-material/SquareFoot';
 import StraightenIcon from '@mui/icons-material/Straighten';
 import LayersIcon from '@mui/icons-material/Layers';
 import HeightIcon from '@mui/icons-material/Height';
+import ExploreIcon from '@mui/icons-material/Explore';
+import AspectRatioIcon from '@mui/icons-material/AspectRatio';
+import DashboardCustomizeIcon from '@mui/icons-material/DashboardCustomize';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import LocationCityIcon from '@mui/icons-material/LocationCity';
+import MapIcon from '@mui/icons-material/Map';
+import SignpostIcon from '@mui/icons-material/Signpost';
 
 interface DescriptionItem {
   icon: React.ReactNode;
@@ -11,26 +18,38 @@ interface DescriptionItem {
   value: string;
 }
 
-const descriptionItems: DescriptionItem[] = [
+interface DescriptionGroup {
+  title: string;
+  items: DescriptionItem[];
+}
+
+const descriptionGroups: DescriptionGroup[] = [
   {
-    icon: <SquareFootIcon sx={{ fontSize: 18, color: '#c8a45a' }} />,
-    label: 'Carpet area',
-    value: '1,200 sq.ft',
+    title: 'Basic Info',
+    items: [
+      { icon: <SquareFootIcon sx={{ fontSize: 18, color: '#c8a45a' }} />, label: 'Carpet Area', value: '1,200 sq.ft' },
+      { icon: <StraightenIcon sx={{ fontSize: 18, color: '#c8a45a' }} />, label: 'Built-up Area', value: '1,500 sq.ft' },
+      { icon: <LayersIcon sx={{ fontSize: 18, color: '#c8a45a' }} />, label: 'Floor', value: 'Ground / 15' },
+      { icon: <ExploreIcon sx={{ fontSize: 18, color: '#c8a45a' }} />, label: 'Unit Facing', value: 'North-East' },
+    ],
   },
   {
-    icon: <StraightenIcon sx={{ fontSize: 18, color: '#c8a45a' }} />,
-    label: 'Frontage',
-    value: '24 Feet',
+    title: 'Dimensions & Layout',
+    items: [
+      { icon: <AspectRatioIcon sx={{ fontSize: 18, color: '#c8a45a' }} />, label: 'L x B', value: '40ft x 30ft' },
+      { icon: <StraightenIcon sx={{ fontSize: 18, color: '#c8a45a' }} />, label: 'Frontage', value: '24 Feet' },
+      { icon: <HeightIcon sx={{ fontSize: 18, color: '#c8a45a' }} />, label: 'Ceiling Height', value: '14 Feet' },
+      { icon: <DashboardCustomizeIcon sx={{ fontSize: 18, color: '#c8a45a' }} />, label: 'Corner Unit', value: 'Yes' },
+    ],
   },
   {
-    icon: <LayersIcon sx={{ fontSize: 18, color: '#c8a45a' }} />,
-    label: 'Floor',
-    value: 'Ground',
-  },
-  {
-    icon: <HeightIcon sx={{ fontSize: 18, color: '#c8a45a' }} />,
-    label: 'Ceiling height',
-    value: '14 Feet',
+    title: 'Location Context',
+    items: [
+      { icon: <VisibilityIcon sx={{ fontSize: 18, color: '#c8a45a' }} />, label: 'Road Visibility', value: 'Main Road' },
+      { icon: <LocationCityIcon sx={{ fontSize: 18, color: '#c8a45a' }} />, label: 'Zone', value: 'Commercial PD' },
+      { icon: <SignpostIcon sx={{ fontSize: 18, color: '#c8a45a' }} />, label: 'Colony/Layout', value: 'Sector 50' },
+      { icon: <MapIcon sx={{ fontSize: 18, color: '#c8a45a' }} />, label: 'Map Location', value: 'View Map' },
+    ],
   },
 ];
 
@@ -83,17 +102,27 @@ const UnitDescription: React.FC = () => {
       >
         Unit description
       </Typography>
-      <Box
-        sx={{
-          display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
-          gap: 1,
-        }}
-      >
-        {descriptionItems.map((item, idx) => (
-          <DescriptionCard key={idx} item={item} />
+
+      <Stack spacing={2}>
+        {descriptionGroups.map((group, groupIdx) => (
+          <Box key={groupIdx}>
+            <Typography sx={{ fontSize: '12px', fontWeight: 600, color: '#555', mb: 1 }}>
+              {group.title}
+            </Typography>
+            <Box
+              sx={{
+                display: 'grid',
+                gridTemplateColumns: '1fr 1fr',
+                gap: 1,
+              }}
+            >
+              {group.items.map((item, idx) => (
+                <DescriptionCard key={idx} item={item} />
+              ))}
+            </Box>
+          </Box>
         ))}
-      </Box>
+      </Stack>
     </Box>
   );
 };

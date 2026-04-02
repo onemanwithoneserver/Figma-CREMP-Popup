@@ -7,12 +7,14 @@ interface SpecItem {
 }
 
 const readinessItems: SpecItem[] = [
-  { label: 'Fit-out', value: 'Warm Shell' },
+  { label: 'Space Condition', value: 'Warm Shell' },
+  { label: 'Flooring', value: 'Basic' },
+  { label: 'Walls', value: 'Painted' },
+  { label: 'Electricals', value: 'Fully Wired' },
   { label: 'HVAC', value: 'Installed' },
-  { label: 'Flooring', value: 'Vitrified' },
-  { label: 'Electrical', value: 'Fully Wired' },
-  { label: 'Ceiling', value: 'False Ceiling' },
   { label: 'Lighting', value: 'Basic' },
+  { label: 'Glass Facade', value: 'Yes' },
+  { label: 'Fire Safety Compliance', value: 'Yes' },
 ];
 
 const Readiness: React.FC = () => {
