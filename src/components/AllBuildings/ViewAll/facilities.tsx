@@ -1,5 +1,5 @@
-import React from 'react';
-import { Box, Typography, Stack } from '@mui/material';
+import React, { useState } from 'react';
+import { Box, Typography, Stack, Tabs, Tab } from '@mui/material';
 import LocalParkingIcon from '@mui/icons-material/LocalParking';
 import BoltIcon from '@mui/icons-material/Bolt';
 import WaterDropIcon from '@mui/icons-material/WaterDrop';
@@ -67,76 +67,114 @@ const facilityCategories: FacilityCategory[] = [
 ];
 
 const Facilities: React.FC = () => {
+  const [tabValue, setTabValue] = useState(0);
+
+  const handleTabChange = (_event: React.SyntheticEvent, newValue: number) => {
+    setTabValue(newValue);
+  };
+
+  const activeCategory = facilityCategories[tabValue];
+
   return (
-    <Box sx={{ px: 2, py: 1.5 }}>
+    <Box sx={{ px: 2, py: 2, textAlign: 'left' }}>
       <Typography
         sx={{
-          fontSize: '15px',
+          fontSize: '16px',
           fontWeight: 700,
           color: '#1a237e',
-          mb: 1.5,
+          mb: 2,
         }}
       >
         Building Facilities
       </Typography>
-      <Stack spacing={2}>
-        {facilityCategories.map((category, idx) => (
-          <Box
-            key={idx}
-            sx={{
-              p: 1.5,
-              borderRadius: '12px',
-              border: '1px solid #f0f0f0',
-              backgroundColor: '#fff',
-              boxShadow: '0 2px 4px rgba(0,0,0,0.02)',
-            }}
-          >
-            <Stack direction="row" alignItems="center" spacing={1} sx={{ mb: 1.5 }}>
-              <Box
-                sx={{
-                  width: 32,
-                  height: 32,
-                  borderRadius: '8px',
-                  backgroundColor: category.color,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  color: '#1a237e',
-                }}
-              >
-                {category.icon}
-              </Box>
-              <Typography sx={{ fontSize: '13px', fontWeight: 600, color: '#222' }}>
-                {category.title}
-              </Typography>
-            </Stack>
 
-            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
-              {category.items.map((item, i) => (
-                <Box key={i} sx={{ width: 'calc(50% - 4px)' }}>
-                  <Stack direction="row" alignItems="flex-start" spacing={0.5}>
-                    {item.value === 'Yes' ? (
-                      <DoneIcon sx={{ fontSize: 14, color: '#4caf50', mt: 0.2 }} />
-                    ) : (
-                      <Box sx={{ width: 14, height: 14, display: 'inline-block' }} />
-                    )}
-                    <Box>
-                      <Typography sx={{ fontSize: '11px', color: '#666', lineHeight: 1.2 }}>
-                        {item.label}
-                      </Typography>
-                      {item.value !== 'Yes' && item.value !== 'No' && (
-                        <Typography sx={{ fontSize: '12px', fontWeight: 600, color: '#111' }}>
-                          {item.value}
-                        </Typography>
-                      )}
-                    </Box>
-                  </Stack>
-                </Box>
-              ))}
-            </Box>
-          </Box>
+      <Tabs 
+        value={tabValue} 
+        onChange={handleTabChange}
+        variant="scrollable"
+        scrollButtons={false}
+        sx={{ 
+          minHeight: '36px',
+          mb: 3,
+          borderBottom: '1px solid #eee',
+          '& .MuiTab-root': {
+            minHeight: '36px',
+            textTransform: 'none',
+            fontSize: '13px',
+            fontWeight: 600,
+            py: 1,
+            px: 2,
+            color: '#555',
+          },
+          '& .Mui-selected': {
+            color: '#1a237e',
+          },
+          '& .MuiTabs-indicator': {
+            backgroundColor: '#1a237e',
+            borderRadius: '4px 4px 0 0',
+          }
+        }}
+      >
+        {facilityCategories.map((category, idx) => (
+          <Tab key={idx} label={category.title} />
         ))}
-      </Stack>
+      </Tabs>
+
+      {activeCategory && (
+        <Box
+          sx={{
+            p: 2,
+            borderRadius: '4px',
+            border: '1px solid #f0f0f0',
+            backgroundColor: '#fff',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.02)',
+          }}
+        >
+          <Stack direction="row" alignItems="center" spacing={1} sx={{ mb: 2 }}>
+            <Box
+              sx={{
+                width: 32,
+                height: 32,
+                borderRadius: '4px',
+                backgroundColor: activeCategory.color,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: '#1a237e',
+              }}
+            >
+              {activeCategory.icon}
+            </Box>
+            <Typography sx={{ fontSize: '13px', fontWeight: 600, color: '#222' }}>
+              {activeCategory.title}
+            </Typography>
+          </Stack>
+
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
+            {activeCategory.items.map((item, i) => (
+              <Box key={i} sx={{ width: 'calc(50% - 8px)' }}>
+                <Stack direction="row" alignItems="flex-start" spacing={1}>
+                  {item.value === 'Yes' ? (
+                    <DoneIcon sx={{ fontSize: 16, color: '#4caf50', mt: 0.2 }} />
+                  ) : (
+                    <Box sx={{ width: 16, height: 16, display: 'inline-block' }} />
+                  )}
+                  <Box>
+                    <Typography sx={{ fontSize: '11px', color: '#666', lineHeight: 1.2 }}>
+                      {item.label}
+                    </Typography>
+                    {item.value !== 'Yes' && item.value !== 'No' && (
+                      <Typography sx={{ fontSize: '13px', fontWeight: 600, color: '#111' }}>
+                        {item.value}
+                      </Typography>
+                    )}
+                  </Box>
+                </Stack>
+              </Box>
+            ))}
+          </Box>
+        </Box>
+      )}
     </Box>
   );
 };

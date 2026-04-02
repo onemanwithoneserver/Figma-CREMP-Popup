@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Typography, Stack } from '@mui/material';
+import { Box, Typography, Stack, Tabs, Tab } from '@mui/material';
 import SquareFootIcon from '@mui/icons-material/SquareFoot';
 import StraightenIcon from '@mui/icons-material/Straighten';
 import LayersIcon from '@mui/icons-material/Layers';
@@ -57,18 +57,19 @@ const DescriptionCard: React.FC<{ item: DescriptionItem }> = ({ item }) => (
   <Box
     sx={{
       backgroundColor: '#f8f9fb',
-      borderRadius: '10px',
+      borderRadius: '4px',
       p: 1.5,
       display: 'flex',
       alignItems: 'center',
       gap: 1.5,
+      textAlign: 'left',
     }}
   >
     <Box
       sx={{
         width: 32,
         height: 32,
-        borderRadius: '8px',
+        borderRadius: '4px',
         backgroundColor: '#fdf6e3',
         display: 'flex',
         alignItems: 'center',
@@ -78,7 +79,7 @@ const DescriptionCard: React.FC<{ item: DescriptionItem }> = ({ item }) => (
     >
       {item.icon}
     </Box>
-    <Stack spacing={0}>
+    <Stack spacing={0.5}>
       <Typography sx={{ fontSize: '11px', color: '#888', lineHeight: 1.3 }}>
         {item.label}
       </Typography>
@@ -90,39 +91,68 @@ const DescriptionCard: React.FC<{ item: DescriptionItem }> = ({ item }) => (
 );
 
 const UnitDescription: React.FC = () => {
+  const [tabValue, setTabValue] = React.useState(0);
+
+  const handleTabChange = (_event: React.SyntheticEvent, newValue: number) => {
+    setTabValue(newValue);
+  };
+
   return (
-    <Box sx={{ px: 2, py: 1.5 }}>
+    <Box sx={{ px: 2, py: 2, textAlign: 'left' }}>
       <Typography
         sx={{
-          fontSize: '15px',
+          fontSize: '16px',
           fontWeight: 700,
           color: '#1a237e',
-          mb: 1.5,
+          mb: 2,
         }}
       >
         Unit description
       </Typography>
 
-      <Stack spacing={2}>
-        {descriptionGroups.map((group, groupIdx) => (
-          <Box key={groupIdx}>
-            <Typography sx={{ fontSize: '12px', fontWeight: 600, color: '#555', mb: 1 }}>
-              {group.title}
-            </Typography>
-            <Box
-              sx={{
-                display: 'grid',
-                gridTemplateColumns: '1fr 1fr',
-                gap: 1,
-              }}
-            >
-              {group.items.map((item, idx) => (
-                <DescriptionCard key={idx} item={item} />
-              ))}
-            </Box>
-          </Box>
+      <Tabs 
+        value={tabValue} 
+        onChange={handleTabChange}
+        variant="scrollable"
+        scrollButtons={false}
+        sx={{ 
+          minHeight: '36px',
+          mb: 3,
+          borderBottom: '1px solid #eee',
+          '& .MuiTab-root': {
+            minHeight: '36px',
+            textTransform: 'none',
+            fontSize: '13px',
+            fontWeight: 600,
+            py: 1,
+            px: 2,
+            color: '#555',
+          },
+          '& .Mui-selected': {
+            color: '#1a237e',
+          },
+          '& .MuiTabs-indicator': {
+            backgroundColor: '#1a237e',
+            borderRadius: '4px 4px 0 0',
+          }
+        }}
+      >
+        {descriptionGroups.map((group, idx) => (
+          <Tab key={idx} label={group.title} />
         ))}
-      </Stack>
+      </Tabs>
+
+      <Box
+        sx={{
+          display: 'grid',
+          gridTemplateColumns: '1fr 1fr',
+          gap: 2,
+        }}
+      >
+        {descriptionGroups[tabValue]?.items.map((item, idx) => (
+          <DescriptionCard key={idx} item={item} />
+        ))}
+      </Box>
     </Box>
   );
 };
