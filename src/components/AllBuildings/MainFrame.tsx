@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Box } from '@mui/material';
 import LeftPanel from './MainScreen/left';
 import MainScreen from './MainScreen';
+import { ViewAll } from './ViewAll';
 
 const MainFrame: React.FC = () => {
   const [activePage, setActivePage] = useState<string>('main');
@@ -11,7 +12,7 @@ const MainFrame: React.FC = () => {
       case 'main':
         return <MainScreen />;
       case 'viewAll':
-        return <Box sx={{ p: 2 }}>View All - Coming Soon</Box>;
+        return <ViewAll onBack={() => setActivePage('main')} />;
       case 'landMain':
         return <Box sx={{ p: 2 }}>Land Main - Coming Soon</Box>;
       case 'landViewAll':

@@ -7,3 +7,5 @@ export { default as Facilities } from './facilities';
 export { default as SuitedFor } from './suitedFor';
 export { default as InvestmentSummary } from './investmentSummary';
 export { default as Footer } from './footer';
+export { default as Specifications } from './Specifications';
+export { default as ViewAll } from './ViewAll';

@@ -12,6 +12,8 @@ export {
   SuitedFor,
   InvestmentSummary,
   Footer,
+  Specifications,
+  ViewAll,
 } from './ViewAll';
 
 // Specifications components
