@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm create:*)",
+      "Bash(mv temp-vite/* .)",
+      "Bash(mv temp-vite/.* .)",
+      "Bash(rmdir temp-vite:*)"
+    ]
+  }
+}
