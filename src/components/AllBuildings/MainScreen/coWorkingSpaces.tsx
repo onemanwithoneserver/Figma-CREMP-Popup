@@ -12,17 +12,14 @@ const FeaturedCoWorking: React.FC = () => (
     sx={{
       margin: '4px',
       padding: '4px',
-      borderRadius: '4px',
-      border: '1px solid var(--border-default)',
-      boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.04)',
+      borderRadius: '6px',
+      border: '1px solid rgba(198, 156, 68, 0.15)',
+      borderTop: '2px solid var(--accent-gold)',
+      boxShadow: '0 4px 20px rgba(28, 42, 68, 0.08), 0 1px 3px rgba(0,0,0,0.04)',
       backgroundColor: 'var(--bg-card)',
-      transition: 'all 150ms ease-in-out',
-      '&:hover': {
-        borderColor: 'var(--accent-gold)',
-      }
     }}
   >
-    <Stack direction="row" spacing="4px">
+    <Stack direction="row" sx={{ display: 'flex', alignItems: 'stretch' }}>
       <Box sx={{ flex: 1, padding: '4px' }}>
         <Typography
           sx={{ fontSize: '0.875rem', fontWeight: 600, color: 'var(--text-main)', lineHeight: 1.2 }}
@@ -117,29 +114,28 @@ const coWorkUnits: CoWorkUnit[] = [
 const CoWorkCard: React.FC<{ unit: CoWorkUnit }> = ({ unit }) => (
   <Box
     sx={{
-      borderRadius: '4px',
+      borderRadius: '6px',
       overflow: 'hidden',
-      border: '1px solid var(--border-default)',
-      boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.04)',
+      border: '1px solid rgba(198, 156, 68, 0.15)',
+      borderTop: '2px solid var(--accent-gold)',
+      boxShadow: '0 4px 20px rgba(28, 42, 68, 0.08), 0 1px 3px rgba(0,0,0,0.04)',
       backgroundColor: 'var(--bg-card)',
-      transition: 'all 150ms ease-in-out',
-      '&:hover': {
-        borderColor: 'var(--accent-gold)',
-        transform: 'translateY(-2px)',
-      }
     }}
   >
     <Box
       sx={{
-        height: 70,
-        backgroundColor: 'var(--bg-app)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
+        height: 80,
         position: 'relative',
+        overflow: 'hidden',
+        backgroundColor: 'var(--bg-app)',
       }}
     >
-      <GroupsIcon sx={{ fontSize: 24, color: 'var(--accent-gold)', opacity: 0.5 }} />
+      <Box
+        component="img"
+        src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=400&q=80"
+        alt={unit.name}
+        sx={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+      />
 
       <Box
         sx={{
@@ -183,19 +179,13 @@ const CoWorkCard: React.FC<{ unit: CoWorkUnit }> = ({ unit }) => (
         sx={{
           marginTop: '4px',
           borderRadius: '4px',
-          padding: '4px',
-          backgroundColor: 'var(--bg-header)',
-          border: '1px solid transparent',
-          transition: 'all 150ms ease-in-out',
+          padding: '6px',
+          background: 'linear-gradient(135deg, #B8902A 0%, #C9A84C 100%)',
           cursor: 'pointer',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           gap: '4px',
-          '&:hover': {
-            backgroundColor: 'var(--bg-card)',
-            borderColor: 'var(--accent-gold)',
-          },
         }}
       >
         <Typography sx={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-inverse)' }}>

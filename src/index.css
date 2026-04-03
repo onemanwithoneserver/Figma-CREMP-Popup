@@ -21,13 +21,34 @@ body {
   font-family: 'Outfit';
   font-size: 16px;
   line-height: 1.4;
-  color: #1c2a44;
-  background:
-    radial-gradient(circle at 10% 10%, rgba(198, 156, 68, 0.1) 0%, rgba(198, 156, 68, 0) 30%),
-    radial-gradient(circle at 90% 90%, rgba(28, 42, 68, 0.08) 0%, rgba(28, 42, 68, 0) 35%),
-    #ffffff;
+  background: #f7f6f3;
   font-synthesis: none;
   text-rendering: geometricPrecision;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.sidebar, .left-panel, .MuiDrawer-paper {
+  background: #f3f2ee !important;
+  color: #23272f !important;
+  border-right: 1px solid #e0ded9 !important;
+}
+
+.card, .panel, .MuiPaper-root {
+  background: #fff !important;
+  box-shadow: 0 2px 12px 0 rgba(60, 60, 60, 0.07), 0 1.5px 4px 0 rgba(60, 60, 60, 0.04);
+  border: 1px solid #eceae6;
+  border-radius: 16px;
+}
+
+h1, h2, h3, h4, h5, h6, strong, .MuiTypography-root {
+  color: #181c32;
+}
+
+.text-muted, .MuiTypography-colorTextSecondary {
+  color: #7a7a7a !important;
+}
+
+svg, .icon {
+  color: #23272f;
 }

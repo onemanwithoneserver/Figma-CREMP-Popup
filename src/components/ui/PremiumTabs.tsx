@@ -1,4 +1,3 @@
-import React from 'react';
 
 export type PremiumTabOption<T> = {
   label: string;
@@ -47,7 +46,7 @@ const PremiumTabs = <T extends string>({ tabs, value, onChange }: PremiumTabsPro
             
             <span 
               // Slightly reduced text size to fit the shorter height gracefully
-              className={`relative z-10 flex items-center justify-center w-full h-full text-[12px] sm:text-[14px] tracking-wide transition-colors duration-200 ${isActive ? 'text-white font-semibold' : 'text-[#626168] font-medium group-hover:text-gray-900'}`}
+              className={`relative z-10 flex items-center justify-center w-full h-full text-[12px] sm:text-[14px] tracking-wide ${isActive ? 'text-white font-semibold' : 'text-[#626168] font-medium'}`}
             >
               {tab.label}
             </span>

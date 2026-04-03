@@ -68,13 +68,8 @@ export const CurvedTabs: React.FC<CurvedTabsProps> = ({ tabs, activeTab, onChang
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              transition: 'all 150ms ease-in-out',
               transform: isActive ? 'scale(1.02)' : 'none',
               transformOrigin: 'bottom center',
-              '&:hover': {
-                transform: isActive ? 'scale(1.02)' : 'translateY(-2px)',
-                opacity: 1,
-              },
             }}
           >
             <TabShape isActive={isActive} />
@@ -84,7 +79,6 @@ export const CurvedTabs: React.FC<CurvedTabsProps> = ({ tabs, activeTab, onChang
                 color: isActive ? 'var(--text-main)' : 'var(--text-muted)',
                 fontSize: '0.875rem',
                 mt: isActive ? '-4px' : '0px',
-                transition: 'color 150ms ease-in-out',
                 userSelect: 'none',
               }}
             >

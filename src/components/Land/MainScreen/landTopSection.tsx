@@ -1,10 +1,10 @@
 import React from 'react';
 import { Box, Typography, Stack } from '@mui/material';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import ApartmentIcon from '@mui/icons-material/Apartment';
+import TerrainIcon from '@mui/icons-material/Terrain';
 import SquareFootIcon from '@mui/icons-material/SquareFoot';
-import LayersIcon from '@mui/icons-material/Layers';
-import LocalParkingIcon from '@mui/icons-material/LocalParking';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import MapIcon from '@mui/icons-material/Map';
 
 interface StatItem {
   icon: React.ReactNode;
@@ -14,28 +14,28 @@ interface StatItem {
 
 const stats: StatItem[] = [
   {
-    icon: <ApartmentIcon sx={{ fontSize: 16, color: 'var(--accent-gold)' }} />,
-    value: '24',
-    label: 'Units',
+    icon: <TerrainIcon sx={{ fontSize: 16, color: 'var(--accent-gold)' }} />,
+    value: '18',
+    label: 'Plots',
   },
   {
     icon: <SquareFootIcon sx={{ fontSize: 16, color: 'var(--accent-gold)' }} />,
-    value: '25L sq.ft.',
-    label: 'Overall Area',
+    value: '45 Acres',
+    label: 'Total Area',
   },
   {
-    icon: <LayersIcon sx={{ fontSize: 16, color: 'var(--accent-gold)' }} />,
-    value: '15',
-    label: 'Floors',
+    icon: <LocationOnIcon sx={{ fontSize: 16, color: 'var(--accent-gold)' }} />,
+    value: '3',
+    label: 'Locations',
   },
   {
-    icon: <LocalParkingIcon sx={{ fontSize: 16, color: 'var(--accent-gold)' }} />,
-    value: '400+',
-    label: 'Parking',
+    icon: <MapIcon sx={{ fontSize: 16, color: 'var(--accent-gold)' }} />,
+    value: '5',
+    label: 'Zones',
   },
 ];
 
-const TopSection: React.FC = () => {
+const LandTopSection: React.FC = () => {
   return (
     <Box sx={{ padding: '4px' }}>
       <Box
@@ -50,8 +50,8 @@ const TopSection: React.FC = () => {
       >
         <Box
           component="img"
-          src="https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=800&q=80"
-          alt="XYZ Plaza, HITEC City, Hyderabad"
+          src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=80"
+          alt="Land Property, Hyderabad"
           sx={{
             width: '100%',
             height: '100%',
@@ -90,13 +90,13 @@ const TopSection: React.FC = () => {
             background: 'linear-gradient(to top, rgba(15, 26, 44, 0.85) 0%, transparent 100%)',
           }}
         />
-        
-        <Box 
-          sx={{ 
-            position: 'absolute', 
-            bottom: '8px', 
-            left: '8px', 
-            padding: '4px' 
+
+        <Box
+          sx={{
+            position: 'absolute',
+            bottom: '8px',
+            left: '8px',
+            padding: '4px'
           }}
         >
           <Typography
@@ -107,9 +107,18 @@ const TopSection: React.FC = () => {
               lineHeight: 1.2,
             }}
           >
-            XYZ Plaza
+            Green Valley Estates
           </Typography>
-
+          <Typography
+            sx={{
+              fontSize: '0.75rem',
+              color: 'var(--text-inverse)',
+              opacity: 0.8,
+              marginTop: '2px',
+            }}
+          >
+            Prime Development Land
+          </Typography>
         </Box>
       </Box>
 
@@ -170,4 +179,4 @@ const TopSection: React.FC = () => {
   );
 };
 
-export default TopSection;
+export default LandTopSection;

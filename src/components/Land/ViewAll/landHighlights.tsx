@@ -24,6 +24,7 @@ const HighlightItem: React.FC<HighlightItemProps> = ({ value, unit, label }) => 
           color: 'var(--accent-gold)',
           fontWeight: 600,
           fontSize: '0.875rem',
+          lineHeight: 1.2,
         }}
       >
         {value}
@@ -53,7 +54,7 @@ const HighlightItem: React.FC<HighlightItemProps> = ({ value, unit, label }) => 
   </Stack>
 );
 
-const Highlights: React.FC = () => {
+const LandHighlights: React.FC = () => {
   return (
     <Box sx={{ padding: '4px' }}>
       <Box
@@ -68,7 +69,7 @@ const Highlights: React.FC = () => {
           padding: '4px',
         }}
       >
-        <HighlightItem value="1,200" unit="sq.ft." label="Size" />
+        <HighlightItem value="2.5" unit="Acres" label="Plot Size" />
         <Box
           sx={{
             width: '1px',
@@ -77,7 +78,7 @@ const Highlights: React.FC = () => {
             flexShrink: 0,
           }}
         />
-        <HighlightItem value="₹ 2.5 Cr" label="Sale Value" />
+        <HighlightItem value="₹ 2.5 L" label="Rent/Month" />
         <Box
           sx={{
             width: '1px',
@@ -86,10 +87,10 @@ const Highlights: React.FC = () => {
             flexShrink: 0,
           }}
         />
-        <HighlightItem value="8%" label="Expected Yield" />
+        <HighlightItem value="Commercial" label="Zoning" />
       </Box>
     </Box>
   );
 };
 
-export default Highlights;
+export default LandHighlights;

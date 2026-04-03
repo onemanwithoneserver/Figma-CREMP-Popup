@@ -63,12 +63,6 @@ const SuitedFor: React.FC = () => {
                 height: 30,
                 transition: 'all 0.2s ease-in-out',
                 cursor: 'default',
-                '&:hover': {
-                  borderColor: '#C89B3C',
-                  backgroundColor: '#FFFCF5',
-                  transform: 'translateY(-1px)',
-                  boxShadow: '0 2px 4px rgba(200, 155, 60, 0.1)',
-                },
                 '& .MuiChip-label': {
                   paddingLeft: '6px',
                   paddingRight: '10px',
@@ -99,11 +93,6 @@ const SuitedFor: React.FC = () => {
                 color: '#1C2A44',
                 height: 30,
                 cursor: 'pointer',
-                transition: 'all 0.2s ease-in-out',
-                '&:hover': {
-                  backgroundColor: '#F3F4F6',
-                  color: '#154eb1', // Changes both text and icon color on hover
-                },
                 '& .MuiChip-label': {
                   paddingLeft: '6px',
                   paddingRight: '10px',

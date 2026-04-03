@@ -21,7 +21,7 @@ const footerActions: FooterAction[] = [
   },
   {
     icon: <CalendarMonthIcon sx={{ fontSize: 16, color: 'inherit' }} />,
-    label: 'Schedule Visit',
+    label: 'Site Visit',
   },
   {
     icon: <BookmarkBorderIcon sx={{ fontSize: 16, color: 'inherit' }} />,
@@ -29,7 +29,7 @@ const footerActions: FooterAction[] = [
   },
 ];
 
-const Footer: React.FC = () => {
+const LandFooter: React.FC = () => {
   return (
     <Box
       sx={{
@@ -60,11 +60,11 @@ const Footer: React.FC = () => {
             color: 'var(--text-main)',
           }}
         >
-          <Box 
-            sx={{ 
-              display: 'flex', 
-              alignItems: 'center', 
-              justifyContent: 'center' 
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
             }}
           >
             {action.icon}
@@ -85,4 +85,4 @@ const Footer: React.FC = () => {
   );
 };
 
-export default Footer;
+export default LandFooter;

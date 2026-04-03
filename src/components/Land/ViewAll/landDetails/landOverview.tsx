@@ -2,64 +2,59 @@ import React from 'react';
 import { Box, Typography, Stack } from '@mui/material';
 import SquareFootIcon from '@mui/icons-material/SquareFoot';
 import StraightenIcon from '@mui/icons-material/Straighten';
-import LayersIcon from '@mui/icons-material/Layers';
-import HeightIcon from '@mui/icons-material/Height';
-import ExploreIcon from '@mui/icons-material/Explore';
-import AspectRatioIcon from '@mui/icons-material/AspectRatio';
-import DashboardCustomizeIcon from '@mui/icons-material/DashboardCustomize';
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import LocationCityIcon from '@mui/icons-material/LocationCity';
-import MapIcon from '@mui/icons-material/Map';
-import SignpostIcon from '@mui/icons-material/Signpost';
+import FormatShapesIcon from '@mui/icons-material/FormatShapes';
+import TerrainIcon from '@mui/icons-material/Terrain';
+import WaterIcon from '@mui/icons-material/Water';
+import PowerIcon from '@mui/icons-material/Power';
 
-interface DescriptionItem {
+interface OverviewItem {
   icon: React.ReactNode;
   label: string;
   value: string;
 }
 
-interface DescriptionGroup {
-  id: DescriptionTab;
+interface OverviewGroup {
+  id: OverviewTab;
   title: string;
-  items: DescriptionItem[];
+  items: OverviewItem[];
 }
 
-type DescriptionTab = 'basicInfo' | 'dimensions' | 'context';
+type OverviewTab = 'plotInfo' | 'utilities' | 'surroundings';
 
-const descriptionGroups: DescriptionGroup[] = [
+const overviewGroups: OverviewGroup[] = [
   {
-    id: 'basicInfo',
-    title: 'Basic Info',
+    id: 'plotInfo',
+    title: 'Plot Info',
     items: [
-      { icon: <SquareFootIcon sx={{ fontSize: 16 }} />, label: 'Carpet Area', value: '1,200 sq.ft' },
-      { icon: <StraightenIcon sx={{ fontSize: 16 }} />, label: 'Built-up Area', value: '1,500 sq.ft' },
-      { icon: <LayersIcon sx={{ fontSize: 16 }} />, label: 'Floor', value: 'Ground / 15' },
-      { icon: <ExploreIcon sx={{ fontSize: 16 }} />, label: 'Unit Facing', value: 'North-East' },
+      { icon: <SquareFootIcon sx={{ fontSize: 16 }} />, label: 'Total Area', value: '2.5 Acres' },
+      { icon: <StraightenIcon sx={{ fontSize: 16 }} />, label: 'Dimensions', value: '200 x 545 ft' },
+      { icon: <FormatShapesIcon sx={{ fontSize: 16 }} />, label: 'Shape', value: 'Rectangular' },
+      { icon: <TerrainIcon sx={{ fontSize: 16 }} />, label: 'Topography', value: 'Level Plain' },
     ],
   },
   {
-    id: 'dimensions',
-    title: 'Dimensions',
+    id: 'utilities',
+    title: 'Utilities',
     items: [
-      { icon: <AspectRatioIcon sx={{ fontSize: 16 }} />, label: 'L x B', value: '40ft x 30ft' },
-      { icon: <StraightenIcon sx={{ fontSize: 16 }} />, label: 'Frontage', value: '24 Feet' },
-      { icon: <HeightIcon sx={{ fontSize: 16 }} />, label: 'Ceiling Height', value: '14 Feet' },
-      { icon: <DashboardCustomizeIcon sx={{ fontSize: 16 }} />, label: 'Corner Unit', value: 'Yes' },
+      { icon: <WaterIcon sx={{ fontSize: 16 }} />, label: 'Water', value: 'Available' },
+      { icon: <PowerIcon sx={{ fontSize: 16 }} />, label: 'Electricity', value: 'Available' },
+      { icon: <TerrainIcon sx={{ fontSize: 16 }} />, label: 'Road Access', value: 'Paved' },
+      { icon: <StraightenIcon sx={{ fontSize: 16 }} />, label: 'Frontage', value: '200 ft' },
     ],
   },
   {
-    id: 'context',
-    title: 'Context',
+    id: 'surroundings',
+    title: 'Surroundings',
     items: [
-      { icon: <VisibilityIcon sx={{ fontSize: 16 }} />, label: 'Road Visibility', value: 'Main Road' },
-      { icon: <LocationCityIcon sx={{ fontSize: 16 }} />, label: 'Zone', value: 'Commercial PD' },
-      { icon: <SignpostIcon sx={{ fontSize: 16 }} />, label: 'Colony/Layout', value: 'Sector 50' },
-      { icon: <MapIcon sx={{ fontSize: 16 }} />, label: 'Map Location', value: 'View Map' },
+      { icon: <TerrainIcon sx={{ fontSize: 16 }} />, label: 'Neighborhood', value: 'Developing' },
+      { icon: <StraightenIcon sx={{ fontSize: 16 }} />, label: 'Distance to City', value: '8 km' },
+      { icon: <FormatShapesIcon sx={{ fontSize: 16 }} />, label: 'Near Highway', value: 'Yes' },
+      { icon: <TerrainIcon sx={{ fontSize: 16 }} />, label: 'Public Transport', value: 'Nearby' },
     ],
   },
 ];
 
-const DescriptionCard: React.FC<{ item: DescriptionItem }> = ({ item }) => (
+const OverviewCard: React.FC<{ item: OverviewItem }> = ({ item }) => (
   <Box
     sx={{
       backgroundColor: 'var(--bg-app)',
@@ -80,7 +75,7 @@ const DescriptionCard: React.FC<{ item: DescriptionItem }> = ({ item }) => (
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        color: '#1C2A44', // Updated icon color to deep navy
+        color: '#1C2A44',
         flexShrink: 0,
         boxShadow: '0px 1px 2px rgba(0,0,0,0.02)',
       }}
@@ -98,10 +93,10 @@ const DescriptionCard: React.FC<{ item: DescriptionItem }> = ({ item }) => (
   </Box>
 );
 
-const UnitDescription: React.FC = () => {
-  const [tabValue, setTabValue] = React.useState<DescriptionTab>('basicInfo');
+const LandOverview: React.FC = () => {
+  const [tabValue, setTabValue] = React.useState<OverviewTab>('plotInfo');
 
-  const activeGroup = descriptionGroups.find((group) => group.id === tabValue) ?? descriptionGroups[0];
+  const activeGroup = overviewGroups.find((group) => group.id === tabValue) ?? overviewGroups[0];
 
   return (
     <Box sx={{ padding: '4px', textAlign: 'left' }}>
@@ -123,21 +118,21 @@ const UnitDescription: React.FC = () => {
             paddingLeft: '4px',
           }}
         >
-          Unit description
+          Plot Overview
         </Typography>
 
-        <Stack 
-          direction="row" 
-          spacing={1} 
-          sx={{ 
-            mb: '8px', 
+        <Stack
+          direction="row"
+          spacing={1}
+          sx={{
+            mb: '8px',
             overflowX: 'auto',
             '&::-webkit-scrollbar': { display: 'none' },
             msOverflowStyle: 'none',
             scrollbarWidth: 'none',
           }}
         >
-          {descriptionGroups.map((group) => {
+          {overviewGroups.map((group) => {
             const isActive = group.id === tabValue;
             return (
               <Box
@@ -147,8 +142,7 @@ const UnitDescription: React.FC = () => {
                   padding: '6px 14px',
                   borderRadius: '4px',
                   cursor: 'pointer',
-                  // Updated: Navy gradient for active, refined gray for inactive
-                  background: isActive ? 'linear-gradient(to bottom right, #1C2A44, #154eb1)' : '#F3F4F6', 
+                  background: isActive ? 'linear-gradient(to bottom right, #1C2A44, #154eb1)' : '#F3F4F6',
                   color: isActive ? '#FFFFFF' : '#4B5563',
                   fontWeight: 700,
                   fontSize: '0.75rem',
@@ -171,7 +165,7 @@ const UnitDescription: React.FC = () => {
           }}
         >
           {activeGroup.items.map((item, idx) => (
-            <DescriptionCard key={idx} item={item} />
+            <OverviewCard key={idx} item={item} />
           ))}
         </Box>
       </Box>
@@ -179,4 +173,4 @@ const UnitDescription: React.FC = () => {
   );
 };
 
-export default UnitDescription;
+export default LandOverview;

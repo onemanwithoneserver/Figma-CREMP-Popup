@@ -1,26 +1,27 @@
 import React, { useState } from 'react';
 import { Box } from '@mui/material';
-import TopSection from './topsection';
-import TabNavigation from './tabNavigation';
-import RetailSpaces from './retailSpaces';
-import OfficeSpace from './officeSpace';
-import CoWorkingSpaces from './coWorkingSpaces';
+import LandTopSection from './landTopSection';
+import LandTabNavigation from './landTabNavigation';
+import LandRent from './landRent';
+import LandLease from './landLease';
 
-type TabType = 'retail' | 'office' | 'coworking';
+type LandTabType = 'rent' | 'lease';
 
-const MainScreen: React.FC = () => {
-  const [selectedTab, setSelectedTab] = useState<TabType>('retail');
+interface LandMainScreenProps {
+  onViewAll?: () => void;
+}
+
+const LandMainScreen: React.FC<LandMainScreenProps> = ({ onViewAll }) => {
+  const [selectedTab, setSelectedTab] = useState<LandTabType>('rent');
 
   const renderTabContent = () => {
     switch (selectedTab) {
-      case 'retail':
-        return <RetailSpaces />;
-      case 'office':
-        return <OfficeSpace />;
-      case 'coworking':
-        return <CoWorkingSpaces />;
+      case 'rent':
+        return <LandRent onViewAll={onViewAll} />;
+      case 'lease':
+        return <LandLease onViewAll={onViewAll} />;
       default:
-        return <RetailSpaces />;
+        return <LandRent onViewAll={onViewAll} />;
     }
   };
 
@@ -42,8 +43,8 @@ const MainScreen: React.FC = () => {
           flexDirection: 'column',
           gap: '4px',
           padding: '4px',
-          '&::-webkit-scrollbar': { 
-            width: '4px' 
+          '&::-webkit-scrollbar': {
+            width: '4px'
           },
           '&::-webkit-scrollbar-thumb': {
             backgroundColor: 'var(--border-default)',
@@ -51,12 +52,12 @@ const MainScreen: React.FC = () => {
           },
         }}
       >
-        <TopSection />
-        
-        <TabNavigation selectedTab={selectedTab} onTabChange={setSelectedTab} />
-        
-        <Box 
-          sx={{ 
+        <LandTopSection />
+
+        <LandTabNavigation selectedTab={selectedTab} onTabChange={setSelectedTab} />
+
+        <Box
+          sx={{
             paddingBottom: '12px',
             display: 'flex',
             flexDirection: 'column',
@@ -70,4 +71,4 @@ const MainScreen: React.FC = () => {
   );
 };
 
-export default MainScreen;
+export default LandMainScreen;

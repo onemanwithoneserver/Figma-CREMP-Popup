@@ -36,7 +36,7 @@ export const theme = createTheme({
           --bg-app: #FFFFFF;
           --bg-card: #FFFFFF;
           --bg-header: #1C2A44;
-          --bg-shell: linear-gradient(135deg, #1C2A44 0%, #0F1B2E 100%);
+          --bg-shell: linear-gradient(135deg, #f7f6f3 0%, #eceae6 100%);
           --accent-navy: #1C2A44;
           --accent-gold: #C69C44;
           --border-default: #E5E7EB;
@@ -60,25 +60,16 @@ export const theme = createTheme({
           borderRadius: 4,
           textTransform: 'none',
           padding: '4px 12px',
-          transition: 'all 150ms ease-in-out',
           justifyContent: 'flex-start',
           border: '1px solid transparent',
         },
         containedPrimary: {
-          backgroundColor: 'var(--accent-gold)',
+          background: 'linear-gradient(135deg, #B8902A 0%, #C9A84C 100%)',
           color: 'var(--text-inverse)',
-          '&:hover': {
-            backgroundColor: '#B38B3A',
-            boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.04)',
-          },
         },
         outlined: {
           borderColor: 'var(--border-default)',
           color: 'var(--text-main)',
-          '&:hover': {
-            borderColor: 'var(--accent-gold)',
-            backgroundColor: 'transparent',
-          },
         },
       },
     },

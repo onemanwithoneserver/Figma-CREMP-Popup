@@ -39,14 +39,7 @@ const Interiors: React.FC = () => {
             alignItems: 'center',
             padding: '4px 8px',
             borderBottom: idx < interiorItems.length - 2 ? '1px solid var(--border-default)' : '1px solid transparent',
-            transition: 'all 150ms ease-in-out',
             borderRadius: '4px',
-            '&:hover': {
-              backgroundColor: 'var(--bg-app)',
-            },
-            '&:hover .spec-value': {
-              color: 'var(--accent-gold)',
-            }
           }}
         >
           <Typography sx={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
@@ -57,8 +50,7 @@ const Interiors: React.FC = () => {
             sx={{
               fontSize: '0.75rem',
               fontWeight: 600,
-              color: 'var(--text-main)',
-              transition: 'color 150ms ease-in-out',
+              color: 'var(--accent-gold)',
             }}
           >
             {item.value}

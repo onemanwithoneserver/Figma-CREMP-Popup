@@ -2,11 +2,11 @@ import React from 'react';
 import { Box, IconButton } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
-interface HeaderProps {
+interface LandHeaderProps {
   onBack?: () => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ onBack }) => {
+const LandHeader: React.FC<LandHeaderProps> = ({ onBack }) => {
   return (
     <Box sx={{ padding: '4px' }}>
       <Box
@@ -21,8 +21,8 @@ const Header: React.FC<HeaderProps> = ({ onBack }) => {
       >
         <Box
           component="img"
-          src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80"
-          alt="Retail Unit Hero, XYZ Plaza Hyderabad"
+          src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=80"
+          alt="Land Plot Hero, Hyderabad"
           sx={{
             width: '100%',
             height: '100%',
@@ -65,4 +65,4 @@ const Header: React.FC<HeaderProps> = ({ onBack }) => {
   );
 };
 
-export default Header;
+export default LandHeader;

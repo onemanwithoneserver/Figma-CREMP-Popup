@@ -24,27 +24,15 @@ export const Button: React.FC<ButtonProps> = ({ children, sx, variant = 'contain
         ...(variant === 'contained' && {
           backgroundColor: 'var(--accent-gold)',
           color: 'var(--text-inverse)',
-          '&:hover': {
-            backgroundColor: '#B38B3A',
-            boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.04)',
-          },
         }),
         ...(variant === 'outlined' && {
           backgroundColor: 'transparent',
           borderColor: 'var(--border-default)',
           color: 'var(--text-main)',
-          '&:hover': {
-            backgroundColor: 'transparent',
-            borderColor: 'var(--accent-gold)',
-          },
         }),
         ...(variant === 'text' && {
           color: 'var(--text-muted)',
           backgroundColor: 'transparent',
-          '&:hover': {
-            color: 'var(--text-main)',
-            backgroundColor: 'transparent',
-          },
         }),
         ...sx,
       }}

@@ -18,7 +18,7 @@ interface OfficeUnitData {
 const officeUnits: OfficeUnitData[] = [
   {
     name: 'Office Unit B508',
-    image: '/images/mainscreen/office-b508.png',
+    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=400&q=80',
     floor: '5th Floor',
     area: '1,500 sq.ft.',
     price: '₹ 1.9 Crore',
@@ -27,7 +27,7 @@ const officeUnits: OfficeUnitData[] = [
   },
   {
     name: 'Office Unit C1009',
-    image: '/images/mainscreen/office-c1009.png',
+    image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=400&q=80',
     floor: '10th Floor',
     area: '2,000 sq.ft.',
     price: '₹ 2.8 Crore',
@@ -37,7 +37,7 @@ const officeUnits: OfficeUnitData[] = [
   },
   {
     name: 'Office Unit A712',
-    image: '/images/mainscreen/office-a712.png',
+    image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=400&q=80',
     floor: '7th Floor',
     area: '800 sq.ft.',
     price: '₹ 90 Lakh',
@@ -49,16 +49,12 @@ const officeUnits: OfficeUnitData[] = [
 const OfficeCard: React.FC<{ unit: OfficeUnitData }> = ({ unit }) => (
   <Box
     sx={{
-      borderRadius: '4px',
+      borderRadius: '6px',
       overflow: 'hidden',
-      border: '1px solid var(--border-default)',
-      boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.04)',
+      border: '1px solid rgba(198, 156, 68, 0.15)',
+      borderTop: '2px solid var(--accent-gold)',
+      boxShadow: '0 4px 20px rgba(28, 42, 68, 0.08), 0 1px 3px rgba(0,0,0,0.04)',
       backgroundColor: 'var(--bg-card)',
-      transition: 'all 150ms ease-in-out',
-      '&:hover': {
-        borderColor: 'var(--accent-gold)',
-        transform: 'translateY(-2px)',
-      }
     }}
   >
     <Box sx={{ position: 'relative', height: 110, backgroundColor: 'var(--bg-app)' }}>
@@ -158,19 +154,13 @@ const OfficeCard: React.FC<{ unit: OfficeUnitData }> = ({ unit }) => (
         sx={{
           marginTop: '4px',
           borderRadius: '4px',
-          padding: '4px',
-          backgroundColor: 'var(--bg-header)',
-          border: '1px solid transparent',
-          transition: 'all 150ms ease-in-out',
+          padding: '6px',
+          background: 'linear-gradient(135deg, #B8902A 0%, #C9A84C 100%)',
           cursor: 'pointer',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           gap: '4px',
-          '&:hover': {
-            backgroundColor: 'var(--bg-card)',
-            borderColor: 'var(--accent-gold)',
-          },
         }}
       >
         <Typography sx={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-inverse)' }}>

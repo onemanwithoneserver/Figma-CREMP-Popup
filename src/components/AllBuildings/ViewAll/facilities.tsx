@@ -112,11 +112,7 @@ const Facilities: React.FC = () => {
                   fontSize: '0.75rem',
                   letterSpacing: '0.02em',
                   whiteSpace: 'nowrap',
-                  transition: 'background 0.2s ease, color 0.2s ease',
                   userSelect: 'none',
-                  '&:hover': {
-                    background: isActive ? 'linear-gradient(to bottom right, #1C2A44, #154eb1)' : '#E5E7EB',
-                  }
                 }}
               >
                 {category.title}

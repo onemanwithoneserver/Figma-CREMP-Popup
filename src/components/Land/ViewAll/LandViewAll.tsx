@@ -1,32 +1,31 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Box, Typography, Stack, Divider, IconButton } from '@mui/material';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-import StorefrontIcon from '@mui/icons-material/Storefront';
-import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
+import TerrainIcon from '@mui/icons-material/Terrain';
+import StraightenIcon from '@mui/icons-material/Straighten';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 
-import Header from './header';
-import Highlights from './highlights';
-import UnitDescription from './unitDescription';
-import MediaAndTour from './mediaAndTour';
-import Specifications from './Specifications';
-import Facilities from './facilities';
-import SuitedFor from './suitedFor';
-import InvestmentSummary from './investmentSummary';
-import Footer from './footer';
+import LandHeader from './landHeader';
+import LandHighlights from './landHighlights';
+import LandOverview from './landDetails/landOverview';
+import LandMedia from './landMedia';
+import LandSpecifications from './landDetails/landSpecifications';
+import LandLocation from './landDetails/landLocation';
+import LandTerms from './landDetails/landTerms';
+import LandFooter from './landFooter';
 
-interface ViewAllProps {
+interface LandViewAllProps {
   onBack?: () => void;
 }
 
 const KeyIconItem: React.FC<{ icon: React.ReactNode; value: string; label: string }> = ({ icon, value, label }) => (
-  <Stack 
-    direction="row" 
-    alignItems="center" 
-    spacing="4px" 
-    sx={{ 
+  <Stack
+    direction="row"
+    alignItems="center"
+    spacing="4px"
+    sx={{
       flex: 1,
       padding: '4px',
       borderRadius: '4px',
@@ -48,46 +47,40 @@ const KeyIconItem: React.FC<{ icon: React.ReactNode; value: string; label: strin
   </Stack>
 );
 
-const ViewAll: React.FC<ViewAllProps> = ({ onBack }) => {
-  const [activeTab, setActiveTab] = useState<string>('unitDetails');
-  
+const LandViewAll: React.FC<LandViewAllProps> = ({ onBack }) => {
+  const [activeTab, setActiveTab] = useState<string>('overview');
+
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [isScrolled, setIsScrolled] = useState(false);
-  
-  // A flag to prevent the scroll spy from updating the active tab while a smooth-scroll click is happening
+
   const isClickScrolling = useRef(false);
-  
+
   const tabBarRef = useRef<HTMLDivElement>(null);
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(true);
-  
-  const unitDescRef = useRef<HTMLDivElement>(null);
+
+  const overviewRef = useRef<HTMLDivElement>(null);
   const mediaRef = useRef<HTMLDivElement>(null);
   const specsRef = useRef<HTMLDivElement>(null);
-  const facilitiesRef = useRef<HTMLDivElement>(null);
-  const suitedForRef = useRef<HTMLDivElement>(null);
-  const investmentRef = useRef<HTMLDivElement>(null);
+  const locationRef = useRef<HTMLDivElement>(null);
+  const termsRef = useRef<HTMLDivElement>(null);
 
   const tabItems = [
-    { id: 'unitDetails', label: 'Unit Details', ref: unitDescRef },
-    { id: 'media', label: 'Media & Tour', ref: mediaRef },
+    { id: 'overview', label: 'Overview', ref: overviewRef },
+    { id: 'media', label: 'Media', ref: mediaRef },
     { id: 'specifications', label: 'Specifications', ref: specsRef },
-    { id: 'facilities', label: 'Facilities', ref: facilitiesRef },
-    { id: 'suitedFor', label: 'Suited For', ref: suitedForRef },
-    { id: 'investmentSummary', label: 'Investment Summary', ref: investmentRef },
+    { id: 'location', label: 'Location', ref: locationRef },
+    { id: 'terms', label: 'Terms', ref: termsRef },
   ];
 
-  // --- Main Scroll Logic (Scroll Spy & Sticky Header Reveal) ---
   const handleMainScroll = () => {
     if (scrollContainerRef.current) {
       const scrollTop = scrollContainerRef.current.scrollTop;
-      
-      // Reveal sticky header after 150px
+
       setIsScrolled(scrollTop > 150);
 
-      // Scroll Spy: Update active tab based on scroll position (if not currently auto-scrolling from a click)
       if (!isClickScrolling.current) {
-        const scrollPosition = scrollTop + 100; // 100px offset to detect section slightly before it hits the very top
+        const scrollPosition = scrollTop + 100;
         let currentFocusedTab = tabItems[0].id;
 
         for (const tab of tabItems) {
@@ -128,19 +121,17 @@ const ViewAll: React.FC<ViewAllProps> = ({ onBack }) => {
   };
 
   const handleTabClick = (id: string, ref: React.RefObject<HTMLDivElement | null>) => {
-    // Lock the scroll spy
     isClickScrolling.current = true;
     setActiveTab(id);
-    
+
     if (ref.current && scrollContainerRef.current) {
-      const offsetTop = ref.current.offsetTop - 55; 
+      const offsetTop = ref.current.offsetTop - 55;
       scrollContainerRef.current.scrollTo({
         top: offsetTop,
         behavior: 'smooth'
       });
     }
 
-    // Unlock the scroll spy after the smooth scroll finishes (~800ms)
     setTimeout(() => {
       isClickScrolling.current = false;
     }, 800);
@@ -148,14 +139,14 @@ const ViewAll: React.FC<ViewAllProps> = ({ onBack }) => {
 
   return (
     <Box sx={{ position: 'relative', height: '100%', display: 'flex', flexDirection: 'column', backgroundColor: '#F9FAFB', overflow: 'hidden' }}>
-      
-      <Box 
-        sx={{ 
-          position: 'absolute', 
-          top: 0, 
-          left: 0, 
+
+      <Box
+        sx={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
           right: 0,
-          zIndex: 100, 
+          zIndex: 100,
           backgroundColor: '#FFFFFF',
           borderBottom: '1px solid #E5E7EB',
           display: 'flex',
@@ -168,8 +159,8 @@ const ViewAll: React.FC<ViewAllProps> = ({ onBack }) => {
         }}
       >
         {showLeftArrow && (
-          <Box 
-            sx={{ 
+          <Box
+            sx={{
               position: 'absolute', left: 0, top: 0, bottom: 0, zIndex: 10,
               display: 'flex', alignItems: 'center', px: '2px',
               background: 'linear-gradient(to right, #FFFFFF 60%, transparent)',
@@ -199,7 +190,6 @@ const ViewAll: React.FC<ViewAllProps> = ({ onBack }) => {
           }}
         >
           {tabItems
-            // THIS FILTER REMOVES THE CURRENTLY FOCUSED TAB
             .filter((tab) => tab.id !== activeTab)
             .map(tab => (
                <Box
@@ -213,11 +203,12 @@ const ViewAll: React.FC<ViewAllProps> = ({ onBack }) => {
 
                  }}
                >
-                 <Typography 
-                   sx={{ 
-                     fontSize: '0.875rem', 
-                     fontWeight: 500, 
+                 <Typography
+                   sx={{
+                     fontSize: '0.875rem',
+                     fontWeight: 500,
                      color: '#6B7280',
+
                    }}
                  >
                    {tab.label}
@@ -227,8 +218,8 @@ const ViewAll: React.FC<ViewAllProps> = ({ onBack }) => {
         </Stack>
 
         {showRightArrow && (
-          <Box 
-            sx={{ 
+          <Box
+            sx={{
               position: 'absolute', right: 0, top: 0, bottom: 0, zIndex: 10,
               display: 'flex', alignItems: 'center', px: '2px',
               background: 'linear-gradient(to left, #FFFFFF 60%, transparent)',
@@ -255,19 +246,19 @@ const ViewAll: React.FC<ViewAllProps> = ({ onBack }) => {
           '&::-webkit-scrollbar-thumb': { backgroundColor: '#D1D5DB', borderRadius: '4px' },
         }}
       >
-        <Header onBack={onBack} />
-        <Highlights />
-        
+        <LandHeader onBack={onBack} />
+        <LandHighlights />
+
         <Box sx={{ padding: '8px 2px', backgroundColor: '#FFFFFF', mb: '4px' }}>
           <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', mb: '4px' }}>
             <Box>
               <Typography sx={{ fontSize: '1.125rem', fontWeight: 600, color: '#1C2A44', lineHeight: 1.2 }}>
-                Retail Unit A105
+                Plot GV-101
               </Typography>
               <Stack direction="row" alignItems="center" spacing="4px" sx={{ mt: '2px' }}>
                 <LocationOnIcon sx={{ fontSize: 14, color: '#C89B3C' }} />
                 <Typography sx={{ fontSize: '0.75rem', color: '#6B7280' }}>
-                  Ground Floor, XYZ Mall, Manhattan
+                  Sector 12, Green Valley, Hyderabad
                 </Typography>
               </Stack>
             </Box>
@@ -279,51 +270,46 @@ const ViewAll: React.FC<ViewAllProps> = ({ onBack }) => {
           </Box>
 
           <Box sx={{ display: 'flex', gap: '4px' }}>
-            <KeyIconItem icon={<StorefrontIcon sx={{ fontSize: 16 }} />} value="25 ft" label="Frontage" />
-            <KeyIconItem icon={<PeopleAltIcon sx={{ fontSize: 16 }} />} value="High" label="Footfall" />
-            <KeyIconItem icon={<VisibilityIcon sx={{ fontSize: 16 }} />} value="Main Road" label="Visibility" />
+            <KeyIconItem icon={<TerrainIcon sx={{ fontSize: 16 }} />} value="2.5 Acres" label="Plot Size" />
+            <KeyIconItem icon={<StraightenIcon sx={{ fontSize: 16 }} />} value="200 ft" label="Frontage" />
+            <KeyIconItem icon={<VisibilityIcon sx={{ fontSize: 16 }} />} value="Main Road" label="Access" />
           </Box>
         </Box>
 
         <Box sx={{ px: '2px', pt: '4px', pb: '40px', display: 'flex', flexDirection: 'column', gap: '4px' }}>
-          
-          <Box ref={unitDescRef}>
-            <UnitDescription />
+
+          <Box ref={overviewRef}>
+            <LandOverview />
           </Box>
           <Divider sx={{ mx: '2px', borderColor: '#E5E7EB' }} />
-          
+
           <Box ref={mediaRef}>
-            <MediaAndTour />
+            <LandMedia />
           </Box>
           <Divider sx={{ mx: '2px', borderColor: '#E5E7EB' }} />
-          
+
           <Box ref={specsRef}>
-            <Specifications />
+            <LandSpecifications />
           </Box>
           <Divider sx={{ mx: '2px', borderColor: '#E5E7EB' }} />
-          
-          <Box ref={facilitiesRef}>
-            <Facilities />
+
+          <Box ref={locationRef}>
+            <LandLocation />
           </Box>
           <Divider sx={{ mx: '2px', borderColor: '#E5E7EB' }} />
-          
-          <Box ref={suitedForRef}>
-            <SuitedFor />
+
+          <Box ref={termsRef}>
+            <LandTerms />
           </Box>
-          <Divider sx={{ mx: '2px', borderColor: '#E5E7EB' }} />
-          
-          <Box ref={investmentRef}>
-            <InvestmentSummary />
-          </Box>
-          
+
         </Box>
       </Box>
 
       <Box sx={{ flexShrink: 0, borderTop: '1px solid #E5E7EB', backgroundColor: '#FFFFFF' }}>
-        <Footer />
+        <LandFooter />
       </Box>
     </Box>
   );
 };
 
-export default ViewAll;
+export default LandViewAll;

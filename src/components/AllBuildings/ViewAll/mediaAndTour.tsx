@@ -3,10 +3,10 @@ import { Box, Typography, Stack } from '@mui/material';
 import PlayCircleFilledIcon from '@mui/icons-material/PlayCircleFilled';
 
 const thumbnails = [
-  '/images/viewall/thumb1.png',
-  '/images/viewall/thumb2.png',
-  '/images/viewall/thumb3.png',
-  '/images/viewall/thumb4.png',
+  'https://images.unsplash.com/photo-1604014237800-1c9102c219da?auto=format&fit=crop&w=200&q=80',
+  'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=200&q=80',
+  'https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=200&q=80',
+  'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=200&q=80',
 ];
 
 const MediaAndTour: React.FC = () => {
@@ -38,7 +38,7 @@ const MediaAndTour: React.FC = () => {
       >
         <Box
           component="img"
-          src="/images/viewall/media-main.png"
+          src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80"
           alt="Media Preview"
           sx={{
             width: '100%',
@@ -55,10 +55,6 @@ const MediaAndTour: React.FC = () => {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            transition: 'background-color 150ms ease-in-out',
-            '&:hover': {
-              backgroundColor: 'rgba(15, 26, 44, 0.5)',
-            },
           }}
         >
           <PlayCircleFilledIcon
@@ -67,11 +63,6 @@ const MediaAndTour: React.FC = () => {
               color: 'var(--accent-gold)',
               filter: 'drop-shadow(0px 4px 12px rgba(0,0,0,0.3))',
               cursor: 'pointer',
-              transition: 'all 150ms ease-in-out',
-              '&:hover': {
-                transform: 'scale(1.1)',
-                color: '#FFFFFF',
-              },
             }}
           />
         </Box>
@@ -95,15 +86,10 @@ const MediaAndTour: React.FC = () => {
               width: 72,
               height: 56,
               borderRadius: '4px',
-              border: '1px solid var(--border-default)',
+              border: '1px solid rgba(198, 156, 68, 0.3)',
               overflow: 'hidden',
               flexShrink: 0,
               cursor: 'pointer',
-              transition: 'all 150ms ease-in-out',
-              '&:hover': {
-                borderColor: 'var(--accent-gold)',
-                transform: 'translateY(-2px)',
-              },
             }}
           >
             <Box

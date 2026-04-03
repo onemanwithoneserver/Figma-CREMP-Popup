@@ -53,15 +53,9 @@ const InvestmentSummary: React.FC = () => {
               sx={{
                 padding: '10px 12px',
                 borderRadius: '6px',
-                border: '1px solid transparent',
-                transition: 'all 0.2s ease-in-out',
-                cursor: 'default',
-                '&:hover': {
-                  // Standard items get a light gray background; highlighted items get a subtle gold tint
-                  backgroundColor: item.highlight ? '#FFFCF5' : '#F9FAFB',
-                  borderColor: item.highlight ? 'rgba(200, 155, 60, 0.2)' : '#E5E7EB',
-                  transform: 'translateY(-1px)',
-                }
+              border: item.highlight ? '1px solid rgba(200, 155, 60, 0.2)' : '1px solid var(--border-default)',
+              backgroundColor: item.highlight ? '#FFFCF5' : '#F9FAFB',
+              cursor: 'default',
               }}
             >
               <Typography 

@@ -1,12 +1,68 @@
 import React from 'react';
 import { Box, Typography, Stack } from '@mui/material';
-import TrendingUpIcon from '@mui/icons-material/TrendingUp';
-import ApartmentIcon from '@mui/icons-material/Apartment';
-import BusinessIcon from '@mui/icons-material/Business';
+import TerrainIcon from '@mui/icons-material/Terrain';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
+import StraightenIcon from '@mui/icons-material/Straighten';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 
-const FeaturedCard: React.FC = () => (
+interface LandLeaseProps {
+  onViewAll?: () => void;
+}
+
+interface LandCardData {
+  name: string;
+  tag: string;
+  tagIcon: React.ReactNode;
+  image: string;
+  location: string;
+  area: string;
+  leasePrice: string;
+  leaseTerm: string;
+  imageCount?: string;
+  featured?: boolean;
+  roadAccess?: string;
+}
+
+const featuredLand: LandCardData = {
+  name: 'Plot GV-401',
+  tag: 'Agricultural',
+  tagIcon: <TerrainIcon sx={{ fontSize: 12, color: 'var(--text-inverse)' }} />,
+  image: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=400&q=80',
+  location: 'Sector 20, Green Valley',
+  area: '10 Acres',
+  leasePrice: '₹ 5.0 Lakh',
+  leaseTerm: '5 Years',
+  roadAccess: 'Paved Road',
+  featured: true,
+};
+
+const landCards: LandCardData[] = [
+  {
+    name: 'Plot GV-512',
+    tag: 'Commercial',
+    tagIcon: <TerrainIcon sx={{ fontSize: 12, color: 'var(--text-inverse)' }} />,
+      image: 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=400&q=80',
+    location: 'Sector 25, Green Valley',
+    area: '3.5 Acres',
+    leasePrice: '₹ 3.2 Lakh',
+    leaseTerm: '3 Years',
+    imageCount: '1/8',
+  },
+  {
+    name: 'Plot GV-623',
+    tag: 'Mixed Use',
+    tagIcon: <TerrainIcon sx={{ fontSize: 12, color: 'var(--text-inverse)' }} />,
+      image: 'https://images.unsplash.com/photo-1501854140801-50d01698950b?auto=format&fit=crop&w=400&q=80',
+    location: 'Sector 30, Green Valley',
+    area: '6.0 Acres',
+    leasePrice: '₹ 4.8 Lakh',
+    leaseTerm: '10 Years',
+    imageCount: '1/5',
+  },
+];
+
+const FeaturedCard: React.FC<{ land: LandCardData; onViewAll?: () => void }> = ({ land, onViewAll }) => (
   <Box
     sx={{
       margin: '4px',
@@ -23,12 +79,12 @@ const FeaturedCard: React.FC = () => (
         <Typography
           sx={{ fontSize: '0.875rem', fontWeight: 600, color: 'var(--text-main)', lineHeight: 1.2 }}
         >
-          Retail Unit A105
+          {land.name}
         </Typography>
         <Typography
           sx={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '4px' }}
         >
-          Ground Floor | 1,200 sq.ft.
+          {land.location} | {land.area}
         </Typography>
 
         <Box
@@ -51,23 +107,23 @@ const FeaturedCard: React.FC = () => (
             }}
           />
           <Typography sx={{ fontSize: '0.65rem', fontWeight: 600, color: 'var(--text-main)' }}>
-            Tenant: Starbucks
+            {land.roadAccess}
           </Typography>
         </Box>
 
         <Stack direction="row" spacing="8px" sx={{ marginTop: '8px' }}>
           <Box sx={{ padding: '4px' }}>
-            <Typography sx={{ fontSize: '0.65rem', color: 'var(--text-muted)' }}>Sale Value:</Typography>
+            <Typography sx={{ fontSize: '0.65rem', color: 'var(--text-muted)' }}>Lease/Year:</Typography>
             <Typography sx={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-main)' }}>
-              ₹ 2.5 Crore
+              {land.leasePrice}
             </Typography>
           </Box>
           <Box sx={{ padding: '4px' }}>
             <Stack direction="row" alignItems="center" spacing="4px">
+              <CalendarTodayIcon sx={{ fontSize: 12, color: 'var(--text-muted)' }} />
               <Typography component="span" sx={{ fontSize: '0.65rem', color: 'var(--text-muted)' }}>
-                8% Expected Yield
+                {land.leaseTerm}
               </Typography>
-              <TrendingUpIcon sx={{ fontSize: 12, color: 'var(--accent-gold)' }} />
             </Stack>
           </Box>
         </Stack>
@@ -84,8 +140,8 @@ const FeaturedCard: React.FC = () => (
       >
         <Box
           component="img"
-          src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=600&q=80"
-          alt="Retail Unit A105"
+          src={land.image}
+          alt={land.name}
           sx={{
             width: '100%',
             height: '100%',
@@ -94,48 +150,30 @@ const FeaturedCard: React.FC = () => (
         />
       </Box>
     </Stack>
+
+    <Box
+      onClick={onViewAll}
+      sx={{
+        marginTop: '4px',
+        borderRadius: '4px',
+        padding: '6px',
+        background: 'linear-gradient(135deg, #B8902A 0%, #C9A84C 100%)',
+        cursor: 'pointer',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: '4px',
+      }}
+    >
+      <Typography sx={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-inverse)' }}>
+        View Details
+      </Typography>
+      <ArrowForwardIcon sx={{ fontSize: 12, color: 'var(--text-inverse)' }} />
+    </Box>
   </Box>
 );
 
-interface UnitCardData {
-  name: string;
-  tag: string;
-  tagIcon: React.ReactNode;
-  image: string;
-  floor: string;
-  area?: string;
-  price: string;
-  priceLabel: string;
-  imageCount?: string;
-  justViewed?: boolean;
-}
-
-const retailCards: UnitCardData[] = [
-  {
-    name: 'Retail Unit A215',
-    tag: 'Retail',
-    tagIcon: <ApartmentIcon sx={{ fontSize: 12, color: 'var(--text-inverse)' }} />,
-    image: 'https://images.unsplash.com/photo-1604014237800-1c9102c219da?auto=format&fit=crop&w=400&q=80',
-    floor: 'Second Floor',
-    price: '₹ 2.5 Crore',
-    priceLabel: 'Sale Value',
-    imageCount: '1/6',
-    justViewed: true,
-  },
-  {
-    name: 'Office Unit B508',
-    tag: 'Office',
-    tagIcon: <BusinessIcon sx={{ fontSize: 12, color: 'var(--text-inverse)' }} />,
-    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=400&q=80',
-    floor: '5th Floor',
-    area: '1,500 sq.ft.',
-    price: '₹ 1.9 Crore',
-    priceLabel: 'Rent',
-    imageCount: '1/6',
-  },
-];
-
-const UnitCard: React.FC<{ unit: UnitCardData }> = ({ unit }) => (
+const LandCard: React.FC<{ land: LandCardData; onViewAll?: () => void }> = ({ land, onViewAll }) => (
   <Box
     sx={{
       borderRadius: '6px',
@@ -149,8 +187,8 @@ const UnitCard: React.FC<{ unit: UnitCardData }> = ({ unit }) => (
     <Box sx={{ position: 'relative', height: 110, backgroundColor: 'var(--bg-app)' }}>
       <Box
         component="img"
-        src={unit.image}
-        alt={unit.name}
+        src={land.image}
+        alt={land.name}
         sx={{
           width: '100%',
           height: '100%',
@@ -158,33 +196,6 @@ const UnitCard: React.FC<{ unit: UnitCardData }> = ({ unit }) => (
           display: 'block',
         }}
       />
-
-      {unit.justViewed && (
-        <Box
-          sx={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            background: 'linear-gradient(135deg, rgba(15, 26, 44, 0.85) 0%, transparent 70%)',
-          }}
-        >
-          <Typography
-            sx={{
-              position: 'absolute',
-              top: '4px',
-              left: '4px',
-              fontSize: '0.65rem',
-              fontWeight: 600,
-              color: 'var(--accent-gold)',
-              fontStyle: 'italic',
-            }}
-          >
-            Just Viewed
-          </Typography>
-        </Box>
-      )}
 
       <Box
         sx={{
@@ -199,13 +210,13 @@ const UnitCard: React.FC<{ unit: UnitCardData }> = ({ unit }) => (
           backgroundColor: 'var(--bg-header)',
         }}
       >
-        {unit.tagIcon}
+        {land.tagIcon}
         <Typography sx={{ fontSize: '0.65rem', fontWeight: 600, color: 'var(--text-inverse)' }}>
-          {unit.tag}
+          {land.tag}
         </Typography>
       </Box>
 
-      {unit.imageCount && (
+      {land.imageCount && (
         <Box
           sx={{
             position: 'absolute',
@@ -217,7 +228,7 @@ const UnitCard: React.FC<{ unit: UnitCardData }> = ({ unit }) => (
           }}
         >
           <Typography sx={{ fontSize: '0.65rem', color: 'var(--text-inverse)', fontWeight: 600 }}>
-            {unit.imageCount}
+            {land.imageCount}
           </Typography>
         </Box>
       )}
@@ -225,24 +236,33 @@ const UnitCard: React.FC<{ unit: UnitCardData }> = ({ unit }) => (
 
     <Box sx={{ padding: '4px' }}>
       <Typography sx={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-main)', lineHeight: 1.2 }}>
-        {unit.name}
+        {land.name}
       </Typography>
       <Stack direction="row" alignItems="center" spacing="4px" sx={{ marginTop: '4px' }}>
         <LocationOnIcon sx={{ fontSize: 12, color: 'var(--text-muted)' }} />
         <Typography sx={{ fontSize: '0.65rem', color: 'var(--text-muted)' }}>
-          {unit.floor}
-          {unit.area ? ` | ${unit.area}` : ''}
+          {land.location}
+        </Typography>
+      </Stack>
+      <Stack direction="row" alignItems="center" spacing="4px" sx={{ marginTop: '2px' }}>
+        <StraightenIcon sx={{ fontSize: 12, color: 'var(--text-muted)' }} />
+        <Typography sx={{ fontSize: '0.65rem', color: 'var(--text-muted)' }}>
+          {land.area}
         </Typography>
       </Stack>
 
       <Typography sx={{ fontSize: '0.875rem', fontWeight: 600, color: 'var(--text-main)', marginTop: '4px' }}>
-        {unit.price}
+        {land.leasePrice}
       </Typography>
-      <Typography sx={{ fontSize: '0.65rem', color: 'var(--text-muted)' }}>
-        {unit.priceLabel}
-      </Typography>
+      <Stack direction="row" alignItems="center" spacing="4px">
+        <CalendarTodayIcon sx={{ fontSize: 10, color: 'var(--text-muted)' }} />
+        <Typography sx={{ fontSize: '0.65rem', color: 'var(--text-muted)' }}>
+          {land.leaseTerm} Term
+        </Typography>
+      </Stack>
 
       <Box
+        onClick={onViewAll}
         sx={{
           marginTop: '4px',
           borderRadius: '4px',
@@ -264,10 +284,10 @@ const UnitCard: React.FC<{ unit: UnitCardData }> = ({ unit }) => (
   </Box>
 );
 
-const RetailSpaces: React.FC = () => {
+const LandLease: React.FC<LandLeaseProps> = ({ onViewAll }) => {
   return (
     <Stack spacing="4px" sx={{ padding: '4px' }}>
-      <FeaturedCard />
+      <FeaturedCard land={featuredLand} onViewAll={onViewAll} />
       <Box
         sx={{
           display: 'grid',
@@ -275,12 +295,12 @@ const RetailSpaces: React.FC = () => {
           gap: '4px',
         }}
       >
-        {retailCards.map((unit, idx) => (
-          <UnitCard key={idx} unit={unit} />
+        {landCards.map((land, idx) => (
+          <LandCard key={idx} land={land} onViewAll={onViewAll} />
         ))}
       </Box>
     </Stack>
   );
 };
 
-export default RetailSpaces;
+export default LandLease;

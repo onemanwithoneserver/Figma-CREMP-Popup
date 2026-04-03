@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 import LeftPanel from './MainScreen/left';
 import MainScreen from './MainScreen';
 import { ViewAll } from './ViewAll';
+import LandMainFrame from '../Land/LandMainFrame';
 
 const MainFrame: React.FC = () => {
   const [activePage, setActivePage] = useState<string>('main');
@@ -14,21 +15,9 @@ const MainFrame: React.FC = () => {
       case 'viewAll':
         return <ViewAll onBack={() => setActivePage('main')} />;
       case 'landMain':
-        return (
-          <Box sx={{ p: 4, textAlign: 'center' }}>
-            <Typography sx={{ fontSize: '0.875rem', color: 'var(--text-muted)' }}>
-              Land Main - Coming Soon
-            </Typography>
-          </Box>
-        );
+        return <LandMainFrame initialPage="main" onBack={() => setActivePage('landMain')} />;
       case 'landViewAll':
-        return (
-          <Box sx={{ p: 4, textAlign: 'center' }}>
-            <Typography sx={{ fontSize: '0.875rem', color: 'var(--text-muted)' }}>
-              Land View All - Coming Soon
-            </Typography>
-          </Box>
-        );
+        return <LandMainFrame initialPage="viewAll" onBack={() => setActivePage('landMain')} />;
       default:
         return <MainScreen />;
     }
@@ -42,7 +31,7 @@ const MainFrame: React.FC = () => {
         background: 'var(--bg-shell)',
         display: 'flex',
         flexDirection: 'row',
-        overflow: 'hidden', // Prevents the browser window itself from scrolling
+        overflow: 'hidden',
       }}
     >
       {/* LEFT NAVIGATION PANEL */}
@@ -64,15 +53,15 @@ const MainFrame: React.FC = () => {
           sx={{
             width: 360,
             height: '100%',
-            maxHeight: '800px', // Standard mobile height ratio
+            maxHeight: '800px',
             backgroundColor: 'var(--bg-card)',
-            border: '1px solid var(--border-default)',
-            borderRadius: '4px',
+            border: '1px solid rgba(198, 156, 68, 0.25)',
+            borderRadius: '16px',
             display: 'flex',
             flexDirection: 'column',
-            boxShadow: '0px 12px 36px rgba(28, 42, 68, 0.16)',
+            boxShadow: '0 32px 80px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(198, 156, 68, 0.12), inset 0 1px 0 rgba(255,255,255,0.06)',
             position: 'relative',
-            overflow: 'hidden', // CRITICAL: Keeps the scroll inside the frame
+            overflow: 'hidden',
           }}
         >
           {/* CONTENT WRAPPER */}
@@ -95,8 +84,8 @@ const MainFrame: React.FC = () => {
         sx={{
           width: '25%',
           minWidth: '240px',
-          borderLeft: '1px solid var(--border-default)',
-          backgroundColor: 'var(--bg-card)',
+          borderLeft: '1px solid rgba(198, 156, 68, 0.12)',
+          backgroundColor: 'transparent',
           display: { xs: 'none', lg: 'block' },
         }}
       />
