@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Box } from '@mui/material';
-import LandMainScreen from './MainScreen/LandMainScreen';
+// import removed: LandMainScreen
 import LandViewAll from './ViewAll/LandViewAll';
 
 interface LandMainFrameProps {
@@ -35,7 +35,7 @@ const LandMainFrame: React.FC<LandMainFrameProps> = ({ initialPage = 'main', onB
       }}
     >
       {activePage === 'main' ? (
-        <LandMainScreen onViewAll={handleViewAll} />
+        {/* LandMainScreen removed */}
       ) : (
         <LandViewAll onBack={handleBack} />
       )}

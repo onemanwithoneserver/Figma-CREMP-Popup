@@ -56,12 +56,7 @@ const LeftPanel: React.FC<LeftPanelProps> = ({ activePage, onPageSelect }) => {
       
       <div className="flex flex-col gap-1">
         <NavItem
-          label="1. Main screen"
-          isActive={activePage === 'landMain'}
-          onClick={() => onPageSelect('landMain')}
-        />
-        <NavItem
-          label="2. View All"
+          label="View All"
           isActive={activePage === 'landViewAll'}
           onClick={() => onPageSelect('landViewAll')}
         />

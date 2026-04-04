@@ -1,6 +1,5 @@
 import React from 'react';
 import GroupsIcon from '@mui/icons-material/Groups';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import WifiIcon from '@mui/icons-material/Wifi';

@@ -1,6 +1,5 @@
 import React from 'react';
 import ApartmentIcon from '@mui/icons-material/Apartment';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
