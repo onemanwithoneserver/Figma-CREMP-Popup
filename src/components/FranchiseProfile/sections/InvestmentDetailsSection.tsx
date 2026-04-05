@@ -1,4 +1,3 @@
-import React from 'react';
 import { AccountBalanceWallet, TrendingUp } from '@mui/icons-material';
 import { data } from '../data';
 import { Card, SectionTitle, LabelValueRow } from '../SharedUI';

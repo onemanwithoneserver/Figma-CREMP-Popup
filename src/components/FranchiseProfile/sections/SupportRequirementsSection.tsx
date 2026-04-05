@@ -1,4 +1,3 @@
-import React from 'react';
 import { Handshake } from '@mui/icons-material';
 import { data } from '../data';
 import { Card, SectionTitle } from '../SharedUI';

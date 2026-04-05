@@ -1,7 +1,6 @@
-import React from 'react';
 import { Storefront, CheckCircle, Language, Instagram, LinkedIn } from '@mui/icons-material';
 import { data } from '../data';
-import { Card, Pill } from '../SharedUI';
+import { Card } from '../SharedUI';
 
 export default function HeaderSection({ isDesktop }: { isDesktop: boolean }) {
   return (
@@ -29,7 +28,7 @@ export default function HeaderSection({ isDesktop }: { isDesktop: boolean }) {
 
             <div className={`flex flex-wrap ${isDesktop ? 'gap-3 mt-2' : 'gap-2 mt-1'}`}>
               {[data.basicInfo.category, data.basicInfo.subcategory, data.basicInfo.microCategory].map(t => (
-                <Pill key={t} text={t} />
+                <span key={t} className="inline-flex items-center px-2.5 py-1 rounded bg-[#eef0f3] border border-[#e2e8f0] text-[0.75rem] font-semibold text-[#1c2a44]">{t}</span>
               ))}
             </div>
           </div>
