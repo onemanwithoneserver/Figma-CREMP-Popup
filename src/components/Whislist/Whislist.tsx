@@ -13,7 +13,12 @@ interface WhislistProps {
 export default function Whislist({ viewMode }: WhislistProps) {
   const [wishlistItems, setWishlistItems] = useState<WishlistItem[]>(mockWishlistData);
   const [folders, setFolders] = useState<Folder[]>(initialFolders);
-  const [activeFolderId, setActiveFolderId] = useState<string>('all');
+  // Filters and search
+  const [activeFolderId] = useState<string>('all');
+  const [searchTerm, setSearchTerm] = useState('');
+  const [investmentFilter, setInvestmentFilter] = useState('');
+  const [locationFilter, setLocationFilter] = useState('');
+  const [categoryFilter, setCategoryFilter] = useState('');
   const [viewType, setViewType] = useState<'grid' | 'list'>('grid');
 
   const isDesktop = viewMode === 'desktop';
@@ -26,14 +31,7 @@ export default function Whislist({ viewMode }: WhislistProps) {
     return wishlistItems.filter(item => activeFolder.itemIds.includes(item.id));
   }, [folders, activeFolderId, wishlistItems]);
 
-  const handleCreateFolder = (name: string) => {
-    const newFolder: Folder = {
-      id: `folder-${Date.now()}`,
-      name,
-      itemIds: [],
-    };
-    setFolders(prev => [...prev, newFolder]);
-  };
+
 
   const removeItem = (id: string) => {
     setWishlistItems(prev => prev.filter(item => item.id !== id));
@@ -70,13 +68,16 @@ export default function Whislist({ viewMode }: WhislistProps) {
           >
             <WhislistHeader
               isDesktop={isDesktop}
-              itemCount={activeFolderItems.length}
-              folders={folders}
-              activeFolderId={activeFolderId}
-              onFolderChange={setActiveFolderId}
-              onCreateFolder={handleCreateFolder}
               viewType={viewType}
               onViewChange={setViewType}
+              searchTerm={searchTerm}
+              onSearchChange={setSearchTerm}
+              investmentFilter={investmentFilter}
+              onInvestmentFilterChange={setInvestmentFilter}
+              locationFilter={locationFilter}
+              onLocationFilterChange={setLocationFilter}
+              categoryFilter={categoryFilter}
+              onCategoryFilterChange={setCategoryFilter}
             />
 
             <div className={isDesktop ? 'max-w-[80rem] mx-auto px-10 py-6 pb-6' : 'px-3 py-4 pb-20'}>

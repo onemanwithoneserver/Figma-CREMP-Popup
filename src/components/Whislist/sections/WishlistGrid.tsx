@@ -74,7 +74,7 @@ function WishlistCard({ item, isDesktop, onRemove }: WishlistCardProps) {
         </div>
       </div>
 
-      <div className={`flex flex-col flex-1 ${isDesktop ? 'p-4' : 'p-3'}`}>
+      <div className={`flex flex-col flex-1 ${isDesktop ? 'p-2' : 'p-2'}`}>
         <h3 className={`font-bold text-[#192339] leading-tight mb-1 line-clamp-1 ${
           isDesktop ? 'text-lg' : 'text-sm'
         }`}>
@@ -88,7 +88,7 @@ function WishlistCard({ item, isDesktop, onRemove }: WishlistCardProps) {
         {item.investmentRange && (
           <div className={`text-[#334155] mb-2 ${isDesktop ? 'text-[0.95rem]' : 'text-xs'}`}>
             <span className="text-[#334155] ">Investment: </span>
-            <span className="font-bold text-[#192339]">{item.investmentRange}</span>
+            <span className="font-bold text-green-600">{item.investmentRange}</span>
           </div>
         )}
 

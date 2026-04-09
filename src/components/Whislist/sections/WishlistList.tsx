@@ -100,12 +100,7 @@ function WishlistListItem({ item, isDesktop, onRemove }: WishlistListItemProps) 
             </div>
           )}
 
-          {item.monthlyRevenue && (
-            <div className="flex items-center gap-1">
-              <span className="text-[#94a3b8]">Monthly:</span>
-              <span className="font-semibold text-[#192339]">{item.monthlyRevenue}</span>
-            </div>
-          )}
+
 
           <div className={`flex items-center gap-1 ml-auto ${isDesktop ? '' : 'w-full mt-0.5'}`}>
             <LocationOn sx={{ fontSize: isDesktop ? '1.1rem' : '0.85rem', color: '#dca54a' }} />
