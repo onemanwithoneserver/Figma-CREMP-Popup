@@ -7,8 +7,7 @@ import CloseIcon from '@mui/icons-material/Close';
 
 import PremiumTabs from '../ui/PremiumTabs';
 import { data } from './data';
-import FranchiseHeader from './sections/FranchiseHeader';
-import MetricsGrid from './sections/MetricsGrid';
+import FranchiseHero from './sections/FranchiseHero';
 import BusinessOverview from './sections/BusinessOverview';
 import USPSection from './sections/USPSection';
 import FinancialRequirements from './sections/FinancialRequirements';
@@ -24,7 +23,7 @@ const MapFallback = ({ isDesktop }: { isDesktop: boolean }) => (
       isDesktop ? 'h-[20rem]' : 'h-[15rem]'
     }`}
   >
-    <span className="text-[0.8rem] text-[#94a3b8]">Loading map\u2026</span>
+    <span className="text-[0.8rem] text-[#94a3b8]">Loading map…</span>
   </div>
 );
 
@@ -44,7 +43,6 @@ export default function FranchiseProfile({ viewMode }: { viewMode: 'desktop' | '
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const isDesktop = viewMode === 'desktop';
 
-  // Scroll-spy: keep tab in sync with scroll position
   useEffect(() => {
     const handleScroll = () => {
       if (!scrollContainerRef.current) return;
@@ -85,10 +83,8 @@ export default function FranchiseProfile({ viewMode }: { viewMode: 'desktop' | '
         }`}
         style={{ height: isDesktop ? 'calc(100vh - 6.25rem)' : '48.75rem' }}
       >
-        {/* ── Inner shell ── */}
         <div className="relative h-full flex flex-col">
 
-          {/* ── Floating Action Button ── */}
           <div className="absolute bottom-6 right-6 z-[99] flex flex-col items-end gap-2.5">
             <div
               className={`flex flex-col gap-2.5 items-end transition-all duration-300 origin-bottom ${
@@ -131,20 +127,14 @@ export default function FranchiseProfile({ viewMode }: { viewMode: 'desktop' | '
             </button>
           </div>
 
-          {/* ── Scroll container ── */}
           <div
             ref={scrollContainerRef}
             className="flex-1 overflow-y-auto overflow-x-hidden scroll-smooth [&::-webkit-scrollbar]:w-[0.25rem] [&::-webkit-scrollbar-thumb]:bg-[#1c2a44]/15 [&::-webkit-scrollbar-thumb]:rounded"
             style={{ WebkitOverflowScrolling: 'touch' }}
           >
-            {/* Header */}
-            <FranchiseHeader isDesktop={isDesktop} />
+            <FranchiseHero isDesktop={isDesktop} />
 
-            {/* Metrics bar */}
-            <MetricsGrid isDesktop={isDesktop} />
-
-            {/* ── Sticky Tab Nav ── */}
-            <div className="sticky top-0 z-40 bg-white ">
+            <div className="sticky top-0 z-40 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.02)]">
               <div className={isDesktop ? 'max-w-[80rem] mx-auto px-6' : 'px-1'}>
                 <PremiumTabs
                   tabs={tabs}
@@ -154,14 +144,12 @@ export default function FranchiseProfile({ viewMode }: { viewMode: 'desktop' | '
               </div>
             </div>
 
-            {/* ── Desktop: 2-column layout ── */}
             {isDesktop ? (
-              <div className="max-w-[80rem] mx-auto px-10 py-2 pb-10">
-                <div className="grid grid-cols-[1fr_22rem] gap-2 items-start">
+              <div className="max-w-[80rem] mx-auto px-10 py-6 pb-12">
+                <div className="grid grid-cols-[1fr_22rem] gap-6 items-start">
 
-                  {/* Left: stacked sections */}
-                  <div className="flex flex-col gap-2">
-                    <section id="section-overview" className="flex flex-col gap-2">
+                  <div className="flex flex-col gap-6">
+                    <section id="section-overview" className="flex flex-col gap-6">
                       <BusinessOverview isDesktop={isDesktop} />
                       <USPSection isDesktop={isDesktop} />
                     </section>
@@ -170,21 +158,20 @@ export default function FranchiseProfile({ viewMode }: { viewMode: 'desktop' | '
                       <FinancialRequirements isDesktop={isDesktop} />
                     </section>
 
-                    <section id="section-support" className="pt-2 ">
+                    <section id="section-support" className="pt-2">
                       <SetupSupport isDesktop={isDesktop} />
                     </section>
 
-                    <section id="section-territory" className="pt-2 ">
+                    <section id="section-territory" className="pt-2">
                       <TerritoryNetwork isDesktop={isDesktop} />
                     </section>
 
-                    <section id="section-media" className="pt-2 ">
+                    <section id="section-media" className="pt-2">
                       <MediaSection isDesktop={isDesktop} />
                     </section>
                   </div>
 
-                  {/* Right: sticky map */}
-                  <div className="sticky top-[2.75rem]">
+                  <div className="sticky top-[4rem]">
                     <Suspense fallback={<MapFallback isDesktop={isDesktop} />}>
                       <MapView isDesktop={isDesktop} />
                     </Suspense>
@@ -192,37 +179,35 @@ export default function FranchiseProfile({ viewMode }: { viewMode: 'desktop' | '
                 </div>
               </div>
             ) : (
-              /* ── Mobile: single column, map between overview and USP ── */
-              <div className="flex flex-col pb-20">
+              <div className="flex flex-col pb-24 px-4 gap-4 mt-4">
 
-                <div id="section-overview">
+                <div id="section-overview" className="flex flex-col gap-4">
                   <BusinessOverview isDesktop={isDesktop} />
 
-                  {/* Map full-width, positioned after overview */}
-                  <div className="px-1 pb-2 sample pt-1">
+                  <div className="w-full">
                     <Suspense fallback={<MapFallback isDesktop={isDesktop} />}>
                       <MapView isDesktop={isDesktop} />
                     </Suspense>
                   </div>
 
-                  <div className="sample">
+                  <div>
                     <USPSection isDesktop={isDesktop} />
                   </div>
                 </div>
 
-                <div id="section-investment" className="sample">
+                <div id="section-investment">
                   <FinancialRequirements isDesktop={isDesktop} />
                 </div>
 
-                <div id="section-support" className="sample">
+                <div id="section-support">
                   <SetupSupport isDesktop={isDesktop} />
                 </div>
 
-                <div id="section-territory" className="sample">
+                <div id="section-territory">
                   <TerritoryNetwork isDesktop={isDesktop} />
                 </div>
 
-                <div id="section-media" className="sample">
+                <div id="section-media">
                   <MediaSection isDesktop={isDesktop} />
                 </div>
               </div>

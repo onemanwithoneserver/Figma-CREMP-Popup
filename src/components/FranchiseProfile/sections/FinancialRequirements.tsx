@@ -40,7 +40,7 @@ const FinancialRequirements: React.FC<FinancialRequirementsProps> = ({ isDesktop
         </div>
 
         {/* Total Row */}
-        <div className={`flex items-center justify-between bg-gradient-to-r from-[#059669] to-[#10b981] ${isDesktop ? 'p-[0.5rem]' : 'px-[0.5rem] py-[0.5rem]'}`}>
+        <div className={`flex items-center justify-between bg-gradient-to-r from-[#059669] to-[#10b981] ${isDesktop ? 'p-[1.5rem]' : 'px-[0.5rem] py-[0.5rem]'}`}>
           <span className={`font-medium text-emerald-50 ${isDesktop ? 'text-[1rem]' : 'text-[0.875rem]'}`}>
             Estimated Total
           </span>
