@@ -281,7 +281,7 @@ function ListingCard({
             {listing.name}
           </h3>
           <div className="flex flex-wrap items-center gap-1.5">
-            <span className="text-[9px] font-bold text-[#1a3566] bg-[#eef2f8] px-1 py-0.5 rounded-[2px] uppercase tracking-wider">
+            <span className="text-[9px] font-bold text-[#1a3566] bg-[#eef2f8] px-1 py-0.5 rounded-[2px]  tracking-wider">
               {listing.category}
             </span>
             {typeLabel && (
