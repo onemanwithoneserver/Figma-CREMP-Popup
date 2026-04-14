@@ -18,68 +18,8 @@ export interface Plan {
   isCurrent?: boolean;
 }
 
-export const PLANS: Plan[] = [
-  {
-    id: '1',
-    name: 'Starter',
-    price: '₹2,999',
-    validityLabel: 'Valid for 30 days',
-    daysLeft: 18,
-    purchasedOn: '26 Mar 2026',
-    badge: 'Active',
-    isCurrent: true,
-    features: [
-      '3 Franchise Listings',
-      '30 Leads per month',
-      'Basic analytics',
-      'Email support',
-    ],
-    usage: {
-      listingsUsed: 2, listingsTotal: 3,
-      leadsReceived: 14, leadsTotal: 30,
-    },
-  },
-  {
-    id: '2',
-    name: 'Growth',
-    price: '₹7,999',
-    validityLabel: 'Valid for 90 days',
-    daysLeft: 0,
-    purchasedOn: '01 Jan 2026',
-    badge: 'Expired',
-    features: [
-      '10 Franchise Listings',
-      '150 Leads per month',
-      'Advanced analytics',
-      'Priority support',
-      'Featured placement',
-    ],
-    usage: {
-      listingsUsed: 10, listingsTotal: 10,
-      leadsReceived: 150, leadsTotal: 150,
-    },
-  },
-  {
-    id: '3',
-    name: 'Enterprise',
-    price: '₹19,999',
-    validityLabel: 'Valid for 365 days',
-    daysLeft: 0,
-    purchasedOn: '—',
-    features: [
-      'Unlimited Listings',
-      'Unlimited Leads',
-      'Dedicated account manager',
-      'Custom branding',
-      'API access',
-      'Bulk export',
-    ],
-    usage: {
-      listingsUsed: 0, listingsTotal: 999,
-      leadsReceived: 0, leadsTotal: 999,
-    },
-  },
-];
+// PLANS will be fetched from backend API
+export const PLANS: Plan[] = [];
 
 export const STATUS_STYLES: Record<string, string> = {
   Active:  'bg-emerald-50 text-emerald-700 border border-emerald-100',

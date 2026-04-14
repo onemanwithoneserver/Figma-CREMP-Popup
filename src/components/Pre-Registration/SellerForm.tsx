@@ -98,20 +98,19 @@ export default function SellerForm({ isDesktop }: SellerFormProps) {
   return (
     <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-3">
       <div>
-        <label className={`flex items-center gap-1.5 font-medium text-[#0a1128] mb-1 ${isDesktop ? 'text-sm' : 'text-xs'}`}>
+        <label className={`flex items-center gap-1.5 font-medium text-[#0a1128] mb-1.5 ${isDesktop ? 'text-sm' : 'text-[13px]'}`}>
           <BadgeIcon sx={{ fontSize: 16, color: '#d4af37' }} />
           Select Your Role <span className="text-[#e05252] font-light">*</span>
         </label>
-        
-        <div className={`${isDesktop ? 'flex flex-wrap gap-2' : 'flex flex-wrap justify-center gap-1.5 w-full'}`}>
-          {sellerRoles.map(({ value, label }) => (
+        <div className="flex flex-wrap gap-1.5 w-full">
+          {sellerRoles.map(({ value, label }, index) => (
             <button
               type="button"
               key={value}
               onClick={() => setValues((prev) => ({ ...prev, role: value }))}
               className={`${isDesktop
-                ? 'px-3 py-1.5 text-xs min-w-[72px]'
-                : 'px-1 py-1.5 text-[11px] w-[calc(33.333%-4px)]' 
+                ? 'px-3 py-1.5 text-xs min-w-[80px]'
+                : `py-2 text-[11px] ${index < 3 ? 'w-[calc(33.333%-4px)]' : 'w-[calc(50%-3px)]'}`
               } rounded-[4px] font-medium border transition-all duration-300 whitespace-nowrap flex items-center justify-center ${
                 values.role === value
                   ? 'bg-gradient-to-br from-[#0a1128] via-[#121c33] to-[#0a1128] text-white border-[#0a1128] shadow-[0_4px_10px_rgba(10,17,40,0.15)]'
@@ -124,7 +123,6 @@ export default function SellerForm({ isDesktop }: SellerFormProps) {
         </div>
         {errors.role && <p className="text-[#e05252] text-[11px] mt-1 font-light">{errors.role}</p>}
       </div>
-
 
       <div>
         <label className={`flex items-center gap-1.5 font-medium text-[#0a1128] mb-1 ${isDesktop ? 'text-sm' : 'text-xs'}`}>
