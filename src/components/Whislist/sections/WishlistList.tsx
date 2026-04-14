@@ -111,7 +111,7 @@ function WishlistListItem({ item, isDesktop, onRemove }: WishlistListItemProps) 
         {/* Desktop View Details Button */}
         {isDesktop && (
           <div className="flex items-center justify-end mt-3 pt-2 ]">
-            <button className="px-8 py-2 rounded-[4px] bg-gradient-to-br from-[#c9a34e] to-[#b8903c] hover:bg-[#d6b465] text-white text-sm font-bold transition-colors">
+            <button className="px-8 py-2.5 rounded-[4px] bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] text-white text-sm font-medium shadow-[0_4px_10px_rgba(212,175,55,0.2)] hover:shadow-[0_8px_15px_rgba(212,175,55,0.3)] hover:-translate-y-[1px] active:translate-y-0 transition-all duration-300 tracking-wide">
               View Details
             </button>
           </div>
@@ -120,7 +120,7 @@ function WishlistListItem({ item, isDesktop, onRemove }: WishlistListItemProps) 
         {/* Mobile View Details Button */}
         {!isDesktop && (
           <div className="mt-2.5 flex items-center gap-2">
-            <button className="flex-1 px-3 py-1.5 rounded-[4px] bg-gradient-to-br from-[#c9a34e] to-[#b8903c] hover:bg-[#d6b465] text-white text-[0.85rem] font-bold transition-colors">
+            <button className="flex-1 px-3 py-2 rounded-[4px] bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] text-white text-sm font-medium shadow-[0_4px_10px_rgba(212,175,55,0.2)] hover:shadow-[0_8px_15px_rgba(212,175,55,0.3)] hover:-translate-y-[1px] active:translate-y-0 transition-all duration-300 tracking-wide">
               View Details
             </button>
           </div>

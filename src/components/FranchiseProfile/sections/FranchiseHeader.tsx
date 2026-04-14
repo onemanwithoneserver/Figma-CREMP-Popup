@@ -41,8 +41,8 @@ const FranchiseHeader: React.FC<FranchiseHeaderProps> = ({ isDesktop }) => {
 
         <div className={`flex flex-col items-end ${isDesktop ? 'gap-3' : 'gap-2'}`}>
           
-          <button className={`bg-gradient-to-br from-[#c9a34e] to-[#b8903c]  text-white font-bold rounded shadow-lg hover:bg-[#b8903c] transition-colors active:scale-95 ${
-            isDesktop ? 'px-4 py-2 text-s' : 'px-2 py-1.5 text-xs'
+          <button className={`bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] text-white font-medium text-sm rounded-[4px] shadow-[0_4px_10px_rgba(212,175,55,0.2)] hover:shadow-[0_8px_15px_rgba(212,175,55,0.3)] hover:-translate-y-[1px] active:translate-y-0 transition-all duration-300 tracking-wide ${
+            isDesktop ? 'px-6 py-2.5' : 'px-4 py-2'
           }`}>
             Interested
           </button>

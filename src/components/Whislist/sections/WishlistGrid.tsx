@@ -98,8 +98,8 @@ function WishlistCard({ item, isDesktop, onRemove }: WishlistCardProps) {
         </div>
 
         <div className="flex items-center justify-end  p-1">
-          <button className={`rounded-[4px] bg-gradient-to-br from-[#c9a34e] to-[#b8903c] hover:bg-[#d6b465] text-white font-bold transition-colors ${
-            isDesktop ? 'px-6 py-2 text-sm' : 'w-full py-1.5 text-xs'
+          <button className={`rounded-[4px] bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] text-white font-medium text-sm shadow-[0_4px_10px_rgba(212,175,55,0.2)] hover:shadow-[0_8px_15px_rgba(212,175,55,0.3)] hover:-translate-y-[1px] active:translate-y-0 transition-all duration-300 tracking-wide ${
+            isDesktop ? 'px-6 py-2.5' : 'w-full py-2'
           }`}>
             View Details
           </button>

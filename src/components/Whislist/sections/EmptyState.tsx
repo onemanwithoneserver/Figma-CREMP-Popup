@@ -27,9 +27,7 @@ export default function EmptyState({ isDesktop }: EmptyStateProps) {
         You can organize them into custom folders for easy access.
       </p>
 
-      <button className={`px-6 py-3 rounded-lg bg-[#1c2a44] text-white font-semibold hover:bg-[#0f1f3d] transition-colors ${
-        isDesktop ? 'text-base' : 'text-sm'
-      }`}>
+      <button className={`px-6 py-2.5 rounded-[4px] bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] text-white font-medium text-sm shadow-[0_4px_10px_rgba(212,175,55,0.2)] hover:shadow-[0_8px_15px_rgba(212,175,55,0.3)] hover:-translate-y-[1px] active:translate-y-0 transition-all duration-300 tracking-wide`}>
         Explore Opportunities
       </button>
     </div>

@@ -29,15 +29,10 @@ function ViewDetailsBtn({ onClick, isDesktop = true }: { onClick: (e: React.Mous
   return (
     <button
       onClick={onClick}
-      className={`group flex items-center justify-evenly  transition-all duration-300 ease-out font-bold overflow-hidden relative shadow-[0_4px_14px_rgba(15,31,61,0.1)] hover:shadow-[0_6px_20px_rgba(15,31,61,0.2)] hover:-translate-y-px
-    bg-[#0a162b] text-white border border-[#0f1f3d] ${isDesktop
-          ? 'rounded-[5px] w-[150px] pl-2 pr-2 h-[32px] text-[13px]'
-          : 'rounded-[5px] w-full py-1 mt-1 text-[13px]'
+      className={`group flex items-center justify-evenly transition-all duration-300 ease-out font-medium overflow-hidden relative bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] text-white shadow-[0_4px_10px_rgba(212,175,55,0.2)] hover:shadow-[0_8px_15px_rgba(212,175,55,0.3)] hover:-translate-y-px active:translate-y-0 tracking-wide ${isDesktop
+          ? 'rounded-[4px] w-[150px] pl-2 pr-2 h-[32px] text-[13px]'
+          : 'rounded-[4px] w-full py-1 mt-1 text-[13px]'
         }`}
-      style={{
-        boxShadow:
-          '0 4px 14px rgba(15,31,61,0.1), inset 0 1px 0 rgba(255,255,255,0.1)',
-      }}
     >
       <span className="relative z-10 transition-transform group-hover:-translate-x-1">
         View Details
@@ -245,7 +240,7 @@ function ListingCard({
           />
           <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-3">
             <button
-              className="bg-[#0a162b] text-white text-[11px] font-bold px-4 py-2 rounded-[5px] shadow-lg border border-white/10 flex items-center gap-1.5 transform translate-y-4 group-hover/img:translate-y-0 transition-all duration-300"
+              className="bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] text-white text-[11px] font-medium px-4 py-2 rounded-[4px] shadow-[0_4px_10px_rgba(212,175,55,0.2)] tracking-wide flex items-center gap-1.5 transform translate-y-4 group-hover/img:translate-y-0 transition-all duration-300"
             >
               View Details
               <ArrowForwardIcon sx={{ fontSize: 14 }} />

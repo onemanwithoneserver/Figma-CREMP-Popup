@@ -40,8 +40,8 @@ const FeaturedCard: React.FC = () => (
 
       <div className="absolute inset-0 bg-[#1c2a44]/60 flex items-center justify-center opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity duration-300 z-20">
         {/* Added Tailwind arbitrary targeting to override MUI inline styles */}
-        <div className="flex items-center justify-center gap-6 px-2 py-1 rounded bg-[#1c2a44] text-white cursor-pointer transition-colors duration-200 hover:bg-[#111A2B] group [&:hover_.chevron-icon]:!hidden [&:hover_.arrow-icon]:!block">
-          <span className="text-[0.75rem] font-semibold tracking-wide text-white">
+        <div className="flex items-center justify-center gap-6 px-2 py-1 rounded-[4px] bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] cursor-pointer shadow-[0_4px_10px_rgba(212,175,55,0.2)] hover:shadow-[0_8px_15px_rgba(212,175,55,0.3)] transition-all duration-300 group [&:hover_.chevron-icon]:!hidden [&:hover_.arrow-icon]:!block">
+          <span className="text-[0.75rem] font-medium tracking-wide text-white">
             View Details
           </span>
           <ChevronRightIcon className="chevron-icon" sx={{ fontSize: 16, display: 'block', color: '#FFFFFF' }} />
@@ -145,8 +145,8 @@ const UnitCard: React.FC<{ unit: UnitCardData }> = ({ unit }) => (
         </span>
       </div>
 
-      <div className="mt-1 flex items-center justify-center gap-6 p-1  rounded bg-[#1c2a44] text-white cursor-pointer hover:bg-[#111A2B] transition-colors group [&:hover_.chevron-icon]:!hidden [&:hover_.arrow-icon]:!block">
-        <span className="text-[0.7rem] font-semibold tracking-wide text-white">
+      <div className="mt-1 flex items-center justify-center gap-6 p-1 rounded-[4px] bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] cursor-pointer shadow-[0_4px_10px_rgba(212,175,55,0.2)] hover:shadow-[0_8px_15px_rgba(212,175,55,0.3)] hover:-translate-y-[1px] active:translate-y-0 transition-all duration-300 group [&:hover_.chevron-icon]:!hidden [&:hover_.arrow-icon]:!block">
+        <span className="text-[0.7rem] font-medium tracking-wide text-white">
           View Details
         </span>
         <ChevronRightIcon className="chevron-icon" sx={{ fontSize: 16, display: 'block', color: '#FFFFFF' }} />
