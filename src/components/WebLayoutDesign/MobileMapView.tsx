@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 interface Property {
   id: number;
@@ -71,7 +73,7 @@ export default function MobileMapView({ properties }: MobileMapViewProps) {
   const prop = properties[currentIndex];
 
   return (
-    <div className="flex flex-col h-full bg-[#f6f7f9] w-full">
+    <div className="flex flex-col h-full bg-[#f8fafc] w-full">
       <div
         className="flex-1 relative bg-[#e8e9ec] w-full overflow-hidden"
         style={{
@@ -80,21 +82,21 @@ export default function MobileMapView({ properties }: MobileMapViewProps) {
         }}
       >
         <div className="absolute top-3 right-3 flex flex-col gap-1 z-10">
-          <button className="w-7 h-7 bg-white rounded-[4px] flex items-center justify-center shadow-[0_1px_4px_rgba(0,0,0,0.12)]">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#374151" strokeWidth="2.5" strokeLinecap="round">
+          <button className="w-7 h-7 bg-white rounded-[4px] flex items-center justify-center shadow-sm shadow-[#1c2a44]/5 border border-[#1c2a44]/10 hover:bg-[#f8fafc] transition-colors">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#1c2a44" strokeWidth="2.5" strokeLinecap="round">
               <path d="M12 5v14M5 12h14" />
             </svg>
           </button>
-          <button className="w-7 h-7 bg-white rounded-[4px] flex items-center justify-center shadow-[0_1px_4px_rgba(0,0,0,0.12)]">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#374151" strokeWidth="2.5" strokeLinecap="round">
+          <button className="w-7 h-7 bg-white rounded-[4px] flex items-center justify-center shadow-sm shadow-[#1c2a44]/5 border border-[#1c2a44]/10 hover:bg-[#f8fafc] transition-colors">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#1c2a44" strokeWidth="2.5" strokeLinecap="round">
               <path d="M5 12h14" />
             </svg>
           </button>
-          <button className="w-7 h-7 bg-white rounded-[4px] flex items-center justify-center shadow-[0_1px_4px_rgba(0,0,0,0.12)] mt-1">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#374151" strokeWidth="1.8">
+          <button className="w-7 h-7 bg-white rounded-[4px] flex items-center justify-center shadow-sm shadow-[#1c2a44]/5 border border-[#1c2a44]/10 hover:bg-[#f8fafc] transition-colors mt-1">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#1c2a44" strokeWidth="1.8">
               <circle cx="12" cy="12" r="2" />
               <path d="M12 2v4M12 18v4M2 12h4M18 12h4" strokeLinecap="round" />
-              <path d="M12 2l1.5 5.5L12 10l-1.5-2.5L12 2z" fill="#374151" strokeWidth="0" />
+              <path d="M12 2l1.5 5.5L12 10l-1.5-2.5L12 2z" fill="#1c2a44" strokeWidth="0" />
             </svg>
           </button>
         </div>
@@ -105,22 +107,23 @@ export default function MobileMapView({ properties }: MobileMapViewProps) {
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
         >
-          <div className="bg-white rounded-[10px] shadow-[0_12px_32px_rgba(0,0,0,0.12)] overflow-hidden">
-            <div style={{ height: 160 }} className="overflow-hidden relative">
-              <div className="absolute top-0 left-0 bg-[#d99c43] text-white text-[9px] font-bold px-2 py-1 tracking-wider uppercase z-10">
+          <div className="bg-white rounded-[4px] border border-[#1c2a44]/10 shadow-md shadow-[#1c2a44]/5 flex flex-col w-full transition-all duration-300">
+            <div style={{ height: 160 }} className="overflow-hidden relative bg-[#f8fafc]">
+              <div className="absolute top-0 left-0 bg-[#1c2a44] text-[#D4AF37] text-[9px] font-bold px-2 py-1 tracking-wider uppercase z-10 rounded-br-[4px]">
                 SPONSORED
               </div>
               <img src={prop.image} alt={prop.title} className="w-full h-full object-cover" />
             </div>
-            <div className="px-4 pt-3 pb-4">
-              <p className="text-[9px] font-semibold text-[#a0aab8] tracking-[0.12em] uppercase mb-1">{prop.location}</p>
-              <h3 className="text-[16px] font-semibold text-[#0f1b2d]">{prop.title}</h3>
-              <p className="text-[15px] font-bold text-[#0f1b2d] mb-3">{prop.price}</p>
-              <button className="w-full py-2.5 bg-gradient-to-r from-[#dc9f42] to-[#b97a21] text-white text-[13px] font-semibold rounded-[6px] flex justify-between px-4 items-center shadow-md">
+            <div className="px-4 pt-3 pb-4 flex flex-col bg-white rounded-b-[4px]">
+              <p className="text-[0.8rem] font-medium text-[#1c2a44]/70 mb-1">{prop.location}</p>
+              <h3 className="text-[1rem] font-bold text-[#1c2a44] leading-tight mb-1">{prop.title}</h3>
+              <p className="text-[1.1rem] font-bold text-[#1c2a44] leading-none mb-4">{prop.price}</p>
+              <button className="w-full py-2 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] text-white text-[0.85rem] font-medium tracking-wide rounded-[4px] flex justify-center items-center gap-2 shadow-[0_4px_10px_rgba(212,175,55,0.2)] hover:shadow-[0_8px_15px_rgba(212,175,55,0.3)] transition-all duration-300 group [&:hover_.chevron-icon]:!hidden [&:hover_.arrow-icon]:!flex">
                 <span>View Details</span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M9 18l6-6-6-6" />
-                </svg>
+                <div className="flex items-center justify-center">
+                  <ChevronRightIcon className="chevron-icon" sx={{ fontSize: 18, color: '#FFFFFF' }} />
+                  <ArrowForwardIcon className="arrow-icon" sx={{ fontSize: 18, color: '#FFFFFF', display: 'none' }} />
+                </div>
               </button>
             </div>
           </div>

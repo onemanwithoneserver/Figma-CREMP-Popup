@@ -1,4 +1,3 @@
-import React from 'react';
 import PropertyCard from './PropertyCard';
 import MapView from './MapView';
 import MobileMapView from './MobileMapView';
@@ -10,7 +9,7 @@ const properties = [
     subtitle: 'Commercial & Shops Available',
     location: 'Kompally, Hyderabad',
     price: '₹ 80 Lakh',
-    image: '/property_commercial.png', // Replace with actual image path
+    image: 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=600&q=80',
   },
   {
     id: 2,
@@ -18,7 +17,7 @@ const properties = [
     subtitle: 'Luxury Retail & 50 Lac...',
     location: 'Banjara Hills, Hyderabad',
     price: '₹ 2.5 Cr',
-    image: '/property_villa.png', // Replace with actual image path
+    image: 'https://images.unsplash.com/photo-1604014237800-1c9102c219da?auto=format&fit=crop&w=400&q=80',
   },
   {
     id: 3,
@@ -26,7 +25,7 @@ const properties = [
     subtitle: 'Retail & Health Club',
     location: 'Gachibowli, Hyderabad',
     price: '₹ 4 Cr',
-    image: '/property_commercial.png', // Replace with actual image path
+    image: 'https://images.unsplash.com/photo-1555529771-835f59fc5efe?auto=format&fit=crop&w=400&q=80',
   },
   {
     id: 4,
@@ -34,13 +33,13 @@ const properties = [
     subtitle: 'Retail & Health Club',
     location: 'Gachibowli, Hyderabad',
     price: '₹ 5 Cr',
-    image: '/property_villa.png', // Replace with actual image path
+    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80',
   },
 ];
 
 export default function WebLayoutDesign() {
   return (
-    <div className="w-full h-screen bg-[#f4f5f8] font-sans flex flex-col lg:flex-row overflow-hidden">
+    <div className="w-full h-screen bg-[#f8fafc] font-sans flex flex-col lg:flex-row overflow-hidden">
 
       {/* --- DESKTOP VIEW --- */}
 
