@@ -109,7 +109,7 @@ export default function MobileMapView({ properties }: MobileMapViewProps) {
         >
           <div className="bg-white rounded-[4px] border border-[#1c2a44]/10 shadow-md shadow-[#1c2a44]/5 flex flex-col w-full transition-all duration-300">
             <div style={{ height: 160 }} className="overflow-hidden relative bg-[#f8fafc]">
-              <div className="absolute top-0 left-0 bg-[#1c2a44] text-[#D4AF37] text-[9px] font-bold px-2 py-1 tracking-wider uppercase z-10 rounded-br-[4px]">
+              <div className="absolute top-0 left-0 bg-[#1c2a44] text-[#D4AF37] text-[9px] font-bold px-2 py-1 tracking-wider  z-10 rounded-br-[4px]">
                 SPONSORED
               </div>
               <img src={prop.image} alt={prop.title} className="w-full h-full object-cover" />

@@ -6,6 +6,7 @@ interface BrokerCardProps {
   broker: Broker;
   isDesktop: boolean;
   isLoading?: boolean;
+  onViewProfile?: (broker: Broker) => void;
 }
 
 /** ── Loading Skeleton ── */
@@ -78,7 +79,7 @@ function RatingStars({ rating }: { rating: number }) {
 }
 
 /** ── Main Broker Card ── */
-export default function BrokerCard({ broker, isDesktop, isLoading = false }: BrokerCardProps) {
+export default function BrokerCard({ broker, isDesktop, isLoading = false, onViewProfile }: BrokerCardProps) {
   if (isLoading) return <BrokerCardSkeleton isDesktop={isDesktop} />;
 
   return (
@@ -179,6 +180,7 @@ export default function BrokerCard({ broker, isDesktop, isLoading = false }: Bro
       {/* ── CTA Buttons ── */}
       <div className="flex gap-2 mt-auto pt-1">
         <button
+          onClick={() => onViewProfile?.(broker)}
           className={`cb-btn-outline flex-1 text-[12px] ${isDesktop ? 'py-2.5' : 'py-2'}`}
           aria-label={`View profile of ${broker.name}`}
         >

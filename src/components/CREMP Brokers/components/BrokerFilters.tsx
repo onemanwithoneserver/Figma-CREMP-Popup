@@ -215,7 +215,7 @@ function AccordionSection({
         aria-expanded={isExpanded}
         aria-controls={`fc-${id}`}
         onClick={onToggle}
-        className={`w-full flex items-center justify-between px-5 py-[14px] text-left
+        className={`w-full flex items-center justify-between px-4 py-2.5 text-left
           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#d4af37]/30
           transition-all
           ${isExpanded ? 'bg-gradient-to-r from-[#d4af37]/[0.04] to-transparent' : 'hover:bg-[#fafafa]'}`}
@@ -243,7 +243,7 @@ function AccordionSection({
         className="overflow-hidden transition-all duration-200 ease-in-out"
         style={{ maxHeight: isExpanded ? '600px' : '0px', opacity: isExpanded ? 1 : 0 }}
       >
-        <div className="px-5 pb-5 pt-0.5">{children}</div>
+        <div className="px-4 pb-3 pt-0.5">{children}</div>
       </div>
     </div>
   );
@@ -264,8 +264,8 @@ function FilterChip({
       aria-label={ariaLabel ?? label}
       onClick={onClick}
       className={`
-        inline-flex items-center justify-center px-3.5 py-[7px] rounded-[8px]
-        text-[13px] font-medium border min-h-[36px] min-w-[44px]
+        inline-flex items-center justify-center px-3 py-[5px] rounded-[6px]
+        text-[12px] font-medium border min-h-[30px] min-w-[44px]
         transition-all duration-150 cursor-pointer
         focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:ring-[#d4af37]/40
         ${active
@@ -279,8 +279,6 @@ function FilterChip({
     </button>
   );
 }
-
-// ─── Shared panel content ──────────────────────────────────────────────────
 
 function FilterPanelContent({
   filters, sortOption, activeFilterCount,
@@ -364,7 +362,7 @@ function FilterPanelContent({
 
         {/* Property Expertise */}
         <AccordionSection id="expertise" label="Property Expertise" isExpanded={expanded.has('expertise')} onToggle={() => toggle('expertise')}>
-          <div className="grid grid-cols-4 gap-2" role="group" aria-label="Property Expertise options">
+          <div className="grid grid-cols-4 gap-1.5" role="group" aria-label="Property Expertise options">
             {propertyExpertise.map((opt) => {
               const active = filters.specialties.includes(opt.id);
               return (
@@ -376,8 +374,8 @@ function FilterPanelContent({
                   aria-label={`${opt.label} expertise`}
                   onClick={() => onToggleSpecialty(opt.id)}
                   className={`
-                    flex flex-col items-center gap-1.5 py-3 px-1 rounded-[8px] border
-                    transition-all duration-150 text-center cursor-pointer min-h-[72px]
+                    flex flex-col items-center gap-1 py-2 px-1 rounded-[6px] border
+                    transition-all duration-150 text-center cursor-pointer min-h-[60px]
                     focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0a1128]/35 focus-visible:ring-offset-1
                     ${active
                       ? 'bg-[#d4af37]/10 border-[#d4af37]/60 text-[#0a1128] shadow-sm'
@@ -459,7 +457,7 @@ function FilterPanelContent({
                   aria-checked={active}
                   onClick={() => onSetSort(opt.id as BrokerSortOption)}
                   className={`
-                    flex items-center gap-3 py-2.5 px-2 w-full text-left rounded-[6px] min-h-[44px]
+                    flex items-center gap-3 py-2 px-2 w-full text-left rounded-[6px] min-h-[38px]
                     transition-all hover:bg-[#fafafa]
                     focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37]/30 focus-visible:ring-inset
                     ${active ? 'bg-gradient-to-r from-[#d4af37]/[0.06] to-transparent' : ''}
@@ -487,14 +485,14 @@ function FilterPanelContent({
       </div>
 
       {/* ── Footer ── */}
-      <div className="shrink-0 px-5 pt-4 pb-5 bg-gradient-to-b from-white to-[#fafafa] border-t border-black/[0.04] flex flex-row items-center gap-2.5">
+      <div className="shrink-0 px-4 pt-3 pb-3.5 bg-gradient-to-b from-white to-[#fafafa] border-t border-black/[0.04] flex flex-row items-center gap-2">
         {isDesktop && (
           <button
             type="button"
             onClick={() => { onReset(); onClose(); }}
             className="
-              flex-1 py-3.5 rounded-[8px] border border-[#e5e7eb] bg-white
-              text-[14px] font-semibold text-[#637089]
+              flex-1 py-2.5 rounded-[4px] border border-[#e5e7eb] bg-white
+              text-[13px] font-semibold text-[#637089]
               hover:border-[#d4af37]/50 hover:text-[#d4af37] active:scale-[0.99] transition-all
               focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37]/25 focus-visible:ring-offset-1
             "
@@ -506,12 +504,7 @@ function FilterPanelContent({
         <button
           type="button"
           onClick={onClose}
-          className="
-            flex-[2] py-3.5 rounded-[8px] bg-gradient-to-br from-[#0a1128] to-[#1a3463]
-            text-white text-[14px] font-semibold shadow-sm
-            hover:from-[#111d3a] hover:to-[#1f3f7a] active:scale-[0.99] transition-all
-            focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37]/50 focus-visible:ring-offset-2
-          "
+          className="flex-[2] py-2.5 rounded-[4px] bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] text-white text-[13px] font-semibold tracking-wide shadow-[0_4px_10px_rgba(212,175,55,0.2)] hover:shadow-[0_8px_15px_rgba(212,175,55,0.3)] hover:-translate-y-[1px] active:translate-y-0 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37]/60 focus-visible:ring-offset-2"
           style={{ fontFamily: 'Outfit, sans-serif' }}
         >
           Apply{activeFilterCount > 0 ? ` (${activeFilterCount})` : ''}
@@ -543,7 +536,7 @@ function DesktopDrawer(props: BrokerFiltersProps) {
       <div
         role="presentation"
         aria-hidden="true"
-        className="fixed inset-0 z-[100] bg-black/40 backdrop-blur-[2px] transition-opacity duration-300"
+        className="absolute inset-0 z-[100] bg-black/40 backdrop-blur-[2px] transition-opacity duration-300"
         style={{ opacity: visible ? 1 : 0 }}
         onClick={onClose}
       />
@@ -553,7 +546,7 @@ function DesktopDrawer(props: BrokerFiltersProps) {
         role="dialog"
         aria-modal="true"
         aria-label="Filter Options"
-        className="fixed right-0 top-0 h-full z-[101] bg-white shadow-2xl flex flex-col"
+        className="absolute right-0 top-0 h-full z-[101] bg-white shadow-2xl flex flex-col"
         style={{
           width: 'clamp(340px, 37.5vw, 480px)',
           transform: visible ? 'translateX(0)' : 'translateX(100%)',
@@ -561,54 +554,44 @@ function DesktopDrawer(props: BrokerFiltersProps) {
           fontFamily: 'Outfit, sans-serif',
         }}
       >
-        {/* Drawer header — PostReg dark gradient */}
-        <div className="relative shrink-0 bg-gradient-to-br from-[#0a1128] via-[#121c33] to-[#0a1128] border-b border-white/[0.05] overflow-hidden">
-          <div className="absolute top-0 right-0 w-40 h-40 bg-[#d4af37]/10 blur-[50px] -translate-y-1/3 translate-x-1/4 rounded-full pointer-events-none" />
-          <div className="relative z-10 flex items-center justify-between px-6 py-5">
-            <div className="flex items-center gap-2.5">
-              <span className="text-[#d4af37]">
-                <svg viewBox="0 0 20 20" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
-                  <path d="M3 5h14M5 10h10M7 15h6"/>
-                </svg>
-              </span>
-              <h2
-                className="text-[16px] font-bold text-white"
-                style={{ fontFamily: 'Outfit, sans-serif' }}
-              >
-                Filters
-                {activeFilterCount > 0 && (
-                  <span className="ml-2 text-[11px] font-semibold text-[#d4af37] bg-[#d4af37]/15 rounded-full px-2 py-0.5">
-                    {activeFilterCount}
-                  </span>
-                )}
-              </h2>
-            </div>
-            <div className="flex items-center gap-3">
+        {/* Drawer header */}
+        <div className="shrink-0 flex items-center justify-between px-4 py-3 border-b border-[#f0f1f3] bg-white">
+          <div className="flex items-center gap-2">
+            <span className="text-[#d4af37]">
+              <svg viewBox="0 0 20 20" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+                <path d="M3 5h14M5 10h10M7 15h6"/>
+              </svg>
+            </span>
+            <h2 className="text-[14px] font-bold text-[#0a1128]" style={{ fontFamily: 'Outfit, sans-serif' }}>
+              Filters
               {activeFilterCount > 0 && (
-                <button
-                  type="button"
-                  onClick={onReset}
-                  className="text-[12px] font-semibold text-[#d4af37] hover:text-[#e5c158]
-                    transition-colors focus-visible:outline-none focus-visible:underline"
-                  style={{ fontFamily: 'Outfit, sans-serif' }}
-                >
-                  Clear All
-                </button>
+                <span className="ml-2 text-[11px] font-semibold text-[#0a1128] bg-[#d4af37] rounded-full px-2 py-0.5">
+                  {activeFilterCount}
+                </span>
               )}
+            </h2>
+          </div>
+          <div className="flex items-center gap-3">
+            {activeFilterCount > 0 && (
               <button
                 type="button"
-                aria-label="Close filter panel"
-                onClick={onClose}
-                className="w-8 h-8 flex items-center justify-center rounded-[8px]
-                  bg-white/10 text-white/80 border border-white/10
-                  hover:bg-white/20 hover:text-white
-                  transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30"
+                onClick={onReset}
+                className="text-[12px] font-semibold text-[#d4af37] hover:text-[#c9a227] transition-colors focus-visible:outline-none focus-visible:underline"
+                style={{ fontFamily: 'Outfit, sans-serif' }}
               >
-                <svg viewBox="0 0 16 16" className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-                  <path d="M4 4l8 8M12 4l-8 8"/>
-                </svg>
+                Clear All
               </button>
-            </div>
+            )}
+            <button
+              type="button"
+              aria-label="Close filter panel"
+              onClick={onClose}
+              className="w-7 h-7 flex items-center justify-center rounded-[4px] bg-[#f5f6f8] border border-black/[0.08] hover:bg-[#eef0f4] transition-colors focus-visible:outline-none"
+            >
+              <svg viewBox="0 0 16 16" className="w-3 h-3" fill="none" stroke="#0a1128" strokeWidth="2.2" strokeLinecap="round">
+                <path d="M4 4l8 8M12 4l-8 8"/>
+              </svg>
+            </button>
           </div>
         </div>
 
@@ -624,7 +607,7 @@ function DesktopDrawer(props: BrokerFiltersProps) {
 // ─── Mobile Bottom Sheet ───────────────────────────────────────────────────
 
 function MobileSheet(props: BrokerFiltersProps) {
-  const { isOpen, onClose, activeFilterCount, onReset } = props;
+  const { isOpen, onClose } = props;
   const { mounted, visible } = useAnimatedMount(isOpen, 340);
 
   const sheetRef   = useRef<HTMLDivElement>(null);
@@ -675,10 +658,10 @@ function MobileSheet(props: BrokerFiltersProps) {
         role="dialog"
         aria-modal="true"
         aria-label="Filter Options"
-        className="absolute bottom-0 left-0 right-0 z-50 bg-white flex flex-col"
+        className="absolute bottom-0 left-0 right-0 z-50 bg-white flex flex-col overflow-hidden"
         style={{
           height: '88%',
-          borderRadius: '20px 20px 0 0',
+          borderRadius: '12px 12px 0 0',
           transform: visible ? 'translateY(0)' : 'translateY(100%)',
           transition: 'transform 330ms cubic-bezier(0.32, 0.72, 0, 1)',
           boxShadow: '0 -6px 40px rgba(0,0,0,0.14)',
@@ -686,31 +669,25 @@ function MobileSheet(props: BrokerFiltersProps) {
           fontFamily: 'Outfit, sans-serif',
         }}
       >
-        {/* Drag handle */}
+        {/* Drag handle row */}
         <div
-          className="flex justify-center py-3 shrink-0 cursor-grab active:cursor-grabbing"
+          className="shrink-0 relative flex items-center justify-center pt-3 pb-2 touch-none select-none cursor-grab active:cursor-grabbing bg-white border-b border-[#f0f1f3]"
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
-          aria-hidden="true"
         >
-          <div className="w-10 h-[3px] rounded-full bg-[#d1d5db]" />
+          <span className="w-10 h-1 rounded-full bg-black/[0.12] pointer-events-none" />
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="Close filters"
+            className="absolute right-3 top-1/2 -translate-y-1/2 w-7 h-7 flex items-center justify-center bg-[#f5f6f8] rounded-[4px] border border-black/[0.08] hover:bg-[#eef0f4] transition-colors focus-visible:outline-none"
+          >
+            <svg viewBox="0 0 16 16" fill="none" stroke="#0a1128" strokeWidth="2.2" strokeLinecap="round" className="w-3 h-3">
+              <path d="M4 4l8 8M12 4L4 12" />
+            </svg>
+          </button>
         </div>
-
-        {/* Sheet header — drag handle only */}
-        {activeFilterCount > 0 && (
-          <div className="shrink-0 flex justify-end px-5 pt-2 pb-1">
-            <button
-              type="button"
-              onClick={onReset}
-              className="text-[12px] font-semibold text-[#d4af37] hover:text-[#e5c158]
-                transition-colors focus-visible:outline-none focus-visible:underline"
-              style={{ fontFamily: 'Outfit, sans-serif' }}
-            >
-              Clear All
-            </button>
-          </div>
-        )}
 
         {/* Content */}
         <div className="flex-1 overflow-hidden flex flex-col">
