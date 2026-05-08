@@ -10,7 +10,9 @@ export type BrokerSpecialty =
   | 'Warehouse'
   | 'Industrial'
   | 'Land'
-  | 'Residential';
+  | 'Residential'
+  | 'Co-working'
+  | 'Mixed Use';
 
 export type BrokerSortOption =
   | 'relevance'
@@ -25,12 +27,40 @@ export interface BrokerStat {
   unit?: string;
 }
 
+export interface BrokerTestimonial {
+  companyName: string;
+  companyInitials: string;
+  companyColor: string;
+  author: string;
+  role: string;
+  text: string;
+  dealType: string;
+  sqFt?: string;
+  value?: string;
+  location?: string;
+  rating: number;
+}
+
+export interface BrokerTransaction {
+  type: string;
+  location: string;
+  size?: string;
+  value?: string;
+  icon: 'office' | 'retail' | 'land' | 'investment' | 'warehouse' | 'mixed';
+}
+
+export interface ServiceableLocation {
+  label: string;
+  tier: 'most-active' | 'moderately-active' | 'based-on-request';
+}
+
 export interface Broker {
   id: string;
   name: string;
   company: string;
   avatarInitials: string;
   avatarColor: string;
+  avatarUrl?: string;
   rating: number;
   reviewCount: number;
   isVerified: boolean;
@@ -43,6 +73,28 @@ export interface Broker {
   phone?: string;
   whatsapp?: string;
   bio?: string;
+  // Rich profile fields
+  dealValue?: string;
+  enterpriseClients?: number;
+  avgDealClosure?: string;
+  reraNumber?: string;
+  reraBody?: string;
+  reraValidTill?: string;
+  dealTypes?: string[];
+  minDealSize?: string;
+  brokerageStructure?: string;
+  commercialTerms?: string;
+  keyMetrics?: { label: string; value: string }[];
+  worksWithTypes?: string[];
+  investorServices?: string[];
+  whyChoose?: string[];
+  languages?: string[];
+  aboutHighlights?: string[];
+  serviceableLocations?: ServiceableLocation[];
+  recentTransactions?: BrokerTransaction[];
+  testimonials?: BrokerTestimonial[];
+  responseTime?: string;
+  experienceBadge?: string;
 }
 
 export interface FilterOption {

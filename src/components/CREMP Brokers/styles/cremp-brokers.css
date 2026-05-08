@@ -173,3 +173,175 @@
 .cb-avatar-ring {
   box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.25), 0 2px 8px rgba(0,0,0,0.12);
 }
+
+/* ─── Profile page entrance ─────────────────────────────────────── */
+@keyframes cb-profile-enter {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.cb-profile-enter {
+  animation: cb-profile-enter 0.32s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ─── Section scroll-in ──────────────────────────────────────────── */
+@keyframes cb-section-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.cb-section-in {
+  animation: cb-section-in 0.28s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ─── Map pin pulse ──────────────────────────────────────────────── */
+@keyframes cb-pin-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.55); }
+  50%       { box-shadow: 0 0 0 6px rgba(212, 175, 55, 0); }
+}
+.cb-pin-pulse {
+  animation: cb-pin-pulse 2s ease-in-out infinite;
+}
+
+/* ─── Rating bar fill ────────────────────────────────────────────── */
+@keyframes cb-bar-fill {
+  from { width: 0; }
+}
+.cb-bar-fill {
+  animation: cb-bar-fill 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ─── Stats counter shimmer on first render ──────────────────────── */
+@keyframes cb-stat-pop {
+  0%   { opacity: 0; transform: scale(0.85); }
+  70%  { transform: scale(1.04); }
+  100% { opacity: 1; transform: scale(1); }
+}
+.cb-stat-pop {
+  animation: cb-stat-pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* ─── CTA bar slide-up ───────────────────────────────────────────── */
+@keyframes cb-cta-reveal {
+  from { opacity: 0; transform: translateY(100%); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.cb-cta-reveal {
+  animation: cb-cta-reveal 0.38s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 0.12s;
+}
+
+/* ─── Expertise chip active glow ─────────────────────────────────── */
+.cb-expertise-active {
+  background: #0a1128 !important;
+  border-color: #0a1128 !important;
+  box-shadow: 0 4px 12px rgba(10, 17, 40, 0.22);
+}
+
+/* ─── Gold accent divider ────────────────────────────────────────── */
+.cb-gold-divider {
+  width: 32px;
+  height: 2px;
+  background: linear-gradient(90deg, #d4af37, transparent);
+  border-radius: 99px;
+}
+
+/* ─── Tooltip ────────────────────────────────────────────────────── */
+.cb-tooltip {
+  position: relative;
+}
+.cb-tooltip::after {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: #0a1128;
+  color: #fff;
+  font-size: 10px;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  white-space: nowrap;
+  padding: 4px 8px;
+  border-radius: 5px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+}
+.cb-tooltip:hover::after {
+  opacity: 1;
+}
+
+/* ─── Tier dot colours ───────────────────────────────────────────── */
+.cb-tier-most-active       { background: #0a1128; }
+.cb-tier-moderately-active { background: #3b82f6; }
+.cb-tier-based-on-request  { background: #f59e0b; }
+
+/* ─── Contact action icon row ────────────────────────────────────── */
+.cb-action-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 8px 6px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  flex: 1;
+  border: none;
+  background: transparent;
+  text-decoration: none;
+}
+.cb-action-icon:hover {
+  background: rgba(10, 17, 40, 0.05);
+}
+.cb-action-icon span {
+  font-size: 10px;
+  font-weight: 600;
+  font-family: 'Outfit', sans-serif;
+  color: #3d4f6b;
+}
+
+/* ─── Location tier card collapsible ────────────────────────────── */
+.cb-tier-card {
+  background: #ffffff;
+  border: 1px solid rgba(10, 17, 40, 0.05);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+  transition: box-shadow 0.2s ease;
+}
+.cb-tier-card:hover {
+  box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+}
+
+/* ─── Stat divider bar ───────────────────────────────────────────── */
+.cb-stat-bar {
+  background: linear-gradient(90deg, #0f1e3d 0%, #162040 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+.cb-stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-right: 1px solid rgba(255, 255, 255, 0.07);
+  flex: 1;
+  padding: 14px 8px;
+}
+.cb-stat-item:last-child {
+  border-right: none;
+}
+.cb-stat-item__value {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #ffffff;
+  font-family: 'Outfit', sans-serif;
+  line-height: 1.2;
+}
+.cb-stat-item__label {
+  font-size: 9.5px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.4);
+  font-family: 'Outfit', sans-serif;
+  margin-top: 2px;
+}

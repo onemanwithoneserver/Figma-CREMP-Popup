@@ -59,8 +59,9 @@ function DesktopDialog({ broker, onClose }: BrokerProfileDialogProps) {
       <div
         className="relative"
         style={{
-          width: 'min(920px, calc(100vw - 64px))',
-          height: '80vh',
+          width: 'min(980px, calc(100vw - 48px))',
+          height: 'min(90vh, 900px)',
+          maxHeight: 'calc(100vh - 48px)',
           transform: visible ? 'translateY(0) scale(1)' : 'translateY(24px) scale(0.97)',
           transition: 'transform 300ms cubic-bezier(0.16,1,0.3,1)',
           opacity: visible ? 1 : 0,
