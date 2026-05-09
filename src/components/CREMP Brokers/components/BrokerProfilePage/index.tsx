@@ -22,7 +22,6 @@
  *   BottomCTABar.tsx
  */
 
-import { useState } from 'react';
 import type { Broker } from '../../types/broker.types';
 import { ProfileHeader } from './ProfileHeader';
 import { StatsBar } from './StatsBar';
@@ -34,7 +33,6 @@ import { TestimonialsSection } from './Testimonials';
 import { RecentTransactionsSection } from './RecentTransactions';
 import { RERASection } from './RERASection';
 import { BottomCTABar } from './BottomCTABar';
-import { FullMapOverlay } from './FullMapOverlay';
 
 interface BrokerProfilePageProps {
   broker: Broker;
@@ -42,27 +40,25 @@ interface BrokerProfilePageProps {
 }
 
 export default function BrokerProfilePage({ broker, isDesktop }: BrokerProfilePageProps) {
-  const [showMap, setShowMap] = useState(false);
-
   return (
     <div className="w-full h-full flex flex-col overflow-hidden relative bg-[#f5f6fa]" style={{ fontFamily: 'Outfit, sans-serif' }}>
 
       {/* ── Everything scrolls together — no fixed header ── */}
       <div className="flex-1 min-h-0 overflow-y-auto cb-scroll-thin">
-        <ProfileHeader broker={broker} isDesktop={isDesktop} onViewMap={() => setShowMap(true)} />
+        <ProfileHeader broker={broker} isDesktop={isDesktop} onViewMap={() => {}} />
         <StatsBar broker={broker} isDesktop={isDesktop} />
         <CommercialExpertise broker={broker} isDesktop={isDesktop} />
 
         {/* Deal Types */}
         <DealSection broker={broker} isDesktop={isDesktop} />
 
-        {/* About + Key Metrics */}
-        <AboutSection broker={broker} isDesktop={isDesktop} />
-
         {/* Serviceable Locations */}
         {(broker.serviceableLocations?.length ?? 0) > 0 && (
-          <ServiceableLocationsSection broker={broker} isDesktop={isDesktop} onViewMap={() => setShowMap(true)} />
+          <ServiceableLocationsSection broker={broker} isDesktop={isDesktop} />
         )}
+
+        {/* About + Key Metrics */}
+        <AboutSection broker={broker} isDesktop={isDesktop} />
 
         {/* Client Testimonials */}
         <TestimonialsSection broker={broker} isDesktop={isDesktop} />
@@ -78,9 +74,6 @@ export default function BrokerProfilePage({ broker, isDesktop }: BrokerProfilePa
 
       {/* ── Sticky bottom CTA ── */}
       <BottomCTABar broker={broker} isDesktop={isDesktop} />
-
-      {/* ── Map overlay ── */}
-      {showMap && <FullMapOverlay broker={broker} isDesktop={isDesktop} onClose={() => setShowMap(false)} />}
     </div>
   );
 }

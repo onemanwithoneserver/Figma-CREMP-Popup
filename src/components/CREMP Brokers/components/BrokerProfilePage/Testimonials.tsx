@@ -82,7 +82,7 @@ export function TestimonialsSection({ broker, isDesktop }: TestimonialsSectionPr
               type="button"
               onClick={() => setIdx(pageIdx - 1)}
               aria-label="Previous testimonials"
-              className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0a1128]/30 z-10 bg-white border border-[#0a1128]/[0.12] shadow-[0_2px_8px_rgba(0,0,0,0.14)]"
+              className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0a1128]/30 z-10 bg-white/50 backdrop-blur-md border border-white/60 shadow-[0_2px_10px_rgba(0,0,0,0.12)]"
             >
               <svg viewBox="0 0 24 24" fill="none" stroke="#0a1128" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
                 <path d="M15 18l-6-6 6-6" />
@@ -95,7 +95,7 @@ export function TestimonialsSection({ broker, isDesktop }: TestimonialsSectionPr
               type="button"
               onClick={() => setIdx(pageIdx + 1)}
               aria-label="Next testimonials"
-              className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0a1128]/30 z-10 bg-white border border-[#0a1128]/[0.12] shadow-[0_2px_8px_rgba(0,0,0,0.14)]"
+              className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0a1128]/30 z-10 bg-white/50 backdrop-blur-md border border-white/60 shadow-[0_2px_10px_rgba(0,0,0,0.12)]"
             >
               <svg viewBox="0 0 24 24" fill="none" stroke="#0a1128" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
                 <path d="M9 18l6-6-6-6" />
@@ -145,7 +145,7 @@ export function TestimonialsSection({ broker, isDesktop }: TestimonialsSectionPr
           onClick={() => setIdx(i => Math.max(0, i - 1))}
           disabled={idx === 0}
           aria-label="Previous testimonial"
-          className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0a1128]/30 disabled:opacity-0 disabled:pointer-events-none bg-white border border-[#0a1128]/[0.12] shadow-[0_2px_8px_rgba(0,0,0,0.14)]"
+          className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0a1128]/30 disabled:opacity-0 disabled:pointer-events-none bg-white/50 backdrop-blur-md border border-white/60 shadow-[0_2px_10px_rgba(0,0,0,0.12)]"
         >
           <svg viewBox="0 0 24 24" fill="none" stroke="#0a1128" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
             <path d="M15 18l-6-6 6-6" />
@@ -157,7 +157,7 @@ export function TestimonialsSection({ broker, isDesktop }: TestimonialsSectionPr
           onClick={() => setIdx(i => Math.min(lastIdx, i + 1))}
           disabled={idx === lastIdx}
           aria-label="Next testimonial"
-          className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0a1128]/30 disabled:opacity-0 disabled:pointer-events-none bg-white border border-[#0a1128]/[0.12] shadow-[0_2px_8px_rgba(0,0,0,0.14)]"
+          className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0a1128]/30 disabled:opacity-0 disabled:pointer-events-none bg-white/50 backdrop-blur-md border border-white/60 shadow-[0_2px_10px_rgba(0,0,0,0.12)]"
         >
           <svg viewBox="0 0 24 24" fill="none" stroke="#0a1128" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
             <path d="M9 18l6-6-6-6" />

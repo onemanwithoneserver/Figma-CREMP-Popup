@@ -124,17 +124,6 @@ export function ProfileHeader({ broker, isDesktop, onViewMap }: ProfileHeaderPro
                     </div>
                   );
                 })}
-                <button 
-                  type="button" 
-                  onClick={onViewMap} 
-                  className="w-full flex items-center justify-center gap-1.5 px-3 py-2 text-[10px] font-bold text-[#d4af37] hover:text-[#f0cc5a] transition-colors focus-visible:outline-none font-['Outfit',sans-serif]"
-                >
-                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" className="w-3 h-3">
-                    <path d="M8 1.5C5.79 1.5 4 3.29 4 5.5c0 3 4 9 4 9s4-6 4-9c0-2.21-1.79-4-4-4z" />
-                    <circle cx="8" cy="5.5" r="1.5" />
-                  </svg>
-                  View Full Map
-                </button>
               </div>
             </div>
           </div>
