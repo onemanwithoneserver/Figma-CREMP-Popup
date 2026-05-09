@@ -3,13 +3,13 @@ import type { Broker } from '../../types/broker.types';
 import { TIER_COLORS } from './constants';
 import { StarRating } from './StarRating';
 
+
 interface ProfileHeaderProps {
   broker: Broker;
   isDesktop: boolean;
-  onViewMap: () => void;
 }
 
-export function ProfileHeader({ broker, isDesktop, onViewMap }: ProfileHeaderProps) {
+export function ProfileHeader({ broker, isDesktop }: ProfileHeaderProps) {
   const [imgError, setImgError] = useState(false);
 
   const renderAvatar = (size: number) => (

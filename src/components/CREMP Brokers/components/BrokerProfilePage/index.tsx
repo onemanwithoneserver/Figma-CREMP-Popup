@@ -45,7 +45,7 @@ export default function BrokerProfilePage({ broker, isDesktop }: BrokerProfilePa
 
       {/* ── Everything scrolls together — no fixed header ── */}
       <div className="flex-1 min-h-0 overflow-y-auto cb-scroll-thin">
-        <ProfileHeader broker={broker} isDesktop={isDesktop} onViewMap={() => {}} />
+        <ProfileHeader broker={broker} isDesktop={isDesktop} />
         <StatsBar broker={broker} isDesktop={isDesktop} />
         <CommercialExpertise broker={broker} isDesktop={isDesktop} />
 
