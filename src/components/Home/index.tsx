@@ -23,7 +23,7 @@ export default function Home() {
       style={{
         maxWidth: 430,
         margin: '0 auto',
-        height: '100dvh',
+        height: '100%',
         backgroundColor: '#0A0F1A',
         fontFamily: "'Outfit', sans-serif",
         position: 'relative',

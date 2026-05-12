@@ -227,7 +227,7 @@ export default function MapSection({
   return (
     <div 
       className="relative flex-1 flex flex-col w-full overflow-hidden bg-[#F8FAFC]"
-      style={{ fontFamily: "'Outfit', sans-serif", minHeight: 450, touchAction: 'none' }}
+      style={{ fontFamily: "'Outfit', sans-serif", minHeight: 0, touchAction: 'none' }}
     >
       <div 
         className={`absolute inset-0 z-10 w-full h-full ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
@@ -338,20 +338,22 @@ export default function MapSection({
         </div>
       </div>
 
-      <div className="absolute top-4 left-0 right-0 flex items-start justify-between px-4 z-40 pointer-events-none">
-        <div className="flex items-center gap-2 h-[38px] px-3.5 rounded-[12px] bg-white border border-[#E5E7EB] shadow-[0_2px_12px_rgba(0,0,0,0.06)] pointer-events-auto">
-          <span className="text-[13px] font-bold text-[#111827]">48 Opportunities</span>
+      <div className="absolute top-3 left-0 right-0 flex items-center justify-between px-3 z-40 pointer-events-none gap-2">
+        {/* Left: opportunity count */}
+        <div className="flex items-center gap-1.5 h-[36px] px-3 rounded-[10px] bg-white border border-[#E5E7EB] shadow-[0_2px_10px_rgba(0,0,0,0.08)] pointer-events-auto shrink-0">
+          <span className="text-[12px] font-bold text-[#111827] leading-none whitespace-nowrap">48 Opportunities</span>
           <InfoIcon color="#9CA3AF" />
         </div>
 
+        {/* Right: Map / List toggle */}
         <div
-          className="flex items-center p-1 rounded-[12px] bg-white border border-[#E5E7EB] shadow-[0_2px_12px_rgba(0,0,0,0.06)] pointer-events-auto"
+          className="flex items-center p-[3px] h-[36px] rounded-[10px] bg-white border border-[#E5E7EB] shadow-[0_2px_10px_rgba(0,0,0,0.08)] pointer-events-auto shrink-0"
           role="group"
           aria-label="View mode toggle"
         >
           <button
             onClick={() => onViewModeChange('map')}
-            className={`flex items-center gap-1.5 px-3.5 h-[30px] text-[12px] font-semibold rounded-[8px] transition-all focus-visible:outline-none ${
+            className={`flex items-center gap-1 px-2.5 h-[28px] text-[11.5px] font-semibold rounded-[7px] transition-all focus-visible:outline-none whitespace-nowrap ${
               viewMode === 'map'
                 ? 'bg-[#0B1320] text-white shadow-sm'
                 : 'bg-transparent text-[#6B7280] hover:text-[#111827]'
@@ -363,7 +365,7 @@ export default function MapSection({
           </button>
           <button
             onClick={() => onViewModeChange('list')}
-            className={`flex items-center gap-1.5 px-3.5 h-[30px] text-[12px] font-semibold rounded-[8px] transition-all focus-visible:outline-none ${
+            className={`flex items-center gap-1 px-2.5 h-[28px] text-[11.5px] font-semibold rounded-[7px] transition-all focus-visible:outline-none whitespace-nowrap ${
               viewMode === 'list'
                 ? 'bg-[#0B1320] text-white shadow-sm'
                 : 'bg-transparent text-[#6B7280] hover:text-[#111827]'
@@ -376,7 +378,7 @@ export default function MapSection({
         </div>
       </div>
 
-      <div className={`absolute right-4 bottom-[250px] z-[999] flex flex-col overflow-hidden pointer-events-auto ${sharedEffects.floatingPanel}`}>
+      <div className={`absolute right-4 z-[999] flex flex-col overflow-hidden pointer-events-auto ${sharedEffects.floatingPanel}`} style={{ bottom: 'clamp(200px, calc(30% + 20px), 280px)' }}>
         <button
           onClick={resetPan}
           className={`w-10 h-10 border-b border-[#F3F4F6] ${sharedEffects.iconButton}`}

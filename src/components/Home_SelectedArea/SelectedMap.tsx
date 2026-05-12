@@ -30,7 +30,7 @@ export default function SelectedMap() {
   return (
     <div
       className="relative w-full overflow-hidden cursor-grab active:cursor-grabbing select-none"
-      style={{ backgroundColor: '#F8FAFC', minHeight: 450, flex: 1 }}
+      style={{ backgroundColor: '#F8FAFC', minHeight: 0, flex: 1 }}
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}
       onPointerUp={onPointerUp}

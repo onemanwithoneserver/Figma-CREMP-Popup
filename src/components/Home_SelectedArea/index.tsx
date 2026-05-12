@@ -5,10 +5,10 @@ import TopTabs      from '../Home/TopTabs';
 import CategoryTabs from '../Home/CategoryTabs';
 import SearchBar    from '../Home/SearchBar';
 import PropertyCard from '../Home/PropertyCard';
+import BottomNavbar from '../Home/BottomNavbar';
 // ── Selected-area specific components ───────────────────────────────────────
-import AreaInfoCard  from './AreaInfoCard';
-import SelectedMap   from './SelectedMap';
-import BottomNavbar  from './BottomNavbar';
+import AreaInfoCard from './AreaInfoCard';
+import SelectedMap  from './SelectedMap';
 // ── Data & types ─────────────────────────────────────────────────────────────
 import { featuredProperty, selectedRegion } from './data';
 import type { MainTab, CategoryType, ViewMode } from './types';
