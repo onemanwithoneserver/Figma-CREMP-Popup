@@ -11,13 +11,14 @@ import PreRegistration from '@/components/Pre-Registration/PreRegistration';
 import PostRegistration from '@/components/PostRegistration/Post-Registration';
 import WebLayoutDesign from '@/components/WebLayoutDesign';
 import CREMPBrokersPage from '@/components/CREMP Brokers/CREMPBrokersPage';
+import CREMPVideoFlow from './components/CREMP-VideoFlow/CREMPVideoFlow';
 
 export default function App() {
   const theme = useTheme();
   const isMobileScreen = useMediaQuery(theme.breakpoints.down('lg'));
   
   // Added 'wishlist', 'franchisesearch', 'preregistration', 'postregistration', and 'weblayoutdesign' to the allowed activePage types
-  const [activePage, setActivePage] = useState<'franchise' | 'handpicked' | 'wishlist' | 'mainframe' | 'franchisesearch' | 'preregistration' | 'postregistration' | 'weblayoutdesign' | 'crempbrokers'>('franchise');
+  const [activePage, setActivePage] = useState<'franchise' | 'handpicked' | 'wishlist' | 'mainframe' | 'franchisesearch' | 'preregistration' | 'postregistration' | 'weblayoutdesign' | 'crempbrokers' | 'crempvideoflow'>('franchise');
   const [viewMode, setViewMode] = useState<'desktop' | 'mobile'>('desktop');
   const [activeSubPage, setActiveSubPage] = useState<string>('main');
   const [userType, setUserType] = useState<'seller' | 'buyer'>('seller');
@@ -188,7 +189,7 @@ export default function App() {
               <FormControl size="small">
                 <Select
                   value={activePage}
-                  onChange={(e) => setActivePage(e.target.value as 'franchise' | 'handpicked' | 'wishlist' | 'mainframe' | 'franchisesearch' | 'preregistration' | 'postregistration' | 'weblayoutdesign' | 'crempbrokers')}
+                  onChange={(e) => setActivePage(e.target.value as 'franchise' | 'handpicked' | 'wishlist' | 'mainframe' | 'franchisesearch' | 'preregistration' | 'postregistration' | 'weblayoutdesign' | 'crempbrokers' | 'crempvideoflow')}
                   className="bg-[#ffffff] text-[#0f1f3d] text-sm font-semibold h-[36px]"
                   sx={{
                     borderRadius: '4px',
@@ -237,6 +238,9 @@ export default function App() {
                   <MenuItem value="crempbrokers" className="font-['Outfit'] text-sm font-medium text-[#0f1f3d]">
                     CREMP Brokers
                   </MenuItem>
+                  <MenuItem value="crempvideoflow" className="font-['Outfit'] text-sm font-medium text-[#0f1f3d]">
+                    CREMP VideoFlow
+                  </MenuItem>
                 </Select>
               </FormControl>
             </Box>
@@ -280,6 +284,10 @@ export default function App() {
         ) : activePage === 'crempbrokers' ? (
           <Box className="flex-1 flex flex-col overflow-hidden" sx={{ height: 'calc(100vh - 64px)' }}>
             <CREMPBrokersPage viewMode={viewMode} />
+          </Box>
+        ) : activePage === 'crempvideoflow' ? (
+          <Box className="flex-1 flex flex-col overflow-hidden" sx={{ height: 'calc(100vh - 64px)' }}>
+            <CREMPVideoFlow viewMode={viewMode} />
           </Box>
         ) : (
           <MainFrame
