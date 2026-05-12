@@ -33,9 +33,7 @@ export default function DiscoveryGridPage({ onVideoSelect }: DiscoveryGridPagePr
     return matchCat && matchSearch;
   });
 
-  // Split into two columns for masonry rhythm
-  const leftCol  = filtered.filter((_, i) => i % 2 === 0);
-  const rightCol = filtered.filter((_, i) => i % 2 !== 0);
+
 
   return (
     <motion.div
@@ -179,51 +177,28 @@ export default function DiscoveryGridPage({ onVideoSelect }: DiscoveryGridPagePr
 
         {/* Masonry video grid */}
         {isLoading ? (
-          <div className="flex gap-3 px-3 pb-4">
-            <div className="flex-1 flex flex-col gap-3">
-              {[240, 190, 260].map((h, i) => (
-                <VideoCardSkeleton key={i} heightClass={`h-[${h}px]`} />
-              ))}
-            </div>
-            <div className="flex-1 flex flex-col gap-3 mt-5">
-              {[200, 260, 190].map((h, i) => (
-                <VideoCardSkeleton key={i} heightClass={`h-[${h}px]`} />
-              ))}
-            </div>
+          <div className="flex flex-col gap-3 px-3 pb-4">
+            {Array.from({ length: 3 }).map((_, i) => (
+              <VideoCardSkeleton key={i} heightClass="h-[480px]" />
+            ))}
           </div>
         ) : (
           <AnimatePresence mode="wait">
             <motion.div
               key={activeCategory + search}
-              className="flex gap-3 px-3 pb-4"
+              className="flex flex-col gap-3 px-3 pb-4"
               variants={staggerContainer}
               initial="hidden"
               animate="visible"
             >
-              {/* Left column */}
-              <div className="flex-1 flex flex-col gap-3">
-                {leftCol.map((video, i) => (
-                  <PropertyVideoCard
-                    key={video.id}
-                    video={video}
-                    index={i * 2}
-                    isTall={i % 3 === 1}
-                    onSelect={onVideoSelect ?? (() => {})}
-                  />
-                ))}
-              </div>
-              {/* Right column — offset for masonry rhythm */}
-              <div className="flex-1 flex flex-col gap-3 mt-6">
-                {rightCol.map((video, i) => (
-                  <PropertyVideoCard
-                    key={video.id}
-                    video={video}
-                    index={i * 2 + 1}
-                    isTall={i % 3 === 0}
-                    onSelect={onVideoSelect ?? (() => {})}
-                  />
-                ))}
-              </div>
+              {filtered.map((video, i) => (
+                <PropertyVideoCard
+                  key={video.id}
+                  video={video}
+                  index={i}
+                  onSelect={onVideoSelect ?? (() => {})}
+                />
+              ))}
             </motion.div>
           </AnimatePresence>
         )}
