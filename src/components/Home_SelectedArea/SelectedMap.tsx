@@ -1,7 +1,6 @@
 import { useRef, useState, useCallback } from 'react';
 import SelectedBoundary from './SelectedBoundary';
 import SelectedMarkers from './SelectedMarkers';
-import FloatingControls from './FloatingControls';
 import { mapMarkers, mapLabels, selectedRegion } from './data';
 import type { ViewMode } from './types';
 
@@ -161,7 +160,7 @@ export default function SelectedMap({ viewMode, onViewModeChange }: SelectedMapP
         <SelectedMarkers markers={mapMarkers} />
       </div>
 
-      <div className="absolute top-3 left-0 right-0 flex items-center justify-between px-3 z-40 pointer-events-none gap-2">
+      <div className="absolute top-3 left-0 right-0 flex items-center justify-between px-3 z-40 pointer-events-none gap-2 hidden">
         {/* Left: opportunity count */}
         <div className="flex items-center gap-1.5 h-[36px] px-3 rounded-[10px] bg-white border border-[#E5E7EB] shadow-[0_2px_10px_rgba(0,0,0,0.08)] pointer-events-auto shrink-0">
           <span className="text-[12px] font-bold text-[#111827] leading-none whitespace-nowrap">
@@ -201,7 +200,7 @@ export default function SelectedMap({ viewMode, onViewModeChange }: SelectedMapP
         </div>
       </div>
 
-      <FloatingControls onLocate={resetPan} />
+      {/* Floating controls removed */}
     </div>
   );
 }

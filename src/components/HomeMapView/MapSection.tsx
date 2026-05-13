@@ -441,7 +441,7 @@ export default function MapSection() {
       {/* ── Fixed overlays ── */}
 
       {/* Top-left: property count */}
-      <div className="absolute top-3 left-5 z-30 pointer-events-none">
+      <div className="absolute top-3 left-5 z-30 pointer-events-none hidden">
         <div
           style={{
             display: 'flex',
@@ -466,7 +466,7 @@ export default function MapSection() {
       </div>
 
       {/* Top-right: Premium Listings badge */}
-      <div className="absolute top-3 right-5 z-30 pointer-events-none">
+      <div className="absolute top-3 right-5 z-30 pointer-events-none hidden">
         <div
           style={{
             display: 'flex',
@@ -500,7 +500,7 @@ export default function MapSection() {
 
       {/* Right: floating control buttons */}
       <div
-        className="absolute right-5 z-30 flex flex-col gap-2.5 pointer-events-none"
+        className="absolute right-5 z-30 flex flex-col gap-2.5 pointer-events-none hidden"
         style={{ bottom: 'clamp(24px, calc(35% + 20px), 300px)' }}
       >
         <button

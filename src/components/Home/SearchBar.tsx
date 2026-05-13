@@ -21,7 +21,7 @@ interface SearchBarProps {
 export default function SearchBar({ query, onChange, placeholder = "Search franchise brands or areas in Hyderabad" }: SearchBarProps) {
   return (
     <form 
-      className="w-full flex items-center gap-1.5 px-3 pb-3 pt-1" 
+      className="w-full flex items-center px-1 pb-1 pt-1" 
       style={{ fontFamily: "'Outfit', sans-serif" }}
       onSubmit={(e) => e.preventDefault()}
       role="search"

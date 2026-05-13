@@ -31,37 +31,5 @@ interface FloatingControlsProps {
 }
 
 export default function FloatingControls({ onLocate }: FloatingControlsProps) {
-  return (
-    <div
-      className={`absolute right-4 z-[999] flex flex-col overflow-hidden pointer-events-auto ${sharedEffects.floatingPanel}`}
-      style={{ bottom: 'clamp(250px, calc(35% + 20px), 300px)' }}
-      role="group"
-      aria-label="Map controls"
-    >
-      <button
-        onClick={onLocate}
-        className={`w-10 h-10 border-b border-[#F3F4F6] ${sharedEffects.iconButton}`}
-        aria-label="Locate Me (Reset Pan)"
-        title="Locate Me"
-      >
-        <LocateIcon color="#0F172A" />
-      </button>
-
-      <button
-        className={`w-10 h-10 border-b border-[#F3F4F6] ${sharedEffects.iconButton}`}
-        aria-label="Map Layers"
-        title="Layers"
-      >
-        <LayersIcon color="#0F172A" />
-      </button>
-
-      <button
-        className={`w-10 h-10 ${sharedEffects.iconButton}`}
-        aria-label="Navigate"
-        title="Navigate"
-      >
-        <NavigateIcon color="#0F172A" />
-      </button>
-    </div>
-  );
+  return null;
 }

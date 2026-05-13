@@ -79,7 +79,7 @@ export default function CategoryTabs({ activeCategory, onCategoryChange }: Categ
             <button
               key={cat.id}
               onClick={() => onCategoryChange(cat.id as CategoryType)}
-              className="flex flex-col items-center justify-center gap-1.5 p-1 min-h-[58px] bg-white rounded-[10px] border transition-all duration-300 ease-out active:scale-95 focus-visible:outline-none"
+              className="flex flex-row items-center justify-center gap-1.5 p-1  bg-white rounded-[10px] border transition-all duration-300 ease-out active:scale-95 focus-visible:outline-none"
               style={{
                 borderColor: isActive ? config.color : '#E2E8F0',
                 boxShadow: isActive 
