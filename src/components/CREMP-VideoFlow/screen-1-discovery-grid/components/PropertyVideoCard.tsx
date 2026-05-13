@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Heart, MessageCircle, Share2, Bookmark, Play, X } from 'lucide-react';
+import { Share2, Bookmark, Play, X } from 'lucide-react';
 import type { PropertyVideo } from '../../shared/theme/videoflow.types';
 import { slideUp } from '../../shared/animations/videoflow.animations';
 
@@ -8,12 +8,8 @@ interface PropertyVideoCardProps {
   video: PropertyVideo;
   index: number;
   isTall?: boolean;
+  compact?: boolean;
   onSelect: (video: PropertyVideo) => void;
-}
-
-function formatCount(n: number): string {
-  if (n >= 1000) return `${(n / 1000).toFixed(0)}K`;
-  return String(n);
 }
 
 const BROKER_MAP: Record<string, string> = {
@@ -37,7 +33,7 @@ const TAG_BG: Record<string, string> = {
   Education:    'rgba(146,64,14,0.90)',
 };
 
-export default function PropertyVideoCard({ video, index, onSelect }: PropertyVideoCardProps) {
+export default function PropertyVideoCard({ video, index, compact = false, onSelect }: PropertyVideoCardProps) {
   const [isActive, setIsActive] = useState(false);
 
   const broker   = BROKER_MAP[video.category]  ?? 'CREMP Verified';
@@ -72,7 +68,7 @@ export default function PropertyVideoCard({ video, index, onSelect }: PropertyVi
     >
       {/* ── Height controller ── */}
       <motion.div
-        animate={{ height: isActive ? 480 : 220 }}
+        animate={{ height: isActive ? (compact ? 260 : 480) : (compact ? 160 : 220) }}
         transition={{ type: 'spring', stiffness: 260, damping: 30 }}
         className="relative w-full overflow-hidden"
         style={{ borderRadius: 18 }}
@@ -162,7 +158,7 @@ export default function PropertyVideoCard({ video, index, onSelect }: PropertyVi
             IDLE ONLY — compact bottom info
         ───────────────────────────────── */}
         <AnimatePresence>
-          {!isActive && (
+          {!isActive && !compact && (
             <motion.div
               key="idle-info"
               initial={{ opacity: 0 }}
@@ -195,6 +191,24 @@ export default function PropertyVideoCard({ video, index, onSelect }: PropertyVi
               </div>
             </motion.div>
           )}
+          {!isActive && compact && (
+            <motion.div
+              key="idle-compact"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="absolute bottom-0 inset-x-0 px-2 pb-2"
+              style={{ zIndex: 3 }}
+            >
+              <p
+                className="m-0 text-[10px] font-semibold text-white leading-tight line-clamp-2"
+                style={{ fontFamily: 'Outfit, sans-serif', letterSpacing: '-0.01em' }}
+              >
+                {video.title}
+              </p>
+            </motion.div>
+          )}
         </AnimatePresence>
 
         {/* ─────────────────────────────────
@@ -217,10 +231,8 @@ export default function PropertyVideoCard({ video, index, onSelect }: PropertyVi
                 style={{ top: '50%', transform: 'translateY(-50%)' }}
               >
                 {[
-                  { icon: Heart,          label: formatCount(video.likes),    ariaLabel: 'Like',     color: video.isLiked     ? '#ef4444' : 'white', fill: video.isLiked     ? '#ef4444' : 'none' },
-                  { icon: MessageCircle,  label: formatCount(video.comments), ariaLabel: 'Comments', color: 'white',                                   fill: 'none' },
-                  { icon: Share2,         label: formatCount(video.shares),   ariaLabel: 'Share',    color: 'white',                                   fill: 'none' },
-                  { icon: Bookmark,       label: 'Save',                      ariaLabel: 'Save',     color: video.isBookmarked ? '#d4af37' : 'white', fill: video.isBookmarked ? '#d4af37' : 'none' },
+                  { icon: Share2,   label: null,    ariaLabel: 'Share',    color: 'white',                                   fill: 'none' },
+                  { icon: Bookmark, label: 'Save',  ariaLabel: 'Save',     color: video.isBookmarked ? '#d4af37' : 'white', fill: video.isBookmarked ? '#d4af37' : 'none' },
                 ].map(({ icon: Icon, label, ariaLabel, color, fill }) => (
                   <div key={ariaLabel} className="flex flex-col items-center gap-[3px]">
                     <button
@@ -234,7 +246,7 @@ export default function PropertyVideoCard({ video, index, onSelect }: PropertyVi
                     >
                       <Icon size={17} style={{ color }} fill={fill} />
                     </button>
-                    <span className="text-[10px] font-semibold text-white leading-none">{label}</span>
+                    {label && <span className="text-[10px] font-semibold text-white leading-none">{label}</span>}
                   </div>
                 ))}
               </div>

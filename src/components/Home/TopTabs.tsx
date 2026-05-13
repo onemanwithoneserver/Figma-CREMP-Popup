@@ -35,11 +35,11 @@ interface TopTabsProps {
 export default function TopTabs({ activeTab, onTabChange }: TopTabsProps) {
   return (
     <nav 
-      className="w-full px-4 pb-2 bg-transparent"
+      className="w-full px-2 pb-1 bg-transparent"
       style={{ fontFamily: "'Outfit', sans-serif" }}
     >
       <div 
-        className="flex items-stretch w-full rounded-xl border border-[#b3bbc8] overflow-hidden"
+        className="flex items-stretch w-full rounded-[10px] border border-[#b3bbc8] overflow-hidden"
         role="tablist"
         aria-label="Main property categories"
       >
@@ -54,7 +54,7 @@ export default function TopTabs({ activeTab, onTabChange }: TopTabsProps) {
               aria-selected={isActive}
               onClick={() => onTabChange(tab.id as MainTab)}
               className={`
-                flex items-center justify-center gap-1.5 h-[46px] relative
+                flex items-center justify-center gap-1 h-[40px] relative
                 transition-all duration-200 hover:bg-white/[0.02] active:bg-white/5
                 focus-visible:outline-none
                 ${index < topTabs.length - 1 ? 'border-r border-[#b3bbc8]' : ''}
@@ -68,7 +68,7 @@ export default function TopTabs({ activeTab, onTabChange }: TopTabsProps) {
               <span
                 className={`font-medium text-left transition-colors ${
                   isActive ? 'text-[#FBBF24]' : 'text-white'
-                } ${tab.id === 'business' ? 'text-[10px] leading-[1.1] tracking-tight' : 'text-[13px] tracking-wide'}`}
+                } ${tab.id === 'business' ? 'text-[10px] leading-[1.1] tracking-tight' : 'text-[12px] tracking-tight'}`}
               >
                 {tab.id === 'business' ? (
                   <>Business<br/>Opportunities</>

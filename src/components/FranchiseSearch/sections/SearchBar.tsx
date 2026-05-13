@@ -1,4 +1,4 @@
-import SearchIcon from '@mui/icons-material/Search';
+import HomeSearch from '../../Home/SearchBar';
 
 interface SearchBarProps {
   value: string;
@@ -6,22 +6,11 @@ interface SearchBarProps {
   isDesktop: boolean;
 }
 
-export default function SearchBar({ value, onChange, isDesktop }: SearchBarProps) {
+export default function SearchBar({ value, onChange }: SearchBarProps) {
   return (
-    <div className={`relative flex-1 ${isDesktop ? 'max-w-[400px]' : ''}`}>
-      <SearchIcon
-        sx={{ fontSize: 18, color: '#637089' }}
-        className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none"
-      />
-      <input
-        type="text"
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        placeholder="Search area, locality…"
-        className={`w-full bg-white border border-[#d9dde3] rounded-[5px] pl-9 pr-3 font-['Outfit'] text-[#0f1f3d] placeholder:text-[#9aa5b8] focus:outline-none focus:border-[#c9a34e] transition-colors ${
-          isDesktop ? 'py-[9px] text-sm' : 'py-[7px] text-xs'
-        }`}
-      />
+    <div className="w-full">
+      {/* Reuse main Home SearchBar for consistent look */}
+      <HomeSearch query={value} onChange={onChange} placeholder="Search area, locality…" />
     </div>
   );
 }

@@ -35,7 +35,19 @@ const footerActions: FooterAction[] = [
 
 const LandFooter: React.FC = () => {
   return (
-    <div className="sticky bottom-0 left-0 right-0 bg-[#1c2a44] border-t border-[#1c2a44] p-1 flex justify-around items-center z-10 shadow-[0_-4px_16px_rgba(28,42,68,0.2)]">
+    <div className="sticky bottom-0 left-0 right-0 bg-[#1c2a44] border-t border-[#243355] z-10 shadow-[0_-4px_16px_rgba(28,42,68,0.2)]">
+      {/* Logo strip */}
+      <div className="flex items-center justify-center gap-1.5 pt-2 pb-1">
+        <img src="/favicon.svg" alt="CREMP" className="w-4 h-4" />
+        <span
+          className="text-[11px] font-bold tracking-[0.12em] uppercase"
+          style={{ color: '#D4AF37', fontFamily: 'Outfit, sans-serif' }}
+        >
+          CREMP
+        </span>
+      </div>
+      {/* Actions row */}
+      <div className="flex justify-around items-center p-1">
       {footerActions.map((action, idx) => (
         <div
           key={idx}
@@ -48,8 +60,7 @@ const LandFooter: React.FC = () => {
             {action.label}
           </span>
         </div>
-      ))}
-    </div>
+      ))}      </div>    </div>
   );
 };
 

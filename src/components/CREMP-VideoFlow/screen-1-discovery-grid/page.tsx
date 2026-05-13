@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, Bell, ChevronDown, MapPin, Play } from 'lucide-react';
+import { Search, Bell, ChevronDown, MapPin, Menu } from 'lucide-react';
+import SearchBar from '../../Home/SearchBar';
 import type { PropertyVideo, VideoCategory } from '../shared/theme/videoflow.types';
 import { propertyVideos, categories } from './data';
 import PropertyVideoCard from './components/PropertyVideoCard';
@@ -62,18 +63,30 @@ export default function DiscoveryGridPage({ onVideoSelect }: DiscoveryGridPagePr
         />
 
         {/* Nav row */}
-        <div className="relative z-10 flex items-center justify-between mb-4">
-          {/* Location selector */}
-          <button className="vf-location-pill">
-            <MapPin size={13} style={{ color: '#d4af37', flexShrink: 0 }} />
-            <span
-              className="text-[13px] font-semibold text-white tracking-wide"
-              style={{ fontFamily: 'Outfit, sans-serif' }}
+        <div className="relative z-10 flex items-center justify-between mb-3">
+          {/* Left: hamburger + location selector */}
+          <div className="flex items-center gap-2">
+            <button
+              aria-label="Open menu"
+              className="w-8 h-8 rounded-full flex items-center justify-center transition-colors"
+              style={{
+                background: 'rgba(255,255,255,0.08)',
+                border: '1px solid rgba(255,255,255,0.1)',
+              }}
             >
-              Hyderabad
-            </span>
-            <ChevronDown size={12} style={{ color: 'rgba(255,255,255,0.45)', flexShrink: 0 }} />
-          </button>
+              <Menu size={16} style={{ color: 'rgba(255,255,255,0.8)' }} />
+            </button>
+            <button className="vf-location-pill">
+              <MapPin size={13} style={{ color: '#d4af37', flexShrink: 0 }} />
+              <span
+                className="text-[13px] font-semibold text-white tracking-wide"
+                style={{ fontFamily: 'Outfit, sans-serif' }}
+              >
+                Hyderabad
+              </span>
+              <ChevronDown size={12} style={{ color: 'rgba(255,255,255,0.45)', flexShrink: 0 }} />
+            </button>
+          </div>
 
           {/* Right icons */}
           <div className="flex items-center gap-2.5">
@@ -106,87 +119,33 @@ export default function DiscoveryGridPage({ onVideoSelect }: DiscoveryGridPagePr
           </div>
         </div>
 
-        {/* Brand row */}
-        <div className="relative z-10 flex items-center gap-3">
-          <div
-            className="flex items-center justify-center w-10 h-10 rounded-xl shrink-0"
-            style={{
-              background: 'rgba(212,175,55,0.12)',
-              border: '1px solid rgba(212,175,55,0.22)',
-            }}
-          >
-            <Play size={17} fill="#d4af37" style={{ color: '#d4af37', marginLeft: 2 }} />
-          </div>
-          <div>
-            <h1
-              className="text-[20px] font-extralight text-white tracking-wide leading-tight m-0"
-              style={{ fontFamily: 'Outfit, sans-serif' }}
-            >
-              Video{' '}
-              <span className="font-semibold vf-gold-text">Search</span>
-            </h1>
-            <p
-              className="text-[10px] font-light tracking-widest uppercase m-0"
-              style={{ color: 'rgba(255,255,255,0.38)', fontFamily: 'Outfit, sans-serif' }}
-            >
-              Discover opportunities through video
-            </p>
-          </div>
+        {/* Search bar — unified component */}
+        <div className="relative z-10 w-full">
+          {/* Use Home SearchBar for consistent look across pages */}
+          {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+          {/* @ts-ignore */}
+          <SearchBar query={search} onChange={setSearch} placeholder="Search investment videos, opportunities, franchises..." />
         </div>
       </div>
 
       {/* ── Scrollable body ── */}
       <div className="flex-1 overflow-y-auto pb-20 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
 
-        {/* Crystal-glass search row */}
-        <div className="px-3 pt-4 pb-1 flex items-center gap-2">
-          <div className="vf-crystal-search flex-1 flex items-center gap-2.5 px-4 py-[11px]">
-            <Search size={15} style={{ color: '#7c3aed', flexShrink: 0 }} />
-            <input
-              className="flex-1 bg-transparent border-none outline-none text-[13px] font-medium"
-              style={{
-                color: '#0a1128',
-                fontFamily: 'Outfit, sans-serif',
-              }}
-              placeholder="Search investment videos, opportunities, franchises..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
-          </div>
-          <button className="vf-filter-btn" aria-label="Filter">
-            <svg
-              width="17"
-              height="17"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="#7c3aed"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M4 21v-7"/><path d="M4 10V3"/>
-              <path d="M12 21v-9"/><path d="M12 8V3"/>
-              <path d="M20 21v-5"/><path d="M20 12V3"/>
-              <path d="M1 14h6"/><path d="M9 8h6"/><path d="M17 16h6"/>
-            </svg>
-          </button>
-        </div>
-
         {/* Luxury category chips */}
         <CategoryChips categories={categories} active={activeCategory} onChange={setActiveCategory} />
 
         {/* Masonry video grid */}
         {isLoading ? (
-          <div className="flex flex-col gap-3 px-3 pb-4">
-            {Array.from({ length: 3 }).map((_, i) => (
-              <VideoCardSkeleton key={i} heightClass="h-[480px]" />
+          <div className="grid grid-cols-3 gap-2 px-3 pb-4">
+            {Array.from({ length: 9 }).map((_, i) => (
+              <VideoCardSkeleton key={i} heightClass="h-[160px]" />
             ))}
           </div>
         ) : (
           <AnimatePresence mode="wait">
             <motion.div
               key={activeCategory + search}
-              className="flex flex-col gap-3 px-3 pb-4"
+              className="grid grid-cols-3 gap-2 px-3 pb-4"
               variants={staggerContainer}
               initial="hidden"
               animate="visible"
@@ -196,6 +155,7 @@ export default function DiscoveryGridPage({ onVideoSelect }: DiscoveryGridPagePr
                   key={video.id}
                   video={video}
                   index={i}
+                  compact
                   onSelect={onVideoSelect ?? (() => {})}
                 />
               ))}

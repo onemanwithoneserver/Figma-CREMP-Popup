@@ -347,7 +347,7 @@ export default function MapSection({
 
         {/* Right: Map / List toggle */}
         <div
-          className="flex items-center p-[3px] h-[36px] rounded-[10px] bg-white border border-[#E5E7EB] shadow-[0_2px_10px_rgba(0,0,0,0.08)] pointer-events-auto shrink-0"
+          className="flex items-center p-[3px] h-[36px] rounded-[4px] bg-white border border-[#E5E7EB] shadow-[0_4px_16px_rgba(0,0,0,0.12)] pointer-events-auto shrink-0"
           role="group"
           aria-label="View mode toggle"
         >
