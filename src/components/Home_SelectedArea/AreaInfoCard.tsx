@@ -69,13 +69,6 @@ export default function AreaInfoCard({
           <CloseIcon color="#64748B" />
         </button>
       </div>
-
-      {/* Showing results text only */}
-      <div className="flex items-center justify-between">
-        <span className="text-[11px] text-[#64748B] font-medium">
-          Showing results in selected area
-        </span>
-      </div>
     </div>
   );
 }

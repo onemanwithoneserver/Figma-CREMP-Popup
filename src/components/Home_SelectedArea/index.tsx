@@ -7,10 +7,10 @@ import SearchBar    from '../Home/SearchBar';
 import PropertyCard from '../Home/PropertyCard';
 import BottomNavbar from '../Home/BottomNavbar';
 // ── Selected-area specific components ───────────────────────────────────────
-import AreaInfoCard from './AreaInfoCard';
+
 import SelectedMap  from './SelectedMap';
 // ── Data & types ─────────────────────────────────────────────────────────────
-import { featuredProperty, selectedRegion } from './data';
+import { featuredProperty } from './data';
 import type { MainTab, CategoryType, ViewMode } from './types';
 
 export default function HomeSelectedArea() {
@@ -19,7 +19,7 @@ export default function HomeSelectedArea() {
   const [searchQuery,    setSearchQuery]    = useState('');
   const [viewMode,       setViewMode]       = useState<ViewMode>('map');
   const [activeNav,      setActiveNav]      = useState('saved');
-  const [areaActive,     setAreaActive]     = useState(true);
+
 
   return (
     <div
@@ -47,13 +47,7 @@ export default function HomeSelectedArea() {
         <SearchBar query={searchQuery} onChange={setSearchQuery} />
       </div>
 
-      {/* ── Selected area info + Map/List toggle ──────────────────────── */}
-      {areaActive && (
-        <AreaInfoCard
-          region={selectedRegion}
-          onClear={() => setAreaActive(false)}
-        />
-      )}
+
 
       {/* ── Map + absolute bottom overlay ─────────────────────────────── */}
       <div

@@ -262,6 +262,7 @@ function cardStyle(listing: PropertyListing): React.CSSProperties {
 // ── Main MapSection ───────────────────────────────────────────────────────────
 export default function MapSection() {
   const [pan, setPan] = useState({ x: 0, y: 0 });
+  const [zoom, setZoom] = useState(1);
   const [activeId, setActiveId] = useState<string | null>('3');
   const dragRef = useRef<{ active: boolean; sx: number; sy: number; lx: number; ly: number }>({
     active: false, sx: 0, sy: 0, lx: 0, ly: 0,
@@ -279,7 +280,9 @@ export default function MapSection() {
   }, []);
 
   const onPointerUp = useCallback(() => { dragRef.current.active = false; }, []);
-  const resetPan = useCallback(() => setPan({ x: 0, y: 0 }), []);
+  const resetPan = useCallback(() => { setPan({ x: 0, y: 0 }); setZoom(1); }, []);
+  const zoomIn = useCallback(() => setZoom((z) => Math.min(z + 0.2, 2)), []);
+  const zoomOut = useCallback(() => setZoom((z) => Math.max(z - 0.2, 0.6)), []);
 
   return (
     <div
@@ -298,7 +301,7 @@ export default function MapSection() {
       {/* ── Pan layer ── */}
       <div
         className="absolute w-[200%] h-[200%] -top-[50%] -left-[50%]"
-        style={{ transform: `translate(${pan.x}px, ${pan.y}px)` }}
+        style={{ transform: `translate(${pan.x}px, ${pan.y}px) scale(${zoom})`, transformOrigin: 'center center', transition: 'transform 0.15s ease-out' }}
       >
         {/* SVG road/boundary sketch */}
         <svg
@@ -531,6 +534,42 @@ export default function MapSection() {
         >
           <NavIcon color="#111827" />
         </button>
+
+        {/* Zoom controls */}
+        <div
+          style={{
+            borderRadius: 14,
+            overflow: 'hidden',
+            backgroundColor: 'rgba(255,255,255,0.97)',
+            backdropFilter: 'blur(10px)',
+            boxShadow: '0 4px 16px rgba(0,0,0,0.10)',
+            border: '1px solid rgba(0,0,0,0.05)',
+          }}
+          className="pointer-events-auto"
+        >
+          <button
+            onClick={zoomIn}
+            className="flex items-center justify-center focus-visible:outline-none active:bg-gray-100 transition-colors"
+            style={{ width: 44, height: 40 }}
+            aria-label="Zoom in"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#111827" strokeWidth="2" strokeLinecap="round">
+              <line x1="12" y1="5" x2="12" y2="19" />
+              <line x1="5" y1="12" x2="19" y2="12" />
+            </svg>
+          </button>
+          <div style={{ height: 1, backgroundColor: 'rgba(0,0,0,0.06)' }} />
+          <button
+            onClick={zoomOut}
+            className="flex items-center justify-center focus-visible:outline-none active:bg-gray-100 transition-colors"
+            style={{ width: 44, height: 40 }}
+            aria-label="Zoom out"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#111827" strokeWidth="2" strokeLinecap="round">
+              <line x1="5" y1="12" x2="19" y2="12" />
+            </svg>
+          </button>
+        </div>
       </div>
     </div>
   );

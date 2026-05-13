@@ -105,7 +105,7 @@ export default function PropertyCategoryTabs({ active, onChange }: Props) {
         role="tablist"
         aria-label="Property category"
       >
-        {tabs.map(({ id, label, Icon, activeAccent, activeBg, activeBorder }, index) => {
+        {tabs.map(({ id, label, Icon, activeAccent, activeBg }, index) => {
           const isActive = active === id;
           const iconColor = isActive ? activeAccent : '#94A3B8';
 
