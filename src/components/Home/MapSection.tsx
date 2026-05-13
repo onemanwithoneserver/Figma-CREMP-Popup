@@ -1,11 +1,8 @@
 import React, { useState, useRef } from 'react';
 
 const sharedEffects = {
-  interactive: "transition-all duration-300 active:scale-95 focus-visible:outline-none",
-  markerHover: "transition-transform duration-300 hover:scale-105 active:scale-95 focus-visible:outline-none group",
-  floatingPanel: "bg-white rounded-[4px] shadow-[0_4px_16px_rgba(0,0,0,0.12)] border border-[#E5E7EB]",
-  iconButton: "flex items-center justify-center transition-colors hover:bg-gray-50 active:bg-gray-100 focus-visible:outline-none",
-  cardBase: "bg-white rounded-[16px] border border-[#F1F5F9] shadow-[0_8px_24px_rgba(15,23,42,0.06)]",
+  interactive: "transition-all duration-200 active:scale-95 focus-visible:outline-none",
+  markerHover: "transition-transform duration-200 hover:scale-105 active:scale-95 focus-visible:outline-none group",
 };
 
 type ViewMode = 'map' | 'list';
@@ -41,68 +38,26 @@ const mapLabels = [
   { label: 'KOMPALLY', top: 45, left: 95 },
 ];
 
-const InfoIcon = ({ color }: { color: string }) => (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5">
-    <circle cx="12" cy="12" r="10" />
-    <path strokeLinecap="round" strokeLinejoin="round" d="M12 16v-4" />
-    <path strokeLinecap="round" strokeLinejoin="round" d="M12 8h.01" />
-  </svg>
-);
-
-const MapIcon = ({ color }: { color: string }) => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5">
-    <path strokeLinecap="round" strokeLinejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
-  </svg>
-);
-
-const ListIcon = ({ color }: { color: string }) => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5">
-    <path strokeLinecap="round" strokeLinejoin="round" d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01" />
-  </svg>
-);
-
-const LocateIcon = ({ color }: { color: string }) => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <circle cx="12" cy="12" r="3" fill={color} stroke="none" />
-    <circle cx="12" cy="12" r="7" />
-    <path d="M12 2v3M12 19v3M2 12h3M19 12h3" />
-  </svg>
-);
-
-const LayersIcon = ({ color }: { color: string }) => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <polygon points="12 2 2 7 12 12 22 7 12 2" />
-    <polyline points="2 12 12 17 22 12" />
-    <polyline points="2 17 12 22 22 17" />
-  </svg>
-);
-
-const NavigateIcon = ({ color }: { color: string }) => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <polygon points="3 11 22 2 13 21 11 13 3 11" />
-  </svg>
-);
-
 const StoreIcon = ({ color }: { color: string }) => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5">
     <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 21v-7.5a.75.75 0 01.75-.75h3a.75.75 0 01.75.75V21m-4.5 0H2.36m11.14 0H19.5m-11.85-6h2.12m-2.12 3h2.12M15 6.75H9m3 0V3m-9 8.25h18M3 11.25l.842-5.464A2.25 2.25 0 016.05 4.5h11.9a2.25 2.25 0 012.208 1.286L21 11.25m-18 0v9a2.25 2.25 0 002.25 2.25h13.5A2.25 2.25 0 0021 20.25v-9" />
   </svg>
 );
 
 const StorefrontIcon = ({ color }: { color: string }) => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5">
     <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 21v-7.5a.75.75 0 01.75-.75h3a.75.75 0 01.75.75V21m-4.5 0H2.36m11.14 0H19.5m-17.14-9l1.492-5.965A2.25 2.25 0 016.035 4.5h11.93a2.25 2.25 0 012.186 1.705L21.64 12m-19.28 0h19.28m-19.28 0a2.25 2.25 0 002.25 2.25h14.78a2.25 2.25 0 002.25-2.25" />
   </svg>
 );
 
 const TruckIcon = ({ color }: { color: string }) => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5">
     <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
   </svg>
 );
 
 const CartIcon = ({ color }: { color: string }) => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5">
     <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
   </svg>
 );
@@ -114,11 +69,11 @@ interface PropertyMarkerProps {
 }
 
 const markerConfig: Record<string, { pinBg: string; Icon: React.FC<{ color: string }> }> = {
-  franchise: { pinBg: '#6D28D9', Icon: StoreIcon },
-  existing: { pinBg: '#059669', Icon: StorefrontIcon },
-  business: { pinBg: '#059669', Icon: StorefrontIcon },
+  franchise: { pinBg: '#7C3AED', Icon: StoreIcon },
+  existing: { pinBg: '#10B981', Icon: StorefrontIcon },
+  business: { pinBg: '#10B981', Icon: StorefrontIcon },
   distribution: { pinBg: '#3B82F6', Icon: TruckIcon },
-  movable: { pinBg: '#EA580C', Icon: CartIcon },
+  movable: { pinBg: '#F97316', Icon: CartIcon },
 };
 
 function PropertyMarker({ marker, isSelected, onClick }: PropertyMarkerProps) {
@@ -131,16 +86,16 @@ function PropertyMarker({ marker, isSelected, onClick }: PropertyMarkerProps) {
       style={{
         top: `${marker.lat}%`,
         left: `${marker.lng}%`,
-        transform: 'translate(-16px, -100%)',
+        transform: 'translate(-14px, -100%)',
         zIndex: isSelected ? 30 : 10,
         fontFamily: "'Outfit', sans-serif",
       }}
       aria-label={`${marker.brandName} ${marker.opportunityType} marker. Investment: ${marker.investment}`}
       aria-pressed={isSelected}
     >
-      <div className="flex flex-col items-center drop-shadow-md relative z-10">
+      <div className="flex flex-col items-center drop-shadow-sm relative z-10">
         <div
-          className="w-[32px] h-[32px] rounded-full flex items-center justify-center shadow-sm"
+          className="w-[28px] h-[28px] rounded-full flex items-center justify-center shadow-md border-[1.5px] border-white"
           style={{ backgroundColor: config.pinBg }}
         >
           <config.Icon color="#FFFFFF" />
@@ -148,34 +103,34 @@ function PropertyMarker({ marker, isSelected, onClick }: PropertyMarkerProps) {
         <div
           className="w-0 h-0"
           style={{
-            borderLeft: '6px solid transparent',
-            borderRight: '6px solid transparent',
-            borderTop: `8px solid ${config.pinBg}`,
-            marginTop: -0.5,
+            borderLeft: '5px solid transparent',
+            borderRight: '5px solid transparent',
+            borderTop: `6px solid ${config.pinBg}`,
+            marginTop: -1,
           }}
           aria-hidden="true"
         />
       </div>
 
       <div
-        className="absolute w-max bg-white rounded-[12px] py-1.5 px-2.5 text-left transition-all duration-200 z-20"
+        className="absolute w-max bg-white rounded-lg py-1 px-2 text-left transition-all duration-200 z-20"
         style={{
-          top: '16px',
-          left: '32px',
+          top: '14px',
+          left: '28px',
           transform: 'translateY(-50%)',
-          marginLeft: '6px',
-          boxShadow: isSelected ? '0 6px 16px rgba(0,0,0,0.12)' : '0 4px 12px rgba(0,0,0,0.08)',
+          marginLeft: '4px',
+          boxShadow: isSelected ? '0 4px 12px rgba(0,0,0,0.1)' : '0 2px 6px rgba(0,0,0,0.06)',
           border: `1px solid ${isSelected ? config.pinBg : '#F1F5F9'}`,
         }}
       >
-        <div className="text-[12px] font-bold text-[#111827] leading-none mb-1">
+        <div className="text-[10px] font-bold text-[#0F172A] leading-tight mb-0.5">
           {marker.investment}
         </div>
         <div className="flex flex-col">
-          <span className="text-[9.5px] font-medium text-[#475569] leading-[1.25]">
+          <span className="text-[8px] font-medium text-[#475569] leading-tight">
             {marker.brandName}
           </span>
-          <span className="text-[9.5px] font-medium text-[#475569] leading-[1.25]">
+          <span className="text-[8px] font-medium text-[#64748B] leading-tight">
             {marker.opportunityType}
           </span>
         </div>
@@ -218,10 +173,6 @@ export default function MapSection({
   const handlePointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
     setIsDragging(false);
     e.currentTarget.releasePointerCapture(e.pointerId);
-  };
-
-  const resetPan = () => {
-    setPan({ x: 0, y: 0 });
   };
 
   return (
@@ -271,7 +222,7 @@ export default function MapSection({
           {mapLabels.map((lbl) => (
             <span
               key={lbl.label}
-              className="absolute text-[10px] font-bold tracking-[0.15em] text-[#94A3B8] select-none pointer-events-none uppercase"
+              className="absolute text-[8.5px] font-bold tracking-[0.15em] text-[#94A3B8] select-none pointer-events-none uppercase"
               style={{ top: `${lbl.top}%`, left: `${lbl.left}%`, transform: 'translate(-50%, -50%)' }}
               aria-hidden="true"
             >
@@ -279,20 +230,20 @@ export default function MapSection({
             </span>
           ))}
 
-          <div className="absolute flex items-center justify-center w-[22px] h-[22px] rounded border border-[#CBD5E1] bg-white shadow-sm pointer-events-none"
+          <div className="absolute flex items-center justify-center w-[20px] h-[20px] rounded border border-[#CBD5E1] bg-white shadow-sm pointer-events-none"
             style={{ top: '48%', left: '78%' }} aria-hidden="true">
-            <span className="text-[9px] font-bold text-[#64748B]">44</span>
+            <span className="text-[8px] font-bold text-[#64748B]">44</span>
           </div>
-          <div className="absolute flex items-center justify-center w-[22px] h-[22px] rounded border border-[#CBD5E1] bg-white shadow-sm pointer-events-none"
+          <div className="absolute flex items-center justify-center w-[20px] h-[20px] rounded border border-[#CBD5E1] bg-white shadow-sm pointer-events-none"
             style={{ top: '68%', left: '8%' }} aria-hidden="true">
-            <span className="text-[9px] font-bold text-[#64748B]">65</span>
+            <span className="text-[8px] font-bold text-[#64748B]">65</span>
           </div>
 
-          <span className="absolute text-[10px] font-bold tracking-[0.15em] text-[#94A3B8] select-none pointer-events-none"
+          <span className="absolute text-[8.5px] font-bold tracking-[0.15em] text-[#94A3B8] select-none pointer-events-none"
             style={{ top: '12%', left: '8%', transform: 'rotate(-50deg)' }} aria-hidden="true">
             ORR
           </span>
-          <span className="absolute text-[10px] font-bold tracking-[0.15em] text-[#94A3B8] select-none pointer-events-none"
+          <span className="absolute text-[8.5px] font-bold tracking-[0.15em] text-[#94A3B8] select-none pointer-events-none"
             style={{ top: '15%', left: '48%', transform: 'rotate(20deg)' }} aria-hidden="true">
             ORR
           </span>
@@ -306,18 +257,18 @@ export default function MapSection({
               <div
                 className="absolute rounded-full"
                 style={{
-                  width: 80,
-                  height: 80,
+                  width: 60,
+                  height: 60,
                   backgroundColor: 'rgba(59, 130, 246, 0.12)',
                 }}
               />
               <div
-                className="relative rounded-full flex items-center justify-center border-[2.5px] border-white"
+                className="relative rounded-full flex items-center justify-center border-[2px] border-white"
                 style={{
-                  width: 18,
-                  height: 18,
+                  width: 14,
+                  height: 14,
                   backgroundColor: '#3B82F6',
-                  boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
+                  boxShadow: '0 2px 6px rgba(0,0,0,0.15)',
                 }}
               />
             </div>
@@ -337,67 +288,6 @@ export default function MapSection({
           ))}
         </div>
       </div>
-
-      <div className="absolute top-3 left-0 right-0 flex items-center justify-between px-3 z-40 pointer-events-none gap-2 hidden">
-        {/* Left: opportunity count */}
-        <div className="flex items-center gap-1.5 h-[36px] px-3 rounded-[10px] bg-white border border-[#E5E7EB] shadow-[0_2px_10px_rgba(0,0,0,0.08)] pointer-events-auto shrink-0">
-          <span className="text-[12px] font-bold text-[#111827] leading-none whitespace-nowrap">48 Opportunities</span>
-          <InfoIcon color="#9CA3AF" />
-        </div>
-
-        {/* Right: Map / List toggle */}
-        <div
-          className="flex items-center p-[3px] h-[36px] rounded-[4px] bg-white border border-[#E5E7EB] shadow-[0_4px_16px_rgba(0,0,0,0.12)] pointer-events-auto shrink-0"
-          role="group"
-          aria-label="View mode toggle"
-        >
-          <button
-            onClick={() => onViewModeChange('map')}
-            className={`flex items-center gap-1 px-2.5 h-[28px] text-[11.5px] font-semibold rounded-[7px] transition-all focus-visible:outline-none whitespace-nowrap ${viewMode === 'map'
-              ? 'bg-[#0B1320] text-white shadow-sm'
-              : 'bg-transparent text-[#6B7280] hover:text-[#111827]'
-              }`}
-            aria-pressed={viewMode === 'map'}
-          >
-            <MapIcon color={viewMode === 'map' ? '#FFFFFF' : '#6B7280'} />
-            Map View
-          </button>
-          <button
-            onClick={() => onViewModeChange('list')}
-            className={`flex items-center gap-1 px-2.5 h-[28px] text-[11.5px] font-semibold rounded-[7px] transition-all focus-visible:outline-none whitespace-nowrap ${viewMode === 'list'
-              ? 'bg-[#0B1320] text-white shadow-sm'
-              : 'bg-transparent text-[#6B7280] hover:text-[#111827]'
-              }`}
-            aria-pressed={viewMode === 'list'}
-          >
-            <ListIcon color={viewMode === 'list' ? '#FFFFFF' : '#6B7280'} />
-            List View
-          </button>
-        </div>
-      </div>
-
-      <div className={`absolute right-4  z-[999] flex flex-col overflow-hidden pointer-events-auto ${sharedEffects.floatingPanel} hidden`} style={{ bottom: 'clamp(250px, calc(35% + 20px), 300px)' }}>
-        <button
-          onClick={resetPan}
-          className={`w-10 h-10 border-b border-[#F3F4F6] ${sharedEffects.iconButton}`}
-          aria-label="Locate Me (Reset Pan)"
-        >
-          <LocateIcon color="#0F172A" />
-        </button>
-        <button
-          className={`w-10 h-10 border-b border-[#F3F4F6] ${sharedEffects.iconButton}`}
-          aria-label="Map Layers"
-        >
-          <LayersIcon color="#0F172A" />
-        </button>
-        <button
-          className={`w-10 h-10 ${sharedEffects.iconButton}`}
-          aria-label="Navigate"
-        >
-          <NavigateIcon color="#0F172A" />
-        </button>
-      </div>
-
     </div>
   );
 }

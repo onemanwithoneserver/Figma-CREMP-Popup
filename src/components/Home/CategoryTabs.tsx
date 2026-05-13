@@ -1,9 +1,10 @@
+// CategoryTabs.tsx
 import React from 'react';
 import type { CategoryType } from './types';
 import { categoryTabs } from './data';
 
-const StoreIcon = ({ color }: { color: string }) => (
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ transition: 'stroke 0.3s ease' }}>
+const StorefrontIcon = ({ color }: { color: string }) => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ transition: 'stroke 0.2s ease' }}>
     <path d="M3 9l1.5-4.5h15L21 9" />
     <path d="M3 9v2a2 2 0 0 0 4 0v-2" />
     <path d="M7 9v2a2 2 0 0 0 4 0v-2" />
@@ -12,28 +13,12 @@ const StoreIcon = ({ color }: { color: string }) => (
     <path d="M19 9v2a2 2 0 0 0 4 0v-2" />
     <path d="M4 11v8h16v-8" />
     <path d="M8 19v-5h3v5" />
-    <circle cx="9.5" cy="16.5" r="0.5" fill={color} style={{ transition: 'fill 0.3s ease' }} />
-    <path d="M2 19h20" />
-  </svg>
-);
-
-const StorefrontIcon = ({ color }: { color: string }) => (
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ transition: 'stroke 0.3s ease' }}>
-    <path d="M3 9l1.5-4.5h15L21 9" />
-    <path d="M3 9v2a2 2 0 0 0 4 0v-2" />
-    <path d="M7 9v2a2 2 0 0 0 4 0v-2" />
-    <path d="M11 9v2a2 2 0 0 0 4 0v-2" />
-    <path d="M15 9v2a2 2 0 0 0 4 0v-2" />
-    <path d="M19 9v2a2 2 0 0 0 4 0v-2" />
-    <path d="M4 11v8h16v-8" />
-    <path d="M6 19v-4h3v4" />
-    <rect x="13" y="14" width="4" height="2.5" rx="0.5" />
-    <path d="M2 19h20" />
+    <path d="M13 13h3v3h-3z" />
   </svg>
 );
 
 const TruckIcon = ({ color }: { color: string }) => (
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ transition: 'stroke 0.3s ease' }}>
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ transition: 'stroke 0.2s ease' }}>
     <path d="M3 6h11v11H3z" />
     <path d="M14 9h4l3 3v5h-7z" />
     <path d="M18 12h-2" />
@@ -43,7 +28,7 @@ const TruckIcon = ({ color }: { color: string }) => (
 );
 
 const CartIcon = ({ color }: { color: string }) => (
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ transition: 'stroke 0.3s ease' }}>
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ transition: 'stroke 0.2s ease' }}>
     <path d="M3 4h2l2.5 10h11l2.5-7H6.5" />
     <circle cx="9" cy="18" r="1.5" />
     <circle cx="17" cy="18" r="1.5" />
@@ -52,10 +37,10 @@ const CartIcon = ({ color }: { color: string }) => (
 );
 
 const categoryConfig: Record<string, { icon: React.FC<{ color: string }>; color: string }> = {
-  franchise: { icon: StoreIcon, color: '#7C3AED' },
-  existing: { icon: StorefrontIcon, color: '#10B981' },
-  distribution: { icon: TruckIcon, color: '#3B82F6' },
-  movable: { icon: CartIcon, color: '#F97316' },
+  franchise: { icon: StorefrontIcon, color: '#7C3AED' }, // Purple
+  existing: { icon: StorefrontIcon, color: '#059669' },  // Green
+  distribution: { icon: TruckIcon, color: '#2563EB' },   // Blue
+  movable: { icon: CartIcon, color: '#EA580C' },         // Orange
 };
 
 interface CategoryTabsProps {
@@ -66,10 +51,10 @@ interface CategoryTabsProps {
 export default function CategoryTabs({ activeCategory, onCategoryChange }: CategoryTabsProps) {
   return (
     <div 
-      className="w-full px-2 py-2 bg-[#F8FAFC]"
+      className="w-full px-1 py-1 bg-transparent"
       style={{ fontFamily: "'Outfit', sans-serif" }}
     >
-      <div className="grid grid-cols-4 gap-1.5 w-full">
+      <div className="grid grid-cols-4 gap-0.5 w-full">
         {categoryTabs.map((cat) => {
           const isActive = activeCategory === cat.id;
           const config = categoryConfig[cat.id] || categoryConfig.franchise;
@@ -79,24 +64,18 @@ export default function CategoryTabs({ activeCategory, onCategoryChange }: Categ
             <button
               key={cat.id}
               onClick={() => onCategoryChange(cat.id as CategoryType)}
-              className="flex flex-row items-center justify-center gap-1.5 p-1  bg-white rounded-[10px] border transition-all duration-300 ease-out active:scale-95 focus-visible:outline-none"
+              className="flex flex-row items-center justify-center gap-1 px-0.5 py-1.5 rounded-[4px] bg-white border transition-all duration-200 active:scale-95 focus-visible:outline-none min-w-0"
               style={{
                 borderColor: isActive ? config.color : '#E2E8F0',
-                boxShadow: isActive 
-                  ? `0 6px 16px ${config.color}35, 0 2px 4px ${config.color}20` 
-                  : '0 2px 6px rgba(0,0,0,0.03)',
-                transform: isActive ? 'translateY(-2px)' : 'translateY(0)',
+                boxShadow: '0 1px 2px rgba(0,0,0,0.02)',
               }}
             >
-              <div 
-                className="shrink-0 flex items-center justify-center transition-transform duration-300"
-                style={{ transform: isActive ? 'scale(1.05)' : 'scale(1)' }}
-              >
-                <Icon color={isActive ? config.color : '#64748B'} />
+              <div className="shrink-0 flex items-center justify-center">
+                <Icon color={config.color} />
               </div>
               
               <span
-                className="text-[9.5px] font-semibold leading-[1.1] text-center transition-colors duration-300"
+                className="text-[8px] font-medium leading-[1.15] tracking-tight text-left transition-colors duration-200 min-w-0"
                 style={{ color: isActive ? config.color : '#0F172A' }}
               >
                 {cat.label.split(' ').map((word, idx) => (

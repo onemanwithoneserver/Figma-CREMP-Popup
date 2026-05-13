@@ -15,31 +15,27 @@ export default function Home() {
   const [searchQuery, setSearchQuery] = useState('');
   const [viewMode, setViewMode] = useState<ViewMode>('map');
   const [selectedMarkerId, setSelectedMarkerId] = useState<string | null>('1');
-  const [activeNav, setActiveNav] = useState('home');
+  const [activeNav, setActiveNav] = useState('cremp');
 
   return (
     <main
-      className="flex flex-col w-full overflow-hidden"
+      className="flex flex-col w-full h-full overflow-hidden relative mx-auto bg-[#0B1320]"
       style={{
         maxWidth: 430,
-        margin: '0 auto',
-        height: '100%',
-        backgroundColor: '#0A0F1A',
         fontFamily: "'Outfit', sans-serif",
-        position: 'relative',
       }}
     >
-      <div className="shrink-0 w-full bg-gradient-to-br from-[#0a1128] via-[#121c33] to-[#0a1128] border-b border-white/5">
+      <div className="shrink-0 w-full bg-[#0B1320] z-20 relative">
         <Header />
         <TopTabs activeTab={activeTab} onTabChange={setActiveTab} />
       </div>
 
-      <div className="shrink-0 w-full bg-gradient-to-br from-[#0a1128] via-[#121c33] to-[#0a1128] z-10 shadow-sm">
+      <div className="shrink-0 w-full bg-[#F8FAFC] z-10 shadow-[0_4px_16px_rgba(0,0,0,0.06)] relative">
         <CategoryTabs activeCategory={activeCategory} onCategoryChange={setActiveCategory} />
-          <SearchBar query={searchQuery} onChange={setSearchQuery} />
+        <SearchBar query={searchQuery} onChange={setSearchQuery} />
       </div>
 
-      <div className="flex-1 flex flex-col overflow-hidden bg-[#0A0F1A] relative z-0">
+      <div className="flex-1 flex flex-col overflow-hidden bg-[#E2E8F0] relative z-0">
         <MapSection
           viewMode={viewMode}
           onViewModeChange={setViewMode}
@@ -48,8 +44,8 @@ export default function Home() {
         />
       </div>
 
-      <div className="shrink-0 w-full bg-transparent absolute bottom-0 left-0 right-0 z-20 pointer-events-none flex flex-col">
-        <div className="px-3 pb-3 pointer-events-auto">
+      <div className="shrink-0 w-full bg-transparent absolute bottom-0 left-0 right-0 z-20 pointer-events-none flex flex-col justify-end">
+        <div className="px-2.5 pb-2 pointer-events-auto">
           <PropertyCard property={featuredProperty} />
         </div>
         <div className="pointer-events-auto">
