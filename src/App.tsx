@@ -14,7 +14,41 @@ import CREMPBrokersPage from '@/components/CREMP Brokers/CREMPBrokersPage';
 import CREMPVideoFlow from './components/CREMP-VideoFlow/CREMPVideoFlow';
 import Home from '@/components/Home';
 import HomeSelectedArea from '@/components/Home_SelectedArea';
-import AllBuildingsHomeMapView from '@/components/AllBuildings/HomeMapView';
+import HomeMapView from '@/components/HomeMapView';
+
+const MobileViewportWrapper = ({ children, isMobile }: { children: React.ReactNode, isMobile: boolean }) => (
+  <Box
+    sx={{
+      flex: 1,
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      padding: isMobile ? '0px' : '20px',
+      height: '100%',
+      backgroundColor: '#f8fafc',
+    }}
+  >
+    <Box
+      sx={{
+        width: isMobile ? '100%' : 360,
+        maxWidth: isMobile ? '450px' : 360,
+        minWidth: isMobile ? '320px' : 360,
+        height: isMobile ? '100%' : 'calc(100% - 40px)',
+        maxHeight: isMobile ? '100%' : '800px',
+        backgroundColor: '#0A0F1A',
+        border: isMobile ? 'none' : '1px solid rgba(198, 156, 68, 0.25)',
+        borderRadius: isMobile ? '0' : '16px',
+        display: 'flex',
+        flexDirection: 'column',
+        boxShadow: isMobile ? 'none' : '0 32px 80px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(198, 156, 68, 0.12)',
+        position: 'relative',
+        overflow: 'hidden',
+      }}
+    >
+      {children}
+    </Box>
+  </Box>
+);
 
 export default function App() {
   const theme = useTheme();
@@ -302,17 +336,17 @@ export default function App() {
             <CREMPVideoFlow viewMode={viewMode} />
           </Box>
         ) : activePage === 'home' ? (
-          <Box className="flex-1 flex flex-col overflow-hidden bg-[#E8EFF4]" sx={{ height: 'calc(100vh - 64px)' }}>
+          <MobileViewportWrapper isMobile={isMobile}>
             <Home />
-          </Box>
+          </MobileViewportWrapper>
         ) : activePage === 'homeselected' ? (
-          <Box className="flex-1 flex flex-col overflow-hidden bg-[#E8EFF4]" sx={{ height: 'calc(100vh - 64px)' }}>
+          <MobileViewportWrapper isMobile={isMobile}>
             <HomeSelectedArea />
-          </Box>
+          </MobileViewportWrapper>
         ) : activePage === 'allbuildingsmap' ? (
-          <Box className="flex-1 flex flex-col overflow-hidden bg-[#E8EFF4]" sx={{ height: 'calc(100vh - 64px)' }}>
-            <AllBuildingsHomeMapView />
-          </Box>
+          <MobileViewportWrapper isMobile={isMobile}>
+            <HomeMapView />
+          </MobileViewportWrapper>
         ) : (
           <MainFrame
             subPage={activeSubPage}

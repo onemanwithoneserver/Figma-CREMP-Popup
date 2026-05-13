@@ -35,7 +35,7 @@ interface TopTabsProps {
 export default function TopTabs({ activeTab, onTabChange }: TopTabsProps) {
   return (
     <nav 
-      className="w-full bg-[#0B1320] px-4 pb-3"
+      className="w-full px-4 pb-2 bg-transparent"
       style={{ fontFamily: "'Outfit', sans-serif" }}
     >
       <div 

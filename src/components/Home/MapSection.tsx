@@ -131,7 +131,7 @@ function PropertyMarker({ marker, isSelected, onClick }: PropertyMarkerProps) {
       style={{
         top: `${marker.lat}%`,
         left: `${marker.lng}%`,
-        transform: 'translate(-16px, -100%)', 
+        transform: 'translate(-16px, -100%)',
         zIndex: isSelected ? 30 : 10,
         fontFamily: "'Outfit', sans-serif",
       }}
@@ -160,7 +160,7 @@ function PropertyMarker({ marker, isSelected, onClick }: PropertyMarkerProps) {
       <div
         className="absolute w-max bg-white rounded-[12px] py-1.5 px-2.5 text-left transition-all duration-200 z-20"
         style={{
-          top: '16px', 
+          top: '16px',
           left: '32px',
           transform: 'translateY(-50%)',
           marginLeft: '6px',
@@ -225,22 +225,22 @@ export default function MapSection({
   };
 
   return (
-    <div 
+    <div
       className="relative flex-1 flex flex-col w-full overflow-hidden bg-[#F8FAFC]"
       style={{ fontFamily: "'Outfit', sans-serif", minHeight: 0, touchAction: 'none' }}
     >
-      <div 
+      <div
         className={`absolute inset-0 z-10 w-full h-full ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
         onPointerDown={handlePointerDown}
         onPointerMove={handlePointerMove}
         onPointerUp={handlePointerUp}
         onPointerCancel={handlePointerUp}
       >
-        <div 
+        <div
           className="absolute w-[200%] h-[200%] -top-[50%] -left-[50%]"
-          style={{ 
+          style={{
             transform: `translate(${pan.x}px, ${pan.y}px)`,
-            transition: isDragging ? 'none' : 'transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1)' 
+            transition: isDragging ? 'none' : 'transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1)'
           }}
         >
           <svg
@@ -325,7 +325,7 @@ export default function MapSection({
 
           {mapMarkers.map((marker) => (
             <div
-              key={marker.id} 
+              key={marker.id}
               onPointerDown={(e) => e.stopPropagation()}
             >
               <PropertyMarker
@@ -353,11 +353,10 @@ export default function MapSection({
         >
           <button
             onClick={() => onViewModeChange('map')}
-            className={`flex items-center gap-1 px-2.5 h-[28px] text-[11.5px] font-semibold rounded-[7px] transition-all focus-visible:outline-none whitespace-nowrap ${
-              viewMode === 'map'
-                ? 'bg-[#0B1320] text-white shadow-sm'
-                : 'bg-transparent text-[#6B7280] hover:text-[#111827]'
-            }`}
+            className={`flex items-center gap-1 px-2.5 h-[28px] text-[11.5px] font-semibold rounded-[7px] transition-all focus-visible:outline-none whitespace-nowrap ${viewMode === 'map'
+              ? 'bg-[#0B1320] text-white shadow-sm'
+              : 'bg-transparent text-[#6B7280] hover:text-[#111827]'
+              }`}
             aria-pressed={viewMode === 'map'}
           >
             <MapIcon color={viewMode === 'map' ? '#FFFFFF' : '#6B7280'} />
@@ -365,11 +364,10 @@ export default function MapSection({
           </button>
           <button
             onClick={() => onViewModeChange('list')}
-            className={`flex items-center gap-1 px-2.5 h-[28px] text-[11.5px] font-semibold rounded-[7px] transition-all focus-visible:outline-none whitespace-nowrap ${
-              viewMode === 'list'
-                ? 'bg-[#0B1320] text-white shadow-sm'
-                : 'bg-transparent text-[#6B7280] hover:text-[#111827]'
-            }`}
+            className={`flex items-center gap-1 px-2.5 h-[28px] text-[11.5px] font-semibold rounded-[7px] transition-all focus-visible:outline-none whitespace-nowrap ${viewMode === 'list'
+              ? 'bg-[#0B1320] text-white shadow-sm'
+              : 'bg-transparent text-[#6B7280] hover:text-[#111827]'
+              }`}
             aria-pressed={viewMode === 'list'}
           >
             <ListIcon color={viewMode === 'list' ? '#FFFFFF' : '#6B7280'} />
@@ -378,7 +376,7 @@ export default function MapSection({
         </div>
       </div>
 
-      <div className={`absolute right-4 z-[999] flex flex-col overflow-hidden pointer-events-auto ${sharedEffects.floatingPanel}`} style={{ bottom: 'clamp(200px, calc(30% + 20px), 280px)' }}>
+      <div className={`absolute right-4  z-[999] flex flex-col overflow-hidden pointer-events-auto ${sharedEffects.floatingPanel}`} style={{ bottom: 'clamp(250px, calc(35% + 20px), 300px)' }}>
         <button
           onClick={resetPan}
           className={`w-10 h-10 border-b border-[#F3F4F6] ${sharedEffects.iconButton}`}
@@ -399,7 +397,7 @@ export default function MapSection({
           <NavigateIcon color="#0F172A" />
         </button>
       </div>
-      
+
     </div>
   );
 }

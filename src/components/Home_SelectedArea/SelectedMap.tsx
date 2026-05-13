@@ -3,8 +3,34 @@ import SelectedBoundary from './SelectedBoundary';
 import SelectedMarkers from './SelectedMarkers';
 import FloatingControls from './FloatingControls';
 import { mapMarkers, mapLabels, selectedRegion } from './data';
+import type { ViewMode } from './types';
 
-export default function SelectedMap() {
+const InfoIcon = ({ color }: { color: string }) => (
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5">
+    <circle cx="12" cy="12" r="10" />
+    <path strokeLinecap="round" strokeLinejoin="round" d="M12 16v-4" />
+    <path strokeLinecap="round" strokeLinejoin="round" d="M12 8h.01" />
+  </svg>
+);
+
+const MapIcon = ({ color }: { color: string }) => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+  </svg>
+);
+
+const ListIcon = ({ color }: { color: string }) => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01" />
+  </svg>
+);
+
+interface SelectedMapProps {
+  viewMode: ViewMode;
+  onViewModeChange: (mode: ViewMode) => void;
+}
+
+export default function SelectedMap({ viewMode, onViewModeChange }: SelectedMapProps) {
   const polyPoints = selectedRegion.polygonPoints;
 
   const [pan, setPan] = useState({ x: 0, y: 0 });
@@ -135,21 +161,43 @@ export default function SelectedMap() {
         <SelectedMarkers markers={mapMarkers} />
       </div>
 
-      <div className="absolute inset-x-0 top-0 z-40 pointer-events-none flex items-center justify-between px-3 pt-3">
-        <div
-          className="flex items-center gap-1.5 px-3 py-1.5 pointer-events-auto"
-          style={{
-            background: 'rgba(255,255,255,0.95)',
-            borderRadius: 20,
-            border: '1px solid #E5E7EB',
-            boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
-            backdropFilter: 'blur(8px)',
-          }}
-        >
-          <div className="w-2 h-2 rounded-full bg-[#FBBF24]" />
-          <span className="text-[12px] font-bold text-[#111827]">
+      <div className="absolute top-3 left-0 right-0 flex items-center justify-between px-3 z-40 pointer-events-none gap-2">
+        {/* Left: opportunity count */}
+        <div className="flex items-center gap-1.5 h-[36px] px-3 rounded-[10px] bg-white border border-[#E5E7EB] shadow-[0_2px_10px_rgba(0,0,0,0.08)] pointer-events-auto shrink-0">
+          <span className="text-[12px] font-bold text-[#111827] leading-none whitespace-nowrap">
             {selectedRegion.opportunityCount} Opportunities
           </span>
+          <InfoIcon color="#9CA3AF" />
+        </div>
+
+        {/* Right: Map / List toggle */}
+        <div
+          className="flex items-center p-[3px] h-[36px] rounded-[10px] bg-white border border-[#E5E7EB] shadow-[0_2px_10px_rgba(0,0,0,0.08)] pointer-events-auto shrink-0"
+          role="group"
+          aria-label="View mode toggle"
+        >
+          <button
+            onClick={() => onViewModeChange('map')}
+            className={`flex items-center gap-1 px-2.5 h-[28px] text-[11.5px] font-semibold rounded-[7px] transition-all focus-visible:outline-none whitespace-nowrap ${viewMode === 'map'
+              ? 'bg-[#0B1320] text-white shadow-sm'
+              : 'bg-transparent text-[#6B7280] hover:text-[#111827]'
+              }`}
+            aria-pressed={viewMode === 'map'}
+          >
+            <MapIcon color={viewMode === 'map' ? '#FFFFFF' : '#6B7280'} />
+            Map View
+          </button>
+          <button
+            onClick={() => onViewModeChange('list')}
+            className={`flex items-center gap-1 px-2.5 h-[28px] text-[11.5px] font-semibold rounded-[7px] transition-all focus-visible:outline-none whitespace-nowrap ${viewMode === 'list'
+              ? 'bg-[#0B1320] text-white shadow-sm'
+              : 'bg-transparent text-[#6B7280] hover:text-[#111827]'
+              }`}
+            aria-pressed={viewMode === 'list'}
+          >
+            <ListIcon color={viewMode === 'list' ? '#FFFFFF' : '#6B7280'} />
+            List View
+          </button>
         </div>
       </div>
 

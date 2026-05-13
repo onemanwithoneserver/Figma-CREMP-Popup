@@ -65,9 +65,8 @@ interface BottomNavbarProps {
 export default function BottomNavbar({ activeNav, onNavChange }: BottomNavbarProps) {
   return (
     <nav
-      className="w-full shrink-0 flex items-center justify-between px-1  pb-3 border-t border-white/10"
+      className="w-full shrink-0 flex items-center justify-between px-1 pb-3 border-t border-white/10 bg-gradient-to-br from-[#0a1128] via-[#121c33] to-[#0a1128]"
       style={{
-        backgroundColor: '#070C15',
         fontFamily: "'Outfit', sans-serif",
       }}
       role="navigation"

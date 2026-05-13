@@ -1,22 +1,30 @@
 // ── Inline SVG icons (matches Home/MapSection style) ─────────────────────────
-const LocateIcon = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#374151" strokeWidth="1.5">
-    <path strokeLinecap="round" strokeLinejoin="round" d="M12 2v2m0 16v2M2 12h2m16 0h2m-8.5-8.5a7 7 0 110 14 7 7 0 010-14z" />
-    <circle cx="12" cy="12" r="3" fill="#374151" />
+const LocateIcon = ({ color }: { color: string }) => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="3" fill={color} stroke="none" />
+    <circle cx="12" cy="12" r="7" />
+    <path d="M12 2v3M12 19v3M2 12h3M19 12h3" />
   </svg>
 );
 
-const LayersIcon = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#374151" strokeWidth="1.5">
-    <path strokeLinecap="round" strokeLinejoin="round" d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+const LayersIcon = ({ color }: { color: string }) => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <polygon points="12 2 2 7 12 12 22 7 12 2" />
+    <polyline points="2 12 12 17 22 12" />
+    <polyline points="2 17 12 22 22 17" />
   </svg>
 );
 
-const NavigateIcon = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#374151" strokeWidth="1.5">
-    <path strokeLinecap="round" strokeLinejoin="round" d="M12 2L3 12h4v7l5-5 5 5v-7h4L12 2z" />
+const NavigateIcon = ({ color }: { color: string }) => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <polygon points="3 11 22 2 13 21 11 13 3 11" />
   </svg>
 );
+
+const sharedEffects = {
+  floatingPanel: "bg-white rounded-[4px] shadow-[0_4px_16px_rgba(0,0,0,0.12)] border border-[#E5E7EB]",
+  iconButton: "flex items-center justify-center transition-colors hover:bg-gray-50 active:bg-gray-100 focus-visible:outline-none",
+};
 
 interface FloatingControlsProps {
   onLocate: () => void;
@@ -25,45 +33,34 @@ interface FloatingControlsProps {
 export default function FloatingControls({ onLocate }: FloatingControlsProps) {
   return (
     <div
-      className="absolute z-[999] flex flex-col overflow-hidden"
-      style={{
-        right: 16,
-        bottom: 250,
-        borderRadius: 4,
-        background: '#FFFFFF',
-        border: '1px solid #E5E7EB',
-        boxShadow: '0 4px 16px rgba(0,0,0,0.12)',
-        width: 40,
-      }}
+      className={`absolute right-4 z-[999] flex flex-col overflow-hidden pointer-events-auto ${sharedEffects.floatingPanel}`}
+      style={{ bottom: 'clamp(250px, calc(35% + 20px), 300px)' }}
       role="group"
       aria-label="Map controls"
     >
-      {/* Locate */}
       <button
         onClick={onLocate}
-        className="w-10 h-10 flex items-center justify-center border-b border-[#F3F4F6] hover:bg-[#F9FAFB] active:bg-[#F3F4F6] transition-colors focus-visible:outline-none"
-        aria-label="Center on current location"
-        title="Locate"
+        className={`w-10 h-10 border-b border-[#F3F4F6] ${sharedEffects.iconButton}`}
+        aria-label="Locate Me (Reset Pan)"
+        title="Locate Me"
       >
-        <LocateIcon />
+        <LocateIcon color="#0F172A" />
       </button>
 
-      {/* Layers */}
       <button
-        className="w-10 h-10 flex items-center justify-center border-b border-[#F3F4F6] hover:bg-[#F9FAFB] active:bg-[#F3F4F6] transition-colors focus-visible:outline-none"
-        aria-label="Map layers"
+        className={`w-10 h-10 border-b border-[#F3F4F6] ${sharedEffects.iconButton}`}
+        aria-label="Map Layers"
         title="Layers"
       >
-        <LayersIcon />
+        <LayersIcon color="#0F172A" />
       </button>
 
-      {/* Navigate */}
       <button
-        className="w-10 h-10 flex items-center justify-center hover:bg-[#F9FAFB] active:bg-[#F3F4F6] transition-colors focus-visible:outline-none"
+        className={`w-10 h-10 ${sharedEffects.iconButton}`}
         aria-label="Navigate"
         title="Navigate"
       >
-        <NavigateIcon />
+        <NavigateIcon color="#0F172A" />
       </button>
     </div>
   );

@@ -20,17 +20,17 @@ const HeartIcon = ({ filled }: { filled: boolean }) => (
   </svg>
 );
 
-const LocationPinIcon = ({ color }: { color: string }) => (
-  <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.5">
-    <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+const MapPin = ({ color }: { color: string }) => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="none">
+    <path d="M12 2C8.134 2 5 5.134 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.866-3.134-7-7-7z" fill={color} />
+    <circle cx="12" cy="9" r="3" fill="#FFFFFF" />
   </svg>
 );
 
-const AreaIcon = ({ color }: { color: string }) => (
-  <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.2">
-    <path strokeLinecap="round" strokeLinejoin="round"
-      d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15" />
+const LocationPinIcon = ({ color }: { color: string }) => (
+  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.5">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
   </svg>
 );
 
@@ -42,11 +42,9 @@ const LocateIcon = ({ color }: { color: string }) => (
   </svg>
 );
 
-const LayersIcon = ({ color }: { color: string }) => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round">
-    <polygon points="12 2 2 7 12 12 22 7 12 2" />
-    <polyline points="2 12 12 17 22 12" />
-    <polyline points="2 17 12 22 22 17" />
+const AreaIcon = ({ color }: { color: string }) => (
+  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15" />
   </svg>
 );
 
@@ -123,22 +121,20 @@ function FloatingCard({ listing, style, isActive, onSelect }: FloatingCardProps)
             </span>
 
             <span
-              className="mt-[3px] text-[9.5px] font-semibold leading-none truncate"
-              style={{ color: markerColors[listing.markerType] }}
+              className="mt-[3px] text-[9.5px] font-semibold leading-none truncate text-[#2563EB]"
             >
               {listing.type}
             </span>
 
-            <div className="mt-[4px] flex items-center gap-[3px]">
-              <AreaIcon color="#64748B" />
-              <span className="text-[9px] text-[#64748B] font-medium leading-none">
+            <div className="mt-[4px] flex items-center">
+              <span className="text-[10px] text-[#475569] font-medium leading-none">
                 {listing.area} {listing.areaUnit}
               </span>
             </div>
 
             <div className="mt-[3px] flex items-center gap-[3px]">
-              <LocationPinIcon color="#64748B" />
-              <span className="text-[9px] text-[#64748B] font-medium leading-none truncate max-w-[74px]">
+              <LocationPinIcon color="#111827" />
+              <span className="text-[10px] text-[#475569] font-medium leading-none truncate max-w-[74px]">
                 {listing.location}
               </span>
             </div>
@@ -174,15 +170,9 @@ function DotMarker({ listing, isActive, onSelect }: { listing: PropertyListing; 
       }}
       aria-label={`${listing.type} marker`}
     >
-      <div
-        className="rounded-full border-2 border-white"
-        style={{
-          width: isActive ? 14 : 10,
-          height: isActive ? 14 : 10,
-          backgroundColor: markerColors[listing.markerType],
-          boxShadow: `0 0 0 3px ${markerColors[listing.markerType]}33`,
-        }}
-      />
+      <div style={{ transform: isActive ? 'scale(1.2)' : 'scale(1)', transition: 'transform 0.2s', filter: 'drop-shadow(0 4px 6px rgba(0,0,0,0.15))' }}>
+        <MapPin color="#2563EB" />
+      </div>
     </button>
   );
 }
@@ -334,7 +324,7 @@ export default function MapSection() {
       {/* ── Fixed overlays ── */}
 
       {/* Top-left: property count */}
-      <div className="absolute top-3 left-3 z-30 pointer-events-none">
+      <div className="absolute top-1.5 left-3 z-30 pointer-events-none">
         <div
           className="flex items-center gap-1.5 px-3 py-1.5 rounded-[10px] bg-white/95"
           style={{ boxShadow: '0 2px 10px rgba(0,0,0,0.10)', border: '1px solid #E5E7EB', backdropFilter: 'blur(6px)' }}
@@ -348,64 +338,64 @@ export default function MapSection() {
       </div>
 
       {/* Top-right: Premium Listings badge */}
-      <div className="absolute top-3 right-3 z-30 pointer-events-none">
+      <div className="absolute top-1.5 right-3 z-30 pointer-events-none">
         <div
-          className="flex flex-col items-center px-3 py-1.5 rounded-[10px]"
+          className="flex flex-col items-start px-3 py-1.5 rounded-[10px] bg-white"
           style={{
-            background: 'linear-gradient(135deg, #0F1626 0%, #1a2540 100%)',
-            border: '1px solid rgba(251,191,36,0.30)',
-            boxShadow: '0 4px 14px rgba(0,0,0,0.22)',
+            border: '1px solid #E5E7EB',
+            boxShadow: '0 4px 14px rgba(0,0,0,0.08)',
           }}
         >
           <div className="flex items-center gap-1.5">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="#FBBF24" stroke="none">
-              <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#111827" stroke="none">
+              <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#FBBF24" />
+              <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12c5.16-1.26 9-6.45 9-12V5l-9-4zm0 2.18l7 3.11v4.71c0 4.67-3.13 8.89-7 9.8c-3.87-.91-7-5.13-7-9.8V6.29l7-3.11z" fill="#111827" />
             </svg>
-            <span className="text-[11px] font-bold text-[#FBBF24]">Premium Listings</span>
+            <span className="text-[12px] font-bold text-[#111827]">Premium Listings</span>
           </div>
-          <span className="text-[9px] text-white/60 leading-none mt-0.5">Top 5 premium listings shown</span>
+          <span className="text-[9px] text-[#475569] font-medium leading-none mt-1 ml-[20px]">Top 5 premium listings shown</span>
         </div>
       </div>
 
       {/* Centre badge: listings count */}
       <div
-        className="absolute z-30 pointer-events-none"
+        className="absolute z-30 pointer-events-none flex flex-col items-center"
         style={{ top: '47%', left: '50%', transform: 'translate(-50%,-50%)' }}
       >
-        <div
-          className="flex flex-col items-center justify-center rounded-full border-[2px] border-white"
-          style={{
-            width: 44,
-            height: 44,
-            backgroundColor: '#1E293B',
-            boxShadow: '0 4px 16px rgba(0,0,0,0.30)',
-          }}
-        >
-          <span className="text-[13px] font-extrabold text-white leading-none">18</span>
-          <span className="text-[7px] text-white/60 leading-none mt-0.5">Listings</span>
+        <div className="relative flex items-center justify-center mb-1">
+          <div className="absolute w-12 h-12 bg-blue-100 rounded-full" />
+          <div
+            className="flex items-center justify-center rounded-full relative z-10"
+            style={{
+              width: 28,
+              height: 28,
+              backgroundColor: '#0B1320',
+              boxShadow: '0 4px 12px rgba(0,0,0,0.20)',
+            }}
+          >
+            <span className="text-[12px] font-extrabold text-white leading-none">18</span>
+          </div>
         </div>
+        <MapPin color="#2563EB" />
+        <span className="text-[9px] font-medium text-[#475569] mt-0.5">Listings</span>
       </div>
 
       {/* Right: floating control buttons */}
       <div
-        className="absolute right-3 z-30 flex flex-col overflow-hidden rounded-[10px] bg-white border border-[#E5E7EB] pointer-events-auto"
-        style={{ bottom: 'clamp(200px, calc(30% + 20px), 280px)', boxShadow: '0 4px 16px rgba(0,0,0,0.10)' }}
+        className="absolute right-3 z-30 flex flex-col gap-2 pointer-events-none"
+        style={{ bottom: 'clamp(250px, calc(35% + 20px), 300px)' }}
       >
         <button
           onClick={resetPan}
-          className="w-[40px] h-[40px] flex items-center justify-center border-b border-[#F3F4F6] hover:bg-gray-50 active:bg-gray-100 transition-colors focus-visible:outline-none"
+          className="w-10 h-10 flex items-center justify-center rounded-full bg-white hover:bg-gray-50 active:bg-gray-100 transition-colors focus-visible:outline-none pointer-events-auto"
+          style={{ boxShadow: '0 4px 16px rgba(0,0,0,0.12)', border: '1px solid #E5E7EB' }}
           aria-label="Locate me"
         >
           <LocateIcon color="#111827" />
         </button>
         <button
-          className="w-[40px] h-[40px] flex items-center justify-center border-b border-[#F3F4F6] hover:bg-gray-50 active:bg-gray-100 transition-colors focus-visible:outline-none"
-          aria-label="Map layers"
-        >
-          <LayersIcon color="#111827" />
-        </button>
-        <button
-          className="w-[40px] h-[40px] flex items-center justify-center hover:bg-gray-50 active:bg-gray-100 transition-colors focus-visible:outline-none"
+          className="w-10 h-10 flex items-center justify-center rounded-[10px] bg-white hover:bg-gray-50 active:bg-gray-100 transition-colors focus-visible:outline-none pointer-events-auto"
+          style={{ boxShadow: '0 4px 16px rgba(0,0,0,0.12)', border: '1px solid #E5E7EB' }}
           aria-label="Navigate"
         >
           <NavIcon color="#111827" />

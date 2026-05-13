@@ -27,10 +27,9 @@ const UserCircleIcon = ({ color = "#FBBF24" }: { color?: string }) => (
 export default function Header() {
   return (
     <header
-      className="flex items-center justify-between px-4 py-3 w-full border-b border-white/5 shadow-sm relative z-50"
+      className="flex items-center justify-between px-4 py-3 w-full border-b border-white/5 shadow-sm relative z-50 bg-transparent"
       style={{
         fontFamily: "'Outfit', sans-serif",
-        backgroundColor: '#070C15',
       }}
     >
       <div className="flex items-center gap-3">

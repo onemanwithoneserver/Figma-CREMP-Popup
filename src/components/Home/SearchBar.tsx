@@ -15,12 +15,13 @@ const FilterIcon = ({ color }: { color: string }) => (
 interface SearchBarProps {
   query: string;
   onChange: (val: string) => void;
+  placeholder?: string;
 }
 
-export default function SearchBar({ query, onChange }: SearchBarProps) {
+export default function SearchBar({ query, onChange, placeholder = "Search franchise brands or areas in Hyderabad" }: SearchBarProps) {
   return (
     <form 
-      className="w-full flex items-center gap-1.5 bg-white px-2 pb-1 pt-1" 
+      className="w-full flex items-center gap-1.5 bg-white px-2 pb-2 pt-0" 
       style={{ fontFamily: "'Outfit', sans-serif" }}
       onSubmit={(e) => e.preventDefault()}
       role="search"
@@ -34,8 +35,8 @@ export default function SearchBar({ query, onChange }: SearchBarProps) {
           type="text"
           value={query}
           onChange={(e) => onChange(e.target.value)}
-          placeholder="Search franchise brands or areas in Hyderabad"
-          aria-label="Search franchise brands or areas in Hyderabad"
+          placeholder={placeholder}
+          aria-label={placeholder}
           className="flex-1 bg-transparent text-[#111827] text-[13px] placeholder-[#9CA3AF] outline-none font-medium leading-tight min-w-0"
         />
       </div>

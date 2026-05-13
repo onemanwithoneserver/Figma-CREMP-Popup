@@ -29,12 +29,12 @@ export default function Home() {
         position: 'relative',
       }}
     >
-      <div className="shrink-0 w-full bg-[#0F1626] border-b border-white/5">
+      <div className="shrink-0 w-full bg-gradient-to-br from-[#0a1128] via-[#121c33] to-[#0a1128] border-b border-white/5">
         <Header />
         <TopTabs activeTab={activeTab} onTabChange={setActiveTab} />
       </div>
 
-      <div className="shrink-0 w-full bg-[#0F1626] z-10 shadow-sm">
+      <div className="shrink-0 w-full bg-gradient-to-br from-[#0a1128] via-[#121c33] to-[#0a1128] z-10 shadow-sm">
         <CategoryTabs activeCategory={activeCategory} onCategoryChange={setActiveCategory} />
           <SearchBar query={searchQuery} onChange={setSearchQuery} />
       </div>

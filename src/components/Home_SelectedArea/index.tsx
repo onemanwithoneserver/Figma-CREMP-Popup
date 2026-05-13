@@ -33,19 +33,13 @@ export default function HomeSelectedArea() {
       }}
     >
       {/* ── Dark header block ─────────────────────────────────────────── */}
-      <div
-        className="shrink-0 w-full border-b border-white/5"
-        style={{ backgroundColor: '#0F1626' }}
-      >
+      <div className="shrink-0 w-full bg-gradient-to-br from-[#0a1128] via-[#121c33] to-[#0a1128] border-b border-white/5">
         <Header />
         <TopTabs activeTab={activeTab} onTabChange={setActiveTab} />
       </div>
 
       {/* ── Category pills + search ──────────────────────────────────── */}
-      <div
-        className="shrink-0 w-full z-10 shadow-sm"
-        style={{ backgroundColor: '#0F1626' }}
-      >
+      <div className="shrink-0 w-full bg-gradient-to-br from-[#0a1128] via-[#121c33] to-[#0a1128] z-10 shadow-sm">
         <CategoryTabs
           activeCategory={activeCategory}
           onCategoryChange={setActiveCategory}
@@ -57,8 +51,6 @@ export default function HomeSelectedArea() {
       {areaActive && (
         <AreaInfoCard
           region={selectedRegion}
-          viewMode={viewMode}
-          onViewModeChange={setViewMode}
           onClear={() => setAreaActive(false)}
         />
       )}
@@ -69,10 +61,10 @@ export default function HomeSelectedArea() {
         style={{ backgroundColor: '#0A0F1A' }}
       >
         {/* Map takes full area */}
-        <SelectedMap />
+        <SelectedMap viewMode={viewMode} onViewModeChange={setViewMode} />
 
         {/* Bottom overlay: PropertyCard + BottomNavbar float above the map */}
-        <div className="absolute bottom-0 left-0 right-0 z-20 pointer-events-none flex flex-col">
+        <div className="shrink-0 w-full bg-transparent absolute bottom-0 left-0 right-0 z-20 pointer-events-none flex flex-col">
           <div className="px-3 pb-3 pointer-events-auto">
             <PropertyCard property={featuredProperty} />
           </div>

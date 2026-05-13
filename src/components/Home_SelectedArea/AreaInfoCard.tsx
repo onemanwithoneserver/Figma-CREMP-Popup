@@ -1,4 +1,4 @@
-import type { SelectedRegion, ViewMode } from './types';
+import type { SelectedRegion } from './types';
 
 // ── Inline SVG icons ──────────────────────────────────────────────────────────
 const LocationIcon = ({ color }: { color: string }) => (
@@ -21,29 +21,13 @@ const CloseIcon = ({ color }: { color: string }) => (
   </svg>
 );
 
-const MapIcon = ({ color }: { color: string }) => (
-  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5">
-    <path strokeLinecap="round" strokeLinejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
-  </svg>
-);
-
-const ListIcon = ({ color }: { color: string }) => (
-  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5">
-    <path strokeLinecap="round" strokeLinejoin="round" d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01" />
-  </svg>
-);
-
 interface AreaInfoCardProps {
   region: SelectedRegion;
-  viewMode: ViewMode;
-  onViewModeChange: (m: ViewMode) => void;
   onClear: () => void;
 }
 
 export default function AreaInfoCard({
   region,
-  viewMode,
-  onViewModeChange,
   onClear,
 }: AreaInfoCardProps) {
   return (
@@ -86,39 +70,11 @@ export default function AreaInfoCard({
         </button>
       </div>
 
-      {/* Map / List toggle row */}
+      {/* Showing results text only */}
       <div className="flex items-center justify-between">
         <span className="text-[11px] text-[#64748B] font-medium">
           Showing results in selected area
         </span>
-
-        <div
-          className="flex items-center p-1 rounded-[12px] bg-white border border-[#E5E7EB]"
-          style={{ boxShadow: '0 2px 8px rgba(0,0,0,0.04)' }}
-          role="group"
-          aria-label="View mode toggle"
-        >
-          <button
-            onClick={() => onViewModeChange('map')}
-            className={`flex items-center gap-1 px-3 h-[28px] text-[11px] font-semibold rounded-[8px] transition-all focus-visible:outline-none ${
-              viewMode === 'map' ? 'bg-[#0B1320] text-white shadow-sm' : 'text-[#6B7280] hover:text-[#111827]'
-            }`}
-            aria-label="Map view"
-          >
-            <MapIcon color={viewMode === 'map' ? '#FFFFFF' : '#6B7280'} />
-            Map
-          </button>
-          <button
-            onClick={() => onViewModeChange('list')}
-            className={`flex items-center gap-1 px-3 h-[28px] text-[11px] font-semibold rounded-[8px] transition-all focus-visible:outline-none ${
-              viewMode === 'list' ? 'bg-[#0B1320] text-white shadow-sm' : 'text-[#6B7280] hover:text-[#111827]'
-            }`}
-            aria-label="List view"
-          >
-            <ListIcon color={viewMode === 'list' ? '#FFFFFF' : '#6B7280'} />
-            List
-          </button>
-        </div>
       </div>
     </div>
   );
