@@ -2,28 +2,30 @@ import { useState, useRef, useCallback } from 'react';
 import type { PropertyListing } from './types';
 import { mapListings, mapLabels } from './data';
 
+// ── Category colour map ──────────────────────────────────────────────────────
+const categoryColors: Record<string, string> = {
+  'Retail Shop':      '#2563EB',
+  'Showroom':         '#7C3AED',
+  'Office Space':     '#6D28D9',
+  'Warehouse':        '#B45309',
+  'Commercial Plot':  '#EA580C',
+};
+
 // ── marker color map ──────────────────────────────────────────────────────────
 const markerColors: Record<PropertyListing['markerType'], string> = {
-  retail:    '#7C3AED',
-  office:    '#2563EB',
-  warehouse: '#059669',
-  showroom:  '#DC2626',
+  retail:    '#2563EB',
+  office:    '#6D28D9',
+  warehouse: '#B45309',
+  showroom:  '#7C3AED',
   plot:      '#EA580C',
   movable:   '#0891B2',
 };
 
-// ── floating card icon ────────────────────────────────────────────────────────
+// ── SVG icons ─────────────────────────────────────────────────────────────────
 const HeartIcon = ({ filled }: { filled: boolean }) => (
-  <svg width="13" height="13" viewBox="0 0 24 24" fill={filled ? '#EF4444' : 'none'} stroke={filled ? '#EF4444' : '#94A3B8'} strokeWidth="2">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill={filled ? '#EF4444' : 'none'} stroke={filled ? '#EF4444' : '#CBD5E1'} strokeWidth="2">
     <path strokeLinecap="round" strokeLinejoin="round"
       d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
-  </svg>
-);
-
-const MapPin = ({ color }: { color: string }) => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="none">
-    <path d="M12 2C8.134 2 5 5.134 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.866-3.134-7-7-7z" fill={color} />
-    <circle cx="12" cy="9" r="3" fill="#FFFFFF" />
   </svg>
 );
 
@@ -42,15 +44,22 @@ const LocateIcon = ({ color }: { color: string }) => (
   </svg>
 );
 
+const NavIcon = ({ color }: { color: string }) => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round">
+    <polygon points="3 11 22 2 13 21 11 13 3 11" />
+  </svg>
+);
+
 const AreaIcon = ({ color }: { color: string }) => (
   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
     <path d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15" />
   </svg>
 );
 
-const NavIcon = ({ color }: { color: string }) => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round">
-    <polygon points="3 11 22 2 13 21 11 13 3 11" />
+const MapPin = ({ color }: { color: string }) => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="none">
+    <path d="M12 2C8.134 2 5 5.134 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.866-3.134-7-7-7z" fill={color} />
+    <circle cx="12" cy="9" r="3" fill="#FFFFFF" />
   </svg>
 );
 
@@ -66,6 +75,11 @@ function FloatingCard({ listing, style, isActive, onSelect }: FloatingCardProps)
   const [imgErr, setImgErr] = useState(false);
   const [saved, setSaved] = useState(false);
 
+  const catColor = categoryColors[listing.type] || '#2563EB';
+
+  // Determine card width based on property type for natural variety
+  const cardWidth = listing.id === '3' ? 162 : listing.id === '2' || listing.id === '5' ? 154 : 148;
+
   return (
     <button
       onPointerDown={(e) => { e.stopPropagation(); onSelect(listing.id); }}
@@ -77,78 +91,137 @@ function FloatingCard({ listing, style, isActive, onSelect }: FloatingCardProps)
       }}
       aria-label={`${listing.type} – ${listing.price}`}
     >
-      {/* marker dot above card */}
       <div className="flex flex-col items-center">
+        {/* ── Card body ── */}
         <div
-          className="flex items-center gap-1.5 bg-white rounded-[12px] overflow-hidden"
           style={{
+            width: cardWidth,
+            borderRadius: 20,
+            overflow: 'hidden',
+            backgroundColor: 'rgba(255,255,255,0.97)',
+            backdropFilter: 'blur(16px)',
+            WebkitBackdropFilter: 'blur(16px)',
             boxShadow: isActive
-              ? `0 8px 24px rgba(0,0,0,0.22), 0 0 0 1.5px ${markerColors[listing.markerType]}`
-              : '0 4px 16px rgba(0,0,0,0.14), 0 0 0 1px rgba(0,0,0,0.06)',
-            minWidth: listing.id === '3' ? 148 : 128,
-            maxWidth: listing.id === '3' ? 148 : 128,
+              ? `0 12px 32px rgba(0,0,0,0.16), 0 0 0 1.5px ${catColor}40`
+              : '0 6px 24px rgba(0,0,0,0.10), 0 0 0 1px rgba(0,0,0,0.04)',
+            border: isActive ? 'none' : '1px solid rgba(0,0,0,0.04)',
+            transition: 'box-shadow 0.3s, transform 0.3s',
           }}
         >
-          {/* image */}
-          <div className="w-[48px] h-[56px] shrink-0 bg-[#F1F5F9] overflow-hidden">
+          {/* ── Thumbnail ── */}
+          <div className="relative" style={{ width: '100%', height: 90, overflow: 'hidden' }}>
             {!imgErr && listing.imageUrl ? (
               <img
                 src={listing.imageUrl}
                 alt={listing.type}
                 onError={() => setImgErr(true)}
-                className="w-full h-full object-cover"
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  display: 'block',
+                }}
               />
             ) : (
-              <div className="w-full h-full flex items-center justify-center bg-[#E2E8F0]">
+              <div className="w-full h-full flex items-center justify-center" style={{ backgroundColor: '#F1F5F9' }}>
                 <AreaIcon color="#94A3B8" />
               </div>
             )}
-          </div>
 
-          {/* info */}
-          <div className="flex flex-col py-1.5 pr-2 pl-1 flex-1 min-w-0 relative">
-            {/* heart */}
+            {/* Heart icon */}
             <button
               onPointerDown={(e) => { e.stopPropagation(); setSaved((s) => !s); }}
-              className="absolute top-1.5 right-1 focus-visible:outline-none active:scale-95 transition-transform"
+              className="absolute focus-visible:outline-none active:scale-90 transition-transform"
+              style={{
+                top: 8,
+                right: 8,
+                width: 26,
+                height: 26,
+                borderRadius: '50%',
+                backgroundColor: 'rgba(255,255,255,0.85)',
+                backdropFilter: 'blur(8px)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                boxShadow: '0 2px 6px rgba(0,0,0,0.12)',
+              }}
               aria-label="Save listing"
             >
               <HeartIcon filled={saved} />
             </button>
+          </div>
 
-            <span className="text-[12.5px] font-extrabold text-[#0F172A] leading-none mt-0.5 pr-4">
+          {/* ── Card info ── */}
+          <div style={{ padding: '10px 12px 12px' }}>
+            {/* Price */}
+            <span
+              style={{
+                display: 'block',
+                fontSize: 15,
+                fontWeight: 800,
+                color: '#111827',
+                lineHeight: 1,
+                letterSpacing: '-0.02em',
+              }}
+            >
               {listing.price}
             </span>
 
+            {/* Category badge */}
             <span
-              className="mt-[3px] text-[9.5px] font-semibold leading-none truncate text-[#2563EB]"
+              style={{
+                display: 'inline-block',
+                marginTop: 6,
+                fontSize: 9.5,
+                fontWeight: 700,
+                color: catColor,
+                backgroundColor: `${catColor}10`,
+                padding: '3px 8px',
+                borderRadius: 6,
+                letterSpacing: '0.02em',
+                lineHeight: 1,
+              }}
             >
               {listing.type}
             </span>
 
-            <div className="mt-[4px] flex items-center">
-              <span className="text-[10px] text-[#475569] font-medium leading-none">
+            {/* Area */}
+            <div style={{ marginTop: 6, display: 'flex', alignItems: 'center', gap: 4 }}>
+              <span style={{ fontSize: 10.5, fontWeight: 600, color: '#475569', lineHeight: 1 }}>
                 {listing.area} {listing.areaUnit}
               </span>
             </div>
 
-            <div className="mt-[3px] flex items-center gap-[3px]">
-              <LocationPinIcon color="#111827" />
-              <span className="text-[10px] text-[#475569] font-medium leading-none truncate max-w-[74px]">
+            {/* Location row */}
+            <div style={{ marginTop: 5, display: 'flex', alignItems: 'center', gap: 3 }}>
+              <LocationPinIcon color="#94A3B8" />
+              <span
+                style={{
+                  fontSize: 10,
+                  fontWeight: 500,
+                  color: '#64748B',
+                  lineHeight: 1,
+                  maxWidth: cardWidth - 40,
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                  whiteSpace: 'nowrap',
+                }}
+              >
                 {listing.location}
               </span>
             </div>
           </div>
         </div>
 
-        {/* pin tail */}
+        {/* ── Pin tail ── */}
         <div
-          className="w-0 h-0"
           style={{
-            borderLeft: '5px solid transparent',
-            borderRight: '5px solid transparent',
-            borderTop: `6px solid white`,
-            filter: 'drop-shadow(0 2px 2px rgba(0,0,0,0.12))',
+            width: 0,
+            height: 0,
+            borderLeft: '6px solid transparent',
+            borderRight: '6px solid transparent',
+            borderTop: '7px solid rgba(255,255,255,0.97)',
+            filter: 'drop-shadow(0 2px 3px rgba(0,0,0,0.10))',
           }}
         />
       </div>
@@ -156,7 +229,7 @@ function FloatingCard({ listing, style, isActive, onSelect }: FloatingCardProps)
   );
 }
 
-// ── Map dot marker (no card) ──────────────────────────────────────────────────
+// ── Map dot marker ────────────────────────────────────────────────────────────
 function DotMarker({ listing, isActive, onSelect }: { listing: PropertyListing; isActive: boolean; onSelect: (id: string) => void }) {
   return (
     <button
@@ -171,27 +244,25 @@ function DotMarker({ listing, isActive, onSelect }: { listing: PropertyListing; 
       aria-label={`${listing.type} marker`}
     >
       <div style={{ transform: isActive ? 'scale(1.2)' : 'scale(1)', transition: 'transform 0.2s', filter: 'drop-shadow(0 4px 6px rgba(0,0,0,0.15))' }}>
-        <MapPin color="#2563EB" />
+        <MapPin color={markerColors[listing.markerType]} />
       </div>
     </button>
   );
 }
 
-// ── Card layout config per listing ───────────────────────────────────────────
+// ── Card layout config ───────────────────────────────────────────────────────
 function cardStyle(listing: PropertyListing): React.CSSProperties {
-  // Place the card slightly offset from the dot with a caret pointing down
-  // Using absolute positioning inside the pan-able map canvas (200%×200% layer)
   return {
     top: `${listing.lat}%`,
     left: `${listing.lng}%`,
-    transform: 'translate(-50%, -100%) translateY(-8px)',
+    transform: 'translate(-50%, -100%) translateY(-10px)',
   };
 }
 
 // ── Main MapSection ───────────────────────────────────────────────────────────
 export default function MapSection() {
   const [pan, setPan] = useState({ x: 0, y: 0 });
-  const [activeId, setActiveId] = useState<string | null>('3'); // big office card selected by default
+  const [activeId, setActiveId] = useState<string | null>('3');
   const dragRef = useRef<{ active: boolean; sx: number; sy: number; lx: number; ly: number }>({
     active: false, sx: 0, sy: 0, lx: 0, ly: 0,
   });
@@ -213,7 +284,12 @@ export default function MapSection() {
   return (
     <div
       className="relative flex-1 w-full overflow-hidden cursor-grab active:cursor-grabbing select-none"
-      style={{ backgroundColor: '#EBF0F5', minHeight: 0, touchAction: 'none', fontFamily: "'Outfit', sans-serif" }}
+      style={{
+        backgroundColor: '#EEF1F6',
+        minHeight: 0,
+        touchAction: 'none',
+        fontFamily: "'Outfit', sans-serif",
+      }}
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}
       onPointerUp={onPointerUp}
@@ -257,8 +333,16 @@ export default function MapSection() {
         {mapLabels.map((lbl) => (
           <span
             key={lbl.label}
-            className="absolute text-[7.5px] font-bold tracking-[0.12em] text-[#94A3B8] select-none pointer-events-none uppercase"
-            style={{ top: `${lbl.top}%`, left: `${lbl.left}%`, transform: 'translate(-50%,-50%)' }}
+            className="absolute select-none pointer-events-none uppercase"
+            style={{
+              top: `${lbl.top}%`,
+              left: `${lbl.left}%`,
+              transform: 'translate(-50%,-50%)',
+              fontSize: 7.5,
+              fontWeight: 700,
+              letterSpacing: '0.14em',
+              color: '#94A3B8',
+            }}
             aria-hidden="true"
           >
             {lbl.label}
@@ -269,11 +353,20 @@ export default function MapSection() {
         {[{ top: '47%', left: '77%', n: '44' }, { top: '68%', left: '8%', n: '65' }].map((b) => (
           <div
             key={b.n}
-            className="absolute flex items-center justify-center rounded border border-[#CBD5E1] bg-white/90 shadow-sm pointer-events-none"
-            style={{ top: b.top, left: b.left, width: 22, height: 22 }}
+            className="absolute flex items-center justify-center pointer-events-none"
+            style={{
+              top: b.top,
+              left: b.left,
+              width: 24,
+              height: 24,
+              borderRadius: 6,
+              border: '1px solid #CBD5E1',
+              backgroundColor: 'rgba(255,255,255,0.92)',
+              boxShadow: '0 1px 4px rgba(0,0,0,0.06)',
+            }}
             aria-hidden="true"
           >
-            <span className="text-[9px] font-bold text-[#64748B]">{b.n}</span>
+            <span style={{ fontSize: 9, fontWeight: 700, color: '#64748B' }}>{b.n}</span>
           </div>
         ))}
 
@@ -281,8 +374,16 @@ export default function MapSection() {
         {[{ top: '12%', left: '8%', r: '-52deg' }, { top: '16%', left: '48%', r: '18deg' }].map((s, i) => (
           <span
             key={i}
-            className="absolute text-[7.5px] font-bold tracking-[0.12em] text-[#94A3B8] select-none pointer-events-none"
-            style={{ top: s.top, left: s.left, transform: `rotate(${s.r})` }}
+            className="absolute select-none pointer-events-none"
+            style={{
+              top: s.top,
+              left: s.left,
+              transform: `rotate(${s.r})`,
+              fontSize: 7.5,
+              fontWeight: 700,
+              letterSpacing: '0.12em',
+              color: '#94A3B8',
+            }}
             aria-hidden="true"
           >
             ORR
@@ -296,10 +397,23 @@ export default function MapSection() {
           aria-label="Current location"
         >
           <div className="relative flex items-center justify-center">
-            <div className="absolute rounded-full" style={{ width: 72, height: 72, backgroundColor: 'rgba(37,99,235,0.10)' }} />
             <div
-              className="relative rounded-full border-[2.5px] border-white"
-              style={{ width: 16, height: 16, backgroundColor: '#2563EB', boxShadow: '0 2px 8px rgba(0,0,0,0.18)' }}
+              className="absolute rounded-full"
+              style={{
+                width: 72,
+                height: 72,
+                backgroundColor: 'rgba(37,99,235,0.08)',
+              }}
+            />
+            <div
+              className="relative rounded-full"
+              style={{
+                width: 16,
+                height: 16,
+                backgroundColor: '#2563EB',
+                border: '2.5px solid #FFFFFF',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.18)',
+              }}
             />
           </div>
         </div>
@@ -324,12 +438,23 @@ export default function MapSection() {
       {/* ── Fixed overlays ── */}
 
       {/* Top-left: property count */}
-      <div className="absolute top-1.5 left-3 z-30 pointer-events-none">
+      <div className="absolute top-3 left-5 z-30 pointer-events-none">
         <div
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-[10px] bg-white/95"
-          style={{ boxShadow: '0 2px 10px rgba(0,0,0,0.10)', border: '1px solid #E5E7EB', backdropFilter: 'blur(6px)' }}
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: 6,
+            padding: '7px 14px',
+            borderRadius: 12,
+            backgroundColor: 'rgba(255,255,255,0.95)',
+            backdropFilter: 'blur(10px)',
+            boxShadow: '0 2px 12px rgba(0,0,0,0.08)',
+            border: '1px solid rgba(0,0,0,0.05)',
+          }}
         >
-          <span className="text-[12px] font-bold text-[#111827]">124 Properties</span>
+          <span style={{ fontSize: 12.5, fontWeight: 700, color: '#111827', lineHeight: 1 }}>
+            124 Properties
+          </span>
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" strokeWidth="1.8">
             <circle cx="12" cy="12" r="10" />
             <path strokeLinecap="round" strokeLinejoin="round" d="M12 16v-4M12 8h.01" />
@@ -338,64 +463,70 @@ export default function MapSection() {
       </div>
 
       {/* Top-right: Premium Listings badge */}
-      <div className="absolute top-1.5 right-3 z-30 pointer-events-none">
+      <div className="absolute top-3 right-5 z-30 pointer-events-none">
         <div
-          className="flex flex-col items-start px-3 py-1.5 rounded-[10px] bg-white"
           style={{
-            border: '1px solid #E5E7EB',
-            boxShadow: '0 4px 14px rgba(0,0,0,0.08)',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'flex-start',
+            padding: '8px 14px',
+            borderRadius: 14,
+            backgroundColor: 'rgba(255,255,255,0.97)',
+            backdropFilter: 'blur(12px)',
+            border: '1px solid rgba(0,0,0,0.05)',
+            boxShadow: '0 4px 16px rgba(0,0,0,0.07)',
           }}
         >
-          <div className="flex items-center gap-1.5">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="#111827" stroke="none">
-              <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#FBBF24" />
-              <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12c5.16-1.26 9-6.45 9-12V5l-9-4zm0 2.18l7 3.11v4.71c0 4.67-3.13 8.89-7 9.8c-3.87-.91-7-5.13-7-9.8V6.29l7-3.11z" fill="#111827" />
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+            {/* Shield icon */}
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="none">
+              <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12c5.16-1.26 9-6.45 9-12V5l-9-4z" fill="#0B1320" />
+              <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#FBBF24" transform="scale(0.5) translate(12, 10)" />
             </svg>
-            <span className="text-[12px] font-bold text-[#111827]">Premium Listings</span>
+            <span style={{ fontSize: 12, fontWeight: 700, color: '#111827', lineHeight: 1 }}>
+              Premium Listings
+            </span>
           </div>
-          <span className="text-[9px] text-[#475569] font-medium leading-none mt-1 ml-[20px]">Top 5 premium listings shown</span>
+          <span style={{ fontSize: 9, fontWeight: 500, color: '#64748B', lineHeight: 1, marginTop: 4, marginLeft: 22 }}>
+            Top 5 premium listings shown
+          </span>
         </div>
       </div>
 
-      {/* Centre badge: listings count */}
-      <div
-        className="absolute z-30 pointer-events-none flex flex-col items-center"
-        style={{ top: '47%', left: '50%', transform: 'translate(-50%,-50%)' }}
-      >
-        <div className="relative flex items-center justify-center mb-1">
-          <div className="absolute w-12 h-12 bg-blue-100 rounded-full" />
-          <div
-            className="flex items-center justify-center rounded-full relative z-10"
-            style={{
-              width: 28,
-              height: 28,
-              backgroundColor: '#0B1320',
-              boxShadow: '0 4px 12px rgba(0,0,0,0.20)',
-            }}
-          >
-            <span className="text-[12px] font-extrabold text-white leading-none">18</span>
-          </div>
-        </div>
-        <MapPin color="#2563EB" />
-        <span className="text-[9px] font-medium text-[#475569] mt-0.5">Listings</span>
-      </div>
+
 
       {/* Right: floating control buttons */}
       <div
-        className="absolute right-3 z-30 flex flex-col gap-2 pointer-events-none"
-        style={{ bottom: 'clamp(250px, calc(35% + 20px), 300px)' }}
+        className="absolute right-5 z-30 flex flex-col gap-2.5 pointer-events-none"
+        style={{ bottom: 'clamp(24px, calc(35% + 20px), 300px)' }}
       >
         <button
           onClick={resetPan}
-          className="w-10 h-10 flex items-center justify-center rounded-full bg-white hover:bg-gray-50 active:bg-gray-100 transition-colors focus-visible:outline-none pointer-events-auto"
-          style={{ boxShadow: '0 4px 16px rgba(0,0,0,0.12)', border: '1px solid #E5E7EB' }}
+          className="flex items-center justify-center focus-visible:outline-none pointer-events-auto active:scale-95 transition-all"
+          style={{
+            width: 44,
+            height: 44,
+            borderRadius: '50%',
+            backgroundColor: 'rgba(255,255,255,0.97)',
+            backdropFilter: 'blur(10px)',
+            boxShadow: '0 4px 16px rgba(0,0,0,0.10)',
+            border: '1px solid rgba(0,0,0,0.05)',
+          }}
           aria-label="Locate me"
         >
           <LocateIcon color="#111827" />
         </button>
         <button
-          className="w-10 h-10 flex items-center justify-center rounded-[10px] bg-white hover:bg-gray-50 active:bg-gray-100 transition-colors focus-visible:outline-none pointer-events-auto"
-          style={{ boxShadow: '0 4px 16px rgba(0,0,0,0.12)', border: '1px solid #E5E7EB' }}
+          className="flex items-center justify-center focus-visible:outline-none pointer-events-auto active:scale-95 transition-all"
+          style={{
+            width: 44,
+            height: 44,
+            borderRadius: 14,
+            backgroundColor: 'rgba(255,255,255,0.97)',
+            backdropFilter: 'blur(10px)',
+            boxShadow: '0 4px 16px rgba(0,0,0,0.10)',
+            border: '1px solid rgba(0,0,0,0.05)',
+          }}
           aria-label="Navigate"
         >
           <NavIcon color="#111827" />

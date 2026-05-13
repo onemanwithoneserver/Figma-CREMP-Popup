@@ -40,11 +40,46 @@ const GridIcon = ({ color }: { color: string }) => (
   </svg>
 );
 
-const tabs: { id: PropertyCategory; label: string; Icon: React.FC<{ color: string }>; activeBg: string; activeBorder: string; activeText: string; activeIcon: string; inactiveText: string }[] = [
-  { id: 'vacant', label: 'Vacant', Icon: VacantIcon, activeBg: 'bg-[#FEF3C7]', activeBorder: 'border-[#FDE68A]', activeText: 'text-[#111827]', activeIcon: '#D97706', inactiveText: 'text-[#111827]' },
-  { id: 'fractional', label: 'Fractional', Icon: FractionalIcon, activeBg: 'bg-[#F3E8FF]', activeBorder: 'border-[#D8B4FE]', activeText: 'text-[#111827]', activeIcon: '#7C3AED', inactiveText: 'text-[#111827]' },
-  { id: 'preleased', label: 'Pre-Leased', Icon: PreLeasedIcon, activeBg: 'bg-[#DCFCE7]', activeBorder: 'border-[#86EFAC]', activeText: 'text-[#059669]', activeIcon: '#059669', inactiveText: 'text-[#059669]' },
-  { id: 'all', label: 'All', Icon: GridIcon, activeBg: 'bg-[#F1F5F9]', activeBorder: 'border-[#CBD5E1]', activeText: 'text-[#475569]', activeIcon: '#475569', inactiveText: 'text-[#475569]' },
+const tabs: {
+  id: PropertyCategory;
+  label: string;
+  Icon: React.FC<{ color: string }>;
+  activeAccent: string;
+  activeBg: string;
+  activeBorder: string;
+}[] = [
+  {
+    id: 'vacant',
+    label: 'Vacant',
+    Icon: VacantIcon,
+    activeAccent: '#D97706',
+    activeBg: 'rgba(251,191,36,0.12)',
+    activeBorder: 'rgba(251,191,36,0.35)',
+  },
+  {
+    id: 'fractional',
+    label: 'Fractional',
+    Icon: FractionalIcon,
+    activeAccent: '#7C3AED',
+    activeBg: 'rgba(124,58,237,0.08)',
+    activeBorder: 'rgba(124,58,237,0.25)',
+  },
+  {
+    id: 'preleased',
+    label: 'Pre-Leased',
+    Icon: PreLeasedIcon,
+    activeAccent: '#059669',
+    activeBg: 'rgba(5,150,105,0.08)',
+    activeBorder: 'rgba(5,150,105,0.25)',
+  },
+  {
+    id: 'all',
+    label: 'All',
+    Icon: GridIcon,
+    activeAccent: '#475569',
+    activeBg: 'rgba(71,85,105,0.06)',
+    activeBorder: 'rgba(71,85,105,0.18)',
+  },
 ];
 
 interface Props {
@@ -55,39 +90,47 @@ interface Props {
 export default function PropertyCategoryTabs({ active, onChange }: Props) {
   return (
     <div
-      className="flex items-center gap-2 px-3 pt-2 pb-1 w-full overflow-x-auto no-scrollbar shrink-0 bg-white"
+      className="px-4 pt-3 pb-1.5 w-full shrink-0"
       style={{ fontFamily: "'Outfit', sans-serif" }}
-      role="tablist"
-      aria-label="Property category"
     >
-      {tabs.map(({ id, label, Icon, activeBg, activeBorder, activeText, activeIcon, inactiveText }) => {
-        const isActive = active === id;
+      <div
+        className="flex items-center w-full"
+        style={{
+          borderRadius: 10,
+          border: '1px solid rgba(0,0,0,0.07)',
+          backgroundColor: '#FFFFFF',
+          boxShadow: '0 1px 4px rgba(0,0,0,0.04)',
+          overflow: 'hidden',
+        }}
+        role="tablist"
+        aria-label="Property category"
+      >
+        {tabs.map(({ id, label, Icon, activeAccent, activeBg, activeBorder }, index) => {
+          const isActive = active === id;
+          const iconColor = isActive ? activeAccent : '#94A3B8';
 
-        // When active, use its specific active styling.
-        // When inactive, use white background, gray border, and specific inactive text/icon colors.
-        const iconColor = isActive ? activeIcon : (id === 'vacant' ? '#D97706' : (id === 'fractional' ? '#7C3AED' : (id === 'preleased' ? '#059669' : '#475569')));
-        const textColor = isActive ? activeText : inactiveText;
-        const bgClass = isActive ? activeBg : 'bg-white';
-        const borderClass = isActive ? activeBorder : 'border-[#E5E7EB]';
-
-        return (
-          <button
-            key={id}
-            role="tab"
-            aria-selected={isActive}
-            onClick={() => onChange(id)}
-            className={`
-              flex items-center gap-1.5 px-3.5 h-[34px] rounded-[8px] shrink-0 border transition-all duration-200
-              active:scale-95 focus-visible:outline-none text-[12px] font-semibold whitespace-nowrap
-              ${bgClass} ${borderClass} ${textColor}
-              ${isActive ? 'shadow-sm' : 'hover:bg-gray-50'}
-            `}
-          >
-            <Icon color={iconColor} />
-            {label}
-          </button>
-        );
-      })}
+          return (
+            <button
+              key={id}
+              role="tab"
+              aria-selected={isActive}
+              onClick={() => onChange(id)}
+              className="flex-1 flex items-center justify-center gap-1.5 transition-all duration-200 active:scale-[0.97] focus-visible:outline-none text-[11px] font-semibold whitespace-nowrap"
+              style={{
+                height: 36,
+                backgroundColor: isActive ? activeBg : 'transparent',
+                color: isActive ? '#1E293B' : '#64748B',
+                borderRight: index < tabs.length - 1 ? '1px solid rgba(0,0,0,0.06)' : 'none',
+                borderBottom: isActive ? `2px solid ${activeAccent}` : '2px solid transparent',
+                position: 'relative',
+              }}
+            >
+              <Icon color={iconColor} />
+              {label}
+            </button>
+          );
+        })}
+      </div>
     </div>
   );
 }

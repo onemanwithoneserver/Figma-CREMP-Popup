@@ -9,8 +9,7 @@ import type { MainTab } from '../Home/types';
 import PropertyCategoryTabs from './PropertyCategoryTabs';
 import MapSection           from './MapSection';
 import type { PropertyCategory } from './types';
-import PropertyCard         from '../Home/PropertyCard';
-import { featuredProperty } from '../Home/data';
+
 
 export default function HomeMapView() {
   const [activeTab,      setActiveTab]      = useState<MainTab>('buy');
@@ -31,18 +30,26 @@ export default function HomeMapView() {
       }}
     >
       {/* ── Dark header block ──────────────────────────────────────────────── */}
-      <div className="shrink-0 w-full bg-gradient-to-br from-[#0a1128] via-[#121c33] to-[#0a1128] border-b border-white/5">
+      <div className="shrink-0 w-full bg-gradient-to-br from-[#0a1128] via-[#121c33] to-[#0a1128] pb-5">
         <Header />
         <TopTabs activeTab={activeTab} onTabChange={setActiveTab} />
       </div>
 
-      {/* ── Category pills + search ─────────────────────────────────────────── */}
-      <div className="shrink-0 w-full bg-white z-10 shadow-sm rounded-t-[20px] -mt-4 pt-3 relative">
+      {/* ── Category pills + search (warm white panel) ─────────────────────── */}
+      <div
+        className="shrink-0 w-full z-10 relative"
+        style={{
+          backgroundColor: '#F9FAFB',
+          borderRadius: '16px 16px 0 0',
+          marginTop: -20,
+          boxShadow: '0 -4px 20px rgba(0,0,0,0.06)',
+        }}
+      >
         <PropertyCategoryTabs active={activeCategory} onChange={setActiveCategory} />
-        <SearchBar 
-          query={searchQuery} 
-          onChange={setSearchQuery} 
-          placeholder="Search shops, offices, warehouses..."
+        <SearchBar
+          query={searchQuery}
+          onChange={setSearchQuery}
+          placeholder="Search shops, offices, warehouses…"
         />
       </div>
 
@@ -53,9 +60,6 @@ export default function HomeMapView() {
 
       {/* ── Bottom navigation ───────────────────────────────────────────────── */}
       <div className="shrink-0 w-full bg-transparent absolute bottom-0 left-0 right-0 z-20 pointer-events-none flex flex-col">
-        <div className="px-3 pb-3 pointer-events-auto">
-          <PropertyCard property={featuredProperty} />
-        </div>
         <div className="pointer-events-auto">
           <BottomNavbar activeNav={activeNav} onNavChange={setActiveNav} />
         </div>
