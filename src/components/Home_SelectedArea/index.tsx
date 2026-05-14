@@ -1,64 +1,38 @@
 import { useState } from 'react';
-// ── Shared components from Home (identical styling) ──────────────────────────
-import Header       from '../Home/Header';
-import TopTabs      from '../Home/TopTabs';
-import CategoryTabs from '../Home/CategoryTabs';
-import SearchBar    from '../Home/SearchBar';
+import Header from '../Home/Header';
+import TopTabs from '../Home/TopTabs';
+import SearchBar from '../Home/SearchBar';
 import PropertyCard from '../Home/PropertyCard';
 import BottomNavbar from '../Home/BottomNavbar';
-// ── Selected-area specific components ───────────────────────────────────────
-
-import SelectedMap  from './SelectedMap';
-// ── Data & types ─────────────────────────────────────────────────────────────
+import SelectedMap from './SelectedMap';
 import { featuredProperty } from './data';
-import type { MainTab, CategoryType, ViewMode } from './types';
+import type { MainTab, ViewMode } from './types';
 
 export default function HomeSelectedArea() {
-  const [activeTab,      setActiveTab]      = useState<MainTab>('business');
-  const [activeCategory, setActiveCategory] = useState<CategoryType>('franchise');
-  const [searchQuery,    setSearchQuery]    = useState('');
-  const [viewMode,       setViewMode]       = useState<ViewMode>('map');
-  const [activeNav,      setActiveNav]      = useState('saved');
-
+  const [activeTab, setActiveTab] = useState<MainTab>('business');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [viewMode, setViewMode] = useState<ViewMode>('map');
+  const [activeNav, setActiveNav] = useState('saved');
 
   return (
-    <div
-      className="flex flex-col w-full overflow-hidden font-['Outfit']"
-      style={{
-        maxWidth: 430,
-        margin: '0 auto',
-        height: '100%',
-        backgroundColor: '#0a1128',
-        position: 'relative',
-      }}
-    >
-      {/* ── Dark header block ─────────────────────────────────────────── */}
-      <div className="shrink-0 w-full bg-[#0a1128] z-20 relative">
+    <div className="relative flex flex-col w-full h-full max-w-[430px] mx-auto overflow-hidden bg-[#0a1128] font-['Outfit']">
+      
+      <div className="relative z-20 shrink-0 w-full bg-[#0a1128]">
         <Header />
         <TopTabs activeTab={activeTab} onTabChange={setActiveTab} />
       </div>
 
-      {/* ── Category cards + search bar ──────────────────────────────────── */}
-      <div className="shrink-0 w-full bg-[#F8FAFC] z-10 shadow-[0_4px_16px_rgba(0,0,0,0.06)] relative">
-        <CategoryTabs
-          activeCategory={activeCategory}
-          onCategoryChange={setActiveCategory}
-        />
-        <SearchBar query={searchQuery} onChange={setSearchQuery} />
-      </div>
+      <div className="relative z-0 flex-1 overflow-hidden bg-[#E8EEF4]">
+        
+        <div className="absolute inset-0 flex flex-col">
+          <SelectedMap viewMode={viewMode} onViewModeChange={setViewMode} />
+        </div>
 
+        <div className="absolute top-0 left-0 right-0 z-20 px-3 pt-4">
+          <SearchBar query={searchQuery} onChange={setSearchQuery} />
+        </div>
 
-
-      {/* ── Map + absolute bottom overlay ─────────────────────────────── */}
-      <div
-        className="flex-1 flex flex-col overflow-hidden relative z-0"
-        style={{ backgroundColor: '#0a1128' }}
-      >
-        {/* Map takes full area */}
-        <SelectedMap viewMode={viewMode} onViewModeChange={setViewMode} />
-
-        {/* Bottom overlay: PropertyCard + BottomNavbar float above the map */}
-        <div className="shrink-0 w-full bg-transparent absolute bottom-0 left-0 right-0 z-20 pointer-events-none flex flex-col">
+        <div className="absolute bottom-0 left-0 right-0 z-20 flex flex-col pointer-events-none">
           <div className="px-3 pb-3 pointer-events-auto">
             <PropertyCard property={featuredProperty} />
           </div>
@@ -66,6 +40,7 @@ export default function HomeSelectedArea() {
             <BottomNavbar activeNav={activeNav} onNavChange={setActiveNav} />
           </div>
         </div>
+
       </div>
     </div>
   );

@@ -35,25 +35,32 @@ export default function HomeMapView() {
         <TopTabs activeTab={activeTab} onTabChange={setActiveTab} />
       </div>
 
-      {/* ── Category cards + search bar ─────────────────────────────────────── */}
-      <div className="shrink-0 w-full bg-[#F8FAFC] z-10 shadow-[0_4px_16px_rgba(0,0,0,0.06)] relative">
-        <PropertyCategoryTabs active={activeCategory} onChange={setActiveCategory} />
-        <SearchBar
-          query={searchQuery}
-          onChange={setSearchQuery}
-          placeholder="Search shops, offices, warehouses…"
-        />
-      </div>
+      {/* ── Map fills remaining space; search floats at the top ─────────── */}
+      <div className="flex-1 relative overflow-hidden z-0" style={{ backgroundColor: '#E8EEF4', minHeight: 0 }}>
+        {/* Full-height map canvas */}
+        <div className="absolute inset-0 flex flex-col">
+          <MapSection />
+        </div>
 
-      {/* ── Map area (flex-1 fills remaining height) ─────────────────────── */}
-      <div className="flex-1 flex flex-col overflow-hidden relative z-0" style={{ minHeight: 0 }}>
-        <MapSection />
-      </div>
+        {/* Filter + search floating at top of map */}
+        <div className="absolute top-0 left-0 right-0 z-20">
+          <PropertyCategoryTabs active={activeCategory} onChange={setActiveCategory} />
+          <div className="px-3 pb-2.5">
+            <div>
+              <SearchBar
+                query={searchQuery}
+                onChange={setSearchQuery}
+                placeholder="Search shops, offices, warehouses…"
+              />
+            </div>
+          </div>
+        </div>
 
-      {/* ── Bottom navigation ───────────────────────────────────────────────── */}
-      <div className="shrink-0 w-full bg-transparent absolute bottom-0 left-0 right-0 z-20 pointer-events-none flex flex-col">
-        <div className="pointer-events-auto">
-          <BottomNavbar activeNav={activeNav} onNavChange={setActiveNav} />
+        {/* Bottom navigation floating above the map */}
+        <div className="absolute bottom-0 left-0 right-0 z-20 pointer-events-none flex flex-col">
+          <div className="pointer-events-auto">
+            <BottomNavbar activeNav={activeNav} onNavChange={setActiveNav} />
+          </div>
         </div>
       </div>
     </div>

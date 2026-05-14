@@ -42,10 +42,14 @@ export default function Home() {
           />
         </div>
 
-        {/* Search + category tabs floating at top of map */}
-        <div className="absolute top-0 left-0 right-0 z-20 bg-[#F8FAFC] shadow-[0_4px_16px_rgba(0,0,0,0.08)]">
+        {/* Filter + search floating at top of map */}
+        <div className="absolute top-0 left-0 right-0 z-20">
           <CategoryTabs activeCategory={activeCategory} onCategoryChange={setActiveCategory} />
-          <SearchBar query={searchQuery} onChange={setSearchQuery} />
+          <div className="px-3 pb-2.5">
+            <div>
+              <SearchBar query={searchQuery} onChange={setSearchQuery} />
+            </div>
+          </div>
         </div>
       </div>
 
