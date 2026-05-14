@@ -18,7 +18,7 @@ interface SearchBarProps {
 
 export default function SearchBar({ query, onChange, placeholder = "Search franchise brands or areas in Hyderabad" }: SearchBarProps) {
   return (
-    <div className="w-full px-1.5 pb-1 pt-1" style={{ fontFamily: "'Outfit', sans-serif" }}>
+    <div className="w-full px-1.5 pb-1 " style={{ fontFamily: "'Outfit', sans-serif" }}>
       <form 
         className="flex items-center w-full bg-white border border-[#E2E8F0] rounded-[12px] h-[40px] pl-3 pr-1.5 transition-all focus-within:border-[#94A3B8] focus-within:shadow-sm"
         style={{ boxShadow: '0 2px 8px rgba(0,0,0,0.03)' }}

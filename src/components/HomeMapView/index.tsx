@@ -24,27 +24,19 @@ export default function HomeMapView() {
         maxWidth: 430,
         margin: '0 auto',
         height: '100%',
-        backgroundColor: '#0A0F1A',
+        backgroundColor: '#0B1320',
         fontFamily: "'Outfit', sans-serif",
         position: 'relative',
       }}
     >
       {/* ── Dark header block ──────────────────────────────────────────────── */}
-      <div className="shrink-0 w-full bg-gradient-to-br from-[#0a1128] via-[#121c33] to-[#0a1128] pb-5">
+      <div className="shrink-0 w-full bg-[#0B1320] z-20 relative">
         <Header />
         <TopTabs activeTab={activeTab} onTabChange={setActiveTab} />
       </div>
 
-      {/* ── Category pills + search (warm white panel) ─────────────────────── */}
-      <div
-        className="shrink-0 w-full z-10 relative"
-        style={{
-          backgroundColor: '#F9FAFB',
-          borderRadius: '16px 16px 0 0',
-          marginTop: -20,
-          boxShadow: '0 -4px 20px rgba(0,0,0,0.06)',
-        }}
-      >
+      {/* ── Category cards + search bar ─────────────────────────────────────── */}
+      <div className="shrink-0 w-full bg-[#F8FAFC] z-10 shadow-[0_4px_16px_rgba(0,0,0,0.06)] relative">
         <PropertyCategoryTabs active={activeCategory} onChange={setActiveCategory} />
         <SearchBar
           query={searchQuery}

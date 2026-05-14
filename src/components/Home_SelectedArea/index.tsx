@@ -28,18 +28,18 @@ export default function HomeSelectedArea() {
         maxWidth: 430,
         margin: '0 auto',
         height: '100%',
-        backgroundColor: '#0A0F1A',
+        backgroundColor: '#0B1320',
         position: 'relative',
       }}
     >
       {/* ── Dark header block ─────────────────────────────────────────── */}
-      <div className="shrink-0 w-full bg-gradient-to-br from-[#0a1128] via-[#121c33] to-[#0a1128] border-b border-white/5">
+      <div className="shrink-0 w-full bg-[#0B1320] z-20 relative">
         <Header />
         <TopTabs activeTab={activeTab} onTabChange={setActiveTab} />
       </div>
 
-      {/* ── Category pills + search ──────────────────────────────────── */}
-      <div className="shrink-0 w-full bg-gradient-to-br from-[#0a1128] via-[#121c33] to-[#0a1128] z-10 shadow-sm">
+      {/* ── Category cards + search bar ──────────────────────────────────── */}
+      <div className="shrink-0 w-full bg-[#F8FAFC] z-10 shadow-[0_4px_16px_rgba(0,0,0,0.06)] relative">
         <CategoryTabs
           activeCategory={activeCategory}
           onCategoryChange={setActiveCategory}
