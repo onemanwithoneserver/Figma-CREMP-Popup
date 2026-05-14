@@ -1,4 +1,5 @@
 import React, { useMemo, memo } from 'react';
+import cremeLogo from './Logo.png';
 
 const THEME = {
   amber: '#d4af37',
@@ -84,15 +85,106 @@ const NAV_ITEMS: NavItem[] = [
   { id: 'post',       label: 'Post Req.',   Icon: PostReqIcon },
 ];
 
+// ── CREMP logo button (always first in the footer) ─────────────────────────
+const CREMPLogoButton = memo(({ active, onClick }: { active: boolean; onClick: () => void }) => (
+  <button
+    onClick={onClick}
+    aria-label="CREMP Home"
+    aria-current={active ? 'page' : undefined}
+    style={{
+      flex: 1,
+      minWidth: 0,
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'flex-start',
+      gap: 4,
+      padding: '8px 4px 12px',
+      background: 'transparent',
+      border: 'none',
+      cursor: 'pointer',
+      outline: 'none',
+      WebkitTapHighlightColor: 'transparent',
+      position: 'relative',
+      transition: 'transform 100ms ease',
+    }}
+    onMouseDown={(e) => { (e.currentTarget as HTMLButtonElement).style.transform = 'scale(0.96)'; }}
+    onMouseUp={(e) => { (e.currentTarget as HTMLButtonElement).style.transform = 'scale(1)'; }}
+    onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.transform = 'scale(1)'; }}
+    onTouchStart={(e) => { (e.currentTarget as HTMLButtonElement).style.transform = 'scale(0.96)'; }}
+    onTouchEnd={(e) => { (e.currentTarget as HTMLButtonElement).style.transform = 'scale(1)'; }}
+  >
+    <span
+      aria-hidden="true"
+      style={{
+        position: 'absolute',
+        top: 7,
+        left: '50%',
+        transform: 'translateX(-50%)',
+        width: active ? 46 : 0,
+        height: 32,
+        borderRadius: 10,
+        background: THEME.amberBg,
+        opacity: active ? 1 : 0,
+        transition: 'width 300ms cubic-bezier(0.34,1.56,0.64,1), opacity 200ms ease',
+        pointerEvents: 'none',
+      }}
+    />
+    <span
+      style={{
+        position: 'relative',
+        zIndex: 1,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: 26,
+        height: 26,
+        flexShrink: 0,
+        transform: active ? 'scale(1.1)' : 'scale(1)',
+        transition: 'transform 280ms cubic-bezier(0.34,1.56,0.64,1)',
+      }}
+    >
+      <img
+        src={cremeLogo}
+        alt="CREMP"
+        style={{
+          width: 26,
+          height: 26,
+          objectFit: 'contain',
+          filter: active ? 'none' : 'brightness(0.45) saturate(0.3)',
+          transition: 'filter 200ms ease',
+        }}
+        draggable={false}
+      />
+    </span>
+    <span
+      style={{
+        position: 'relative',
+        zIndex: 1,
+        fontSize: 10,
+        lineHeight: 1.25,
+        textAlign: 'center',
+        color: active ? THEME.amber : THEME.inactiveLabel,
+        fontWeight: active ? 700 : 400,
+        letterSpacing: '0.02em',
+        transition: 'color 200ms ease',
+      }}
+    >
+    </span>
+  </button>
+));
+
 interface AppFooterProps {
   activeNav: string;
   onNavChange: (id: string) => void;
+  onLogoPress?: () => void;
   fixed?: boolean;
 }
 
 export default function AppFooter({ 
   activeNav, 
-  onNavChange, 
+  onNavChange,
+  onLogoPress,
   fixed = false 
 }: AppFooterProps) {
   
@@ -131,6 +223,13 @@ export default function AppFooter({
         WebkitUserSelect: 'none',
       }}
     >
+      <CREMPLogoButton
+        active={activeNav === 'cremp'}
+        onClick={() => {
+          onNavChange('cremp');
+          onLogoPress?.();
+        }}
+      />
       {NAV_ITEMS.map((item) => {
         const isActive = isActiveMap.has(item.id);
         const Icon = item.Icon;

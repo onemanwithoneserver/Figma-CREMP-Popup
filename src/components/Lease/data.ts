@@ -1,0 +1,138 @@
+import type { LeaseMarker, LeaseProperty } from './types';
+
+export const leaseMapMarkers: LeaseMarker[] = [
+  {
+    id: '1',
+    type: 'full-space',
+    price: '₹ 1.8 L/mo',
+    propertyType: 'Office Floor',
+    detail: '3500 sq.ft',
+    location: 'HITEC City',
+    lat: 28,
+    lng: 14,
+  },
+  {
+    id: '2',
+    type: 'full-space',
+    price: '₹ 4.5 L/mo',
+    propertyType: 'Showroom',
+    detail: '2200 sq.ft',
+    location: 'Kukatpally',
+    lat: 16,
+    lng: 72,
+  },
+  {
+    id: '3',
+    type: 'sub-lease',
+    price: '₹ 80 K/mo',
+    propertyType: 'Sublease Office',
+    detail: '50 Seats',
+    location: 'Madhapur',
+    lat: 36,
+    lng: 44,
+  },
+  {
+    id: '4',
+    type: 'full-space',
+    price: '₹ 3.2 L/mo',
+    propertyType: 'Warehouse',
+    detail: '10000 sq.ft',
+    location: 'Gachibowli',
+    lat: 60,
+    lng: 12,
+  },
+  {
+    id: '5',
+    type: 'co-working',
+    price: '₹ 8 K/seat',
+    propertyType: 'Co-working',
+    detail: '20 Seats',
+    location: 'Jubilee Hills',
+    lat: 70,
+    lng: 43,
+  },
+  {
+    id: '6',
+    type: 'full-space',
+    price: '₹ 2.6 L/mo',
+    propertyType: 'Retail Space',
+    detail: '1200 sq.ft',
+    location: 'Kompally',
+    lat: 50,
+    lng: 78,
+  },
+];
+
+export const leaseProperties: LeaseProperty[] = [
+  {
+    id: '1',
+    tag: 'full-space',
+    tagLabel: 'Full Space',
+    title: 'Office Floor',
+    location: 'HITEC City',
+    sizeLabel: '4200 sq.ft',
+    sizeUnit: 'Area',
+    price: '₹ 3.8 L/mo',
+    imageUrl:
+      'https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&q=80',
+  },
+  {
+    id: '2',
+    tag: 'full-space',
+    tagLabel: 'Full Space',
+    title: 'Retail Showroom',
+    location: 'Kukatpally',
+    sizeLabel: '1800 sq.ft',
+    sizeUnit: 'Area',
+    price: '₹ 2.4 L/mo',
+    imageUrl:
+      'https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=400&q=80',
+  },
+  {
+    id: '3',
+    tag: 'sub-lease',
+    tagLabel: 'Sub Lease',
+    title: 'Managed Office',
+    location: 'Madhapur',
+    sizeLabel: '60 Seats',
+    sizeUnit: 'Seats',
+    price: '₹ 1.2 L/mo',
+    imageUrl:
+      'https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=400&q=80',
+  },
+  {
+    id: '4',
+    tag: 'sub-lease',
+    tagLabel: 'Sub Lease',
+    title: 'Office Sublease',
+    location: 'HITEC City',
+    sizeLabel: '35 Seats',
+    sizeUnit: 'Seats',
+    price: '₹ 70 K/mo',
+    imageUrl:
+      'https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=400&q=80',
+  },
+  {
+    id: '5',
+    tag: 'co-working',
+    tagLabel: 'Co-Working',
+    title: 'Premium Co-working',
+    location: 'Financial District',
+    sizeLabel: 'Private Cabin',
+    sizeUnit: 'Type',
+    price: '₹ 12 K/seat',
+    imageUrl:
+      'https://images.unsplash.com/photo-1527192491265-7e15c55b1ed2?w=400&q=80',
+  },
+];
+
+export const leaseMapLabels = [
+  { label: 'MIYAPUR', top: 8, left: 35 },
+  { label: 'HITEC CITY', top: 22, left: 3 },
+  { label: 'KUKATPALLY', top: 10, left: 73 },
+  { label: 'MADHAPUR', top: 28, left: 43 },
+  { label: 'KOMPALLY', top: 42, left: 85 },
+  { label: 'GACHIBOWLI', top: 53, left: 3 },
+  { label: 'FINANCIAL DISTRICT', top: 74, left: 2 },
+  { label: 'BANJARA HILLS', top: 82, left: 44 },
+];

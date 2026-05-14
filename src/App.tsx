@@ -15,6 +15,7 @@ import CREMPVideoFlow from './components/CREMP-VideoFlow/CREMPVideoFlow';
 import Home from '@/components/Home';
 import HomeSelectedArea from '@/components/Home_SelectedArea';
 import HomeMapView from '@/components/HomeMapView';
+import LeasePage from '@/components/Lease';
 
 const MobileViewportWrapper = ({ children, isMobile }: { children: React.ReactNode, isMobile: boolean }) => (
   <Box
@@ -58,7 +59,7 @@ export default function App() {
   const isMobileScreen = useMediaQuery(theme.breakpoints.down('lg'));
   
   // Added 'wishlist', 'franchisesearch', 'preregistration', 'postregistration', and 'weblayoutdesign' to the allowed activePage types
-  const [activePage, setActivePage] = useState<'franchise' | 'handpicked' | 'wishlist' | 'mainframe' | 'franchisesearch' | 'preregistration' | 'postregistration' | 'weblayoutdesign' | 'crempbrokers' | 'crempvideoflow' | 'home' | 'homeselected' | 'allbuildingsmap'>('franchise');
+  const [activePage, setActivePage] = useState<'franchise' | 'handpicked' | 'wishlist' | 'mainframe' | 'franchisesearch' | 'preregistration' | 'postregistration' | 'weblayoutdesign' | 'crempbrokers' | 'crempvideoflow' | 'home' | 'homeselected' | 'allbuildingsmap' | 'lease'>('franchise');
   const [viewMode, setViewMode] = useState<'desktop' | 'mobile'>('desktop');
   const [activeSubPage, setActiveSubPage] = useState<string>('main');
   const [userType, setUserType] = useState<'seller' | 'buyer'>('seller');
@@ -229,7 +230,7 @@ export default function App() {
               <FormControl size="small">
                 <Select
                   value={activePage}
-                  onChange={(e) => setActivePage(e.target.value as 'franchise' | 'handpicked' | 'wishlist' | 'mainframe' | 'franchisesearch' | 'preregistration' | 'postregistration' | 'weblayoutdesign' | 'crempbrokers' | 'crempvideoflow' | 'home' | 'homeselected' | 'allbuildingsmap')}
+                  onChange={(e) => setActivePage(e.target.value as 'franchise' | 'handpicked' | 'wishlist' | 'mainframe' | 'franchisesearch' | 'preregistration' | 'postregistration' | 'weblayoutdesign' | 'crempbrokers' | 'crempvideoflow' | 'home' | 'homeselected' | 'allbuildingsmap' | 'lease')}
                   className="bg-[#ffffff] text-[#0f1f3d] text-sm font-semibold h-[36px]"
                   sx={{
                     borderRadius: '4px',
@@ -287,8 +288,11 @@ export default function App() {
                   <MenuItem value="homeselected" className="font-['Outfit'] text-sm font-medium text-[#0f1f3d]">
                     Home – Selected Area
                   </MenuItem>
-                  <MenuItem value="allbuildingsmap" className="font-['Outfit'] text-sm font-medium text-[#0f1f3d]">
+                  <MenuItem value="allbuildingsmap" className="font['Outfit'] text-sm font-medium text-[#0f1f3d]">
                     AllBuildings – Map View
+                  </MenuItem>
+                  <MenuItem value="lease" className="font-['Outfit'] text-sm font-medium text-[#0f1f3d]">
+                    Lease (Map View)
                   </MenuItem>
                 </Select>
               </FormControl>
@@ -349,6 +353,10 @@ export default function App() {
         ) : activePage === 'allbuildingsmap' ? (
           <MobileViewportWrapper isMobile={isMobile}>
             <HomeMapView />
+          </MobileViewportWrapper>
+        ) : activePage === 'lease' ? (
+          <MobileViewportWrapper isMobile={isMobile}>
+            <LeasePage onHomePress={() => setActivePage('home')} />
           </MobileViewportWrapper>
         ) : (
           <MainFrame
