@@ -3,126 +3,118 @@ import React from 'react';
 interface NavItem {
   id: string;
   label: string;
-  icon?: React.FC<{ color: string }>;
+  icon: React.FC<{ color: string }>;
 }
 
 const SavedIcon = ({ color }: { color: string }) => (
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5">
-    <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+    <path d="M15 4v5l2-1.5L19 9V4h-4z" />
   </svg>
 );
 
-const BrokerIcon = ({ color }: { color: string }) => (
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5">
+const AgentsIcon = ({ color }: { color: string }) => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
     <circle cx="12" cy="7" r="4" />
-    <path strokeLinecap="round" strokeLinejoin="round" d="M5 21v-2a7 7 0 0114 0v2" />
-    <circle cx="16.5" cy="15.5" r="3.5" fill="#0B1320" />
-    <circle cx="16.5" cy="15.5" r="3.5" />
-    <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 15.5m-1 0a1 1 0 102 0 1 1 0 10-2 0" />
+    <path d="M5.5 21v-2.5C5.5 15.46 8.46 13 12 13" />
+    <path d="M18.5 21v-2.5C18.5 15.46 15.54 13 12 13" />
+    <path d="M12 15v6" />
+    <circle cx="17" cy="17" r="2" />
   </svg>
 );
 
 const HandpickedIcon = ({ color }: { color: string }) => (
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5">
-    <path strokeLinecap="round" strokeLinejoin="round" d="M12 2.25l2.454 2.454L17.92 4.5l.206 3.466L21 9.75l-2.08 2.756.634 3.414-3.13 1.488-1.576 3.092L12 19.5l-2.848 1.002-1.576-3.092-3.13-1.488.634-3.414L3 9.75l2.874-1.784.206-3.466 3.466.206L12 2.25z" />
-    <path strokeLinecap="round" strokeLinejoin="round" d="M12 8.25l1.036 2.344 2.564.216-1.942 1.688.584 2.502L12 13.65l-2.242 1.35.584-2.502-1.942-1.688 2.564-.216L12 8.25z" />
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
+    <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2z" />
+    <path d="M12 6l1.5 4.5h4.5l-3.5 2.5 1.5 4.5L12 15l-4 2.5 1.5-4.5L6 10.5h4.5z" />
   </svg>
 );
 
-const VideoIcon = ({ color }: { color: string }) => (
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5">
-    <rect x="3" y="5" width="16" height="12" rx="2" />
-    <path strokeLinecap="round" strokeLinejoin="round" d="M9.5 8.5l4 2.5-4 2.5v-5z" />
-    <circle cx="17.5" cy="17.5" r="4.5" fill="#0B1320" />
-    <circle cx="16.5" cy="16.5" r="3" />
-    <path strokeLinecap="round" strokeLinejoin="round" d="M18.5 18.5L21.5 21.5" />
+const VideoToursIcon = ({ color }: { color: string }) => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
+    <rect x="2" y="4" width="15" height="13" rx="2" />
+    <path d="M10 8.5l4 3-4 3V8.5z" />
+    <circle cx="18.5" cy="16" r="2.5" />
+    <path d="M20.5 18l2.5 2.5" />
   </svg>
 );
 
-const PostIcon = ({ color }: { color: string }) => (
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5">
-    <path strokeLinecap="round" strokeLinejoin="round" d="M8 7h8M8 11h5" />
-    <path strokeLinecap="round" strokeLinejoin="round" d="M14 21H6a2 2 0 01-2-2V5a2 2 0 012-2h8l4 4v3" />
-    <circle cx="18" cy="17" r="5" fill="#0B1320" />
-    <circle cx="18" cy="17" r="5" />
-    <path strokeLinecap="round" strokeLinejoin="round" d="M16 17h4M18 15v4" />
+const PostReqIcon = ({ color }: { color: string }) => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
+    <path d="M14 3h4a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+    <rect x="8" y="1" width="8" height="4" rx="1" />
+    <path d="M8 11h8" />
+    <path d="M8 15h5" />
+    <path d="M17 18v-3" />
+    <path d="M15.5 16.5h3" />
   </svg>
 );
 
 const navItems: NavItem[] = [
-  { id: 'cremp', label: 'CREMP' },
   { id: 'saved', label: 'Saved', icon: SavedIcon },
-  { id: 'broker', label: 'Hire Broker', icon: BrokerIcon },
+  { id: 'agents', label: 'Hire Broker', icon: AgentsIcon },
   { id: 'handpicked', label: 'Handpicked', icon: HandpickedIcon },
-  { id: 'video', label: 'Video Search', icon: VideoIcon },
-  { id: 'post', label: 'Post Requirement', icon: PostIcon },
+  { id: 'video', label: 'Video Tours', icon: VideoToursIcon },
+  { id: 'post', label: 'Post Req.', icon: PostReqIcon },
 ];
 
-interface BottomNavbarProps {
+interface AppFooterProps {
   activeNav: string;
   onNavChange: (id: string) => void;
 }
 
-export default function BottomNavbar({ activeNav, onNavChange }: BottomNavbarProps) {
-  // Helper to split long labels into two lines to prevent overlap
-  const formatLabel = (label: string) => {
-    if (label.includes(' ')) {
-      const parts = label.split(' ');
-      return (
-        <>
-          {parts[0]}<br />{parts.slice(1).join(' ')}
-        </>
-      );
-    }
-    return label;
-  };
-
+export default function AppFooter({ activeNav, onNavChange }: AppFooterProps) {
   return (
-    <nav
-      className="w-full shrink-0 flex items-center justify-between px-1 py-2 bg-[#0B1320] border-t border-white/5"
-      style={{ fontFamily: "'Outfit', sans-serif" }}
+    <footer
+      className="relative z-50 w-full flex items-stretch justify-between bg-[#0B1320]/90 backdrop-blur-xl border-t border-white/10 shadow-[0_-4px_24px_rgba(0,0,0,0.5)] pb-safe"
+      style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
       role="navigation"
     >
-      {navItems.map((item, index) => {
-        const isBrand = item.id === 'cremp';
+      {navItems.map((item) => {
         const isActive = activeNav === item.id;
-        const iconColor = isBrand || isActive ? '#FBBF24' : '#94A3B8';
-        const textColor = isBrand || isActive ? 'text-[#FBBF24]' : 'text-[#94A3B8]';
+        const iconColor = isActive ? '#F5A623' : '#FFFFFF';
 
         return (
-          <React.Fragment key={item.id}>
-            <button
-              onClick={() => onNavChange(item.id)}
-              className="flex flex-col items-center justify-center gap-1.5 flex-1 transition-all duration-200 active:scale-95 focus-visible:outline-none min-h-[52px]"
-              aria-label={item.label}
-              aria-current={isActive && !isBrand ? 'page' : undefined}
-            >
-              <div className="relative flex items-center justify-center h-[22px] w-[22px]">
-                {isBrand ? (
-                  <img src="./logo.png" alt="CREMP Logo" className="w-full h-full object-contain" />
-                ) : (
-                  item.icon && <item.icon color={iconColor} />
-                )}
-              </div>
+          <button
+            key={item.id}
+            onClick={() => onNavChange(item.id)}
+            className="group relative flex flex-col items-center justify-start flex-1 px-1 pt-2.5 pb-2.5 focus-visible:outline-none overflow-hidden min-w-0"
+            aria-label={item.label}
+            aria-current={isActive ? 'page' : undefined}
+          >
+            <div
+              className={`absolute top-0 left-1/2 -translate-x-1/2 h-[2.5px] bg-[#F5A623] rounded-b-full shadow-[0_2px_10px_rgba(245,166,35,0.8)] transition-all duration-300 ease-out ${
+                isActive ? 'w-8 opacity-100' : 'w-0 opacity-0'
+              }`}
+            />
 
-              <span
-                className={`text-[8.5px] text-center leading-[1.2] transition-colors tracking-wide w-full px-0.5 ${textColor} ${
-                  isBrand ? 'font-semibold uppercase tracking-widest' : isActive ? 'font-medium' : 'font-light'
+            <div className="relative flex items-center justify-center mb-1.5 shrink-0" style={{ width: 22, height: 22 }}>
+              <div
+                className={`absolute inset-0 bg-[#F5A623] blur-[10px] rounded-full transition-opacity duration-300 ease-out ${
+                  isActive ? 'opacity-30' : 'opacity-0'
+                }`}
+              />
+              <div
+                className={`relative z-10 transition-transform duration-300 ease-out group-active:scale-90 ${
+                  isActive ? 'scale-[1.12]' : 'scale-100'
                 }`}
               >
-                {formatLabel(item.label)}
-              </span>
-            </button>
-            
-            {index < navItems.length - 1 && (
-              <div 
-                className="w-[1px] h-8 bg-white/10 shrink-0" 
-                aria-hidden="true" 
-              />
-            )}
-          </React.Fragment>
+                <item.icon color={iconColor} />
+              </div>
+            </div>
+
+            <span
+              className={`text-[10px] leading-tight tracking-wide text-center break-words w-full px-0.5 transition-all duration-300 ease-out ${
+                isActive
+                  ? 'text-[#F5A623] font-semibold'
+                  : 'text-white/60 font-medium'
+              }`}
+            >
+              {item.label}
+            </span>
+          </button>
         );
       })}
-    </nav>
+    </footer>
   );
 }

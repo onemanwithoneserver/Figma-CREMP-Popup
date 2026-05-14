@@ -147,8 +147,8 @@ interface MapSectionProps {
 }
 
 export default function MapSection({
-  viewMode,
-  onViewModeChange,
+  viewMode: _viewMode,
+  onViewModeChange: _onViewModeChange,
   selectedMarkerId,
   onMarkerClick,
 }: MapSectionProps) {

@@ -50,8 +50,6 @@ export default function SelectedMap({ viewMode, onViewModeChange }: SelectedMapP
 
   const onPointerUp = useCallback(() => { dragRef.current.active = false; }, []);
 
-  const resetPan = useCallback(() => setPan({ x: 0, y: 0 }), []);
-
   return (
     <div
       className="relative w-full overflow-hidden cursor-grab active:cursor-grabbing select-none"

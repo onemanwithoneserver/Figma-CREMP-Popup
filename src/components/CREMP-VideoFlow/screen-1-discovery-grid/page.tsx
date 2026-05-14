@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, Bell, ChevronDown, MapPin, Menu } from 'lucide-react';
+import { Bell, ChevronDown, MapPin, Menu } from 'lucide-react';
 import SearchBar from '../../Home/SearchBar';
 import type { PropertyVideo, VideoCategory } from '../shared/theme/videoflow.types';
 import { propertyVideos, categories } from './data';
