@@ -24,13 +24,13 @@ export default function HomeMapView() {
         maxWidth: 430,
         margin: '0 auto',
         height: '100%',
-        backgroundColor: '#0B1320',
+        backgroundColor: '#0a1128',
         fontFamily: "'Outfit', sans-serif",
         position: 'relative',
       }}
     >
       {/* ── Dark header block ──────────────────────────────────────────────── */}
-      <div className="shrink-0 w-full bg-[#0B1320] z-20 relative">
+      <div className="shrink-0 w-full bg-[#0a1128] z-20 relative">
         <Header />
         <TopTabs activeTab={activeTab} onTabChange={setActiveTab} />
       </div>

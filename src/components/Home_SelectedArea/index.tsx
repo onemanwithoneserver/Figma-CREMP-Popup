@@ -28,12 +28,12 @@ export default function HomeSelectedArea() {
         maxWidth: 430,
         margin: '0 auto',
         height: '100%',
-        backgroundColor: '#0B1320',
+        backgroundColor: '#0a1128',
         position: 'relative',
       }}
     >
       {/* ── Dark header block ─────────────────────────────────────────── */}
-      <div className="shrink-0 w-full bg-[#0B1320] z-20 relative">
+      <div className="shrink-0 w-full bg-[#0a1128] z-20 relative">
         <Header />
         <TopTabs activeTab={activeTab} onTabChange={setActiveTab} />
       </div>
@@ -52,7 +52,7 @@ export default function HomeSelectedArea() {
       {/* ── Map + absolute bottom overlay ─────────────────────────────── */}
       <div
         className="flex-1 flex flex-col overflow-hidden relative z-0"
-        style={{ backgroundColor: '#0A0F1A' }}
+        style={{ backgroundColor: '#0a1128' }}
       >
         {/* Map takes full area */}
         <SelectedMap viewMode={viewMode} onViewModeChange={setViewMode} />

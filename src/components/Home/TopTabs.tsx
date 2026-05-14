@@ -36,7 +36,7 @@ interface TopTabsProps {
 export default function TopTabs({ activeTab, onTabChange }: TopTabsProps) {
   return (
     <nav 
-      className="w-full px-3 pt-1 pb-1.5 bg-[#0B1320]"
+      className="w-full px-3 pt-1 pb-1.5 bg-[#0a1128]"
       style={{ fontFamily: "'Outfit', sans-serif" }}
     >
       <div 
@@ -63,12 +63,12 @@ export default function TopTabs({ activeTab, onTabChange }: TopTabsProps) {
               `}
             >
               <div className="shrink-0 flex items-center justify-center">
-                <Icon color={isActive ? '#FBBF24' : '#94A3B8'} />
+                <Icon color={isActive ? '#d4af37' : '#94A3B8'} />
               </div>
 
               <span
                 className={`font-semibold text-left transition-colors ${
-                  isActive ? 'text-[#FBBF24]' : 'text-white'
+                  isActive ? 'text-[#d4af37]' : 'text-white'
                 } ${tab.id === 'business' ? 'text-[8.5px] leading-[1.1] tracking-tight' : 'text-[11px] tracking-wide'}`}
               >
                 {tab.id === 'business' ? (
@@ -80,7 +80,7 @@ export default function TopTabs({ activeTab, onTabChange }: TopTabsProps) {
 
               {isActive && (
                 <div 
-                  className="absolute bottom-0 left-[15%] right-[15%] h-[2px] rounded-t-full bg-[#FBBF24]" 
+                  className="absolute bottom-0 left-[15%] right-[15%] h-[2px] rounded-t-full bg-[#d4af37]" 
                   aria-hidden="true"
                 />
               )}

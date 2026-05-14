@@ -48,10 +48,17 @@ export default function Header() {
 
   return (
     <header
-      className="flex items-center justify-between px-2 pt-1.5 w-full bg-[#0B1320] border-b border-white/5 relative z-50"
+      className="flex items-center justify-between px-2 pt-1.5 w-full bg-gradient-to-br from-[#0a1128] via-[#121c33] to-[#0a1128] border-b border-white/[0.06] relative z-50 overflow-hidden"
       style={{ fontFamily: "'Outfit', sans-serif" }}
     >
-      <div className="flex items-center gap-1.5">
+      {/* Decorative gold glow */}
+      <div className="absolute top-0 right-0 w-28 h-28 bg-[#d4af37]/10 blur-[48px] -translate-y-1/2 translate-x-1/4 rounded-full pointer-events-none" />
+      {/* Subtle grid overlay */}
+      <div
+        className="absolute inset-0 opacity-[0.02] pointer-events-none"
+        style={{ backgroundImage: 'linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)', backgroundSize: '24px 24px' }}
+      />
+      <div className="flex items-center gap-1.5 relative z-10">
         <button
           className="p-1 text-white hover:text-white/80 active:scale-95 transition-all outline-none"
           aria-label="Open navigation menu"
@@ -60,7 +67,7 @@ export default function Header() {
         </button>
 
         <button
-          className="flex items-center gap-1 px-2.5 py-1 rounded-full border border-white/10 bg-[#151E2D] hover:bg-[#1E2A3D] active:scale-95 transition-all outline-none"
+          className="flex items-center gap-1 px-2.5 py-1 rounded-full border border-white/10 bg-[#121c33] hover:bg-[#1a3463] active:scale-95 transition-all outline-none"
           aria-label="Change location"
         >
           <LocationIcon color="#94A3B8" />
@@ -71,11 +78,11 @@ export default function Header() {
         </button>
       </div>
 
-      <div className="flex items-center p-0.5 bg-[#151E2D] border border-white/10 rounded-[4px]">
+      <div className="flex items-center p-0.5 bg-[#121c33] border border-white/10 rounded-[4px] relative z-10">
         <button
           onClick={() => setActiveView('map')}
           className={`flex items-center justify-center h-6 rounded-[3px] transition-all outline-none ${
-            activeView === 'map' ? 'w-12 bg-[#2A374C]' : 'w-7 hover:bg-white/5'
+            activeView === 'map' ? 'w-12 bg-[#1a3463]' : 'w-7 hover:bg-white/5'
           }`}
           aria-label="Switch to Map view"
         >
@@ -91,7 +98,7 @@ export default function Header() {
         <button
           onClick={() => setActiveView('video')}
           className={`flex items-center justify-center h-6 rounded-[3px] transition-all outline-none ${
-            activeView === 'video' ? 'w-12 bg-[#2A374C]' : 'w-7 hover:bg-white/5'
+            activeView === 'video' ? 'w-12 bg-[#1a3463]' : 'w-7 hover:bg-white/5'
           }`}
           aria-label="Switch to Video view"
         >
@@ -106,7 +113,7 @@ export default function Header() {
       </div>
 
       <button
-        className="flex flex-col items-center gap-0.5 p-1 active:scale-95 transition-all outline-none hover:opacity-80"
+        className="flex flex-col items-center gap-0.5 p-1 active:scale-95 transition-all outline-none hover:opacity-80 relative z-10"
         aria-label="Log in to your account"
       >
         <UserCircleIcon color="#FBBF24" />

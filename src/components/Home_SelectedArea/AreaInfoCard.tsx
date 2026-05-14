@@ -41,8 +41,8 @@ export default function AreaInfoCard({
         style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.04)' }}
       >
         {/* Purple location icon */}
-        <div className="w-7 h-7 rounded-full bg-[#7C3AED]/10 flex items-center justify-center shrink-0">
-          <LocationIcon color="#7C3AED" />
+        <div className="w-7 h-7 rounded-full bg-[#d4af37]/10 flex items-center justify-center shrink-0">
+          <LocationIcon color="#d4af37" />
         </div>
 
         <div className="flex-1 min-w-0">
@@ -56,7 +56,7 @@ export default function AreaInfoCard({
 
         {/* Count */}
         <div className="flex items-center gap-1 shrink-0">
-          <span className="text-[11px] font-bold text-[#7C3AED]">{region.opportunityCount}</span>
+          <span className="text-[11px] font-bold text-[#d4af37]">{region.opportunityCount}</span>
           <InfoIcon color="#94A3B8" />
         </div>
 

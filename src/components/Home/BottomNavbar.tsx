@@ -1,11 +1,11 @@
 import React, { useMemo, memo } from 'react';
 
 const THEME = {
-  amber: '#F5A623',
-  amberBg: 'rgba(245, 166, 35, 0.13)',
+  amber: '#d4af37',
+  amberBg: 'rgba(212, 175, 55, 0.13)',
   inactiveIcon: 'rgba(255,255,255,0.42)',
   inactiveLabel: 'rgba(255,255,255,0.38)',
-  bg: '#0B1320',
+  bg: '#0a1128',
   border: 'rgba(255,255,255,0.07)',
   font: "'SF Pro Text', 'Inter', system-ui, -apple-system, sans-serif",
 } as const;

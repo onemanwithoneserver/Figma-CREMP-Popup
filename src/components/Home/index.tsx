@@ -19,13 +19,13 @@ export default function Home() {
 
   return (
     <main
-      className="flex flex-col w-full h-full overflow-hidden relative mx-auto bg-[#0B1320]"
+      className="flex flex-col w-full h-full overflow-hidden relative mx-auto bg-[#0a1128]"
       style={{
         maxWidth: 430,
         fontFamily: "'Outfit', sans-serif",
       }}
     >
-      <div className="shrink-0 w-full bg-[#0B1320] z-20 relative">
+        <div className="shrink-0 w-full bg-[#0a1128] z-20 relative">
         <Header />
         <TopTabs activeTab={activeTab} onTabChange={setActiveTab} />
       </div>
@@ -35,7 +35,7 @@ export default function Home() {
         <SearchBar query={searchQuery} onChange={setSearchQuery} />
       </div>
 
-      <div className="flex-1 flex flex-col overflow-hidden bg-[#E2E8F0] relative z-0">
+      <div className="flex-1 flex flex-col overflow-hidden bg-[#E8EEF4] relative z-0">
         <MapSection
           viewMode={viewMode}
           onViewModeChange={setViewMode}

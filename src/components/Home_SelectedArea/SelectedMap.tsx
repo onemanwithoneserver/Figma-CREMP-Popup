@@ -176,7 +176,7 @@ export default function SelectedMap({ viewMode, onViewModeChange }: SelectedMapP
           <button
             onClick={() => onViewModeChange('map')}
             className={`flex items-center gap-1 px-2.5 h-[28px] text-[11.5px] font-semibold rounded-[7px] transition-all focus-visible:outline-none whitespace-nowrap ${viewMode === 'map'
-              ? 'bg-[#0B1320] text-white shadow-sm'
+              ? 'bg-[#0a1128] text-white shadow-sm'
               : 'bg-transparent text-[#6B7280] hover:text-[#111827]'
               }`}
             aria-pressed={viewMode === 'map'}
@@ -187,7 +187,7 @@ export default function SelectedMap({ viewMode, onViewModeChange }: SelectedMapP
           <button
             onClick={() => onViewModeChange('list')}
             className={`flex items-center gap-1 px-2.5 h-[28px] text-[11.5px] font-semibold rounded-[7px] transition-all focus-visible:outline-none whitespace-nowrap ${viewMode === 'list'
-              ? 'bg-[#0B1320] text-white shadow-sm'
+              ? 'bg-[#0a1128] text-white shadow-sm'
               : 'bg-transparent text-[#6B7280] hover:text-[#111827]'
               }`}
             aria-pressed={viewMode === 'list'}

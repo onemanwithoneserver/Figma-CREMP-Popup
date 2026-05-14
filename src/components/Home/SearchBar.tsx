@@ -20,7 +20,7 @@ export default function SearchBar({ query, onChange, placeholder = "Search franc
   return (
     <div className="w-full px-1.5 pb-1 " style={{ fontFamily: "'Outfit', sans-serif" }}>
       <form 
-        className="flex items-center w-full bg-white border border-[#E2E8F0] rounded-[12px] h-[40px] pl-3 pr-1.5 transition-all focus-within:border-[#94A3B8] focus-within:shadow-sm"
+        className="flex items-center w-full bg-white border border-[#E2E8F0] rounded-[12px] h-[40px] pl-3 pr-1.5 transition-all focus-within:border-[#d4af37]/50 focus-within:shadow-sm"
         style={{ boxShadow: '0 2px 8px rgba(0,0,0,0.03)' }}
         onSubmit={(e) => e.preventDefault()}
         role="search"
@@ -40,7 +40,8 @@ export default function SearchBar({ query, onChange, placeholder = "Search franc
 
         <button
           type="button"
-          className="w-[28px] h-[28px] rounded-[8px] flex items-center justify-center shrink-0 bg-[#0B1320] active:scale-95 transition-transform focus-visible:outline-none"
+          className="w-[28px] h-[28px] rounded-[8px] flex items-center justify-center shrink-0 active:scale-95 transition-transform focus-visible:outline-none"
+          style={{ background: 'linear-gradient(135deg, #0a1128 0%, #1a3463 100%)' }}
           aria-label="Open filter options"
           aria-haspopup="dialog"
         >

@@ -80,11 +80,11 @@ export default function PropertyCard({ property = defaultProperty }: PropertyCar
 
       <div className="flex-1 flex flex-col min-w-0 py-0.5 pr-0.5">
         <div className="flex items-start justify-between">
-          <span className="bg-[#F3E8FF] text-[#7C3AED] text-[8px] font-medium px-1.5 py-0.5 rounded leading-tight tracking-wide">
+          <span className="bg-[#d4af37]/10 text-[#b8903c] text-[8px] font-semibold px-1.5 py-0.5 rounded leading-tight tracking-wide">
             {property.tag}
           </span>
           <button 
-            className="text-[#0F172A] hover:text-[#EF4444] active:scale-95 transition-all focus-visible:outline-none -mt-0.5"
+            className="text-[#0F172A] hover:text-[#d4af37] active:scale-95 transition-all focus-visible:outline-none -mt-0.5"
             aria-label="Save to favorites"
           >
             <Heart size={14} strokeWidth={1.8} />
@@ -96,7 +96,7 @@ export default function PropertyCard({ property = defaultProperty }: PropertyCar
         </h3>
 
         <div className="flex items-center gap-1 mt-1">
-          <MapPin size={9} strokeWidth={2.5} className="text-[#0F172A] shrink-0" />
+          <MapPin size={9} strokeWidth={2.5} className="text-[#64748B] shrink-0" />
           <div className="flex items-center gap-1 text-[8.5px] min-w-0">
             <span className="font-medium text-[#475569] truncate leading-none mt-[1px]">
               {property.location}
@@ -142,7 +142,8 @@ export default function PropertyCard({ property = defaultProperty }: PropertyCar
           </div>
 
           <button 
-            className="w-[24px] h-[24px] rounded-full bg-[#0B1320] text-white flex items-center justify-center shrink-0 hover:bg-[#1E293B] active:scale-95 transition-transform shadow-md focus-visible:outline-none"
+            className="w-[24px] h-[24px] rounded-full text-white flex items-center justify-center shrink-0 active:scale-95 transition-transform shadow-md focus-visible:outline-none"
+            style={{ background: 'linear-gradient(135deg, #0a1128 0%, #1a3463 100%)' }}
             aria-label={`View details for ${property.title}`}
           >
             <ArrowRight size={12} strokeWidth={2.5} color="#FFFFFF" />

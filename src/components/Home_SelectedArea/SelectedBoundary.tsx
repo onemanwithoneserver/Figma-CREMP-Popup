@@ -16,17 +16,17 @@ export default function SelectedBoundary({ points }: SelectedBoundaryProps) {
       {/* Soft outer glow layer */}
       <polygon
         points={pointsStr}
-        fill="rgba(124,58,237,0.06)"
-        stroke="#7C3AED"
+        fill="rgba(212,175,55,0.06)"
+        stroke="#d4af37"
         strokeWidth="0.9"
         strokeLinejoin="round"
-        style={{ filter: 'drop-shadow(0 0 3px rgba(124,58,237,0.35))' }}
+        style={{ filter: 'drop-shadow(0 0 3px rgba(212,175,55,0.35))' }}
       />
       {/* Dashed inner border accent */}
       <polygon
         points={pointsStr}
         fill="none"
-        stroke="#7C3AED"
+        stroke="#d4af37"
         strokeWidth="0.35"
         strokeLinejoin="round"
         strokeDasharray="2,2"
