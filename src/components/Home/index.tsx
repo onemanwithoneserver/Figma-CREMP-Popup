@@ -30,18 +30,23 @@ export default function Home() {
         <TopTabs activeTab={activeTab} onTabChange={setActiveTab} />
       </div>
 
-      <div className="shrink-0 w-full bg-[#F8FAFC] z-10 shadow-[0_4px_16px_rgba(0,0,0,0.06)] relative">
-        <CategoryTabs activeCategory={activeCategory} onCategoryChange={setActiveCategory} />
-        <SearchBar query={searchQuery} onChange={setSearchQuery} />
-      </div>
+      {/* Map fills all remaining space; search floats at the top of the map */}
+      <div className="flex-1 relative overflow-hidden bg-[#E8EEF4] z-0">
+        {/* Full-height map canvas */}
+        <div className="absolute inset-0 flex flex-col">
+          <MapSection
+            viewMode={viewMode}
+            onViewModeChange={setViewMode}
+            selectedMarkerId={selectedMarkerId}
+            onMarkerClick={setSelectedMarkerId}
+          />
+        </div>
 
-      <div className="flex-1 flex flex-col overflow-hidden bg-[#E8EEF4] relative z-0">
-        <MapSection
-          viewMode={viewMode}
-          onViewModeChange={setViewMode}
-          selectedMarkerId={selectedMarkerId}
-          onMarkerClick={setSelectedMarkerId}
-        />
+        {/* Search + category tabs floating at top of map */}
+        <div className="absolute top-0 left-0 right-0 z-20 bg-[#F8FAFC] shadow-[0_4px_16px_rgba(0,0,0,0.08)]">
+          <CategoryTabs activeCategory={activeCategory} onCategoryChange={setActiveCategory} />
+          <SearchBar query={searchQuery} onChange={setSearchQuery} />
+        </div>
       </div>
 
       <div className="shrink-0 w-full bg-transparent absolute bottom-0 left-0 right-0 z-20 pointer-events-none flex flex-col justify-end">

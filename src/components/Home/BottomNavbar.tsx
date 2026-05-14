@@ -1,75 +1,83 @@
-import React, { useMemo, memo } from 'react';
+import React, { memo } from 'react';
 import cremeLogo from './Logo.png';
 
-const THEME = {
-  amber: '#d4af37',
-  amberBg: 'rgba(212, 175, 55, 0.13)',
-  inactiveIcon: 'rgba(255,255,255,0.42)',
-  inactiveLabel: 'rgba(255,255,255,0.38)',
-  bg: '#0a1128',
-  border: 'rgba(255,255,255,0.07)',
-  font: "'SF Pro Text', 'Inter', system-ui, -apple-system, sans-serif",
-} as const;
+interface SvgIconProps {
+  width?: number | string;
+  height?: number | string;
+  className?: string;
+  active?: boolean;
+}
+
+const UserProfileInlineSVG = ({ width = '100%', height = '100%', className = '', active }: SvgIconProps) => (
+  <svg width={width} height={height} viewBox="0 0 24 24" fill="none" className={className} strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="7" r="4" stroke={active ? 'url(#goldGradient)' : 'white'} strokeWidth="1.5" />
+    <path d="M5 21v-2a7 7 0 0 1 11.2-5.6" stroke={active ? 'url(#goldGradient)' : 'white'} strokeWidth="1.5" />
+    <circle cx="16.5" cy="16.5" r="2" stroke={active ? 'url(#goldGradient)' : 'white'} strokeWidth="1.5" />
+  </svg>
+);
+
+const HandPickedInlineSVG = ({ width = '100%', height = '100%', className = '', active }: SvgIconProps) => (
+  <svg width={width} height={height} viewBox="0 0 24 24" fill="none" className={className} strokeLinecap="round" strokeLinejoin="round">
+    <path d="M12 2.5a1.5 1.5 0 0 1 1 .5l1.5 1.5a1.5 1.5 0 0 0 1 .5h2a1.5 1.5 0 0 1 1.5 1.5v2a1.5 1.5 0 0 0 .5 1l1.5 1.5a1.5 1.5 0 0 1 0 2l-1.5 1.5a1.5 1.5 0 0 0-.5 1v2a1.5 1.5 0 0 1-1.5 1.5h-2a1.5 1.5 0 0 0-1 .5l-1.5 1.5a1.5 1.5 0 0 1-2 0l-1.5-1.5a1.5 1.5 0 0 0-1-.5h-2a1.5 1.5 0 0 1-1.5-1.5v-2a1.5 1.5 0 0 0-.5-1l-1.5-1.5a1.5 1.5 0 0 1 0-2l1.5-1.5a1.5 1.5 0 0 0 .5-1v-2A1.5 1.5 0 0 1 5.5 6h2a1.5 1.5 0 0 0 1-.5l1.5-1.5a1.5 1.5 0 0 1 1-.5z" 
+      stroke={active ? 'url(#goldGradient)' : 'white'} strokeWidth="1.5" />
+    <polygon points="12 8 13.1 10.5 16 11 14 13.1 14.5 16 12 14.5 9.5 16 10 13.1 8 11 10.9 10.5" 
+      stroke={active ? 'url(#goldGradient)' : 'white'} strokeWidth="1.5" />
+  </svg>
+);
+
+const VideoSearchInlineSVG = ({ width = '100%', height = '100%', className = '', active }: SvgIconProps) => (
+  <svg width={width} height={height} viewBox="0 0 24 24" fill="none" className={className} strokeLinecap="round" strokeLinejoin="round">
+    <path d="M15 18H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4" stroke={active ? 'url(#goldGradient)' : 'white'} strokeWidth="1.5" />
+    <polygon points="10 9 14 11 10 13" stroke={active ? 'url(#goldGradient)' : 'white'} strokeWidth="1.5" />
+    <circle cx="17" cy="16" r="3" stroke={active ? 'url(#goldGradient)' : 'white'} strokeWidth="1.5" />
+    <line x1="19.5" y1="18.5" x2="22" y2="21" stroke={active ? 'url(#goldGradient)' : 'white'} strokeWidth="1.5" />
+  </svg>
+);
+
+const DocumentAddInlineSVG = ({ width = '100%', height = '100%', className = '', active }: SvgIconProps) => (
+  <svg width={width} height={height} viewBox="0 0 24 24" fill="none" className={className} strokeLinecap="round" strokeLinejoin="round">
+    <path d="M14 22H5a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h10l5 5v4" stroke={active ? 'url(#goldGradient)' : 'white'} strokeWidth="1.5" />
+    <line x1="7" y1="8" x2="13" y2="8" stroke={active ? 'url(#goldGradient)' : 'white'} strokeWidth="1.5" />
+    <line x1="7" y1="12" x2="17" y2="12" stroke={active ? 'url(#goldGradient)' : 'white'} strokeWidth="1.5" />
+    <line x1="7" y1="16" x2="11" y2="16" stroke={active ? 'url(#goldGradient)' : 'white'} strokeWidth="1.5" />
+    <circle cx="18" cy="18" r="4" stroke={active ? 'url(#goldGradient)' : 'white'} strokeWidth="1.5" />
+    <line x1="18" y1="16" x2="18" y2="20" stroke={active ? 'url(#goldGradient)' : 'white'} strokeWidth="1.5" />
+    <line x1="16" y1="18" x2="20" y2="18" stroke={active ? 'url(#goldGradient)' : 'white'} strokeWidth="1.5" />
+  </svg>
+);
 
 interface IconProps {
   active: boolean;
-  size?: number;
 }
 
-const SavedIcon = memo(({ active, size = 22 }: IconProps) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
-    stroke={active ? THEME.amber : THEME.inactiveIcon}
-    strokeWidth="1.65" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
-    <path d="M9 3v9l3-2 3 2V3" strokeWidth="1.4" />
-  </svg>
-));
-
-const HireBrokerIcon = memo(({ active, size = 22 }: IconProps) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
-    stroke={active ? THEME.amber : THEME.inactiveIcon}
-    strokeWidth="1.65" strokeLinecap="round" strokeLinejoin="round">
-    <circle cx="9" cy="7" r="3.5" />
-    <path d="M2 21v-1.5C2 16.46 5.13 14 9 14s7 2.46 7 5.5V21" />
-    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-    <path d="M22 21v-1a5 5 0 0 0-3.5-4.77" />
-  </svg>
-));
-
-const HandpickedIcon = memo(({ active, size = 22 }: IconProps) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
-    stroke={active ? THEME.amber : THEME.inactiveIcon}
-    strokeWidth="1.65" strokeLinecap="round" strokeLinejoin="round">
-    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-  </svg>
-));
-
-const VideoToursIcon = memo(({ active, size = 22 }: IconProps) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
-    stroke={active ? THEME.amber : THEME.inactiveIcon}
-    strokeWidth="1.65" strokeLinecap="round" strokeLinejoin="round">
-    <rect x="2" y="3" width="16" height="13" rx="2.5" />
-    <polygon 
-      points="9 7.5 9 12.5 13.5 10" 
-      fill={active ? THEME.amber : 'none'} 
-      stroke={active ? THEME.amber : THEME.inactiveIcon}
-      strokeWidth={active ? 0 : 1.65}
+const CrempIcon = memo(({ active }: IconProps) => (
+  <div className="flex items-center justify-center w-full h-full">
+    <img
+      src={cremeLogo}
+      alt="CREMP"
+      draggable={false}
+      className={`max-w-[28px] max-h-[28px] object-contain transition-all duration-300 ${
+        active 
+          ? 'filter-none drop-shadow-[0_0_8px_rgba(251,191,36,0.6)]' 
+          : 'brightness-0 invert opacity-90'
+      }`}
     />
-    <circle cx="18" cy="18" r="3" />
-    <line x1="20.1" y1="20.1" x2="22" y2="22" />
-  </svg>
+  </div>
 ));
 
-const PostReqIcon = memo(({ active, size = 22 }: IconProps) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
-    stroke={active ? THEME.amber : THEME.inactiveIcon}
-    strokeWidth="1.65" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-    <polyline points="14 2 14 8 20 8" />
-    <line x1="12" y1="12" x2="12" y2="18" />
-    <line x1="9" y1="15" x2="15" y2="15" />
-  </svg>
+const SavedIcon = memo(({ active }: IconProps) => (
+  <div className="w-[24px] h-[24px]">
+    <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none"
+      stroke={active ? 'url(#goldGradient)' : 'white'} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+    </svg>
+  </div>
 ));
+
+const HireBrokerIcon = memo(({ active }: IconProps) => <div className="w-[24px] h-[24px]"><UserProfileInlineSVG active={active} /></div>);
+const HandpickedIcon = memo(({ active }: IconProps) => <div className="w-[24px] h-[24px]"><HandPickedInlineSVG active={active} /></div>);
+const VideoSearchIcon = memo(({ active }: IconProps) => <div className="w-[24px] h-[24px]"><VideoSearchInlineSVG active={active} /></div>);
+const PostRequirementIcon = memo(({ active }: IconProps) => <div className="w-[24px] h-[24px]"><DocumentAddInlineSVG active={active} /></div>);
 
 interface NavItem {
   id: string;
@@ -78,259 +86,127 @@ interface NavItem {
 }
 
 const NAV_ITEMS: NavItem[] = [
-  { id: 'saved',      label: 'Saved',       Icon: SavedIcon },
-  { id: 'broker',     label: 'Hire Broker', Icon: HireBrokerIcon },
-  { id: 'handpicked', label: 'Handpicked',  Icon: HandpickedIcon },
-  { id: 'video',      label: 'Video Tours', Icon: VideoToursIcon },
-  { id: 'post',       label: 'Post Req.',   Icon: PostReqIcon },
+  { id: 'cremp',      label: 'CREMP',            Icon: CrempIcon },
+  { id: 'saved',      label: 'Saved',            Icon: SavedIcon },
+  { id: 'broker',     label: 'Hire Broker',      Icon: HireBrokerIcon },
+  { id: 'handpicked', label: 'Handpicked',     Icon: HandpickedIcon },
+  { id: 'video',      label: 'Video Search',     Icon: VideoSearchIcon },
+  { id: 'post',       label: 'Post\nRequi', Icon: PostRequirementIcon },
 ];
 
-// ── CREMP logo button (always first in the footer) ─────────────────────────
-const CREMPLogoButton = memo(({ active, onClick }: { active: boolean; onClick: () => void }) => (
-  <button
-    onClick={onClick}
-    aria-label="CREMP Home"
-    aria-current={active ? 'page' : undefined}
-    style={{
-      flex: 1,
-      minWidth: 0,
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'flex-start',
-      gap: 4,
-      padding: '8px 4px 12px',
-      background: 'transparent',
-      border: 'none',
-      cursor: 'pointer',
-      outline: 'none',
-      WebkitTapHighlightColor: 'transparent',
-      position: 'relative',
-      transition: 'transform 100ms ease',
-    }}
-    onMouseDown={(e) => { (e.currentTarget as HTMLButtonElement).style.transform = 'scale(0.96)'; }}
-    onMouseUp={(e) => { (e.currentTarget as HTMLButtonElement).style.transform = 'scale(1)'; }}
-    onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.transform = 'scale(1)'; }}
-    onTouchStart={(e) => { (e.currentTarget as HTMLButtonElement).style.transform = 'scale(0.96)'; }}
-    onTouchEnd={(e) => { (e.currentTarget as HTMLButtonElement).style.transform = 'scale(1)'; }}
-  >
-    <span
-      aria-hidden="true"
-      style={{
-        position: 'absolute',
-        top: 7,
-        left: '50%',
-        transform: 'translateX(-50%)',
-        width: active ? 46 : 0,
-        height: 32,
-        borderRadius: 10,
-        background: THEME.amberBg,
-        opacity: active ? 1 : 0,
-        transition: 'width 300ms cubic-bezier(0.34,1.56,0.64,1), opacity 200ms ease',
-        pointerEvents: 'none',
-      }}
-    />
-    <span
-      style={{
-        position: 'relative',
-        zIndex: 1,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: 26,
-        height: 26,
-        flexShrink: 0,
-        transform: active ? 'scale(1.1)' : 'scale(1)',
-        transition: 'transform 280ms cubic-bezier(0.34,1.56,0.64,1)',
-      }}
-    >
-      <img
-        src={cremeLogo}
-        alt="CREMP"
-        style={{
-          width: 26,
-          height: 26,
-          objectFit: 'contain',
-          filter: active ? 'none' : 'brightness(0.45) saturate(0.3)',
-          transition: 'filter 200ms ease',
-        }}
-        draggable={false}
-      />
-    </span>
-    <span
-      style={{
-        position: 'relative',
-        zIndex: 1,
-        fontSize: 10,
-        lineHeight: 1.25,
-        textAlign: 'center',
-        color: active ? THEME.amber : THEME.inactiveLabel,
-        fontWeight: active ? 700 : 400,
-        letterSpacing: '0.02em',
-        transition: 'color 200ms ease',
-      }}
-    >
-    </span>
-  </button>
-));
-
-interface AppFooterProps {
+interface NavigationBarProps {
   activeNav: string;
   onNavChange: (id: string) => void;
   onLogoPress?: () => void;
   fixed?: boolean;
 }
 
-export default function AppFooter({ 
-  activeNav, 
+export default function NavigationBar({
+  activeNav,
   onNavChange,
   onLogoPress,
-  fixed = false 
-}: AppFooterProps) {
-  
-  const isActiveMap = useMemo(() => {
-    const map = new Set<string>();
-    NAV_ITEMS.forEach(item => {
-      if (item.id === activeNav) map.add(item.id);
-    });
-    return map;
-  }, [activeNav]);
-
+  fixed = false,
+}: NavigationBarProps) {
   return (
-    <footer
+    <nav
       role="navigation"
       aria-label="Main navigation"
       style={{
-        position: fixed ? 'fixed' : 'relative',
-        bottom: 0,
-        left: 0,
-        right: 0,
-        zIndex: 50,
-        // Viewport Width Constraints
-        width: '100%',
-        maxWidth: '100vw', 
-        boxSizing: 'border-box',
-        overflow: 'hidden',
-        
-        display: 'flex',
-        alignItems: 'stretch',
-        justifyContent: 'space-between',
-        background: THEME.bg,
-        borderTop: `1px solid ${THEME.border}`,
-        fontFamily: THEME.font,
-        paddingBottom: 'env(safe-area-inset-bottom, 0px)',
-        userSelect: 'none',
-        WebkitUserSelect: 'none',
+        fontFamily: "'Outfit', sans-serif",
+        borderRadius: '0',
       }}
+      className={`
+        ${fixed ? 'fixed top-0' : 'relative'} left-0 right-0 z-50
+        flex flex-col w-full overflow-hidden
+        bg-[#0B131E]
+        border-t border-white/5 shadow-[0_-10px_40px_rgba(0,0,0,0.5)]
+        select-none
+      `}
     >
-      <CREMPLogoButton
-        active={activeNav === 'cremp'}
-        onClick={() => {
-          onNavChange('cremp');
-          onLogoPress?.();
-        }}
-      />
-      {NAV_ITEMS.map((item) => {
-        const isActive = isActiveMap.has(item.id);
-        const Icon = item.Icon;
+      <svg width="0" height="0" className="absolute pointer-events-none">
+        <defs>
+          <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#fef08a" /> 
+            <stop offset="50%" stopColor="#fbbf24" /> 
+            <stop offset="100%" stopColor="#f59e0b" /> 
+          </linearGradient>
+        </defs>
+      </svg>
 
-        return (
-          <button
-            key={item.id}
-            onClick={() => onNavChange(item.id)}
-            aria-label={item.label}
-            aria-current={isActive ? 'page' : undefined}
-            style={{
-              flex: 1,
-              minWidth: 0,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'flex-start',
-              gap: 5,
-              padding: '10px 4px 12px',
-              background: 'transparent',
-              border: 'none',
-              cursor: 'pointer',
-              outline: 'none',
-              WebkitTapHighlightColor: 'transparent',
-              position: 'relative',
-              transition: 'transform 100ms ease',
-            }}
-            onMouseDown={(e) => {
-              (e.currentTarget as HTMLButtonElement).style.transform = 'scale(0.96)';
-            }}
-            onMouseUp={(e) => {
-              (e.currentTarget as HTMLButtonElement).style.transform = 'scale(1)';
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLButtonElement).style.transform = 'scale(1)';
-            }}
-            onTouchStart={(e) => {
-              (e.currentTarget as HTMLButtonElement).style.transform = 'scale(0.96)';
-            }}
-            onTouchEnd={(e) => {
-              (e.currentTarget as HTMLButtonElement).style.transform = 'scale(1)';
-            }}
-          >
-            <span
-              aria-hidden="true"
-              style={{
-                position: 'absolute',
-                top: 7,
-                left: '50%',
-                transform: 'translateX(-50%)',
-                width: isActive ? 46 : 0,
-                height: 32,
-                borderRadius: 10,
-                background: THEME.amberBg,
-                opacity: isActive ? 1 : 0,
-                transition: 'width 300ms cubic-bezier(0.34,1.56,0.64,1), opacity 200ms ease',
-                pointerEvents: 'none',
-                willChange: 'width, opacity',
-              }}
-            />
+      <div className="flex items-stretch w-full relative h-[4.5rem]">
+        {NAV_ITEMS.map((item, index) => {
+          const isCremp = item.id === 'cremp';
+          const isActive = activeNav === item.id || isCremp;
+          const Icon = item.Icon;
 
-            <span
-              style={{
-                position: 'relative',
-                zIndex: 1,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                width: 22,
-                height: 22,
-                flexShrink: 0,
-                transform: isActive ? 'scale(1.1)' : 'scale(1)',
-                transition: 'transform 280ms cubic-bezier(0.34,1.56,0.64,1)',
-                willChange: 'transform',
-              }}
-            >
-              <Icon active={isActive} />
-            </span>
+          return (
+            <React.Fragment key={item.id}>
+              {index > 0 && (
+                <div className="flex items-center shrink-0">
+                  <div className="w-px h-[28px] bg-white/[0.12]" />
+                </div>
+              )}
 
-            <span
-              style={{
-                position: 'relative',
-                zIndex: 1,
-                fontSize: 10,
-                lineHeight: 1.25,
-                textAlign: 'center',
-                letterSpacing: '0.01em',
-                wordBreak: 'break-word',
-                width: '100%',
-                paddingLeft: 2,
-                paddingRight: 2,
-                color: isActive ? THEME.amber : THEME.inactiveLabel,
-                fontWeight: isActive ? 600 : 400,
-                transition: 'color 200ms ease',
-              }}
-            >
-              {item.label}
-            </span>
-          </button>
-        );
-      })}
-    </footer>
+              <button
+                onClick={() => {
+                  onNavChange(item.id);
+                  if (isCremp) onLogoPress?.();
+                }}
+                aria-label={item.label.replace('\n', ' ')}
+                aria-current={activeNav === item.id ? 'page' : undefined}
+                className="
+                  relative group flex flex-1 min-w-0 flex-col items-center justify-center
+                  px-0.5 bg-transparent border-none cursor-pointer outline-none
+                  transition-all duration-300 ease-out
+                  hover:bg-white/[0.02] active:bg-white/[0.05]
+                  [-webkit-tap-highlight-color:transparent]
+                "
+              >
+                {isActive && !isCremp && (
+                  <div className="absolute inset-0 bg-gradient-to-b from-amber-500/5 to-transparent pointer-events-none" />
+                )}
+                <div 
+                  className={`
+                    absolute top-0 left-1/2 -translate-x-1/2 h-[2px] rounded-b-full
+                    bg-gradient-to-r from-yellow-300 via-amber-400 to-orange-500
+                    transition-all duration-300 ease-out
+                    ${isActive && !isCremp ? 'w-[45%] opacity-100 shadow-[0_2px_8px_rgba(251,191,36,0.8)]' : 'w-0 opacity-0'}
+                  `}
+                />
+                <div className="flex flex-col items-center justify-start mt-1">
+                  
+                  <div className={`
+                    flex items-center justify-center h-[28px] w-full
+                    transition-all duration-300 ease-out will-change-transform
+                    ${isActive
+                      ? 'scale-[1.05] drop-shadow-[0_0_6px_rgba(251,191,36,0.25)]'
+                      : 'scale-100 group-hover:-translate-y-0.5 group-hover:scale-105'}
+                  `}>
+                    <Icon active={isActive} />
+                  </div>
+                  <span
+                    className={`
+                      block w-full text-center leading-[1.2] whitespace-pre-wrap mt-1.5
+                      transition-all duration-300 ease-out
+                      ${isActive && !isCremp
+                        ? 'bg-gradient-to-r from-yellow-200 to-amber-500 bg-clip-text text-transparent font-medium drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]'
+                        : isCremp
+                          ? 'text-white font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]'
+                          : 'text-white/85 font-normal group-hover:text-white'}
+                      ${isCremp
+                        ? 'text-[8px] tracking-[0.03rem] uppercase'
+                        : 'text-[8px] tracking-tight'}
+                    `}
+                  >
+                    {item.label}
+                  </span>
+
+                </div>
+              </button>
+            </React.Fragment>
+          );
+        })}
+      </div>
+    </nav>
   );
 }

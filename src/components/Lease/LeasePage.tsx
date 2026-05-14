@@ -37,25 +37,28 @@ export default function LeasePage({ onHomePress }: LeasePageProps) {
         <TopTabs activeTab="lease" onTabChange={handleTabChange} />
       </div>
 
-      {/* ── Light control bar: category tabs + search ─────────────────── */}
-      <div className="shrink-0 w-full bg-[#F8FAFC] z-10 shadow-[0_4px_16px_rgba(0,0,0,0.06)] relative">
-        <LeaseCategoryTabs
-          activeCategory={activeCategory}
-          onCategoryChange={setActiveCategory}
-        />
-        <SearchBar
-          query={searchQuery}
-          onChange={setSearchQuery}
-          placeholder="Search offices, retail, warehouses..."
-        />
-      </div>
+      {/* ── Map fills remaining space; search floats at top of map ────── */}
+      <div className="flex-1 relative overflow-hidden z-0">
+        {/* Full-height map canvas */}
+        <div className="absolute inset-0 flex flex-col">
+          <LeaseMapSection
+            selectedMarkerId={selectedMarkerId}
+            onMarkerClick={setSelectedMarkerId}
+          />
+        </div>
 
-      {/* ── Map fills remaining space ─────────────────────────────────── */}
-      <div className="flex-1 flex flex-col overflow-hidden relative z-0">
-        <LeaseMapSection
-          selectedMarkerId={selectedMarkerId}
-          onMarkerClick={setSelectedMarkerId}
-        />
+        {/* Category tabs + search bar floating at top of map */}
+        <div className="absolute top-0 left-0 right-0 z-20 bg-[#F8FAFC] shadow-[0_4px_16px_rgba(0,0,0,0.08)]">
+          <LeaseCategoryTabs
+            activeCategory={activeCategory}
+            onCategoryChange={setActiveCategory}
+          />
+          <SearchBar
+            query={searchQuery}
+            onChange={setSearchQuery}
+            placeholder="Search offices, retail, warehouses..."
+          />
+        </div>
       </div>
 
       {/* ── Property cards list ───────────────────────────────────────── */}

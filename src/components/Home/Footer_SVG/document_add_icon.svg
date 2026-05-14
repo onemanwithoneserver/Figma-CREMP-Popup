@@ -1,0 +1,52 @@
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+  <!-- Document -->
+  <path d="
+    M36 18H74L92 36V92
+    C92 96 89 100 84 100H36
+    C31 100 28 96 28 92V26
+    C28 21 31 18 36 18Z"
+    stroke="#E5E7EB"
+    stroke-width="4"
+    stroke-linecap="round"
+    stroke-linejoin="round"/>
+
+  <!-- Fold -->
+  <path d="M74 18V36H92"
+    stroke="#E5E7EB"
+    stroke-width="4"
+    stroke-linecap="round"
+    stroke-linejoin="round"/>
+
+  <!-- Text lines -->
+  <line x1="42" y1="42" x2="64" y2="42"
+    stroke="#E5E7EB"
+    stroke-width="4"
+    stroke-linecap="round"/>
+
+  <line x1="42" y1="56" x2="68" y2="56"
+    stroke="#E5E7EB"
+    stroke-width="4"
+    stroke-linecap="round"/>
+
+  <line x1="42" y1="70" x2="60" y2="70"
+    stroke="#E5E7EB"
+    stroke-width="4"
+    stroke-linecap="round"/>
+
+  <!-- Plus circle -->
+  <circle cx="84" cy="84" r="18"
+    stroke="#E5E7EB"
+    stroke-width="4"/>
+
+  <line x1="84" y1="76" x2="84" y2="92"
+    stroke="#E5E7EB"
+    stroke-width="4"
+    stroke-linecap="round"/>
+
+  <line x1="76" y1="84" x2="92" y2="84"
+    stroke="#E5E7EB"
+    stroke-width="4"
+    stroke-linecap="round"/>
+
+</svg>
