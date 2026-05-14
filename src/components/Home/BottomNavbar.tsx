@@ -3,59 +3,70 @@ import React from 'react';
 interface NavItem {
   id: string;
   label: string;
-  icon: React.FC<{ color: string }>;
+  icon: (active: boolean) => React.ReactNode;
 }
 
-const SavedIcon = ({ color }: { color: string }) => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
-    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-    <path d="M15 4v5l2-1.5L19 9V4h-4z" />
+const AMBER = '#F5A623';
+const AMBER_BG = 'rgba(245, 166, 35, 0.13)';
+const INACTIVE_ICON = 'rgba(255,255,255,0.42)';
+const INACTIVE_LABEL = 'rgba(255,255,255,0.38)';
+
+const SavedIcon = (active: boolean) => (
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
+    stroke={active ? AMBER : INACTIVE_ICON}
+    strokeWidth="1.65" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
+    <path d="M9 3v9l3-2 3 2V3" strokeWidth="1.4" />
   </svg>
 );
 
-const AgentsIcon = ({ color }: { color: string }) => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="12" cy="7" r="4" />
-    <path d="M5.5 21v-2.5C5.5 15.46 8.46 13 12 13" />
-    <path d="M18.5 21v-2.5C18.5 15.46 15.54 13 12 13" />
-    <path d="M12 15v6" />
-    <circle cx="17" cy="17" r="2" />
+const HireBrokerIcon = (active: boolean) => (
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
+    stroke={active ? AMBER : INACTIVE_ICON}
+    strokeWidth="1.65" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="9" cy="7" r="3.5" />
+    <path d="M2 21v-1.5C2 16.46 5.13 14 9 14s7 2.46 7 5.5V21" />
+    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+    <path d="M22 21v-1a5 5 0 0 0-3.5-4.77" />
   </svg>
 );
 
-const HandpickedIcon = ({ color }: { color: string }) => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
-    <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2z" />
-    <path d="M12 6l1.5 4.5h4.5l-3.5 2.5 1.5 4.5L12 15l-4 2.5 1.5-4.5L6 10.5h4.5z" />
+const HandpickedIcon = (active: boolean) => (
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
+    stroke={active ? AMBER : INACTIVE_ICON}
+    strokeWidth="1.65" strokeLinecap="round" strokeLinejoin="round">
+    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
   </svg>
 );
 
-const VideoToursIcon = ({ color }: { color: string }) => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
-    <rect x="2" y="4" width="15" height="13" rx="2" />
-    <path d="M10 8.5l4 3-4 3V8.5z" />
-    <circle cx="18.5" cy="16" r="2.5" />
-    <path d="M20.5 18l2.5 2.5" />
+const VideoToursIcon = (active: boolean) => (
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
+    stroke={active ? AMBER : INACTIVE_ICON}
+    strokeWidth="1.65" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="2" y="3" width="16" height="13" rx="2.5" />
+    <polygon points="9 7.5 9 12.5 13.5 10" fill={active ? AMBER : INACTIVE_ICON} stroke="none" />
+    <circle cx="18" cy="18" r="3" />
+    <line x1="20.1" y1="20.1" x2="22" y2="22" />
   </svg>
 );
 
-const PostReqIcon = ({ color }: { color: string }) => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
-    <path d="M14 3h4a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
-    <rect x="8" y="1" width="8" height="4" rx="1" />
-    <path d="M8 11h8" />
-    <path d="M8 15h5" />
-    <path d="M17 18v-3" />
-    <path d="M15.5 16.5h3" />
+const PostReqIcon = (active: boolean) => (
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
+    stroke={active ? AMBER : INACTIVE_ICON}
+    strokeWidth="1.65" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+    <polyline points="14 2 14 8 20 8" />
+    <line x1="12" y1="12" x2="12" y2="18" />
+    <line x1="9" y1="15" x2="15" y2="15" />
   </svg>
 );
 
 const navItems: NavItem[] = [
-  { id: 'saved', label: 'Saved', icon: SavedIcon },
-  { id: 'agents', label: 'Hire Broker', icon: AgentsIcon },
-  { id: 'handpicked', label: 'Handpicked', icon: HandpickedIcon },
-  { id: 'video', label: 'Video Tours', icon: VideoToursIcon },
-  { id: 'post', label: 'Post Req.', icon: PostReqIcon },
+  { id: 'saved',      label: 'Saved',       icon: SavedIcon },
+  { id: 'broker',     label: 'Hire Broker', icon: HireBrokerIcon },
+  { id: 'handpicked', label: 'Handpicked',  icon: HandpickedIcon },
+  { id: 'video',      label: 'Video Tours', icon: VideoToursIcon },
+  { id: 'post',       label: 'Post Req.',   icon: PostReqIcon },
 ];
 
 interface AppFooterProps {
@@ -66,49 +77,98 @@ interface AppFooterProps {
 export default function AppFooter({ activeNav, onNavChange }: AppFooterProps) {
   return (
     <footer
-      className="relative z-50 w-full flex items-stretch justify-between bg-[#0B1320]/90 backdrop-blur-xl border-t border-white/10 shadow-[0_-4px_24px_rgba(0,0,0,0.5)] pb-safe"
-      style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
       role="navigation"
+      style={{
+        position: 'relative',
+        zIndex: 50,
+        width: '100%',
+        display: 'flex',
+        alignItems: 'stretch',
+        justifyContent: 'space-between',
+        background: '#0B1320',
+        borderTop: '1px solid rgba(255,255,255,0.07)',
+        fontFamily: "'SF Pro Text', 'Inter', system-ui, sans-serif",
+      }}
     >
       {navItems.map((item) => {
         const isActive = activeNav === item.id;
-        const iconColor = isActive ? '#F5A623' : '#FFFFFF';
 
         return (
           <button
             key={item.id}
             onClick={() => onNavChange(item.id)}
-            className="group relative flex flex-col items-center justify-start flex-1 px-1 pt-2.5 pb-2.5 focus-visible:outline-none overflow-hidden min-w-0"
             aria-label={item.label}
             aria-current={isActive ? 'page' : undefined}
+            style={{
+              flex: 1,
+              minWidth: 0,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: 5,
+              padding: '10px 4px 12px',
+              background: 'transparent',
+              border: 'none',
+              cursor: 'pointer',
+              outline: 'none',
+              WebkitTapHighlightColor: 'transparent',
+              position: 'relative',
+            }}
           >
-            <div
-              className={`absolute top-0 left-1/2 -translate-x-1/2 h-[2.5px] bg-[#F5A623] rounded-b-full shadow-[0_2px_10px_rgba(245,166,35,0.8)] transition-all duration-300 ease-out ${
-                isActive ? 'w-8 opacity-100' : 'w-0 opacity-0'
-              }`}
+            {/* Amber pill behind icon */}
+            <span
+              aria-hidden="true"
+              style={{
+                position: 'absolute',
+                top: 7,
+                left: '50%',
+                transform: 'translateX(-50%)',
+                width: isActive ? 46 : 0,
+                height: 32,
+                borderRadius: 10,
+                background: AMBER_BG,
+                opacity: isActive ? 1 : 0,
+                transition: 'width 300ms cubic-bezier(0.34,1.56,0.64,1), opacity 200ms ease',
+                pointerEvents: 'none',
+              }}
             />
 
-            <div className="relative flex items-center justify-center mb-1.5 shrink-0" style={{ width: 22, height: 22 }}>
-              <div
-                className={`absolute inset-0 bg-[#F5A623] blur-[10px] rounded-full transition-opacity duration-300 ease-out ${
-                  isActive ? 'opacity-30' : 'opacity-0'
-                }`}
-              />
-              <div
-                className={`relative z-10 transition-transform duration-300 ease-out group-active:scale-90 ${
-                  isActive ? 'scale-[1.12]' : 'scale-100'
-                }`}
-              >
-                <item.icon color={iconColor} />
-              </div>
-            </div>
-
+            {/* Icon wrapper — consistent 22×22 box */}
             <span
-              className={`text-[10px] leading-tight tracking-wide text-center break-words w-full px-0.5 transition-all duration-300 ease-out ${
-                isActive
-                  ? 'text-[#F5A623] font-semibold'
-                  : 'text-white/60 font-medium'
-              }`}
+              style={{
+                position: 'relative',
+                zIndex: 1,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: 22,
+                height: 22,
+                flexShrink: 0,
+                transform: isActive ? 'scale(1.1)' : 'scale(1)',
+                transition: 'transform 280ms cubic-bezier(0.34,1.56,0.64,1)',
+              }}
+            >
+              {item.icon(isActive)}
+            </span>
+
+            {/* Label */}
+            <span
+              style={{
+                position: 'relative',
+                zIndex: 1,
+                fontSize: 10,
+                lineHeight: 1.3,
+                textAlign: 'center',
+                letterSpacing: '0.015em',
+                wordBreak: 'break-word',
+                width: '100%',
+                paddingLeft: 2,
+                paddingRight: 2,
+                color: isActive ? AMBER : INACTIVE_LABEL,
+                fontWeight: isActive ? 600 : 400,
+                transition: 'color 200ms ease',
+              }}
             >
               {item.label}
             </span>
