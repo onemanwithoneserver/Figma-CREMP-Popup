@@ -121,12 +121,14 @@ const NAV_ITEMS: NavItem[] = [
 interface NavigationBarProps {
   activeNav: string;
   onNavChange: (id: string) => void;
+  onLogoPress?: () => void;
   fixed?: boolean;
 }
 
 export default function NavigationBar({
   activeNav,
   onNavChange,
+  onLogoPress,
   fixed = false,
 }: NavigationBarProps) {
   return (
@@ -148,7 +150,12 @@ export default function NavigationBar({
           if (isCremp) {
             return (
               <React.Fragment key={item.id}>
-                <div className="flex flex-1 min-w-0 flex-col items-center justify-center gap-1 py-2 px-1">
+                <button
+                  type="button"
+                  onClick={onLogoPress}
+                  className="flex flex-1 min-w-0 flex-col items-center justify-center gap-1 py-2 px-1 bg-transparent border-none cursor-pointer outline-none"
+                  aria-label="Go to CREMP home"
+                >
                   <div className="w-10 h-8 flex items-center justify-center shrink-0">
                     <img 
                       src="./src/components/Home/Logo.png" 
@@ -159,7 +166,7 @@ export default function NavigationBar({
                   <span className="block w-full text-center leading-tight whitespace-pre-wrap text-[0.45rem] tracking-wider font-bold uppercase text-white/90">
                     {item.label}
                   </span>
-                </div>
+                </button>
               </React.Fragment>
             );
           }

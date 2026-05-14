@@ -1,82 +1,106 @@
 import type { LeaseCategory } from './types';
 
-// ── Icons ──────────────────────────────────────────────────────────────────
-
-const FullSpaceIcon = ({ color }: { color: string }) => (
+const FullSpaceIcon = ({ className }: { className?: string }) => (
   <svg
     width="20"
     height="20"
     viewBox="0 0 24 24"
     fill="none"
-    stroke={color}
+    stroke="currentColor"
     strokeWidth="1.6"
     strokeLinecap="round"
     strokeLinejoin="round"
+    className={`shrink-0 ${className || ''}`}
   >
-    <rect x="3" y="3" width="18" height="18" rx="2" />
-    <path d="M9 3v18" />
-    <path d="M3 9h6" />
-    <path d="M3 15h6" />
-    <path d="M12 8h6" />
-    <path d="M12 12h6" />
-    <path d="M12 16h6" />
+    <rect x="4" y="3" width="16" height="18" rx="2" />
+    <path d="M12 7h2v2h-2z" />
+    <path d="M12 11h2v2h-2z" />
+    <path d="M12 15h2v2h-2z" />
+    <path d="M7 7h3v2H7z" />
+    <path d="M7 11h3v2H7z" />
+    <path d="M7 15h3v2H7z" />
   </svg>
 );
 
-const SubLeaseIcon = ({ color }: { color: string }) => (
+const SubLeaseIcon = ({ className }: { className?: string }) => (
   <svg
     width="20"
     height="20"
     viewBox="0 0 24 24"
     fill="none"
-    stroke={color}
+    stroke="currentColor"
     strokeWidth="1.6"
     strokeLinecap="round"
     strokeLinejoin="round"
+    className={`shrink-0 ${className || ''}`}
   >
-    <rect x="2" y="6" width="10" height="14" rx="1.5" />
-    <rect x="12" y="2" width="10" height="14" rx="1.5" />
-    <path d="M5 10h4" />
-    <path d="M5 13h4" />
-    <path d="M15 6h4" />
-    <path d="M15 9h4" />
-    <path d="M8 20v-4" />
-    <path d="M16 16v4" />
+    <rect x="4" y="3" width="16" height="18" rx="2" />
+    <path d="M10 3v18" />
+    <path d="M4 10h6" />
+    <path d="M4 15h6" />
+    <path d="M13 6h4" />
+    <path d="M13 9h4" />
+    <path d="M13 12h4" />
+    <path d="M13 15h4" />
   </svg>
 );
 
-const CoWorkingIcon = ({ color }: { color: string }) => (
+const CoWorkingIcon = ({ className }: { className?: string }) => (
   <svg
     width="20"
     height="20"
     viewBox="0 0 24 24"
     fill="none"
-    stroke={color}
+    stroke="currentColor"
     strokeWidth="1.6"
     strokeLinecap="round"
     strokeLinejoin="round"
+    className={`shrink-0 ${className || ''}`}
   >
-    <circle cx="9" cy="7" r="2.5" />
-    <circle cx="15" cy="7" r="2.5" />
-    <path d="M3 19v-1.5C3 15.46 5.69 14 9 14" />
-    <path d="M21 19v-1.5C21 15.46 18.31 14 15 14s-6 1.46-6 3.5V19" />
+    <circle cx="8" cy="8" r="2.5" />
+    <circle cx="16" cy="8" r="2.5" />
+    <path d="M3 17v-2a3 3 0 0 1 3-3h4a3 3 0 0 1 3 3v2" />
+    <path d="M11 17v-2a3 3 0 0 1 3-3h4a3 3 0 0 1 3 3v2" />
   </svg>
 );
-
-// ── Config ────────────────────────────────────────────────────────────────
 
 const TABS: Array<{
   id: LeaseCategory;
   label: string;
-  color: string;
-  Icon: React.FC<{ color: string }>;
+  colorClass: string;
+  borderClass: string;
+  ringClass: string;
+  shadowClass: string;
+  Icon: React.FC<{ className?: string }>;
 }> = [
-  { id: 'full-space', label: 'Full Space', color: '#7C3AED', Icon: FullSpaceIcon },
-  { id: 'sub-lease', label: 'Sub Lease', color: '#059669', Icon: SubLeaseIcon },
-  { id: 'co-working', label: 'Co-Working', color: '#F97316', Icon: CoWorkingIcon },
+  {
+    id: 'full-space',
+    label: 'Full Space',
+    colorClass: 'text-violet-600',
+    borderClass: 'border-violet-600',
+    ringClass: 'ring-violet-600/20',
+    shadowClass: 'shadow-violet-600/10',
+    Icon: FullSpaceIcon,
+  },
+  {
+    id: 'sub-lease',
+    label: 'Sub Lease',
+    colorClass: 'text-emerald-600',
+    borderClass: 'border-emerald-600',
+    ringClass: 'ring-emerald-600/20',
+    shadowClass: 'shadow-emerald-600/10',
+    Icon: SubLeaseIcon,
+  },
+  {
+    id: 'co-working',
+    label: 'Co-Working',
+    colorClass: 'text-orange-500',
+    borderClass: 'border-orange-500',
+    ringClass: 'ring-orange-500/20',
+    shadowClass: 'shadow-orange-500/10',
+    Icon: CoWorkingIcon,
+  },
 ];
-
-// ── Component ─────────────────────────────────────────────────────────────
 
 interface LeaseCategoryTabsProps {
   activeCategory: LeaseCategory;
@@ -88,11 +112,8 @@ export default function LeaseCategoryTabs({
   onCategoryChange,
 }: LeaseCategoryTabsProps) {
   return (
-    <div
-      className="w-full px-1.5 pt-1.5 pb-1 bg-transparent"
-      style={{ fontFamily: "'Outfit', sans-serif" }}
-    >
-      <div className="grid grid-cols-3 gap-1 w-full" aria-label="Lease property categories">
+    <div className="w-full px-1.5 pt-1.5 pb-1 bg-transparent font-['Outfit',_sans-serif] [container-type:inline-size]">
+      <div className="grid grid-cols-3 gap-1.5 w-full" aria-label="Lease property categories">
         {TABS.map((tab) => {
           const isActive = activeCategory === tab.id;
           const Icon = tab.Icon;
@@ -102,20 +123,19 @@ export default function LeaseCategoryTabs({
               key={tab.id}
               onClick={() => onCategoryChange(tab.id)}
               aria-label={tab.label}
-              className="flex flex-row items-center justify-center gap-1.5 px-1 py-2 rounded-[8px] bg-white border transition-all duration-200 active:scale-95 focus-visible:outline-none"
-              style={{
-                borderColor: isActive ? tab.color : '#E2E8F0',
-                boxShadow: isActive
-                  ? `0 0 0 1px ${tab.color}22, 0 2px 8px ${tab.color}14`
-                  : '0 1px 3px rgba(0,0,0,0.04)',
-              }}
+              className={`flex flex-row items-center justify-center gap-1.5 px-2 py-1.5 rounded-lg bg-white border transition-all duration-200 active:scale-95 focus-visible:outline-none ${
+                isActive
+                  ? `${tab.borderClass} ring-1 ${tab.ringClass} shadow-md ${tab.shadowClass}`
+                  : 'border-slate-200 shadow-[0_1px_3px_rgba(0,0,0,0.04)]'
+              }`}
             >
-              <div className="shrink-0">
-                <Icon color={isActive ? tab.color : '#94A3B8'} />
+              <div className="shrink-0 flex items-center justify-center">
+                <Icon className={isActive ? tab.colorClass : 'text-slate-400'} />
               </div>
               <span
-                className="text-[10px] font-semibold leading-tight tracking-tight transition-colors"
-                style={{ color: isActive ? tab.color : '#475569' }}
+                className={`font-semibold whitespace-nowrap leading-tight tracking-tight transition-colors text-[clamp(10px,3.5cqi,14px)] ${
+                  isActive ? tab.colorClass : 'text-slate-600'
+                }`}
               >
                 {tab.label}
               </span>

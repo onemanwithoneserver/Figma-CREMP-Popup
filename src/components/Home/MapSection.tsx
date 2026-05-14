@@ -18,24 +18,24 @@ interface MapMarkerData {
 }
 
 const mapMarkers: MapMarkerData[] = [
-  { id: '1', lat: 30, lng: 20, type: 'franchise', investment: '₹ 18 L', brandName: 'Chai Point', opportunityType: 'Franchise' },
-  { id: '2', lat: 40, lng: 45, type: 'existing', investment: '₹ 42 L', brandName: 'QSR Brand', opportunityType: 'Franchise' },
-  { id: '3', lat: 55, lng: 15, type: 'existing', investment: '₹ 35 L', brandName: 'Education Brand', opportunityType: 'Franchise' },
-  { id: '4', lat: 70, lng: 45, type: 'franchise', investment: '₹ 50 L', brandName: 'EV Charging', opportunityType: 'Franchise' },
-  { id: '5', lat: 85, lng: 20, type: 'movable', investment: '₹ 12 L', brandName: 'Food Truck', opportunityType: '(Movable)' },
-  { id: '6', lat: 65, lng: 80, type: 'existing', investment: '₹ 22 L', brandName: 'Gym Brand', opportunityType: 'Franchise' },
-  { id: '7', lat: 25, lng: 75, type: 'franchise', investment: '₹ 25 L', brandName: 'Salon Brand', opportunityType: 'Franchise' },
+  { id: '1', lat: 30, lng: 28, type: 'franchise', investment: '₹ 18 L', brandName: 'Chai Point', opportunityType: 'Franchise' },
+  { id: '2', lat: 36, lng: 48, type: 'existing', investment: '₹ 42 L', brandName: 'QSR Brand', opportunityType: 'Franchise' },
+  { id: '3', lat: 28, lng: 63, type: 'franchise', investment: '₹ 25 L', brandName: 'Salon Brand', opportunityType: 'Franchise' },
+  { id: '4', lat: 52, lng: 29, type: 'existing', investment: '₹ 35 L', brandName: 'Education Brand', opportunityType: 'Franchise' },
+  { id: '5', lat: 58, lng: 48, type: 'franchise', investment: '₹ 50 L', brandName: 'EV Charging', opportunityType: 'Franchise' },
+  { id: '6', lat: 50, lng: 65, type: 'existing', investment: '₹ 22 L', brandName: 'Gym Brand', opportunityType: 'Franchise' },
+  { id: '7', lat: 68, lng: 30, type: 'movable', investment: '₹ 12 L', brandName: 'Food Truck', opportunityType: '(Movable)' },
 ];
 
 const mapLabels = [
-  { label: 'MADHAPUR', top: 25, left: 45 },
-  { label: 'KUKATPALLY', top: 15, left: 80 },
-  { label: 'GACHIBOWLI', top: 60, left: 15 },
-  { label: 'FINANCIAL DISTRICT', top: 75, left: 15 },
-  { label: 'JUBILEE HILLS', top: 65, left: 50 },
-  { label: 'BANJARA HILLS', top: 90, left: 55 },
-  { label: 'LB NAGAR', top: 95, left: 85 },
-  { label: 'KOMPALLY', top: 45, left: 95 },
+  { label: 'MADHAPUR',          top: 28, left: 40 },
+  { label: 'KUKATPALLY',        top: 26, left: 62 },
+  { label: 'GACHIBOWLI',        top: 55, left: 28 },
+  { label: 'FINANCIAL DISTRICT',top: 68, left: 28 },
+  { label: 'JUBILEE HILLS',     top: 62, left: 48 },
+  { label: 'BANJARA HILLS',     top: 66, left: 46 },
+  { label: 'LB NAGAR',          top: 68, left: 64 },
+  { label: 'KOMPALLY',          top: 40, left: 68 },
 ];
 
 const StoreIcon = ({ color }: { color: string }) => (
@@ -91,7 +91,7 @@ function PropertyMarker({ marker, isSelected, onClick }: PropertyMarkerProps) {
         fontFamily: "'Outfit', sans-serif",
       }}
       aria-label={`${marker.brandName} ${marker.opportunityType} marker. Investment: ${marker.investment}`}
-      aria-pressed={isSelected}
+      aria-current={isSelected ? 'location' : undefined}
     >
       <div className="flex flex-col items-center drop-shadow-sm relative z-10">
         <div
@@ -231,11 +231,11 @@ export default function MapSection({
           ))}
 
           <div className="absolute flex items-center justify-center w-[20px] h-[20px] rounded border border-[#CBD5E1] bg-white shadow-sm pointer-events-none"
-            style={{ top: '48%', left: '78%' }} aria-hidden="true">
+            style={{ top: '44%', left: '68%' }} aria-hidden="true">
             <span className="text-[8px] font-bold text-[#64748B]">44</span>
           </div>
           <div className="absolute flex items-center justify-center w-[20px] h-[20px] rounded border border-[#CBD5E1] bg-white shadow-sm pointer-events-none"
-            style={{ top: '68%', left: '8%' }} aria-hidden="true">
+            style={{ top: '62%', left: '28%' }} aria-hidden="true">
             <span className="text-[8px] font-bold text-[#64748B]">65</span>
           </div>
 

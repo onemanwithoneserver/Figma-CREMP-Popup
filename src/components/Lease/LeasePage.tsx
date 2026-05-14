@@ -31,10 +31,14 @@ export default function LeasePage({ onHomePress }: LeasePageProps) {
       className="flex flex-col w-full h-full overflow-hidden relative mx-auto bg-[#0a1128]"
       style={{ maxWidth: 430, fontFamily: "'Outfit', sans-serif" }}
     >
-      {/* ── Dark top bar: header + tab strip ─────────────────────────── */}
+      {/* ── Dark top bar: header + tab strip + category tabs ──────────── */}
       <div className="shrink-0 w-full bg-[#0a1128] z-20 relative">
         <Header />
         <TopTabs activeTab="lease" onTabChange={handleTabChange} />
+        <LeaseCategoryTabs
+          activeCategory={activeCategory}
+          onCategoryChange={setActiveCategory}
+        />
       </div>
 
       {/* ── Map fills remaining space; search floats at top of map ────── */}
@@ -47,20 +51,14 @@ export default function LeasePage({ onHomePress }: LeasePageProps) {
           />
         </div>
 
-        {/* Filter + search floating at top of map */}
+        {/* Search floating at top of map */}
         <div className="absolute top-0 left-0 right-0 z-20">
-          <LeaseCategoryTabs
-            activeCategory={activeCategory}
-            onCategoryChange={setActiveCategory}
-          />
-          <div className="px-3 pb-2.5">
-            <div>
-              <SearchBar
-                query={searchQuery}
-                onChange={setSearchQuery}
-                placeholder="Search offices, retail, warehouses..."
-              />
-            </div>
+          <div className="px-3 pt-2.5 pb-2.5">
+            <SearchBar
+              query={searchQuery}
+              onChange={setSearchQuery}
+              placeholder="Search offices, retail, warehouses..."
+            />
           </div>
         </div>
       </div>

@@ -38,8 +38,8 @@ export const mapMarkers: MapMarker[] = [
     investment: '₹ 18 L',
     brandName: 'Chai Point',
     opportunityType: 'Franchise',
-    lat: 22,
-    lng: 14,
+    lat: 28,
+    lng: 28,
   },
   {
     id: '2',
@@ -47,8 +47,8 @@ export const mapMarkers: MapMarker[] = [
     investment: '₹ 42 L',
     brandName: 'QSR Brand',
     opportunityType: 'Franchise',
-    lat: 32,
-    lng: 37,
+    lat: 34,
+    lng: 46,
   },
   {
     id: '3',
@@ -56,7 +56,7 @@ export const mapMarkers: MapMarker[] = [
     investment: '₹ 25 L',
     brandName: 'Salon Brand',
     opportunityType: 'Franchise',
-    lat: 18,
+    lat: 26,
     lng: 62,
   },
   {
@@ -66,7 +66,7 @@ export const mapMarkers: MapMarker[] = [
     brandName: 'Education Brand',
     opportunityType: 'Franchise',
     lat: 46,
-    lng: 10,
+    lng: 28,
   },
   {
     id: '5',
@@ -75,7 +75,7 @@ export const mapMarkers: MapMarker[] = [
     brandName: 'EV Charging',
     opportunityType: 'Franchise',
     lat: 56,
-    lng: 38,
+    lng: 40,
   },
   {
     id: '6',
@@ -83,8 +83,8 @@ export const mapMarkers: MapMarker[] = [
     investment: '₹ 22 L',
     brandName: 'Gym Brand',
     opportunityType: 'Franchise',
-    lat: 52,
-    lng: 66,
+    lat: 50,
+    lng: 63,
   },
   {
     id: '7',
@@ -92,8 +92,8 @@ export const mapMarkers: MapMarker[] = [
     investment: '₹ 12 L',
     brandName: 'Food Truck',
     opportunityType: '(Movable)',
-    lat: 74,
-    lng: 8,
+    lat: 68,
+    lng: 30,
   },
 ];
 
@@ -114,14 +114,14 @@ export const featuredProperty: PropertyDetail = {
 
 // ── Map labels ───────────────────────────────────────────────────────────────
 export const mapLabels = [
-  { label: 'MADHAPUR',          top: 18, left: 30 },
-  { label: 'KUKATPALLY',        top: 10, left: 62 },
-  { label: 'KOMPALLY',          top: 42, left: 76 },
-  { label: 'GACHIBOWLI',        top: 46, left: 2  },
-  { label: 'JUBILEE HILLS',     top: 62, left: 34 },
-  { label: 'FINANCIAL DISTRICT',top: 74, left: 2  },
-  { label: 'BANJARA HILLS',     top: 80, left: 42 },
-  { label: 'LB NAGAR',          top: 80, left: 70 },
+  { label: 'MADHAPUR',          top: 29, left: 32 },
+  { label: 'KUKATPALLY',        top: 27, left: 62 },
+  { label: 'KOMPALLY',          top: 40, left: 68 },
+  { label: 'GACHIBOWLI',        top: 44, left: 28 },
+  { label: 'JUBILEE HILLS',     top: 60, left: 36 },
+  { label: 'FINANCIAL DISTRICT',top: 68, left: 28 },
+  { label: 'BANJARA HILLS',     top: 65, left: 44 },
+  { label: 'LB NAGAR',          top: 67, left: 64 },
 ];
 
 // ── Category tabs (for reuse) ─────────────────────────────────────────────────

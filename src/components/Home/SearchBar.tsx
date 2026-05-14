@@ -1,5 +1,3 @@
-import React from "react";
-
 const SearchIcon = ({ color }: { color: string }) => (
   <svg
     width="18"
@@ -73,7 +71,7 @@ export default function SearchBar({
 
         <button
           type="button"
-          className="flex items-center justify-center shrink-0 w-[28px] h-[28px] rounded-[4px] transition-transform active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37]/50"
+          className="flex items-center justify-center shrink-0 w-[28px] h-[28px] rounded-[8px] transition-transform active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37]/50"
           style={{ background: "linear-gradient(135deg, #0a1128 0%, #1a3463 100%)" }}
           aria-label="Open filter options"
           aria-haspopup="dialog"

@@ -54,7 +54,7 @@ export default function PropertyMarker({ marker, isSelected, onClick }: Property
         fontFamily: "'Outfit', sans-serif",
       }}
       aria-label={`${marker.brandName} ${marker.opportunityType} marker. Investment: ${marker.investment}`}
-      aria-pressed={isSelected}
+      aria-current={isSelected ? 'location' : undefined}
     >
       <div className="flex flex-col items-center drop-shadow-sm relative z-10">
         <div
