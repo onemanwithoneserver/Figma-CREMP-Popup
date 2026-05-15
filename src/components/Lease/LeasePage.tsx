@@ -27,7 +27,7 @@ export default function LeasePage({ onHomePress }: LeasePageProps) {
       className="flex flex-col w-full h-full overflow-hidden relative mx-auto bg-[#0a1128]"
       style={{ maxWidth: 430, fontFamily: "'Outfit', sans-serif" }}
     >
-      <div className="shrink-0 w-full bg-[#0a1128] z-20 relative pb-2">
+      <div className="shrink-0 w-full bg-[#0a1128] z-20 relative pb-[24px]">
         <LeaseHeader />
         <TopTabs activeTab="lease" onTabChange={handleTabChange} />
         <LeaseCategoryTabs
@@ -35,7 +35,7 @@ export default function LeasePage({ onHomePress }: LeasePageProps) {
           onCategoryChange={setActiveCategory}
         />
 
-        <div className="absolute left-0 right-0 bottom-[-32px] z-30 px-2">
+        <div className="absolute left-0 right-0 bottom-[-20px] z-30 px-2">
           <div className="transition-all duration-500 ease-out">
             <SearchBar
               query={searchQuery}
@@ -46,7 +46,7 @@ export default function LeasePage({ onHomePress }: LeasePageProps) {
         </div>
       </div>
 
-      <div className="flex-1 relative overflow-hidden z-0 pt-2">
+      <div className="flex-1 relative overflow-hidden z-0 pt-[24px]">
         <div className="absolute inset-0 flex flex-col">
           <LeaseMapSection
             selectedMarkerId={selectedMarkerId}
