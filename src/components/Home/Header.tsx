@@ -47,28 +47,18 @@ export default function Header() {
   const [activeView, setActiveView] = useState<'map' | 'video'>('map');
 
   return (
-    <header
-      className="flex items-center justify-between px-2 pt-1.5 w-full bg-gradient-to-br from-[#0a1128] via-[#121c33] to-[#0a1128] border-b border-white/[0.06] relative z-50 overflow-hidden"
-      style={{ fontFamily: "'Outfit', sans-serif" }}
-    >
-      {/* Decorative gold glow */}
-      <div className="absolute top-0 right-0 w-28 h-28 bg-[#d4af37]/10 blur-[48px] -translate-y-1/2 translate-x-1/4 rounded-full pointer-events-none" />
-      {/* Subtle grid overlay */}
-      <div
-        className="absolute inset-0 opacity-[0.02] pointer-events-none"
-        style={{ backgroundImage: 'linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)', backgroundSize: '24px 24px' }}
-      />
-      
-      <div className="flex items-center gap-1.5 relative z-10">
+    <header className="flex items-center justify-between px-2 py-1.5 w-full bg-[#0a1128] relative z-50 font-['Outfit',sans-serif]">
+
+      <div className="flex items-center gap-2">
         <button
-          className="p-1 text-white hover:text-white/80 active:scale-95 transition-all outline-none"
+          className="p-1 text-white hover:text-white/80 hover:scale-110 active:scale-95 transition-all outline-none"
           aria-label="Open navigation menu"
         >
           <MenuIcon />
         </button>
 
         <button
-          className="flex items-center gap-1 px-2.5 py-1 rounded-full border border-white/10 bg-[#121c33] hover:bg-[#1a3463] active:scale-95 transition-all outline-none"
+          className="flex items-center gap-1.5 px-3 py-1 rounded border border-white/10 bg-[#121c33] hover:bg-[#1a2542] hover:-translate-y-[1px] active:scale-95 transition-all outline-none"
           aria-label="Change location"
         >
           <LocationIcon color="#94A3B8" />
@@ -79,19 +69,18 @@ export default function Header() {
         </button>
       </div>
 
-      <div className="flex items-center p-0.5 bg-[#121c33] border border-white/10 rounded-[4px] relative z-10">
+      <div className="flex items-center p-0.5 bg-[#121c33] border border-white/10 rounded overflow-hidden relative z-10">
         <button
           onClick={() => setActiveView('map')}
-          className={`flex items-center justify-center h-6 rounded-[3px] transition-all duration-300 outline-none ${
-            activeView === 'map' 
-              ? 'w-12 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] shadow-[0_4px_10px_rgba(212,175,55,0.2)] hover:shadow-[0_8px_15px_rgba(212,175,55,0.3)]' 
-              : 'w-7 hover:bg-white/5'
-          }`}
+          className={`flex items-center justify-center h-6 rounded-sm transition-all outline-none ${activeView === 'map'
+            ? 'w-10 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] shadow-[0_2px_8px_rgba(212,175,55,0.25)] hover:-translate-y-[0.5px]'
+            : 'w-7 hover:bg-white/5 hover:scale-105'
+            }`}
           aria-label="Switch to Map view"
         >
           {activeView === 'map' ? (
-            <span className="text-white font-semibold text-[9px] tracking-widest ">
-              MAP
+            <span className="text-white font-bold text-[9px] tracking-widest">
+              Map
             </span>
           ) : (
             <MapIcon color="#64748B" />
@@ -100,32 +89,34 @@ export default function Header() {
 
         <button
           onClick={() => setActiveView('video')}
-          className={`flex items-center justify-center h-6 rounded-[3px] transition-all duration-300 outline-none ${
-            activeView === 'video' 
-              ? 'w-12 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] shadow-[0_4px_10px_rgba(212,175,55,0.2)] hover:shadow-[0_8px_15px_rgba(212,175,55,0.3)]' 
-              : 'w-7 hover:bg-white/5'
-          }`}
-          aria-label="Switch to Video view"
+          className={`flex items-center justify-center h-6 rounded-sm transition-all outline-none ${activeView === 'video'
+            ? 'w-[84px] bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] shadow-[0_2px_8px_rgba(212,175,55,0.25)] hover:-translate-y-[0.5px]'
+            : 'w-7 hover:bg-white/5 hover:scale-105'
+            }`}
+          aria-label="Switch to Video Search view"
         >
           {activeView === 'video' ? (
-            <span className="text-white font-semibold text-[9px] tracking-widest ">
-              VIDEO
+            <span className="text-white font-bold text-[9px] tracking-widest whitespace-nowrap">
+              VideoSearch
             </span>
           ) : (
-            <VideoIcon color="#64748B" />
+            <VideoIcon color="#94A3B8" />
           )}
         </button>
       </div>
 
       <button
-        className="flex flex-col items-center gap-0.5 p-1 active:scale-95 transition-all outline-none hover:opacity-80 relative z-10"
+        className="flex flex-col items-center p-0.5 hover:scale-105 hover:-translate-y-[1px] active:scale-95 transition-all outline-none group"
         aria-label="Log in to your account"
       >
-        <UserCircleIcon color="#FBBF24" />
-        <span className="text-white/90 text-[8px] font-semibold tracking-widest ">
-          LOGIN
+        <div className="group-hover:drop-shadow-[0_0_5px_rgba(251,191,36,0.4)] transition-all">
+          <UserCircleIcon color="#FBBF24" />
+        </div>
+        <span className="text-white/90 group-hover:text-white text-[8px] font-bold tracking-wider transition-colors mt-[1px]">
+          Login
         </span>
       </button>
+
     </header>
   );
 }

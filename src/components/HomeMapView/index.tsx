@@ -30,30 +30,27 @@ export default function HomeMapView() {
       }}
     >
       {/* ── Dark header block ──────────────────────────────────────────────── */}
-      <div className="shrink-0 w-full bg-[#0a1128] z-20 relative">
+      <div className="shrink-0 w-full bg-[#0a1128] z-20 relative pb-[24px]">
         <Header />
         <TopTabs activeTab={activeTab} onTabChange={setActiveTab} />
+        <PropertyCategoryTabs active={activeCategory} onChange={setActiveCategory} />
+
+        <div className="absolute left-0 right-0 bottom-[-20px] z-30 px-2">
+          <div className="transition-all duration-500 ease-out">
+            <SearchBar
+              query={searchQuery}
+              onChange={setSearchQuery}
+              placeholder="Search shops, offices, warehouses…"
+            />
+          </div>
+        </div>
       </div>
 
-      {/* ── Map fills remaining space; search floats at the top ─────────── */}
-      <div className="flex-1 relative overflow-hidden z-0" style={{ backgroundColor: '#E8EEF4', minHeight: 0 }}>
+      {/* ── Map fills remaining space ─────────── */}
+      <div className="flex-1 relative overflow-hidden z-0 pt-[24px]" style={{ backgroundColor: '#E8EEF4', minHeight: 0 }}>
         {/* Full-height map canvas */}
         <div className="absolute inset-0 flex flex-col">
           <MapSection />
-        </div>
-
-        {/* Filter + search floating at top of map */}
-        <div className="absolute top-0 left-0 right-0 z-20">
-          <PropertyCategoryTabs active={activeCategory} onChange={setActiveCategory} />
-          <div className="px-3 pb-2.5">
-            <div>
-              <SearchBar
-                query={searchQuery}
-                onChange={setSearchQuery}
-                placeholder="Search shops, offices, warehouses…"
-              />
-            </div>
-          </div>
         </div>
 
         {/* Bottom navigation floating above the map */}

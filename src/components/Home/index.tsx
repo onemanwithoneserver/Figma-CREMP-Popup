@@ -25,29 +25,26 @@ export default function Home() {
         fontFamily: "'Outfit', sans-serif",
       }}
     >
-        <div className="shrink-0 w-full bg-[#0a1128] z-20 relative">
+      <div className="shrink-0 w-full bg-[#0a1128] z-20 relative pb-[24px]">
         <Header />
         <TopTabs activeTab={activeTab} onTabChange={setActiveTab} />
+        <CategoryTabs activeCategory={activeCategory} onCategoryChange={setActiveCategory} />
+
+        <div className="absolute left-0 right-0 bottom-[-20px] z-30 px-2">
+          <div className="transition-all duration-500 ease-out">
+            <SearchBar query={searchQuery} onChange={setSearchQuery} />
+          </div>
+        </div>
       </div>
 
-      {/* Map fills all remaining space; search floats at the top of the map */}
-      <div className="flex-1 relative overflow-hidden bg-[#E8EEF4] z-0">
+      {/* Map fills all remaining space */}
+      <div className="flex-1 relative overflow-hidden bg-[#E8EEF4] z-0 pt-[24px]">
         {/* Full-height map canvas */}
         <div className="absolute inset-0 flex flex-col">
           <MapSection
             selectedMarkerId={selectedMarkerId}
             onMarkerClick={setSelectedMarkerId}
           />
-        </div>
-
-        {/* Filter + search floating at top of map */}
-        <div className="absolute top-0 left-0 right-0 z-20">
-          <CategoryTabs activeCategory={activeCategory} onCategoryChange={setActiveCategory} />
-          <div className="px-3 pb-2.5">
-            <div>
-              <SearchBar query={searchQuery} onChange={setSearchQuery} />
-            </div>
-          </div>
         </div>
       </div>
 
