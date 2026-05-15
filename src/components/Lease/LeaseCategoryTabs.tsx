@@ -73,34 +73,34 @@ const TABS: Array<{
   shadowClass: string;
   Icon: React.FC<{ className?: string }>;
 }> = [
-  {
-    id: 'full-space',
-    label: 'Full Space',
-    colorClass: 'text-[#8B5CF6]', // purple
-    borderClass: 'border-[#8B5CF6]',
-    ringClass: 'ring-[#8B5CF6]/20',
-    shadowClass: 'shadow-[#8B5CF6]/20',
-    Icon: FullSpaceIcon,
-  },
-  {
-    id: 'sub-lease',
-    label: 'Sub Lease',
-    colorClass: 'text-[#10B981]', // emerald
-    borderClass: 'border-[#10B981]',
-    ringClass: 'ring-[#10B981]/20',
-    shadowClass: 'shadow-[#10B981]/20',
-    Icon: SubLeaseIcon,
-  },
-  {
-    id: 'co-working',
-    label: 'Co-Working',
-    colorClass: 'text-[#F97316]', // orange
-    borderClass: 'border-[#F97316]',
-    ringClass: 'ring-[#F97316]/20',
-    shadowClass: 'shadow-[#F97316]/20',
-    Icon: CoWorkingIcon,
-  },
-];
+    {
+      id: 'full-space',
+      label: 'Full Space',
+      colorClass: 'text-[#8B5CF6]',
+      borderClass: 'border-[#8B5CF6]',
+      ringClass: 'ring-[#8B5CF6]/20',
+      shadowClass: 'shadow-[#8B5CF6]/20',
+      Icon: FullSpaceIcon,
+    },
+    {
+      id: 'sub-lease',
+      label: 'Sub Lease',
+      colorClass: 'text-[#10B981]',
+      borderClass: 'border-[#10B981]',
+      ringClass: 'ring-[#10B981]/20',
+      shadowClass: 'shadow-[#10B981]/20',
+      Icon: SubLeaseIcon,
+    },
+    {
+      id: 'co-working',
+      label: 'Co-Working',
+      colorClass: 'text-[#F97316]',
+      borderClass: 'border-[#F97316]',
+      ringClass: 'ring-[#F97316]/20',
+      shadowClass: 'shadow-[#F97316]/20',
+      Icon: CoWorkingIcon,
+    },
+  ];
 
 interface LeaseCategoryTabsProps {
   activeCategory: LeaseCategory;
@@ -112,8 +112,8 @@ export default function LeaseCategoryTabs({
   onCategoryChange,
 }: LeaseCategoryTabsProps) {
   return (
-    <div className="w-full px-3 pt-2 pb-1.5 bg-transparent font-['Outfit',_sans-serif]">
-      <div className="flex items-center justify-between gap-1.5 w-full" aria-label="Lease property categories">
+    <div className="w-full px-1 py-1 bg-transparent font-['Outfit',_sans-serif]">
+      <div className="flex items-center justify-between gap-1 w-full" aria-label="Lease property categories">
         {TABS.map((tab) => {
           const isActive = activeCategory === tab.id;
           const Icon = tab.Icon;
@@ -123,19 +123,17 @@ export default function LeaseCategoryTabs({
               key={tab.id}
               onClick={() => onCategoryChange(tab.id)}
               aria-label={tab.label}
-              className={`flex flex-row items-center justify-center flex-1 gap-1 px-1 py-1.5 rounded-[10px] bg-white transition-all duration-300 ease-out active:scale-95 hover:-translate-y-[1px] hover:shadow-[0_4px_12px_rgba(0,0,0,0.08)] group focus-visible:outline-none ${
-                isActive
-                  ? `border ${tab.borderClass} shadow-md ${tab.shadowClass} scale-[1.02]`
-                  : 'border border-transparent shadow-[0_2px_6px_rgba(0,0,0,0.05)]'
-              }`}
+              className={`flex flex-row items-center justify-center flex-1 gap-1 px-1 py-1 rounded-md bg-white transition-all duration-300 ease-out active:scale-95 hover:-translate-y-[1px] hover:shadow-[0_4px_12px_rgba(0,0,0,0.08)] group focus-visible:outline-none ${isActive
+                ? `border ${tab.borderClass} shadow-md ${tab.shadowClass} scale-[1.02]`
+                : 'border border-transparent shadow-[0_2px_6px_rgba(0,0,0,0.05)]'
+                }`}
             >
               <div className="shrink-0 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
                 <Icon className={tab.colorClass} />
               </div>
               <span
-                className={`font-medium whitespace-nowrap text-[10px] transition-colors duration-300 ${
-                  isActive ? tab.colorClass : 'text-[#334155] group-hover:text-[#0f172a]'
-                }`}
+                className={`font-medium whitespace-nowrap text-[10px] transition-colors duration-300 ${isActive ? tab.colorClass : 'text-[#334155] group-hover:text-[#0f172a]'
+                  }`}
               >
                 {tab.label}
               </span>

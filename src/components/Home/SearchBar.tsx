@@ -52,7 +52,7 @@ export default function SearchBar({
       style={{ fontFamily: "'Outfit', sans-serif" }}
     >
       <form
-        className="flex items-center w-full h-[40px] pl-3 pr-1 bg-white rounded-[12px] transition-all duration-300 ease-out focus-within:ring-2 focus-within:ring-[#FBBF24]/50 shadow-[0_6px_16px_rgba(0,0,0,0.08)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.12)] hover:-translate-y-[1px] group"
+        className="flex items-center w-full h-[40px] pl-3 pr-1 bg-white rounded transition-all duration-300 ease-out focus-within:ring-2 focus-within:ring-[#FBBF24]/50 shadow-[0_6px_16px_rgba(0,0,0,0.08)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.12)] group"
         onSubmit={(e) => e.preventDefault()}
         role="search"
       >
@@ -71,7 +71,7 @@ export default function SearchBar({
 
         <button
           type="button"
-          className="flex items-center justify-center shrink-0 w-[32px] h-[32px] rounded-[10px] transition-all duration-300 ease-out hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FBBF24]/50 bg-[#0a1128] hover:bg-[#121c33] shadow-[0_2px_8px_rgba(10,17,40,0.2)]"
+          className="flex items-center justify-center shrink-0 w-[32px] h-[32px] rounded transition-all duration-300 ease-out hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FBBF24]/50 bg-[#0a1128] hover:bg-[#121c33] shadow-[0_2px_8px_rgba(10,17,40,0.2)]"
           aria-label="Open filter options"
           aria-haspopup="dialog"
         >

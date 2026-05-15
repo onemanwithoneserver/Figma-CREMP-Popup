@@ -52,7 +52,7 @@ export default function LeaseHeader() {
         </button>
 
         <button
-          className="flex items-center gap-1.5 px-3 py-1 rounded-full border border-white/10 bg-[#121c33] hover:bg-[#1a2542] hover:-translate-y-[1px] active:scale-95 transition-all outline-none"
+          className="flex items-center gap-1.5 px-3 py-1 rounded border border-white/10 bg-[#121c33] hover:bg-[#1a2542] hover:-translate-y-[1px] active:scale-95 transition-all outline-none"
           aria-label="Change location"
         >
           <span className="text-white font-medium text-[11px] tracking-wide">

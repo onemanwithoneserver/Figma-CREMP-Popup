@@ -1,4 +1,3 @@
-// TopTabs.tsx
 import React from 'react';
 import type { MainTab } from './types';
 import { topTabs } from './data';
@@ -35,19 +34,19 @@ interface TopTabsProps {
 
 export default function TopTabs({ activeTab, onTabChange }: TopTabsProps) {
   return (
-    <nav 
-      className="w-full px-3 pt-2 pb-1"
+    <nav
+      className="w-full px-1 pt-1 pb-1"
       style={{ fontFamily: "'Outfit', sans-serif" }}
     >
-      <div 
-        className="flex items-stretch w-full rounded-[10px] border border-[#2a2d45] bg-[#0f142b] overflow-hidden"
+      <div
+        className="flex items-stretch w-full rounded border border-[#2a2d45] bg-[#0a0f25] overflow-hidden"
         role="tablist"
         aria-label="Main property categories"
       >
         {topTabs.map((tab, index) => {
           const isActive = activeTab === tab.id;
           const Icon = tabIcons[tab.id];
-          
+
           return (
             <button
               key={tab.id}
@@ -55,31 +54,30 @@ export default function TopTabs({ activeTab, onTabChange }: TopTabsProps) {
               aria-selected={isActive}
               onClick={() => onTabChange(tab.id as MainTab)}
               className={`
-                flex items-center justify-center gap-1.5 h-[44px] relative
-                transition-all duration-300 ease-out hover:bg-white/[0.04] active:bg-white/[0.06] hover:shadow-[inset_0_2px_10px_rgba(255,255,255,0.02)]
+                flex items-center justify-center gap-1 h-[32px] relative
+                transition-colors duration-200 hover:bg-white/[0.04] active:bg-white/[0.06]
                 focus-visible:outline-none flex-1 group
-                ${index < topTabs.length - 1 ? "after:content-[''] after:absolute after:right-0 after:top-1/2 after:-translate-y-1/2 after:w-[1px] after:h-[20px] after:bg-white/10" : ''}
+                ${index < topTabs.length - 1 ? "after:content-[''] after:absolute after:right-0 after:top-1/2 after:-translate-y-1/2 after:w-[1px] after:h-[16px] after:bg-white/10" : ''}
               `}
             >
-              <div className="shrink-0 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+              <div className="shrink-0 flex items-center justify-center">
                 <Icon color={isActive ? '#FBBF24' : '#FFFFFF'} />
               </div>
 
               <span
-                className={`font-medium text-left transition-all duration-300 ${
-                  isActive ? 'text-[#FBBF24]' : 'text-white/90 group-hover:text-white'
-                } ${tab.id === 'business' ? 'text-[9px] leading-[1.2]' : 'text-[11px]'}`}
+                className={`font-medium text-left transition-colors duration-200 ${isActive ? 'text-[#FBBF24]' : 'text-white/90 group-hover:text-white'
+                  } ${tab.id === 'business' ? 'text-[9px] leading-[1.2]' : 'text-[11px]'}`}
               >
                 {tab.id === 'business' ? (
-                  <>Business<br/>Opportunities</>
+                  <>Business<br />Opportunities</>
                 ) : (
                   tab.label
                 )}
               </span>
 
               {isActive && (
-                <div 
-                  className="absolute bottom-0 left-[20%] right-[20%] h-[2.5px] rounded-t-full bg-[#FBBF24]" 
+                <div
+                  className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#FBBF24]"
                   aria-hidden="true"
                 />
               )}
