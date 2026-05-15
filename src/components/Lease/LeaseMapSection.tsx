@@ -2,8 +2,6 @@ import React, { useState, useRef } from 'react';
 import type { LeaseMarker, LeaseMarkerType } from './types';
 import { leaseMapMarkers, leaseMapLabels } from './data';
 
-// ── Marker icon config ────────────────────────────────────────────────────
-
 const BuildingIcon = ({ color }: { color: string }) => (
   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
     <rect x="3" y="3" width="18" height="18" rx="1.5" />
@@ -34,8 +32,6 @@ const markerConfig: Record<LeaseMarkerType, { pinBg: string; Icon: React.FC<{ co
   'sub-lease':  { pinBg: '#059669', Icon: SubLeaseMarkerIcon, labelColor: '#059669' },
   'co-working': { pinBg: '#F97316', Icon: CoWorkingMarkerIcon, labelColor: '#F97316' },
 };
-
-// ── Single pin ─────────────────────────────────────────────────────────────
 
 interface MarkerProps {
   marker: LeaseMarker;
@@ -113,8 +109,6 @@ function LeaseMarkerPin({ marker, isSelected, onClick }: MarkerProps) {
     </button>
   );
 }
-
-// ── Map Section ────────────────────────────────────────────────────────────
 
 interface LeaseMapSectionProps {
   selectedMarkerId: string | null;

@@ -7,13 +7,13 @@ import MapSection from './MapSection';
 import PropertyCard from './PropertyCard';
 import BottomNavbar from './BottomNavbar';
 import { featuredProperty } from './data';
-import type { MainTab, CategoryType, ViewMode } from './types';
+import type { MainTab, CategoryType } from './types';
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState<MainTab>('business');
   const [activeCategory, setActiveCategory] = useState<CategoryType>('franchise');
   const [searchQuery, setSearchQuery] = useState('');
-  const [viewMode, setViewMode] = useState<ViewMode>('map');
+  
   const [selectedMarkerId, setSelectedMarkerId] = useState<string | null>('1');
   const [activeNav, setActiveNav] = useState('cremp');
 
@@ -35,8 +35,6 @@ export default function Home() {
         {/* Full-height map canvas */}
         <div className="absolute inset-0 flex flex-col">
           <MapSection
-            viewMode={viewMode}
-            onViewModeChange={setViewMode}
             selectedMarkerId={selectedMarkerId}
             onMarkerClick={setSelectedMarkerId}
           />
