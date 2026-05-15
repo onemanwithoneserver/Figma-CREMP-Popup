@@ -58,14 +58,13 @@ export default function Header() {
         </button>
 
         <button
-          className="flex items-center gap-1.5 px-3 py-1 rounded border border-white/10 bg-[#121c33] hover:bg-[#1a2542] hover:-translate-y-[1px] active:scale-95 transition-all outline-none"
+          className="flex items-center gap-1.5 px-2 py-1 rounded bg-transparent hover:bg-white/5 active:scale-95 transition-all outline-none"
           aria-label="Change location"
         >
-          <LocationIcon color="#94A3B8" />
-          <span className="text-white font-medium text-[11px] tracking-wide">
+          <span className="text-white font-medium text-[12px] tracking-wide">
             Hyderabad
           </span>
-          <ChevronDownIcon color="#64748B" />
+          <ChevronDownIcon />
         </button>
       </div>
 
