@@ -1,13 +1,8 @@
 import React, { useState, useRef } from 'react';
 
-const sharedEffects = {
-  interactive: "transition-all duration-200 active:scale-95 focus-visible:outline-none",
-  markerHover: "transition-transform duration-200 hover:scale-105 active:scale-95 focus-visible:outline-none group",
-};
+export type ViewMode = 'map' | 'list';
 
-type ViewMode = 'map' | 'list';
-
-interface MapMarkerData {
+export interface MapMarkerData {
   id: string;
   lat: number;
   lng: number;
@@ -28,14 +23,14 @@ const mapMarkers: MapMarkerData[] = [
 ];
 
 const mapLabels = [
-  { label: 'MADHAPUR',          top: 28, left: 40 },
-  { label: 'KUKATPALLY',        top: 26, left: 62 },
-  { label: 'GACHIBOWLI',        top: 55, left: 28 },
-  { label: 'FINANCIAL DISTRICT',top: 68, left: 28 },
-  { label: 'JUBILEE HILLS',     top: 62, left: 48 },
-  { label: 'BANJARA HILLS',     top: 66, left: 46 },
-  { label: 'LB NAGAR',          top: 68, left: 64 },
-  { label: 'KOMPALLY',          top: 40, left: 68 },
+  { label: 'MADHAPUR', top: 28, left: 40 },
+  { label: 'KUKATPALLY', top: 26, left: 62 },
+  { label: 'GACHIBOWLI', top: 55, left: 28 },
+  { label: 'FINANCIAL DISTRICT', top: 68, left: 28 },
+  { label: 'JUBILEE HILLS', top: 62, left: 48 },
+  { label: 'BANJARA HILLS', top: 66, left: 46 },
+  { label: 'LB NAGAR', top: 68, left: 64 },
+  { label: 'KOMPALLY', top: 40, left: 68 },
 ];
 
 const StoreIcon = ({ color }: { color: string }) => (
@@ -73,7 +68,7 @@ const markerConfig: Record<string, { pinBg: string; Icon: React.FC<{ color: stri
   existing: { pinBg: '#10B981', Icon: StorefrontIcon },
   business: { pinBg: '#10B981', Icon: StorefrontIcon },
   distribution: { pinBg: '#3B82F6', Icon: TruckIcon },
-  movable: { pinBg: '#F97316', Icon: CartIcon },
+  movable: { pinBg: '#EA580C', Icon: CartIcon },
 };
 
 function PropertyMarker({ marker, isSelected, onClick }: PropertyMarkerProps) {
@@ -82,7 +77,7 @@ function PropertyMarker({ marker, isSelected, onClick }: PropertyMarkerProps) {
   return (
     <button
       onClick={() => onClick(marker.id)}
-      className={`absolute ${sharedEffects.markerHover}`}
+      className="absolute transition-transform duration-200 hover:scale-105 active:scale-95 focus-visible:outline-none group"
       style={{
         top: `${marker.lat}%`,
         left: `${marker.lng}%`,
@@ -93,9 +88,9 @@ function PropertyMarker({ marker, isSelected, onClick }: PropertyMarkerProps) {
       aria-label={`${marker.brandName} ${marker.opportunityType} marker. Investment: ${marker.investment}`}
       aria-current={isSelected ? 'location' : undefined}
     >
-      <div className="flex flex-col items-center drop-shadow-sm relative z-10">
+      <div className="flex flex-col items-center relative z-10 drop-shadow-md">
         <div
-          className="w-[28px] h-[28px] rounded-full flex items-center justify-center shadow-md border-[1.5px] border-white"
+          className="w-8 h-8 rounded-full flex items-center justify-center border-2 border-white shadow-sm"
           style={{ backgroundColor: config.pinBg }}
         >
           <config.Icon color="#FFFFFF" />
@@ -103,34 +98,31 @@ function PropertyMarker({ marker, isSelected, onClick }: PropertyMarkerProps) {
         <div
           className="w-0 h-0"
           style={{
-            borderLeft: '5px solid transparent',
-            borderRight: '5px solid transparent',
-            borderTop: `6px solid ${config.pinBg}`,
-            marginTop: -1,
+            borderLeft: '6px solid transparent',
+            borderRight: '6px solid transparent',
+            borderTop: `7px solid ${config.pinBg}`,
+            marginTop: -1.5,
           }}
           aria-hidden="true"
         />
       </div>
 
       <div
-        className="absolute w-max bg-white rounded-lg py-1 px-2 text-left transition-all duration-200 z-20"
+        className="absolute bg-white rounded-xl p-2.5 text-left transition-all duration-200 z-20 shadow-[0_4px_12px_rgba(0,0,0,0.08)] pointer-events-none group-hover:pointer-events-auto w-[110px]"
         style={{
-          top: '14px',
-          left: '28px',
+          top: '16px',
+          left: '40px',
           transform: 'translateY(-50%)',
-          marginLeft: '4px',
-          boxShadow: isSelected ? '0 4px 12px rgba(0,0,0,0.1)' : '0 2px 6px rgba(0,0,0,0.06)',
-          border: `1px solid ${isSelected ? config.pinBg : '#F1F5F9'}`,
         }}
       >
-        <div className="text-[10px] font-bold text-[#0F172A] leading-tight mb-0.5">
+        <div className="text-sm font-bold text-slate-800 leading-tight mb-1">
           {marker.investment}
         </div>
-        <div className="flex flex-col">
-          <span className="text-[8px] font-medium text-[#475569] leading-tight">
+        <div className="flex flex-col gap-0.5">
+          <span className="text-[11px] font-semibold text-slate-700 leading-tight truncate">
             {marker.brandName}
           </span>
-          <span className="text-[8px] font-medium text-[#64748B] leading-tight">
+          <span className="text-[10px] font-medium text-slate-500 leading-tight">
             {marker.opportunityType}
           </span>
         </div>
@@ -139,16 +131,57 @@ function PropertyMarker({ marker, isSelected, onClick }: PropertyMarkerProps) {
   );
 }
 
+function ClusterMarker({ count, lat, lng }: { count: number; lat: number; lng: number }) {
+  const colors = ['#7C3AED', '#10B981', '#EA580C'];
+  return (
+    <div
+      className="absolute pointer-events-none drop-shadow-md"
+      style={{
+        top: `${lat}%`,
+        left: `${lng}%`,
+        transform: 'translate(-24px, -100%)',
+        zIndex: 25,
+        fontFamily: "'Outfit', sans-serif",
+      }}
+      aria-label={`${count} listings clustered in this area`}
+    >
+      <div className="flex flex-col items-center">
+        <div className="relative w-12 h-8">
+          <div
+            className="absolute rounded-full border-2 border-white top-1 left-6 w-7 h-7 shadow-sm"
+            style={{ backgroundColor: colors[2] }}
+          />
+          <div
+            className="absolute rounded-full border-2 border-white top-1 left-3 w-7 h-7 shadow-sm"
+            style={{ backgroundColor: colors[1] }}
+          />
+          <div
+            className="absolute rounded-full border-2 border-white flex items-center justify-center top-0 left-0 w-8 h-8 shadow-sm"
+            style={{ backgroundColor: colors[0] }}
+          >
+            <span className="text-white text-[10px] font-bold">+{count}</span>
+          </div>
+        </div>
+        <div
+          className="w-0 h-0"
+          style={{
+            borderLeft: '6px solid transparent',
+            borderRight: '6px solid transparent',
+            borderTop: `7px solid ${colors[0]}`,
+            marginTop: 2,
+          }}
+        />
+      </div>
+    </div>
+  );
+}
+
 interface MapSectionProps {
-  viewMode: ViewMode;
-  onViewModeChange: (mode: ViewMode) => void;
   selectedMarkerId: string | null;
   onMarkerClick: (id: string) => void;
 }
 
 export default function MapSection({
-  viewMode: _viewMode,
-  onViewModeChange: _onViewModeChange,
   selectedMarkerId,
   onMarkerClick,
 }: MapSectionProps) {
@@ -177,7 +210,7 @@ export default function MapSection({
 
   return (
     <div
-      className="relative flex-1 flex flex-col w-full overflow-hidden bg-[#F8FAFC]"
+      className="relative flex-1 flex flex-col w-full overflow-hidden bg-[#F4F6F8]"
       style={{ fontFamily: "'Outfit', sans-serif", minHeight: 0, touchAction: 'none' }}
     >
       <div
@@ -200,29 +233,29 @@ export default function MapSection({
             preserveAspectRatio="none"
             aria-hidden="true"
           >
-            <ellipse cx="55" cy="35" rx="12" ry="8" fill="#E2F5E9" opacity="0.6" />
-            <ellipse cx="25" cy="65" rx="10" ry="7" fill="#E2F5E9" opacity="0.6" />
-            <ellipse cx="80" cy="70" rx="8" ry="6" fill="#E2F5E9" opacity="0.6" />
-            <ellipse cx="45" cy="85" rx="15" ry="9" fill="#E2F5E9" opacity="0.4" />
-            <ellipse cx="60" cy="50" rx="6" ry="4" fill="#DBEAFE" opacity="0.7" />
-            <ellipse cx="85" cy="40" rx="4" ry="3" fill="#DBEAFE" opacity="0.6" />
+            <ellipse cx="55" cy="35" rx="12" ry="8" fill="#E8F4EC" opacity="0.8" />
+            <ellipse cx="25" cy="65" rx="10" ry="7" fill="#E8F4EC" opacity="0.8" />
+            <ellipse cx="80" cy="70" rx="8" ry="6" fill="#E8F4EC" opacity="0.8" />
+            <ellipse cx="45" cy="85" rx="15" ry="9" fill="#E8F4EC" opacity="0.6" />
+            <ellipse cx="60" cy="50" rx="6" ry="4" fill="#E0EFFF" opacity="0.9" />
+            <ellipse cx="85" cy="40" rx="4" ry="3" fill="#E0EFFF" opacity="0.8" />
 
-            <path d="M 5 5 Q 50 0 95 10 Q 100 50 90 95 Q 50 100 5 90 Q 0 50 5 5" fill="none" stroke="#F1F5F9" strokeWidth="2.5" />
-            <line x1="10" y1="10" x2="90" y2="80" stroke="#E2E8F0" strokeWidth="1.5" />
-            <line x1="0" y1="45" x2="100" y2="55" stroke="#F8FAFC" strokeWidth="1.2" />
-            <line x1="5" y1="75" x2="95" y2="70" stroke="#F8FAFC" strokeWidth="1.0" />
-            <line x1="45" y1="0" x2="55" y2="100" stroke="#F1F5F9" strokeWidth="1.2" />
-            <line x1="20" y1="0" x2="25" y2="100" stroke="#F8FAFC" strokeWidth="0.8" />
-            <line x1="80" y1="0" x2="75" y2="100" stroke="#F8FAFC" strokeWidth="0.8" />
-            <path d="M 20 25 Q 50 20 80 30 Q 85 50 75 80 Q 50 85 20 75 Q 15 50 20 25" fill="none" stroke="#F1F5F9" strokeWidth="1.5" />
-            <line x1="75" y1="40" x2="85" y2="60" stroke="#E2E8F0" strokeWidth="1.2" />
-            <line x1="10" y1="75" x2="25" y2="90" stroke="#E2E8F0" strokeWidth="1.2" />
+            <path d="M 5 5 Q 50 0 95 10 Q 100 50 90 95 Q 50 100 5 90 Q 0 50 5 5" fill="none" stroke="#FFFFFF" strokeWidth="3" />
+            <line x1="10" y1="10" x2="90" y2="80" stroke="#FFFFFF" strokeWidth="2.5" />
+            <line x1="0" y1="45" x2="100" y2="55" stroke="#FFFFFF" strokeWidth="1.5" />
+            <line x1="5" y1="75" x2="95" y2="70" stroke="#FFFFFF" strokeWidth="1.5" />
+            <line x1="45" y1="0" x2="55" y2="100" stroke="#FFFFFF" strokeWidth="2" />
+            <line x1="20" y1="0" x2="25" y2="100" stroke="#FFFFFF" strokeWidth="1" />
+            <line x1="80" y1="0" x2="75" y2="100" stroke="#FFFFFF" strokeWidth="1" />
+            <path d="M 20 25 Q 50 20 80 30 Q 85 50 75 80 Q 50 85 20 75 Q 15 50 20 25" fill="none" stroke="#FFFFFF" strokeWidth="2" />
+            <line x1="75" y1="40" x2="85" y2="60" stroke="#FFFFFF" strokeWidth="1.5" />
+            <line x1="10" y1="75" x2="25" y2="90" stroke="#FFFFFF" strokeWidth="1.5" />
           </svg>
 
           {mapLabels.map((lbl) => (
             <span
               key={lbl.label}
-              className="absolute text-[8.5px] font-bold tracking-[0.15em] text-[#94A3B8] select-none pointer-events-none uppercase"
+              className="absolute text-[9px] font-bold tracking-widest text-slate-500 select-none pointer-events-none uppercase"
               style={{ top: `${lbl.top}%`, left: `${lbl.left}%`, transform: 'translate(-50%, -50%)' }}
               aria-hidden="true"
             >
@@ -230,20 +263,20 @@ export default function MapSection({
             </span>
           ))}
 
-          <div className="absolute flex items-center justify-center w-[20px] h-[20px] rounded border border-[#CBD5E1] bg-white shadow-sm pointer-events-none"
+          <div className="absolute flex items-center justify-center w-5 h-5 rounded border border-slate-300 bg-white shadow-sm pointer-events-none"
             style={{ top: '44%', left: '68%' }} aria-hidden="true">
-            <span className="text-[8px] font-bold text-[#64748B]">44</span>
+            <span className="text-[9px] font-bold text-slate-600">44</span>
           </div>
-          <div className="absolute flex items-center justify-center w-[20px] h-[20px] rounded border border-[#CBD5E1] bg-white shadow-sm pointer-events-none"
+          <div className="absolute flex items-center justify-center w-5 h-5 rounded border border-slate-300 bg-white shadow-sm pointer-events-none"
             style={{ top: '62%', left: '28%' }} aria-hidden="true">
-            <span className="text-[8px] font-bold text-[#64748B]">65</span>
+            <span className="text-[9px] font-bold text-slate-600">65</span>
           </div>
 
-          <span className="absolute text-[8.5px] font-bold tracking-[0.15em] text-[#94A3B8] select-none pointer-events-none"
+          <span className="absolute text-[9px] font-bold tracking-widest text-slate-400 select-none pointer-events-none"
             style={{ top: '12%', left: '8%', transform: 'rotate(-50deg)' }} aria-hidden="true">
             ORR
           </span>
-          <span className="absolute text-[8.5px] font-bold tracking-[0.15em] text-[#94A3B8] select-none pointer-events-none"
+          <span className="absolute text-[9px] font-bold tracking-widest text-slate-400 select-none pointer-events-none"
             style={{ top: '15%', left: '48%', transform: 'rotate(20deg)' }} aria-hidden="true">
             ORR
           </span>
@@ -254,23 +287,8 @@ export default function MapSection({
             aria-label="Current location"
           >
             <div className="relative flex items-center justify-center">
-              <div
-                className="absolute rounded-full"
-                style={{
-                  width: 60,
-                  height: 60,
-                  backgroundColor: 'rgba(59, 130, 246, 0.12)',
-                }}
-              />
-              <div
-                className="relative rounded-full flex items-center justify-center border-[2px] border-white"
-                style={{
-                  width: 14,
-                  height: 14,
-                  backgroundColor: '#3B82F6',
-                  boxShadow: '0 2px 6px rgba(0,0,0,0.15)',
-                }}
-              />
+              <div className="absolute rounded-full w-[70px] h-[70px] bg-blue-500/10" />
+              <div className="relative rounded-full flex items-center justify-center border-[3px] border-white w-4 h-4 bg-blue-500 shadow-md" />
             </div>
           </div>
 
@@ -286,6 +304,7 @@ export default function MapSection({
               />
             </div>
           ))}
+          <ClusterMarker count={3} lat={58} lng={50} />
         </div>
       </div>
     </div>

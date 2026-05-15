@@ -58,6 +58,7 @@ export default function Header() {
         className="absolute inset-0 opacity-[0.02] pointer-events-none"
         style={{ backgroundImage: 'linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)', backgroundSize: '24px 24px' }}
       />
+      
       <div className="flex items-center gap-1.5 relative z-10">
         <button
           className="p-1 text-white hover:text-white/80 active:scale-95 transition-all outline-none"
@@ -81,13 +82,15 @@ export default function Header() {
       <div className="flex items-center p-0.5 bg-[#121c33] border border-white/10 rounded-[4px] relative z-10">
         <button
           onClick={() => setActiveView('map')}
-          className={`flex items-center justify-center h-6 rounded-[3px] transition-all outline-none ${
-            activeView === 'map' ? 'w-12 bg-[#1a3463]' : 'w-7 hover:bg-white/5'
+          className={`flex items-center justify-center h-6 rounded-[3px] transition-all duration-300 outline-none ${
+            activeView === 'map' 
+              ? 'w-12 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] shadow-[0_4px_10px_rgba(212,175,55,0.2)] hover:shadow-[0_8px_15px_rgba(212,175,55,0.3)]' 
+              : 'w-7 hover:bg-white/5'
           }`}
           aria-label="Switch to Map view"
         >
           {activeView === 'map' ? (
-            <span className="text-white font-semibold text-[9px] tracking-widest uppercase">
+            <span className="text-white font-semibold text-[9px] tracking-widest ">
               MAP
             </span>
           ) : (
@@ -97,13 +100,15 @@ export default function Header() {
 
         <button
           onClick={() => setActiveView('video')}
-          className={`flex items-center justify-center h-6 rounded-[3px] transition-all outline-none ${
-            activeView === 'video' ? 'w-12 bg-[#1a3463]' : 'w-7 hover:bg-white/5'
+          className={`flex items-center justify-center h-6 rounded-[3px] transition-all duration-300 outline-none ${
+            activeView === 'video' 
+              ? 'w-12 bg-gradient-to-r from-[#bf953f] via-[#d4af37] to-[#b38728] shadow-[0_4px_10px_rgba(212,175,55,0.2)] hover:shadow-[0_8px_15px_rgba(212,175,55,0.3)]' 
+              : 'w-7 hover:bg-white/5'
           }`}
           aria-label="Switch to Video view"
         >
           {activeView === 'video' ? (
-            <span className="text-white font-semibold text-[9px] tracking-widest uppercase">
+            <span className="text-white font-semibold text-[9px] tracking-widest ">
               VIDEO
             </span>
           ) : (
@@ -117,7 +122,7 @@ export default function Header() {
         aria-label="Log in to your account"
       >
         <UserCircleIcon color="#FBBF24" />
-        <span className="text-white/90 text-[8px] font-semibold tracking-widest uppercase">
+        <span className="text-white/90 text-[8px] font-semibold tracking-widest ">
           LOGIN
         </span>
       </button>

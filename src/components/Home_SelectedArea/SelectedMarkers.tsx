@@ -116,4 +116,3 @@ export default function SelectedMarkers({ markers }: SelectedMarkersProps) {
     </>
   );
 }
-// End of file — removed duplicate implementation (keeps inline-SVG/first implementation above).

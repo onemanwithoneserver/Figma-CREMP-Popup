@@ -57,7 +57,8 @@ function FloatingCard({ listing, style, isActive, onSelect }: FloatingCardProps)
   const [saved, setSaved] = useState(false);
 
   const catColor = categoryColors[listing.type] || '#2563EB';
-  const cardWidth = listing.id === '3' ? 132 : listing.id === '2' || listing.id === '5' ? 128 : 120;
+  // Replaced hardcoded specific IDs with a uniform width for all cards
+  const cardWidth = 140; 
 
   return (
     <button
@@ -77,7 +78,7 @@ function FloatingCard({ listing, style, isActive, onSelect }: FloatingCardProps)
           }}
         >
           {/* Image specifically placed above the price and details */}
-          <div className="relative w-full h-[70px] overflow-hidden">
+          <div className="relative w-full h-[80px] overflow-hidden">
             {!imgErr && listing.imageUrl ? (
               <img
                 src={listing.imageUrl}
@@ -101,12 +102,12 @@ function FloatingCard({ listing, style, isActive, onSelect }: FloatingCardProps)
           </div>
 
           <div className="pt-2 px-2.5 pb-2.5 text-left">
-            <span className="block text-[13px] font-extrabold text-gray-900 leading-none tracking-tight">
+            <span className="block text-[14px] font-extrabold text-gray-900 leading-none tracking-tight">
               {listing.price}
             </span>
 
             <span
-              className="inline-block mt-1 text-[8.5px] font-bold px-1.5 py-[2px] rounded tracking-[0.02em] leading-none"
+              className="inline-block mt-1.5 text-[9px] font-bold px-1.5 py-[3px] rounded tracking-[0.02em] leading-none"
               style={{
                 color: catColor,
                 backgroundColor: `${catColor}15`,
@@ -115,8 +116,8 @@ function FloatingCard({ listing, style, isActive, onSelect }: FloatingCardProps)
               {listing.type}
             </span>
 
-            <div className="mt-1 flex items-center gap-1">
-              <span className="text-[9.5px] font-semibold text-slate-600 leading-none">
+            <div className="mt-1.5 flex items-center gap-1">
+              <span className="text-[10px] font-semibold text-slate-600 leading-none">
                 {listing.area} {listing.areaUnit}
               </span>
             </div>
@@ -124,8 +125,8 @@ function FloatingCard({ listing, style, isActive, onSelect }: FloatingCardProps)
             <div className="mt-1 flex items-center gap-1">
               <LocationPinIcon color="#94A3B8" />
               <span
-                className="text-[9px] font-medium text-slate-500 leading-none truncate"
-                style={{ maxWidth: cardWidth - 30 }}
+                className="text-[9.5px] font-medium text-slate-500 leading-none truncate"
+                style={{ maxWidth: cardWidth - 25 }}
               >
                 {listing.location}
               </span>
@@ -133,7 +134,7 @@ function FloatingCard({ listing, style, isActive, onSelect }: FloatingCardProps)
           </div>
         </div>
 
-        <div className="w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-t-[6px] border-t-white/95 drop-shadow-[0_2px_2px_rgba(0,0,0,0.08)]" />
+        <div className="w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[7px] border-t-white/95 drop-shadow-[0_2px_2px_rgba(0,0,0,0.08)]" />
       </div>
     </button>
   );
@@ -167,7 +168,7 @@ function cardStyle(listing: PropertyListing): React.CSSProperties {
 
 export default function MapSection() {
   const [pan, setPan] = useState({ x: 0, y: 0 });
-  const [zoom] = useState(0.85); // Removed setZoom since controls are gone
+  const [zoom] = useState(0.85); 
   const [activeId, setActiveId] = useState<string | null>('1');
   const dragRef = useRef<{ active: boolean; sx: number; sy: number; lx: number; ly: number }>({
     active: false, sx: 0, sy: 0, lx: 0, ly: 0,

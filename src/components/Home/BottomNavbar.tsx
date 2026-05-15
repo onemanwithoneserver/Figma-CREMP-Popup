@@ -1,4 +1,5 @@
 import React, { memo } from 'react';
+import crempLogo from './Logo.png';
 
 interface SvgIconProps {
   width?: number | string;
@@ -158,7 +159,7 @@ export default function NavigationBar({
                 >
                   <div className="w-10 h-8 flex items-center justify-center shrink-0">
                     <img 
-                      src="./src/components/Home/Logo.png" 
+                      src={crempLogo}
                       alt="CREMP Logo"
                       style={{ width: '150%', height: '150%', objectFit: 'contain' }}
                     />
