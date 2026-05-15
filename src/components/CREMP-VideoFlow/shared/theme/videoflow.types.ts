@@ -27,6 +27,8 @@ export interface PropertyVideo {
   tag: string;            // highlight tag e.g. "Pre-leased"
   isBookmarked?: boolean;
   isLiked?: boolean;
+  currentTime?: number;
+  totalDuration?: number;
 }
 
 export type VideoFlowScreen = 'discovery' | 'player' | 'swipe' | 'continue';

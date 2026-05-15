@@ -9,9 +9,9 @@ interface CategoryChipsProps {
 }
 
 const CHIP_CONFIG: Record<string, { icon: React.ElementType; colorClass: string }> = {
-  'All': { icon: LayoutGrid, colorClass: 'text-[#7c3aed]' },
+  'All': { icon: LayoutGrid, colorClass: 'text-[#d4af37]' },
   'Franchise': { icon: Store, colorClass: 'text-emerald-600' },
-  'Fractional': { icon: PieChart, colorClass: 'text-[#7c3aed]' },
+  'Fractional': { icon: PieChart, colorClass: 'text-[#d4af37]' },
   'Commercial': { icon: Building2, colorClass: 'text-blue-600' },
   'Pre-Leased': { icon: Tag, colorClass: 'text-teal-600' },
   'Education': { icon: GraduationCap, colorClass: 'text-amber-600' },

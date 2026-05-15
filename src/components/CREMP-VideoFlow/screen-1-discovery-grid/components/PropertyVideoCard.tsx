@@ -60,8 +60,6 @@ export default function PropertyVideoCard({ video, index, compact = false, onSel
   }, [video]);
 
   // Handle counts based on category for examples to look real
-  const likesCount = video.category === 'Commercial' ? 128 : video.category === 'Franchise' ? 96 : 84;
-  const commentsCount = video.category === 'Commercial' ? 18 : video.category === 'Franchise' ? 12 : 14;
   const sharesCount = video.category === 'Commercial' ? 24 : video.category === 'Franchise' ? 16 : 20;
 
   return (
@@ -212,8 +210,6 @@ export default function PropertyVideoCard({ video, index, compact = false, onSel
               broker={broker}
               featuresText={featuresText}
               ctaLabel={ctaLabel}
-              likesCount={likesCount}
-              commentsCount={commentsCount}
               sharesCount={sharesCount}
               onClose={() => setIsActive(false)}
               onSelect={onSelect}

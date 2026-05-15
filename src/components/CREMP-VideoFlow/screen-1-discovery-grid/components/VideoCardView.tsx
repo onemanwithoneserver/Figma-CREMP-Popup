@@ -42,12 +42,12 @@ const containerVariants = {
 
 const itemVariants = {
   hidden: { opacity: 0, x: 20 },
-  show: { opacity: 1, x: 0, transition: { type: 'spring', stiffness: 300, damping: 24 } },
+  show: { opacity: 1, x: 0, transition: { type: 'spring' as const, stiffness: 300, damping: 24 } },
 };
 
 const bottomVariants = {
   hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 300, damping: 24, delay: 0.1 } },
+  show: { opacity: 1, y: 0, transition: { type: 'spring' as const, stiffness: 300, damping: 24, delay: 0.1 } },
 };
 
 export default function VideoCardView({
@@ -210,7 +210,7 @@ export default function VideoCardView({
               className="h-full rounded-full shadow-[0_0_8px_rgba(255,255,255,0.5)] transition-all duration-200"
               style={{
                 background: video.category === 'Franchise' ? '#4ade80' : '#d4af37',
-                width: `${(video.currentTime / video.duration) * 100}%`,
+                width: `${((video.currentTime ?? 0) / (video.totalDuration ?? 1)) * 100}%`,
               }}
             />
           </div>
