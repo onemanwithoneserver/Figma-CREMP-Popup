@@ -2,12 +2,12 @@ import type { LeaseCategory } from './types';
 
 const FullSpaceIcon = ({ className }: { className?: string }) => (
   <svg
-    width="20"
-    height="20"
+    width="16"
+    height="16"
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
-    strokeWidth="1.6"
+    strokeWidth="1.8"
     strokeLinecap="round"
     strokeLinejoin="round"
     className={`shrink-0 ${className || ''}`}
@@ -24,12 +24,12 @@ const FullSpaceIcon = ({ className }: { className?: string }) => (
 
 const SubLeaseIcon = ({ className }: { className?: string }) => (
   <svg
-    width="20"
-    height="20"
+    width="16"
+    height="16"
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
-    strokeWidth="1.6"
+    strokeWidth="1.8"
     strokeLinecap="round"
     strokeLinejoin="round"
     className={`shrink-0 ${className || ''}`}
@@ -47,12 +47,12 @@ const SubLeaseIcon = ({ className }: { className?: string }) => (
 
 const CoWorkingIcon = ({ className }: { className?: string }) => (
   <svg
-    width="20"
-    height="20"
+    width="16"
+    height="16"
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
-    strokeWidth="1.6"
+    strokeWidth="1.8"
     strokeLinecap="round"
     strokeLinejoin="round"
     className={`shrink-0 ${className || ''}`}
@@ -76,28 +76,28 @@ const TABS: Array<{
   {
     id: 'full-space',
     label: 'Full Space',
-    colorClass: 'text-violet-600',
-    borderClass: 'border-violet-600',
-    ringClass: 'ring-violet-600/20',
-    shadowClass: 'shadow-violet-600/10',
+    colorClass: 'text-[#8B5CF6]', // purple
+    borderClass: 'border-[#8B5CF6]',
+    ringClass: 'ring-[#8B5CF6]/20',
+    shadowClass: 'shadow-[#8B5CF6]/20',
     Icon: FullSpaceIcon,
   },
   {
     id: 'sub-lease',
     label: 'Sub Lease',
-    colorClass: 'text-emerald-600',
-    borderClass: 'border-emerald-600',
-    ringClass: 'ring-emerald-600/20',
-    shadowClass: 'shadow-emerald-600/10',
+    colorClass: 'text-[#10B981]', // emerald
+    borderClass: 'border-[#10B981]',
+    ringClass: 'ring-[#10B981]/20',
+    shadowClass: 'shadow-[#10B981]/20',
     Icon: SubLeaseIcon,
   },
   {
     id: 'co-working',
     label: 'Co-Working',
-    colorClass: 'text-orange-500',
-    borderClass: 'border-orange-500',
-    ringClass: 'ring-orange-500/20',
-    shadowClass: 'shadow-orange-500/10',
+    colorClass: 'text-[#F97316]', // orange
+    borderClass: 'border-[#F97316]',
+    ringClass: 'ring-[#F97316]/20',
+    shadowClass: 'shadow-[#F97316]/20',
     Icon: CoWorkingIcon,
   },
 ];
@@ -112,8 +112,8 @@ export default function LeaseCategoryTabs({
   onCategoryChange,
 }: LeaseCategoryTabsProps) {
   return (
-    <div className="w-full px-1.5 pt-1.5 pb-1 bg-transparent font-['Outfit',_sans-serif] [container-type:inline-size]">
-      <div className="grid grid-cols-3 gap-1.5 w-full" aria-label="Lease property categories">
+    <div className="w-full px-3 pt-2 pb-1.5 bg-transparent font-['Outfit',_sans-serif]">
+      <div className="flex items-center justify-between gap-1.5 w-full" aria-label="Lease property categories">
         {TABS.map((tab) => {
           const isActive = activeCategory === tab.id;
           const Icon = tab.Icon;
@@ -123,18 +123,18 @@ export default function LeaseCategoryTabs({
               key={tab.id}
               onClick={() => onCategoryChange(tab.id)}
               aria-label={tab.label}
-              className={`flex flex-row items-center justify-center gap-1.5 px-2 py-1.5 rounded-lg bg-white border transition-all duration-200 active:scale-95 focus-visible:outline-none ${
+              className={`flex flex-row items-center justify-center flex-1 gap-1 px-1 py-1.5 rounded-[10px] bg-white transition-all duration-300 ease-out active:scale-95 hover:-translate-y-[1px] hover:shadow-[0_4px_12px_rgba(0,0,0,0.08)] group focus-visible:outline-none ${
                 isActive
-                  ? `${tab.borderClass} ring-1 ${tab.ringClass} shadow-md ${tab.shadowClass}`
-                  : 'border-slate-200 shadow-[0_1px_3px_rgba(0,0,0,0.04)]'
+                  ? `border ${tab.borderClass} shadow-md ${tab.shadowClass} scale-[1.02]`
+                  : 'border border-transparent shadow-[0_2px_6px_rgba(0,0,0,0.05)]'
               }`}
             >
-              <div className="shrink-0 flex items-center justify-center">
-                <Icon className={isActive ? tab.colorClass : 'text-slate-400'} />
+              <div className="shrink-0 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+                <Icon className={tab.colorClass} />
               </div>
               <span
-                className={`font-semibold whitespace-nowrap leading-tight tracking-tight transition-colors text-[clamp(10px,3.5cqi,14px)] ${
-                  isActive ? tab.colorClass : 'text-slate-600'
+                className={`font-medium whitespace-nowrap text-[10px] transition-colors duration-300 ${
+                  isActive ? tab.colorClass : 'text-[#334155] group-hover:text-[#0f172a]'
                 }`}
               >
                 {tab.label}

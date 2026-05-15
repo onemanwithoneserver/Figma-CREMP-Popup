@@ -4,20 +4,20 @@ import type { MainTab } from './types';
 import { topTabs } from './data';
 
 const BuildingIcon = ({ color }: { color: string }) => (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5">
     <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z" />
   </svg>
 );
 
 const CalendarIcon = ({ color }: { color: string }) => (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5">
     <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
     <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 13.5h.008v.008H8.25v-.008zm4.5 0h.008v.008H12.75v-.008zm-4.5 3h.008v.008H8.25v-.008zm4.5 0h.008v.008H12.75v-.008z" />
   </svg>
 );
 
 const BriefcaseIcon = ({ color }: { color: string }) => (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5">
     <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 14.15v4.25c0 1.094-.89 1.982-1.982 1.982H5.732c-1.092 0-1.982-.888-1.982-1.982v-4.25m16.5 0a2.18 2.18 0 00.75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 00-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0112 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 01-.673-.38m0 0A2.18 2.18 0 013 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 013.413-.387m7.5 0V5.25A2.25 2.25 0 0013.5 3h-3a2.25 2.25 0 00-2.25 2.25v.894m7.5 0a48.667 48.667 0 00-7.5 0M12 12.75h.008v.008H12v-.008z" />
   </svg>
 );
@@ -36,11 +36,11 @@ interface TopTabsProps {
 export default function TopTabs({ activeTab, onTabChange }: TopTabsProps) {
   return (
     <nav 
-      className="w-full px-3 pt-1 pb-1.5 bg-[#0a1128]"
+      className="w-full px-3 pt-2 pb-1"
       style={{ fontFamily: "'Outfit', sans-serif" }}
     >
       <div 
-        className="flex items-stretch w-full rounded-lg border border-white/10 bg-transparent overflow-hidden"
+        className="flex items-stretch w-full rounded-[10px] border border-[#2a2d45] bg-[#0f142b] overflow-hidden"
         role="tablist"
         aria-label="Main property categories"
       >
@@ -55,21 +55,20 @@ export default function TopTabs({ activeTab, onTabChange }: TopTabsProps) {
               aria-selected={isActive}
               onClick={() => onTabChange(tab.id as MainTab)}
               className={`
-                flex items-center justify-center gap-1.5 h-[34px] relative
-                transition-all duration-200 hover:bg-white/[0.04] active:bg-white/[0.06]
-                focus-visible:outline-none
+                flex items-center justify-center gap-1.5 h-[44px] relative
+                transition-all duration-300 ease-out hover:bg-white/[0.04] active:bg-white/[0.06] hover:shadow-[inset_0_2px_10px_rgba(255,255,255,0.02)]
+                focus-visible:outline-none flex-1 group
                 ${index < topTabs.length - 1 ? "after:content-[''] after:absolute after:right-0 after:top-1/2 after:-translate-y-1/2 after:w-[1px] after:h-[20px] after:bg-white/10" : ''}
-                ${tab.id === 'business' ? 'flex-[1.4]' : 'flex-1'}
               `}
             >
-              <div className="shrink-0 flex items-center justify-center">
-                <Icon color={isActive ? '#d4af37' : '#94A3B8'} />
+              <div className="shrink-0 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+                <Icon color={isActive ? '#FBBF24' : '#FFFFFF'} />
               </div>
 
               <span
-                className={`font-semibold text-left transition-colors ${
-                  isActive ? 'text-[#d4af37]' : 'text-white'
-                } ${tab.id === 'business' ? 'text-[8.5px] leading-[1.1] tracking-tight' : 'text-[11px] tracking-wide'}`}
+                className={`font-medium text-left transition-all duration-300 ${
+                  isActive ? 'text-[#FBBF24]' : 'text-white/90 group-hover:text-white'
+                } ${tab.id === 'business' ? 'text-[9px] leading-[1.2]' : 'text-[11px]'}`}
               >
                 {tab.id === 'business' ? (
                   <>Business<br/>Opportunities</>
@@ -80,7 +79,7 @@ export default function TopTabs({ activeTab, onTabChange }: TopTabsProps) {
 
               {isActive && (
                 <div 
-                  className="absolute bottom-0 left-[15%] right-[15%] h-[2px] rounded-t-full bg-[#d4af37]" 
+                  className="absolute bottom-0 left-[20%] right-[20%] h-[2.5px] rounded-t-full bg-[#FBBF24]" 
                   aria-hidden="true"
                 />
               )}

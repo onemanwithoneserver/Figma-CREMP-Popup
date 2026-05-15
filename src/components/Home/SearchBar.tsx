@@ -1,12 +1,13 @@
 const SearchIcon = ({ color }: { color: string }) => (
   <svg
-    width="18"
-    height="18"
+    width="16"
+    height="16"
     viewBox="0 0 24 24"
     fill="none"
     stroke={color}
     strokeWidth="1.8"
     aria-hidden="true"
+    className="transition-transform duration-300 group-hover:scale-110 group-focus-within:scale-110"
   >
     <path
       strokeLinecap="round"
@@ -18,8 +19,8 @@ const SearchIcon = ({ color }: { color: string }) => (
 
 const FilterIcon = ({ color }: { color: string }) => (
   <svg
-    width="16"
-    height="16"
+    width="14"
+    height="14"
     viewBox="0 0 24 24"
     fill="none"
     stroke={color}
@@ -47,12 +48,11 @@ export default function SearchBar({
 }: SearchBarProps) {
   return (
     <div
-      className="w-full px-1.5 pb-1"
+      className="w-full pb-0.5"
       style={{ fontFamily: "'Outfit', sans-serif" }}
     >
       <form
-        className="flex items-center w-full h-[36px] pl-3 pr-1.5 bg-white border border-[#E2E8F0] rounded-[4px] transition-all focus-within:border-[#d4af37]/50 focus-within:shadow-sm"
-        style={{ boxShadow: "0 2px 8px rgba(0,0,0,0.03)" }}
+        className="flex items-center w-full h-[40px] pl-3 pr-1 bg-white rounded-[12px] transition-all duration-300 ease-out focus-within:ring-2 focus-within:ring-[#FBBF24]/50 shadow-[0_6px_16px_rgba(0,0,0,0.08)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.12)] hover:-translate-y-[1px] group"
         onSubmit={(e) => e.preventDefault()}
         role="search"
       >
@@ -66,13 +66,12 @@ export default function SearchBar({
           onChange={(e) => onChange(e.target.value)}
           placeholder={placeholder}
           aria-label={placeholder}
-          className="flex-1 h-full min-w-0 px-2.5 text-[11px] font-medium leading-tight text-[#0F172A] bg-transparent outline-none placeholder:text-[#94A3B8]"
+          className="flex-1 h-full min-w-0 px-2.5 text-[11px] font-medium leading-tight text-[#0F172A] bg-transparent outline-none placeholder:text-[#94A3B8] transition-colors duration-300"
         />
 
         <button
           type="button"
-          className="flex items-center justify-center shrink-0 w-[28px] h-[28px] rounded-[4px] transition-transform active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37]/50"
-          style={{ background: "linear-gradient(135deg, #0a1128 0%, #1a3463 100%)" }}
+          className="flex items-center justify-center shrink-0 w-[32px] h-[32px] rounded-[10px] transition-all duration-300 ease-out hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FBBF24]/50 bg-[#0a1128] hover:bg-[#121c33] shadow-[0_2px_8px_rgba(10,17,40,0.2)]"
           aria-label="Open filter options"
           aria-haspopup="dialog"
         >

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Header from '../Home/Header';
+import LeaseHeader from './LeaseHeader';
 import TopTabs from '../Home/TopTabs';
 import SearchBar from '../Home/SearchBar';
 import BottomNavbar from '../Home/BottomNavbar';
@@ -32,34 +32,34 @@ export default function LeasePage({ onHomePress }: LeasePageProps) {
       style={{ maxWidth: 430, fontFamily: "'Outfit', sans-serif" }}
     >
       {/* ── Dark top bar: header + tab strip + category tabs ──────────── */}
-      <div className="shrink-0 w-full bg-[#0a1128] z-20 relative">
-        <Header />
+      <div className="shrink-0 w-full bg-[#0a1128] z-20 relative pb-[18px]">
+        <LeaseHeader />
         <TopTabs activeTab="lease" onTabChange={handleTabChange} />
         <LeaseCategoryTabs
           activeCategory={activeCategory}
           onCategoryChange={setActiveCategory}
         />
-      </div>
 
-      {/* ── Map fills remaining space; search floats at top of map ────── */}
-      <div className="flex-1 relative overflow-hidden z-0">
-        {/* Full-height map canvas */}
-        <div className="absolute inset-0 flex flex-col">
-          <LeaseMapSection
-            selectedMarkerId={selectedMarkerId}
-            onMarkerClick={setSelectedMarkerId}
-          />
-        </div>
-
-        {/* Search floating at top of map */}
-        <div className="absolute top-0 left-0 right-0 z-20">
-          <div className="px-3 pt-2.5 pb-2.5">
+        {/* Search floating overlapping map and header */}
+        <div className="absolute left-0 right-0 bottom-[-18px] z-30 px-3">
+          <div className="transition-all duration-500 ease-out hover:-translate-y-0.5">
             <SearchBar
               query={searchQuery}
               onChange={setSearchQuery}
               placeholder="Search offices, retail, warehouses..."
             />
           </div>
+        </div>
+      </div>
+
+      {/* ── Map fills remaining space ────── */}
+      <div className="flex-1 relative overflow-hidden z-0 pt-[18px]">
+        {/* Full-height map canvas */}
+        <div className="absolute inset-0 flex flex-col">
+          <LeaseMapSection
+            selectedMarkerId={selectedMarkerId}
+            onMarkerClick={setSelectedMarkerId}
+          />
         </div>
       </div>
 
