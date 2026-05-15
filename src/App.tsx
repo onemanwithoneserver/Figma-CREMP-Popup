@@ -57,7 +57,7 @@ const MobileViewportWrapper = ({ children, isMobile }: { children: React.ReactNo
 export default function App() {
   const theme = useTheme();
   const isMobileScreen = useMediaQuery(theme.breakpoints.down('lg'));
-  
+
   // Added 'wishlist', 'franchisesearch', 'preregistration', 'postregistration', and 'weblayoutdesign' to the allowed activePage types
   const [activePage, setActivePage] = useState<'franchise' | 'handpicked' | 'wishlist' | 'mainframe' | 'franchisesearch' | 'preregistration' | 'postregistration' | 'weblayoutdesign' | 'crempbrokers' | 'crempvideoflow' | 'home' | 'homeselected' | 'allbuildingsmap' | 'lease'>('franchise');
   const [viewMode, setViewMode] = useState<'desktop' | 'mobile'>('desktop');
@@ -283,16 +283,16 @@ export default function App() {
                     CREMP VideoFlow
                   </MenuItem>
                   <MenuItem value="home" className="font-['Outfit'] text-sm font-medium text-[#0f1f3d]">
-                    Home (Business Map)
+                    Business Opportunities
                   </MenuItem>
                   <MenuItem value="homeselected" className="font-['Outfit'] text-sm font-medium text-[#0f1f3d]">
-                    Home – Selected Area
+                    BO - Selected Area
                   </MenuItem>
-                  <MenuItem value="allbuildingsmap" className="font['Outfit'] text-sm font-medium text-[#0f1f3d]">
-                    AllBuildings – Map View
+                  <MenuItem value="allbuildingsmap" className="font-['Outfit'] text-sm font-medium text-[#0f1f3d]">
+                    Buy
                   </MenuItem>
                   <MenuItem value="lease" className="font-['Outfit'] text-sm font-medium text-[#0f1f3d]">
-                    Lease (Map View)
+                    Lease
                   </MenuItem>
                 </Select>
               </FormControl>
@@ -366,6 +366,6 @@ export default function App() {
           />
         )}
       </Box>
-    </Box>
+    </Box >
   );
 }
