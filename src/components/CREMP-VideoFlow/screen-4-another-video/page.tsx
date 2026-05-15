@@ -5,7 +5,7 @@ import type { PropertyVideo } from '../shared/theme/videoflow.types';
 import { propertyVideos, suggestedLabels } from './data';
 import SuggestedPreviewStrip from './components/SuggestedPreviewStrip';
 import ActionIcons from '../screen-2-video-player/components/ActionIcons';
-import BottomNav from '../shared/components/BottomNav';
+import BottomNavbar from '../../Home/BottomNavbar';
 import { fadeIn, slideUp } from '../shared/animations/videoflow.animations';
 
 interface AnotherVideoPageProps {
@@ -135,8 +135,8 @@ export default function AnotherVideoPage({
         </div>
       </div>
 
-      <div className="absolute bottom-0 inset-x-0 z-50 bg-neutral-950/80 backdrop-blur-lg border-t border-white/10 pb-safe">
-        <BottomNav activeKey="discover" />
+      <div className="absolute bottom-0 left-0 right-0 z-50">
+        <BottomNavbar activeNav="video" onNavChange={() => {}} />
       </div>
     </motion.div>
   );

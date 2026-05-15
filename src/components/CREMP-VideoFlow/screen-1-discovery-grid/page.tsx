@@ -7,7 +7,7 @@ import { propertyVideos, categories } from './data';
 import PropertyVideoCard from './components/PropertyVideoCard';
 import CategoryChips from './components/CategoryChips';
 import VideoCardSkeleton from '../shared/components/VideoCardSkeleton';
-import BottomNav from '../shared/components/BottomNav';
+import BottomNavbar from '../../Home/BottomNavbar';
 import { fadeIn, staggerContainer, slideUp } from '../shared/animations/videoflow.animations';
 import '../shared/theme/videoflow.css';
 
@@ -156,7 +156,7 @@ export default function DiscoveryGridPage({ onVideoSelect }: DiscoveryGridPagePr
                   video={video}
                   index={i}
                   compact
-                  onSelect={onVideoSelect ?? (() => {})}
+                  onSelect={onVideoSelect ?? (() => { })}
                 />
               ))}
             </motion.div>
@@ -179,10 +179,8 @@ export default function DiscoveryGridPage({ onVideoSelect }: DiscoveryGridPagePr
           </motion.div>
         )}
       </div>
-
-      {/* ── Dark luxury bottom nav ── */}
-      <div className="absolute bottom-0 left-0 right-0 pb-safe">
-        <BottomNav activeKey="home" />
+      <div className="absolute bottom-0 left-0 right-0 z-50">
+        <BottomNavbar activeNav="video" onNavChange={() => { }} />
       </div>
     </motion.div>
   );

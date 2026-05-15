@@ -6,13 +6,6 @@ const MenuIcon = ({ color = "#FFFFFF" }: { color?: string }) => (
   </svg>
 );
 
-const LocationIcon = ({ color = "#FFFFFF" }: { color?: string }) => (
-  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.4">
-    <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
-  </svg>
-);
-
 const ChevronDownIcon = ({ color = "#FFFFFF" }: { color?: string }) => (
   <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5">
     <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
